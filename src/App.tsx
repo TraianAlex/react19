@@ -1,17 +1,16 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.scss';
 import { NavigationBar } from './components/navigation-bar/navigation-bar';
+import Home from './components/home/home';
 
 function App() {
   return (
-    <>
+    <BrowserRouter>
       <NavigationBar />
-      <div className='container mt-5 pt-5'>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sint inventore
-        aut harum ratione nulla dolores ipsum, id dolor provident explicabo cum
-        illo ducimus tempore dolorem voluptatum veniam laborum suscipit
-        assumenda!
-      </div>
-    </>
+      <Routes>
+        <Route path='/' element={<Home />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
