@@ -1,11 +1,11 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.scss';
-import { NavigationBar } from './components/navigation-bar/navigation-bar';
-import Home from './components/home/home';
-import Todos from './apps/todos/todos';
-import WatchList from './apps/watch-list/watch-list';
-import Layout from './components/layout.tsx/layout';
-import { HomeDetails } from './components/home/home-detail/home-details';
+import { NavigationBar } from './components/navigation-bar';
+import Home from './components/home';
+import Todos from './apps/todos';
+import WatchList from './apps/watch-list';
+import Layout from './components/layout.tsx';
+import { HomeDetails } from './components/home/home-detail';
 
 function App() {
   return (

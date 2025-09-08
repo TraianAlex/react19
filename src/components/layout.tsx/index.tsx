@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { NavigationBar } from '../navigation-bar/navigation-bar';
+import { NavigationBar } from '../navigation-bar';
 
 interface LayoutProps {
   children?: ReactNode;

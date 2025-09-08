@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import { HomeList } from './home-list';
 
 type Recipe = {
   strMeal: string;
@@ -51,11 +52,7 @@ export default function Home() {
           <div className='card' style={{ width: '18rem' }}>
             <div className='card-header'>Featured</div>
             <ul className='list-group list-group-flush'>
-              {recipes.map((recipe) => (
-                <li key={recipe.idMeal} className='list-group-item'>
-                  <Link to={`${recipe.idMeal}`}>{recipe.strMeal}</Link>
-                </li>
-              ))}
+              <HomeList recipes={recipes} />
             </ul>
           </div>
         </div>
