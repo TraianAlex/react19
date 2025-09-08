@@ -52,14 +52,14 @@ export const NavigationBar = () => {
                 </a>
                 <ul className='dropdown-menu'>
                   <li>
-                    <a className='dropdown-item' href='#'>
-                      Action
-                    </a>
+                    <Link className='dropdown-item' to='todos'>
+                      Todos
+                    </Link>
                   </li>
                   <li>
-                    <a className='dropdown-item' href='#'>
-                      Another action
-                    </a>
+                    <Link className='dropdown-item' to='watch-list'>
+                      WatchList
+                    </Link>
                   </li>
                   <li>
                     <hr className='dropdown-divider' />

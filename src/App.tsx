@@ -2,14 +2,20 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.scss';
 import { NavigationBar } from './components/navigation-bar/navigation-bar';
 import Home from './components/home/home';
+import Todos from './apps/todos/todos';
+import WatchList from './apps/watch-list/watch-list';
+import Layout from './components/layout.tsx/layout';
 
 function App() {
   return (
     <BrowserRouter>
-      <NavigationBar />
-      <Routes>
-        <Route path='/' element={<Home />} />
-      </Routes>
+      <Layout>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='todos' element={<Todos />} />
+          <Route path='watch-list' element={<WatchList />} />
+        </Routes>
+      </Layout>
     </BrowserRouter>
   );
 }
