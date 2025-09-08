@@ -51,9 +51,7 @@ export default function Home() {
         <div className='col-3'>
           <div className='card' style={{ width: '18rem' }}>
             <div className='card-header'>Featured</div>
-            <ul className='list-group list-group-flush'>
-              <HomeList recipes={recipes} />
-            </ul>
+            <HomeList recipes={recipes} />
           </div>
         </div>
         <div className='col-9'>
