@@ -5,13 +5,16 @@ import Home from './components/home/home';
 import Todos from './apps/todos/todos';
 import WatchList from './apps/watch-list/watch-list';
 import Layout from './components/layout.tsx/layout';
+import { HomeDetails } from './components/home/home-detail/home-details';
 
 function App() {
   return (
     <BrowserRouter>
       <Layout>
         <Routes>
-          <Route path='/' element={<Home />} />
+          <Route path='/' element={<Home />}>
+            <Route path=':recipeId' element={<HomeDetails />} />
+          </Route>
           <Route path='todos' element={<Todos />}>
             <Route path='todo1' element={<h1>TODO1</h1>} />
             <Route path='todo2' element={<h1>TODO2</h1>} />
