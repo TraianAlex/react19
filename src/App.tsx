@@ -12,7 +12,10 @@ function App() {
       <Layout>
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='todos' element={<Todos />} />
+          <Route path='todos' element={<Todos />}>
+            <Route path='todo1' element={<h1>TODO1</h1>} />
+            <Route path='todo2' element={<h1>TODO2</h1>} />
+          </Route>
           <Route path='watch-list' element={<WatchList />} />
         </Routes>
       </Layout>
