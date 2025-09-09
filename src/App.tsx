@@ -11,6 +11,7 @@ import Login from './pocs/auth/components/login';
 import Profile from './pocs/auth/components/profile';
 import { ProtectedRoute } from './pocs/auth/private-routes';
 import store from './pocs/auth/state/store';
+import LoadingSpinner from './components/loading-spinner';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
               <Route path='todo2' element={<h1>TODO2</h1>} />
             </Route>
             <Route path='watch-list' element={<WatchList />} />
+            <Route path='loading-spinner' element={<LoadingSpinner />} />
             <Route path='login' element={<Login />} />
             <Route
               path='profile'

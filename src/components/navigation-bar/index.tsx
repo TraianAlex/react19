@@ -170,7 +170,7 @@ export const NavigationBar = () => {
       >
         <div className='offcanvas-header'>
           <h5 className='offcanvas-title' id='offcanvasExampleLabel'>
-            Offcanvas
+            Components
           </h5>
           <button
             type='button'
@@ -207,6 +207,13 @@ export const NavigationBar = () => {
                 <a className='dropdown-item' href='#'>
                   Something else here
                 </a>
+              </li>
+            </ul>
+            <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
+              <li className='nav-item'>
+                <Link to='loading-spinner' className='nav-link active' aria-current='page'>
+                  Loading Spinner
+                </Link>
               </li>
             </ul>
           </div>
