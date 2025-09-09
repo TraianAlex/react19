@@ -12,7 +12,7 @@ type Recipe = {
   [key: string]: string;
 };
 
-export const HomeDetails = () => {
+const HomeDetails = () => {
   const { recipeId } = useParams<{ recipeId: string }>();
   const [recipe, setRecipe] = useState<Recipe | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -83,3 +83,5 @@ export const HomeDetails = () => {
     </div>
   );
 };
+
+export default HomeDetails;
