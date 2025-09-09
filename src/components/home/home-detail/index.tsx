@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { useParams } from 'react-router-dom';
+import LoadingSpinner from '../../loading-spinner';
 
 type Recipe = {
   strMeal: string;
@@ -42,7 +43,7 @@ export const HomeDetails = () => {
   }, [recipeId]);
 
   if (loading) {
-    return <p>Fetching recipe details......</p>;
+    return <LoadingSpinner />;
   }
 
   if (error) {

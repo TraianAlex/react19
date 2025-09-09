@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import { HomeList } from './home-list';
+import LoadingSpinner from '../loading-spinner';
 
 type Recipe = {
   strMeal: string;
@@ -39,7 +40,7 @@ export default function Home() {
   }, []);
 
   if (loading) {
-    return <p>Loading spicy recipes...</p>;
+    return <LoadingSpinner />;
   }
 
   if (error) {

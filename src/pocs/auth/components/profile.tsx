@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { AppDispatch, RootState } from '../state/store';
 import { getUserProfileThunk } from '../state/authSlice';
+import LoadingSpinner from '../../../components/loading-spinner';
 
 const Profile: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -23,11 +24,7 @@ const Profile: React.FC = () => {
   }, [dispatch, user]);
 
   if (loading || localLoading) {
-    return (
-      <div className='d-flex justify-content-center align-items-center vh-100'>
-        Loading...
-      </div>
-    );
+    return <LoadingSpinner />;
   }
 
   if (!user) {
