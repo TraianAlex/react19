@@ -1,6 +1,32 @@
-import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { AppDispatch, RootState } from '../../pocs/auth/state/store';
+import {
+  getUserProfileThunk,
+  logoutUserThunk,
+} from '../../pocs/auth/state/authSlice';
 
 export const NavigationBar = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
+  const { isAuthenticated, user } = useSelector(
+    (state: RootState) => state.auth
+  );
+
+  useEffect(() => {
+    if (isAuthenticated && !user) {
+      dispatch(getUserProfileThunk());
+    }
+  }, [dispatch, isAuthenticated, user]);
+
+  const handleLogout = () => {
+    dispatch(logoutUserThunk()).then(() => {
+      navigate('/login');
+    });
+  };
+
   return (
     <>
       <nav
@@ -35,10 +61,23 @@ export const NavigationBar = () => {
                   Home
                 </Link>
               </li>
-              <li className='nav-item'>
-                <a className='nav-link' href='#'>
+              <li className='nav-item dropdown'>
+                <a
+                  className='nav-link dropdown-toggle'
+                  href='#'
+                  role='button'
+                  data-bs-toggle='dropdown'
+                  aria-expanded='false'
+                >
                   POCs
                 </a>
+                <ul className='dropdown-menu'>
+                  <li>
+                    <Link className='dropdown-item' to='profile'>
+                      Auth
+                    </Link>
+                  </li>
+                </ul>
               </li>
               <li className='nav-item dropdown'>
                 <a
@@ -88,6 +127,38 @@ export const NavigationBar = () => {
                 Search
               </button>
             </form>
+            <ul className='navbar-nav'>
+              {isAuthenticated && (
+                <li className='nav-item'>
+                  <Link
+                    to='profile'
+                    className='nav-link active'
+                    aria-current='page'
+                  >
+                    Profile
+                  </Link>
+                </li>
+              )}
+              {isAuthenticated && user ? (
+                <button
+                  className='btn btn-outline-light'
+                  type='submit'
+                  onClick={handleLogout}
+                >
+                  Logout
+                </button>
+              ) : (
+                <li className='nav-item'>
+                  <Link
+                    to='login'
+                    className='nav-link active'
+                    aria-current='page'
+                  >
+                    Login
+                  </Link>
+                </li>
+              )}
+            </ul>
           </div>
         </div>
       </nav>

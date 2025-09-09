@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+
 import { NavigationBar } from '../navigation-bar';
 
 interface LayoutProps {
