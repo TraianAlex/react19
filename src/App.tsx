@@ -9,6 +9,7 @@ import store from './pocs/auth/state/store';
 import LoadingSpinner from './components/loading-spinner';
 import { CustomErrorBoundary } from './components/CustomErrorBoundary.tsx';
 
+const NotFound = lazy(() => import('./components/not-found'));
 const Home = lazy(() => import('./components/home'));
 const HomeDetails = lazy(() => import('./components/home/home-detail'));
 const Todos = lazy(() => import('./apps/todos'));
@@ -42,6 +43,7 @@ function App() {
                     </ProtectedRoute>
                   }
                 />
+                <Route path='*' element={<NotFound />} />
               </Routes>
             </Layout>
           </Suspense>
