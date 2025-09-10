@@ -2,10 +2,12 @@ import React from 'react';
 import { ErrorBoundary, FallbackProps } from 'react-error-boundary';
 
 const CustomFallbackUI = ({ error, resetErrorBoundary }: FallbackProps) => (
-  <div className='d-flex justify-content-center align-items-center vh-100'>
+  <div className='d-flex flex-column justify-content-center align-items-center vh-100'>
     <h2>Oops! Something went wrong.</h2>
     <p>{error.message}</p>
-    <button onClick={resetErrorBoundary}>Retry</button>
+    <button className='btn btn-primary' onClick={resetErrorBoundary}>
+      Retry
+    </button>
   </div>
 );
 
