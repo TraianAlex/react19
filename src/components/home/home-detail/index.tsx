@@ -73,21 +73,23 @@ const HomeDetails = () => {
       <div className='me-4' style={{ minWidth: '30%' }}>
         <img
           className='img-fluid'
-          src={recipeToDisplay?.strMealThumb}
-          alt={recipeToDisplay?.strMeal}
+          src={recipeToDisplay.strMealThumb}
+          alt={recipeToDisplay.strMeal}
         />
       </div>
       <div>
-        <h5>Category: {recipeToDisplay?.strCategory}</h5>
-        <p>Area: {recipeToDisplay?.strArea}</p>
+        <h5>Category: {recipeToDisplay.strCategory}</h5>
+        <p>Area: {recipeToDisplay.strArea}</p>
         <p>
-          <strong>Instructions:</strong> {recipeToDisplay?.strInstructions}
+          <strong>Instructions:</strong> {recipeToDisplay.strInstructions}
         </p>
         <h5>Ingredients:</h5>
         <p>
           {Array.from({ length: 20 }).map((_, index) => {
-            const ingredient = recipeToDisplay?.[`strIngredient${index + 1}`];
-            const measure = recipeToDisplay?.[`strMeasure${index + 1}`];
+            const ingredient =
+              recipeToDisplay[`strIngredient${index + 1}` as keyof Recipe];
+            const measure =
+              recipeToDisplay[`strMeasure${index + 1}` as keyof Recipe];
             return (
               ingredient && (
                 <li key={index}>
