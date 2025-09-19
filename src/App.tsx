@@ -26,7 +26,7 @@ function App() {
             <Layout>
               <Routes>
                 <Route path='/' element={<Home />}>
-                  <Route path=':recipeId' element={<HomeDetails />} />
+                  <Route path='recipe/:recipeId' element={<HomeDetails />} />
                 </Route>
                 <Route path='todos' element={<Todos />}>
                   <Route path='todo1' element={<h1>TODO1</h1>} />

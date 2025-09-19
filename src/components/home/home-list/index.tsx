@@ -16,7 +16,7 @@ export const HomeList: React.FC<RecipeListProps> = ({ recipes }) => {
   const navigate = useNavigate();
 
   function handleRecipeClick(recipe: Recipe): void {
-    navigate(`home-details?category=${currentCategory}`, { state: { recipe } });
+    navigate(`recipe/${recipe.idMeal}?category=${currentCategory}`, { state: { recipe } });
   }
 
   return (
@@ -35,14 +35,14 @@ export const HomeList: React.FC<RecipeListProps> = ({ recipes }) => {
               <br />
               <span className='me-4'>by link:</span>
               <Link
-                to={`home-details?category=${currentCategory}`}
+                to={`recipe/${recipe.idMeal}?category=${currentCategory}`}
                 state={{ recipe }}
               >
                 {recipe.strMeal}
               </Link>
             </>
           ) : (
-            <NavLink to={`${recipe.idMeal}?category=${currentCategory}`}>
+            <NavLink to={`recipe/${recipe.idMeal}?category=${currentCategory}`}>
               {recipe.strMeal}
             </NavLink>
           )}
