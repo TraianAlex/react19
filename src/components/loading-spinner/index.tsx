@@ -1,3 +1,5 @@
+import { useEffect, useRef, useState } from 'react';
+
 export default function LoadingSpinner() {
   return (
     <div className='d-flex justify-content-center align-items-center vh-100'>
@@ -11,3 +13,49 @@ export default function LoadingSpinner() {
     </div>
   );
 }
+
+export const LoaderMessage = ({
+  loadingMsg,
+  doneMsg,
+  isLoading,
+}: {
+  loadingMsg: string;
+  doneMsg: string;
+  isLoading: boolean;
+}) => {
+  const isLoadingPreviousValue = useRef<boolean | null>(null);
+  const [showLoadingMessage, setShowLoadingMessage] = useState(false);
+  const [showDoneMessage, setShowDoneMessage] = useState(false);
+
+  useEffect(() => {
+    let loadingMessageDelay: number | undefined;
+    let doneMessageDelay: number | undefined;
+
+    if (isLoading) {
+      loadingMessageDelay = setTimeout(() => {
+        setShowLoadingMessage(true);
+      }, 400);
+    } else {
+      if (isLoadingPreviousValue.current) {
+        setShowDoneMessage(true);
+        doneMessageDelay = setTimeout(() => {
+          setShowDoneMessage(false);
+        }, 300);
+      }
+    }
+    isLoadingPreviousValue.current = isLoading;
+    return () => {
+      setShowLoadingMessage(false);
+      setShowDoneMessage(false);
+      clearTimeout(loadingMessageDelay);
+      clearTimeout(doneMessageDelay);
+    };
+  }, [isLoading]);
+
+  return (
+    <div aria-live='assertive' aria-atomic='true'>
+      {showLoadingMessage && <p className='loading'>{loadingMsg}</p>}
+      {showDoneMessage && <p className='visually-hidden'>{doneMsg}</p>}
+    </div>
+  );
+};
