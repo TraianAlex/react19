@@ -21,7 +21,6 @@ const Todos1 = () => {
           setDisplayStatus={setDisplayStatus}
           important={important}
           setImportant={setImportant}
-          searchText={searchText}
           setSearchText={setSearchText}
           startTransition={startTransition}
           isPending={isPending}

@@ -5,7 +5,6 @@ const ToDoListWithToolbar = ({
   setDisplayStatus,
   important,
   setImportant,
-  searchText,
   setSearchText,
   startTransition,
   isPending,
@@ -15,7 +14,6 @@ const ToDoListWithToolbar = ({
   setDisplayStatus: (status: string) => void;
   important: boolean;
   setImportant: (important: boolean) => void;
-  searchText: string;
   setSearchText: (text: string) => void;
   startTransition: (callback: () => void) => void;
   isPending: boolean;
@@ -27,7 +25,6 @@ const ToDoListWithToolbar = ({
       setDisplayStatus={setDisplayStatus}
       important={important}
       setImportant={setImportant}
-      searchText={searchText}
       setSearchText={setSearchText}
       startTransition={startTransition}
       isPending={isPending}

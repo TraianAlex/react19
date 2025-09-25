@@ -13,12 +13,12 @@ const ToDoFilterToolbar = ({
   setDisplayStatus: (status: string) => void;
   important: boolean;
   setImportant: (important: boolean) => void;
-  searchText: string;
   setSearchText: (text: string) => void;
   startTransition: (callback: () => void) => void;
   isPending: boolean;
 }) => {
   const [searchTextResponsive, setSearchTextResponsive] = useState('');
+
   return (
     <nav className='navbar navbar-expand'>
       <div className='container1-fluid'>
