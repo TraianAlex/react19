@@ -24,7 +24,6 @@ const ToDoManager = ({
     important: false,
   });
   const [idUpdating, setIdUpdating] = useState(0);
-
   const [addOrEdit, setAddOrEdit] = useState('add'); // "add" or "edit"
 
   const handleToggle = (id: any) => {
@@ -75,7 +74,6 @@ const ToDoManager = ({
     <>
       <div className='form p-3'>
         <ToDoAddForm visible={addOrEdit === 'add'} add={add} />
-
         <ToDoEditForm
           visible={addOrEdit === 'edit'}
           update={handleUpdate}
@@ -84,7 +82,6 @@ const ToDoManager = ({
           setAddOrEdit={setAddOrEdit}
         />
       </div>
-
       <ToDoList
         displayStatus={displayStatus}
         important={important}

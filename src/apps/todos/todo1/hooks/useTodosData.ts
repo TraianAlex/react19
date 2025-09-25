@@ -2,6 +2,7 @@ import useGeneralizedCrudMethods from "./useGeneralizedCrudMethods";
 
 const useTodosData = () => {
   const url = "http://localhost:4000/api/todos";
+
   const errorNotificationFn = (error: any) => {
     console.log("Error From useTodosData", error);
   };

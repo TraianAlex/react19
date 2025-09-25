@@ -86,10 +86,6 @@ const ToDoFilterToolbar = ({
               type='checkbox'
               id='important-checkbox-toggle-id'
               checked={important}
-              // THIS FAILS, MAYBE BECAUSE NEED TO INSURE THIS CHANGE HAPPENS AFTER COMPONENT COMPLETELY RENDERS
-              // onChange={() => {
-              //   setImportant(!important);
-              // }}
               onChange={() => {
                 setImportant(!important);
               }}

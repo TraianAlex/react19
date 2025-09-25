@@ -36,7 +36,6 @@ const Footer = () => {
         >
           <i className="fas fa-sync"></i>
         </button>
-
         <div className="footer-refresh" title="Refreshing">
           {loadingStatus === "loading" ? (
             <span
@@ -53,7 +52,6 @@ const Footer = () => {
             ></span>
           )}
         </div>
-
         <div className="clear-completed">
           <button
             onClick={handleClearCompleted}
@@ -62,7 +60,6 @@ const Footer = () => {
             Clear Completed
           </button>
         </div>
-
         <div className="quick-stats">
           {todoList?.length > 0 ? (
             <p>

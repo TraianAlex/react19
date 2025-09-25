@@ -51,7 +51,6 @@ const Inner = ({
         >
           <i className="fas fa-pencil-alt"></i>
         </button>
-
         <button
           className="btn delete"
           title="Delete"

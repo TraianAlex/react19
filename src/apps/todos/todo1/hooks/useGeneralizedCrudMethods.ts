@@ -77,6 +77,7 @@ const useGeneralizedCrudMethods = (
     }
     addData();
   }
+
   function updateRecord(updateObject: any, callbackDone: () => void) {
     const id = updateObject.id; // all todo must have a column "id"
     async function updateData() {
@@ -96,10 +97,8 @@ const useGeneralizedCrudMethods = (
         });
         await new Promise((resolve) => setTimeout(resolve, 2000));
 
-        // get the full record back that has been updated
         const updatedRecord = data?.find((rec: any) => rec.id === id);
         await axios.put(`${url}/${id}`, updatedRecord);
-        // console.log(`done  call axios.put`);
         if (callbackDone) callbackDone();
       } catch (e) {
         setData(startingData);
@@ -116,6 +115,7 @@ const useGeneralizedCrudMethods = (
       errorNotificationFn?.(errorString);
     }
   }
+
   function deleteRecord(val: any, callbackDone: () => void) {
     // handle case of passed in as integer or array of integers.
     const ids = Array.isArray(val) ? val : [val];

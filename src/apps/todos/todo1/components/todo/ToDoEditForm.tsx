@@ -30,7 +30,6 @@ const ToDoEditForm = ({
           />
           <label htmlFor="addTodoCompleted">Enter To-do...</label>
         </div>
-
         <button className="btn btn-theme-primary" id="push" onClick={update}>
           Update Item
         </button>
