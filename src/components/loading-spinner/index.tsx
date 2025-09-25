@@ -14,15 +14,17 @@ export default function LoadingSpinner() {
   );
 }
 
+interface LoaderMessageProps {
+  loadingMsg: string;
+  doneMsg: string;
+  isLoading: boolean;
+}
+
 export const LoaderMessage = ({
   loadingMsg,
   doneMsg,
   isLoading,
-}: {
-  loadingMsg: string;
-  doneMsg: string;
-  isLoading: boolean;
-}) => {
+}: LoaderMessageProps) => {
   const isLoadingPreviousValue = useRef<boolean | null>(null);
   const [showLoadingMessage, setShowLoadingMessage] = useState(false);
   const [showDoneMessage, setShowDoneMessage] = useState(false);

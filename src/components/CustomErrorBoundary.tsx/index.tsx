@@ -1,5 +1,11 @@
 import { Component, ComponentType, ReactNode } from 'react';
+
 import { ErrorBoundary, FallbackProps } from 'react-error-boundary';
+
+interface CustomErrorBoundaryProps {
+  children: ReactNode;
+  FallbackComponent?: ComponentType<FallbackProps>;
+}
 
 const CustomFallbackUI = ({ error, resetErrorBoundary }: FallbackProps) => (
   <div className='d-flex flex-column justify-content-center align-items-center vh-100'>
@@ -14,10 +20,7 @@ const CustomFallbackUI = ({ error, resetErrorBoundary }: FallbackProps) => (
 export const CustomErrorBoundary = ({
   children,
   FallbackComponent = CustomFallbackUI,
-}: {
-  children: ReactNode;
-  FallbackComponent?: ComponentType<FallbackProps>;
-}) => {
+}: CustomErrorBoundaryProps) => {
   return (
     <ErrorBoundary FallbackComponent={FallbackComponent}>
       {children}
@@ -30,6 +33,10 @@ function logErrorToMyService(error: any, errorInfo: any) {
   console.log('error:', error);
 }
 
+interface ErrorBoundaryState {
+  hasError: boolean;
+}
+
 interface CustomErrorBoundaryProps {
   children: ReactNode;
   errorUI?: ReactNode;
@@ -37,7 +44,7 @@ interface CustomErrorBoundaryProps {
 
 export class CustomErrorBoundary2 extends Component<
   CustomErrorBoundaryProps,
-  { hasError: boolean }
+  ErrorBoundaryState
 > {
   constructor(props: CustomErrorBoundaryProps) {
     super(props);
