@@ -1,14 +1,12 @@
 import { withTheme } from '../hocs/withTheme';
 
-const Header = ({
-  layoutVersion,
-  darkTheme,
-  toggleTheme,
-}: {
+interface HeaderProps {
   layoutVersion: string;
   darkTheme: boolean;
   toggleTheme: () => void;
-}) => {
+}
+
+const Header = ({ layoutVersion, darkTheme, toggleTheme }: HeaderProps) => {
   return (
     <header className='header1'>
       <h2>To-do List</h2>

@@ -1,4 +1,4 @@
-import React from 'react';
+import { Component, ReactNode } from 'react';
 
 function logErrorToMyService(error: any, errorInfo: any) {
   console.log('error:', error);
@@ -9,14 +9,11 @@ interface ErrorBoundaryState {
 }
 
 interface ErrorBoundaryProps {
-  children: React.ReactNode;
-  errorUI?: React.ReactNode;
+  children: ReactNode;
+  errorUI?: ReactNode;
 }
 
-class ErrorBoundary extends React.Component<
-  ErrorBoundaryProps,
-  ErrorBoundaryState
-> {
+class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   constructor(props: ErrorBoundaryProps) {
     super(props);
     this.state = { hasError: false };

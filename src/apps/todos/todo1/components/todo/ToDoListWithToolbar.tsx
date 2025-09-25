@@ -1,4 +1,15 @@
-import ToDoFilterToolbar from "./ToDoFilterToolbar";
+import ToDoFilterToolbar from './ToDoFilterToolbar';
+
+interface ToDoListWithToolbarProps {
+  displayStatus: string;
+  setDisplayStatus: (status: string) => void;
+  important: boolean;
+  setImportant: (important: boolean) => void;
+  setSearchText: (text: string) => void;
+  startTransition: (callback: () => void) => void;
+  isPending: boolean;
+  children: React.ReactNode;
+}
 
 const ToDoListWithToolbar = ({
   displayStatus,
@@ -9,16 +20,7 @@ const ToDoListWithToolbar = ({
   startTransition,
   isPending,
   children,
-}: {
-  displayStatus: string;
-  setDisplayStatus: (status: string) => void;
-  important: boolean;
-  setImportant: (important: boolean) => void;
-  setSearchText: (text: string) => void;
-  startTransition: (callback: () => void) => void;
-  isPending: boolean;
-  children: React.ReactNode;
-}) => (
+}: ToDoListWithToolbarProps) => (
   <div>
     <ToDoFilterToolbar
       displayStatus={displayStatus}
@@ -32,4 +34,5 @@ const ToDoListWithToolbar = ({
     {children}
   </div>
 );
+
 export default ToDoListWithToolbar;

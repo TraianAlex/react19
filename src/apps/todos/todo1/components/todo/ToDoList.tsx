@@ -1,4 +1,15 @@
-import ToDo from "./ToDo";
+import ToDo from './ToDo';
+
+interface ToDoListProps {
+  displayStatus: string;
+  toDoList: any[];
+  important: boolean;
+  searchText: string;
+  handleToggle: (id: any) => void;
+  handleDelete: (id: any) => void;
+  handleEdit: (todoItem: any) => void;
+  idUpdating: any;
+}
 
 const ToDoList = ({
   displayStatus,
@@ -9,25 +20,16 @@ const ToDoList = ({
   handleDelete,
   handleEdit,
   idUpdating,
-}: {
-  displayStatus: string;
-  toDoList: any[];
-  important: boolean;
-  searchText: string;
-  handleToggle: (id: any) => void;
-  handleDelete: (id: any) => void;
-  handleEdit: (todoItem: any) => void;
-  idUpdating: any;
-}) => {
+}: ToDoListProps) => {
   return (
-    <div className="tasks">
+    <div className='tasks'>
       {toDoList
         .filter((todo) => {
-          if (displayStatus === "all") {
+          if (displayStatus === 'all') {
             return true;
-          } else if (displayStatus === "pending") {
+          } else if (displayStatus === 'pending') {
             return todo.completed === false;
-          } else if (displayStatus === "completed") {
+          } else if (displayStatus === 'completed') {
             return todo.completed === true;
           } else {
             return false; // should not be needed

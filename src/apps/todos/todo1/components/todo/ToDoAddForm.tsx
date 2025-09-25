@@ -1,12 +1,11 @@
 import { useState } from 'react';
 
-const ToDoAddForm = ({
-  add,
-  visible,
-}: {
+interface ToDoAddFormProps {
   add: (todoText: string) => void;
   visible: boolean;
-}) => {
+}
+
+const ToDoAddForm = ({ add, visible }: ToDoAddFormProps) => {
   const [todoText, setTodoText] = useState('');
 
   return (

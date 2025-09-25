@@ -5,15 +5,17 @@ import ToDoEditForm from './ToDoEditForm';
 import ToDoList from './ToDoList';
 import ToDoAddForm from './ToDoAddForm';
 
+interface ToDoManagerProps {
+  displayStatus: string;
+  important: boolean;
+  searchText: string;
+}
+
 const ToDoManager = ({
   displayStatus,
   important,
   searchText,
-}: {
-  displayStatus: string;
-  important: boolean;
-  searchText: string;
-}) => {
+}: ToDoManagerProps) => {
   const { todoList, updateTodo, createTodo, deleteTodo } =
     useContext(ToDosDataContext);
 

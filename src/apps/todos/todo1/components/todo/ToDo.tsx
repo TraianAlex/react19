@@ -1,7 +1,15 @@
-import { memo } from "react";
+import { memo } from 'react';
 
-import ErrorBoundary from "../common/ErrorBoundary";
-import ToDoItemText from "./ToDoItemText";
+import ErrorBoundary from '../common/ErrorBoundary';
+import ToDoItemText from './ToDoItemText';
+
+interface ToDoProps {
+  todoItem: any;
+  handleToggleCompleted: (id: any) => void;
+  handleDelete: (id: any) => void;
+  handleEdit: (todoItem: any) => void;
+  idUpdating: any;
+}
 
 const Inner = ({
   todoItem,
@@ -9,17 +17,11 @@ const Inner = ({
   handleDelete,
   handleEdit,
   idUpdating,
-}: {
-  todoItem: any;
-  handleToggleCompleted: (id: any) => void;
-  handleDelete: (id: any) => void;
-  handleEdit: (todoItem: any) => void;
-  idUpdating: any;
-}) => {
+}: ToDoProps) => {
   return (
     <div
       key={todoItem.id}
-      className={todoItem.completed ? "single-task completed" : "single-task"}
+      className={todoItem.completed ? 'single-task completed' : 'single-task'}
     >
       <div
         onClick={() => {
@@ -33,35 +35,35 @@ const Inner = ({
       </div>
 
       {idUpdating === todoItem.id ? (
-        <button className="btn btn-primary busy-spinner" type="button" disabled>
+        <button className='btn btn-primary busy-spinner' type='button' disabled>
           <span
-            className="spinner-border spinner-border-sm"
-            role="status"
-            aria-hidden="true"
+            className='spinner-border spinner-border-sm'
+            role='status'
+            aria-hidden='true'
           ></span>
-          <span className="visually-hidden">Loading...</span>
+          <span className='visually-hidden'>Loading...</span>
         </button>
       ) : null}
 
-      <div className="task-actions">
+      <div className='task-actions'>
         <button
-          className="btn edit"
-          title="Edit"
+          className='btn edit'
+          title='Edit'
           onClick={() => handleEdit(todoItem)}
         >
-          <i className="fas fa-pencil-alt"></i>
+          <i className='fas fa-pencil-alt'></i>
         </button>
         <button
-          className="btn delete"
-          title="Delete"
+          className='btn delete'
+          title='Delete'
           onClick={() => {
-            const response = window.confirm("Delete?");
+            const response = window.confirm('Delete?');
             if (response) {
               handleDelete(todoItem.id);
             }
           }}
         >
-          <i className="far fa-trash-alt"></i>
+          <i className='far fa-trash-alt'></i>
         </button>
       </div>
     </div>
@@ -70,9 +72,9 @@ const Inner = ({
 
 const debug = true;
 
-const ToDoErrorBoundary = (props: any) => {
+const ToDoErrorBoundary = (props: ToDoProps) => {
   return (
-    <div className="single-task text-bg-danger">
+    <div className='single-task text-bg-danger'>
       {debug ? (
         <b>ERROR PROCESSING ToDo: {JSON.stringify(props)}</b>
       ) : (
@@ -82,7 +84,7 @@ const ToDoErrorBoundary = (props: any) => {
   );
 };
 
-const ToDo = (props: any) => {
+const ToDo = (props: ToDoProps) => {
   return (
     <ErrorBoundary errorUI={<ToDoErrorBoundary {...props} />}>
       <Inner {...props} />

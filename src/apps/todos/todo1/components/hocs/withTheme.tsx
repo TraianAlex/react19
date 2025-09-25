@@ -5,6 +5,7 @@ import { ThemeContext } from '../../contexts/ThemeContext';
 export const withTheme = (Component: any) => {
   function Func(props: any) {
     const { darkTheme, toggleTheme } = useContext(ThemeContext);
+  
     return (
       <Component {...props} darkTheme={darkTheme} toggleTheme={toggleTheme} />
     );

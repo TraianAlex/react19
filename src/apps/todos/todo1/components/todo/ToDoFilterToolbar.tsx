@@ -1,5 +1,15 @@
 import { useState } from 'react';
 
+interface ToDoFilterToolbarProps {
+  displayStatus: string;
+  setDisplayStatus: (status: string) => void;
+  important: boolean;
+  setImportant: (important: boolean) => void;
+  setSearchText: (text: string) => void;
+  startTransition: (callback: () => void) => void;
+  isPending: boolean;
+}
+
 const ToDoFilterToolbar = ({
   displayStatus,
   setDisplayStatus,
@@ -8,15 +18,7 @@ const ToDoFilterToolbar = ({
   setSearchText,
   startTransition,
   isPending,
-}: {
-  displayStatus: string;
-  setDisplayStatus: (status: string) => void;
-  important: boolean;
-  setImportant: (important: boolean) => void;
-  setSearchText: (text: string) => void;
-  startTransition: (callback: () => void) => void;
-  isPending: boolean;
-}) => {
+}: ToDoFilterToolbarProps) => {
   const [searchTextResponsive, setSearchTextResponsive] = useState('');
 
   return (
@@ -102,4 +104,5 @@ const ToDoFilterToolbar = ({
     </nav>
   );
 };
+
 export default ToDoFilterToolbar;

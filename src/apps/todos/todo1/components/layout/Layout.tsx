@@ -4,7 +4,11 @@ import Header from './Header';
 import Footer from './Footer';
 import { ThemeContext, ThemeProvider } from '../../contexts/ThemeContext';
 
-const Inner = ({ children }: { children: React.ReactNode }) => {
+interface LayoutProps {
+  children: React.ReactNode;
+}
+
+const Inner = ({ children }: LayoutProps) => {
   const { darkTheme } = useContext(ThemeContext);
   const layoutVersion = 'Layout Version 3.0';
 
@@ -17,7 +21,7 @@ const Inner = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-const Layout = (props: any) => {
+const Layout = (props: LayoutProps) => {
   return (
     <ThemeProvider>
       <Inner {...props} />
