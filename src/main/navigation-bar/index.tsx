@@ -215,6 +215,11 @@ export const NavigationBar = () => {
                   Loading Spinner
                 </Link>
               </li>
+              <li className='nav-item'>
+                <Link to='not-found' className='nav-link active' aria-current='page'>
+                  Not found
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

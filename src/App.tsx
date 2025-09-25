@@ -34,7 +34,6 @@ function App() {
                   <Route path='todo2' element={<h1>TODO2</h1>} />
                 </Route>
                 <Route path='watch-list' element={<WatchList />} />
-                <Route path='loading-spinner' element={<LoadingSpinner />} />
                 <Route path='login' element={<Login />} />
                 <Route
                   path='profile'
@@ -44,6 +43,8 @@ function App() {
                     </ProtectedRoute>
                   }
                 />
+                <Route path='loading-spinner' element={<LoadingSpinner />} />
+                <Route path='not-found' element={<NotFound />} />
                 <Route path='*' element={<NotFound />} />
               </Routes>
             </Layout>
