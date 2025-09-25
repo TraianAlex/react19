@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
-import LoadingSpinner from '../../loading-spinner';
+import LoadingSpinner from '../../../components/loading-spinner';
 import { apiUrl } from '..';
 
 type Recipe = {

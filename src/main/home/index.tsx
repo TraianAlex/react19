@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Outlet, useSearchParams, Link } from 'react-router-dom';
 
 import { HomeList } from './home-list';
-import LoadingSpinner from '../loading-spinner';
+import LoadingSpinner from '../../components/loading-spinner';
 
 type Recipe = {
   strMeal: string;

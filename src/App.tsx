@@ -3,15 +3,15 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 import './App.scss';
-import Layout from './components/layout.tsx';
+import Layout from './main/layout.tsx';
 import { ProtectedRoute } from './pocs/auth/private-routes';
 import store from './pocs/auth/state/store';
 import LoadingSpinner from './components/loading-spinner';
 import { CustomErrorBoundary } from './components/CustomErrorBoundary.tsx';
 
 const NotFound = lazy(() => import('./components/not-found'));
-const Home = lazy(() => import('./components/home'));
-const HomeDetails = lazy(() => import('./components/home/home-detail'));
+const Home = lazy(() => import('./main/home'));
+const HomeDetails = lazy(() => import('./main/home/home-detail'));
 const Todos = lazy(() => import('./apps/todos'));
 const WatchList = lazy(() => import('./apps/watch-list'));
 const Login = lazy(() => import('./pocs/auth/components/login'));
