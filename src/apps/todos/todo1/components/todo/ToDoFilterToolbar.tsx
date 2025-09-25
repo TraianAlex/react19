@@ -5,7 +5,6 @@ const ToDoFilterToolbar = ({
   setDisplayStatus,
   important,
   setImportant,
-  searchText, // TODO: remove this
   setSearchText,
   startTransition,
   isPending,

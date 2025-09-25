@@ -168,7 +168,7 @@ const useGeneralizedCrudMethods = (
   return {
     data, // returned data after loadingStatus === "success"
     loadingStatus, // "success", "errored", "loading"
-    error, // error string
+    error, // error string used??
     reFetch, // gets the data again from the rest server
     createRecord, // creates new record at end, takes first record as parameter, second as callback function when done
     updateRecord, // update new record at end, takes single record as parameter, second as callback function when done

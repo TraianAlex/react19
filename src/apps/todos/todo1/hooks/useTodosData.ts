@@ -8,7 +8,6 @@ const useTodosData = () => {
 
   const {
     data,
-    error,
     loadingStatus,
     createRecord,
     updateRecord,
@@ -31,7 +30,6 @@ const useTodosData = () => {
   return {
     todoList: data,
     loadingStatus,
-    error, // TODO: remove this
     createTodo,
     updateTodo,
     deleteTodo,
