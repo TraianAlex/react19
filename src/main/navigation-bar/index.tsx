@@ -104,9 +104,9 @@ export const NavigationBar = () => {
                     <hr className='dropdown-divider' />
                   </li>
                   <li>
-                    <a className='dropdown-item' href='#'>
-                      Something else here
-                    </a>
+                    <Link className='dropdown-item' to='tic-tac-toe'>
+                      Tic Tac Toe
+                    </Link>
                   </li>
                 </ul>
               </li>
@@ -211,12 +211,20 @@ export const NavigationBar = () => {
             </ul>
             <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
               <li className='nav-item'>
-                <Link to='loading-spinner' className='nav-link active' aria-current='page'>
+                <Link
+                  to='loading-spinner'
+                  className='nav-link active'
+                  aria-current='page'
+                >
                   Loading Spinner
                 </Link>
               </li>
               <li className='nav-item'>
-                <Link to='not-found' className='nav-link active' aria-current='page'>
+                <Link
+                  to='not-found'
+                  className='nav-link active'
+                  aria-current='page'
+                >
                   Not found
                 </Link>
               </li>

@@ -1,0 +1,60 @@
+import { useState } from 'react';
+
+import { calculateStatus, calculateWinner } from '../common/game-utils';
+
+export function Board() {
+  const [squares, setSquares] = useState(Array(9).fill(null));
+
+  const nextValue = calculateNextValue(squares);
+  const winner = calculateWinner(squares);
+  const status = calculateStatus(winner, squares, nextValue);
+
+  function selectSquare(square: number) {
+    if (winner || squares[square]) {
+      return;
+    }
+    const squaresCopy = [...squares];
+    squaresCopy[square] = nextValue;
+    setSquares(squaresCopy);
+  }
+
+  function restart() {
+    setSquares(Array(9).fill(null));
+  }
+
+  function renderSquare(i: number) {
+    return (
+      <button className='board-square' onClick={() => selectSquare(i)}>
+        {squares[i]}
+      </button>
+    );
+  }
+
+  return (
+    <div>
+      <div className='game-status'>{status}</div>
+      <div className='board-row'>
+        {renderSquare(0)}
+        {renderSquare(1)}
+        {renderSquare(2)}
+      </div>
+      <div className='board-row'>
+        {renderSquare(3)}
+        {renderSquare(4)}
+        {renderSquare(5)}
+      </div>
+      <div className='board-row'>
+        {renderSquare(6)}
+        {renderSquare(7)}
+        {renderSquare(8)}
+      </div>
+      <button className='game-restart' onClick={restart}>
+        Restart
+      </button>
+    </div>
+  );
+}
+
+function calculateNextValue(squares: any[]) {
+  return squares.filter(Boolean).length % 2 === 0 ? 'X' : 'O';
+}

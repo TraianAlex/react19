@@ -14,9 +14,16 @@ const Home = lazy(() => import('./main/home'));
 const HomeDetails = lazy(() => import('./main/home/home-detail'));
 const Todos = lazy(() => import('./apps/todos'));
 const WatchList = lazy(() => import('./apps/watch-list'));
+const TicTacToe = lazy(() => import('./apps/tic-tac-toe'));
 const Login = lazy(() => import('./pocs/auth/components/login'));
 const Profile = lazy(() => import('./pocs/auth/components/profile'));
 const Todos1 = lazy(() => import('./apps/todos/todo1/Todos1'));
+const Game1 = lazy(() => import('./apps/tic-tac-toe/game1'));
+const Game2 = lazy(() => import('./apps/tic-tac-toe/game2'));
+const Game3 = lazy(() => import('./apps/tic-tac-toe/game3'));
+const Game4 = lazy(() => import('./apps/tic-tac-toe/game4'));
+const Game5 = lazy(() => import('./apps/tic-tac-toe/game5'));
+const Game6 = lazy(() => import('./apps/tic-tac-toe/game6'));
 
 function App() {
   return (
@@ -34,6 +41,14 @@ function App() {
                   <Route path='todo2' element={<h1>TODO2</h1>} />
                 </Route>
                 <Route path='watch-list' element={<WatchList />} />
+                <Route path='tic-tac-toe' element={<TicTacToe />}>
+                  <Route path='game1' element={<Game1 />} />
+                  <Route path='game2' element={<Game2 />} />
+                  <Route path='game3' element={<Game3 />} />
+                  <Route path='game4' element={<Game4 />} />
+                  <Route path='game5' element={<Game5 />} />
+                  <Route path='game6' element={<Game6 />} />
+                </Route>
                 <Route path='login' element={<Login />} />
                 <Route
                   path='profile'
