@@ -8,11 +8,11 @@ interface Props {
 
 const Banner: React.FC<Props> = ({ title, subtitle }): React.ReactElement => (
   <Wrapper>
-    <h1 data-hover=" 🚀 🎩">{title}</h1>
-    <h2>
+    <h2 data-hover=" 🚀 🎩">{title}</h2>
+    <h3>
       {subtitle}
       <span data-hover="React TypeScript Template" />
-    </h2>
+    </h3>
   </Wrapper>
 );
 
