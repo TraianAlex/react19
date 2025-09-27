@@ -1,7 +1,7 @@
 import { Board } from './board';
 import '../common/game.scss';
 
-export default function Game4() {
+export const Game4 = () => {
   return (
     <div className='game'>
       <div className='game-board'>
@@ -9,4 +9,6 @@ export default function Game4() {
       </div>
     </div>
   );
-}
+};
+
+export default Game4;

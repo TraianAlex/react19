@@ -9,7 +9,7 @@ import {
 import { Board } from './board';
 import '../common/game.scss';
 
- const Game6 = () => {
+export const Game6 = () => {
   const [history, setHistory] = useLocalStorageState({
     key: 'tic-tac-toe:history',
     defaultValue: [Array(9).fill(null)],
@@ -34,12 +34,12 @@ import '../common/game.scss';
     squares[square] = calculateNextValue(currentSquares);
     setHistory([...newHistory, squares]);
     setCurrentStep(newHistory.length);
-  }
+  };
 
   const restart = () => {
     setHistory([Array(9).fill(null)]);
     setCurrentStep(0);
-  }
+  };
 
   const moves = history.map(
     (stepSquares: any, step: Key | null | undefined) => {
@@ -86,6 +86,6 @@ import '../common/game.scss';
       </div>
     </>
   );
-}
+};
 
 export default Game6;

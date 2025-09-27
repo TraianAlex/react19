@@ -15,11 +15,11 @@ export const Board = () => {
     const squaresCopy = [...squares];
     squaresCopy[square] = calculateNextValue(squares);
     setSquares(squaresCopy);
-  }
+  };
 
   const restart = () => {
     setSquares(Array(9).fill(null));
-  }
+  };
 
   const renderSquare = (i: number) => {
     return (
@@ -52,8 +52,8 @@ export const Board = () => {
       </button>
     </div>
   );
-}
+};
 
 const calculateNextValue = (squares: any[]) => {
   return squares.filter(Boolean).length % 2 === 0 ? 'X' : 'O';
-}
+};

@@ -3,14 +3,14 @@ interface BoardProps {
   onClick: (i: number) => void;
 }
 
-export function Board({ squares, onClick }: BoardProps) {
-  function renderSquare(i: number) {
+export const Board = ({ squares, onClick }: BoardProps) => {
+  const renderSquare = (i: number) => {
     return (
       <button className='board-square' onClick={() => onClick(i)}>
         {squares[i]}
       </button>
     );
-  }
+  };
 
   return (
     <div>
@@ -31,4 +31,4 @@ export function Board({ squares, onClick }: BoardProps) {
       </div>
     </div>
   );
-}
+};

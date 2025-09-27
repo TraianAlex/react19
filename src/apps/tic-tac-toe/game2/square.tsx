@@ -1,4 +1,4 @@
-export function Square(props: {
+export const Square = (props: {
   onClick: React.MouseEventHandler<HTMLButtonElement> | undefined;
   value:
     | string
@@ -21,10 +21,10 @@ export function Square(props: {
       >
     | null
     | undefined;
-}) {
+}) => {
   return (
     <button className='board-square' onClick={props.onClick}>
       {props.value}
     </button>
   );
-}
+};

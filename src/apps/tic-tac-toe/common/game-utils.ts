@@ -1,4 +1,4 @@
-export function calculateWinner(squares: (string | null)[]): string | null {
+export const calculateWinner = (squares: (string | null)[]): string | null => {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
@@ -16,18 +16,18 @@ export function calculateWinner(squares: (string | null)[]): string | null {
     }
   }
   return null;
-}
+};
 
-export function calculateStatus(winner: string | null, squares: any[]) {
+export const calculateStatus = (winner: string | null, squares: any[]) => {
   return winner
     ? `Winner: ${winner}`
     : squares.every(Boolean) // When all squares are filled, it's a draw
     ? `Scratch: Cat's game`
     : `Next player: ${calculateNextValue(squares)}`;
-}
+};
 
-export function calculateNextValue(squares: any[]) {
+export const calculateNextValue = (squares: any[]) => {
   const xSquaresCount = squares.filter((r) => r === 'X').length;
   const oSquaresCount = squares.filter((r) => r === 'O').length;
   return oSquaresCount === xSquaresCount ? 'X' : 'O';
-}
+};

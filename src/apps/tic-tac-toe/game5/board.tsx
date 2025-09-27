@@ -21,19 +21,19 @@ export const Board = () => {
     const squaresCopy = [...squares];
     squaresCopy[square] = calculateNextValue(squares);
     setSquares(squaresCopy);
-  }
+  };
 
   const restart = () => {
     setSquares(Array(9).fill(null));
-  }
+  };
 
-  function renderSquare(i: number) {
+  const renderSquare = (i: number) => {
     return (
       <button className='board-square' onClick={() => selectSquare(i)}>
         {squares[i]}
       </button>
     );
-  }
+  };
 
   return (
     <div>

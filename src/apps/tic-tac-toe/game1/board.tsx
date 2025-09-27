@@ -7,8 +7,8 @@ interface BoardProps {
   onPlay: (squares: (string | null)[]) => void;
 }
 
-export function Board({ xIsNext, squares, onPlay }: BoardProps) {
-  function handleClick(i: number) {
+export const Board = ({ xIsNext, squares, onPlay }: BoardProps) => {
+  const handleClick = (i: number) => {
     if (calculateWinner(squares) || squares[i]) {
       return;
     }
@@ -19,7 +19,7 @@ export function Board({ xIsNext, squares, onPlay }: BoardProps) {
       nextSquares[i] = 'O';
     }
     onPlay(nextSquares);
-  }
+  };
 
   const winner = calculateWinner(squares);
   let status;
@@ -49,4 +49,4 @@ export function Board({ xIsNext, squares, onPlay }: BoardProps) {
       </div>
     </>
   );
-}
+};

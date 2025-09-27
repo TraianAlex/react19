@@ -27,11 +27,11 @@ export const Board = () => {
     const squaresCopy = [...squares];
     squaresCopy[square] = calculateNextValue(squares);
     setSquares(squaresCopy);
-  }
+  };
 
   const restart = () => {
     setSquares(Array(9).fill(null));
-  }
+  };
 
   const renderSquare = (i: number) => {
     return (
@@ -39,7 +39,7 @@ export const Board = () => {
         {squares[i]}
       </button>
     );
-  }
+  };
 
   return (
     <div>
@@ -64,4 +64,4 @@ export const Board = () => {
       </button>
     </div>
   );
-}
+};

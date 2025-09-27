@@ -13,11 +13,11 @@ export const Game1 = () => {
     const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
     setHistory(nextHistory);
     setCurrentMove(nextHistory.length - 1);
-  }
+  };
 
   const jumpTo = (nextMove: number) => {
     setCurrentMove(nextMove);
-  }
+  };
 
   const moves = history.map((squares, move) => {
     let description;
@@ -43,6 +43,6 @@ export const Game1 = () => {
       </div>
     </div>
   );
-}
+};
 
 export default Game1;
