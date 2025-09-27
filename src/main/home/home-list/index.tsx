@@ -23,11 +23,11 @@ export const HomeList: React.FC<RecipeListProps> = ({ recipes }) => {
 
   const { recipeId } = useParams<{ recipeId: string }>();
 
-  function handleRecipeClick(recipe: Recipe): void {
+  const handleRecipeClick = (recipe: Recipe): void => {
     navigate(`recipe/${recipe.idMeal}?category=${currentCategory}`, {
       state: { recipe },
     });
-  }
+  };
 
   return (
     <ul className='list-group list-group-flush'>

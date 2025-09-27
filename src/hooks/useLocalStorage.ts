@@ -11,12 +11,12 @@ interface UseLocalStorageStateProps {
   deserialize?: (value: string) => any;
 }
 
-function useLocalStorageState({
+const useLocalStorageState = ({
   key,
   defaultValue,
   serialize = JSON.stringify,
   deserialize = JSON.parse,
-}: UseLocalStorageStateProps) {
+}: UseLocalStorageStateProps) => {
   const [state, setState] = useState(() => {
     const valueInLocalStorage = window.localStorage.getItem(key);
     if (valueInLocalStorage) {
@@ -37,6 +37,6 @@ function useLocalStorageState({
   }, [key, state, serialize]);
 
   return [state, setState];
-}
+};
 
 export { useLocalStorageState };

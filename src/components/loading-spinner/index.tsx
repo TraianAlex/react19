@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-export default function LoadingSpinner() {
+export const LoadingSpinner = () => {
   return (
     <div className='d-flex justify-content-center align-items-center vh-100'>
       <div
@@ -12,7 +12,7 @@ export default function LoadingSpinner() {
       </div>
     </div>
   );
-}
+};
 
 interface LoaderMessageProps {
   loadingMsg: string;
@@ -61,3 +61,5 @@ export const LoaderMessage = ({
     </div>
   );
 };
+
+export default LoadingSpinner;
