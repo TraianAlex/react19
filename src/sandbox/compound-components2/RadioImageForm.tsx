@@ -25,7 +25,7 @@ const RadioInput: React.FC<RadioInputProps> = ({
   const { currentValue, onChange } = useContext(RadioImageFormContext);
 
   return (
-    <label className='radio-button-group' key={value}>
+    <label className='radio-button-group mb-1' key={value}>
       <input
         type='radio'
         name={name}

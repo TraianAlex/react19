@@ -28,6 +28,7 @@ const Sandbox = lazy(() => import('./sandbox'));
 const Playground = lazy(() => import('./sandbox/playground/Playground'));
 const CompoundComponents = lazy(() => import('./sandbox/playground/CompoundComponents'));
 const FlexibleCompoundComponents = lazy(() => import('./sandbox/playground/FlexibleCompoundComponents'));
+const CompoundComponentsSimple = lazy(() => import('./sandbox/playground/CompoundComponentsSimple'));
 
 const App = () => {
   return (
@@ -57,6 +58,7 @@ const App = () => {
                   <Route path='playground' element={<Playground />} />
                   <Route path='flexible-compound-components' element={<FlexibleCompoundComponents />} />
                   <Route path='compound-components' element={<CompoundComponents />} />
+                  <Route path='compound-components-simple' element={<CompoundComponentsSimple />} />
                   <Route path='game3' element={<h1>Game 3</h1>} />
                   <Route path='game4' element={<h1>Game 4</h1>} />
                   <Route path='game5' element={<h1>Game 5</h1>} />

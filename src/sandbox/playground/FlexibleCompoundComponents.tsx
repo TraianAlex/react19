@@ -16,7 +16,7 @@ const FlexibleCompoundComponents = () => {
   };
 
   return (
-    <div className='App container'>
+    <div>
       <Banner
         title={'React Component Patterns'}
         subtitle={'Flexible Compound Components'}

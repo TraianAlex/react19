@@ -37,7 +37,7 @@ const RadioInput: React.FC<RadioInputProps> = ({
   name,
   imgSrc,
 }) => (
-  <label className='radio-button-group'>
+  <label className='radio-button-group mb-2'>
     <input
       type='radio'
       name={name}
