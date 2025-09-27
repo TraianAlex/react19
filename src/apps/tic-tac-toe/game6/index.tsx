@@ -9,7 +9,7 @@ import {
 import { Board } from './board';
 import '../common/game.scss';
 
-export default function Game6() {
+ const Game6 = () => {
   const [history, setHistory] = useLocalStorageState({
     key: 'tic-tac-toe:history',
     defaultValue: [Array(9).fill(null)],
@@ -21,10 +21,9 @@ export default function Game6() {
 
   const currentSquares = history[currentStep];
   const winner = calculateWinner(currentSquares);
-  const nextValue = calculateNextValue(currentSquares);
-  const status = calculateStatus(winner, currentSquares, nextValue);
+  const status = calculateStatus(winner, currentSquares);
 
-  function selectSquare(square: number) {
+  const onSelectSquare = (square: number) => {
     if (winner || currentSquares[square]) {
       return;
     }
@@ -32,12 +31,12 @@ export default function Game6() {
     const newHistory = history.slice(0, currentStep + 1);
     const squares = [...currentSquares];
 
-    squares[square] = nextValue;
+    squares[square] = calculateNextValue(currentSquares);
     setHistory([...newHistory, squares]);
     setCurrentStep(newHistory.length);
   }
 
-  function restart() {
+  const restart = () => {
     setHistory([Array(9).fill(null)]);
     setCurrentStep(0);
   }
@@ -49,7 +48,8 @@ export default function Game6() {
       return (
         <li key={step}>
           <button disabled={isCurrentStep} onClick={() => setCurrentStep(step)}>
-            {!isCurrentStep ? desc : ''} {isCurrentStep ? 'Current' : null}
+            {!isCurrentStep ? desc : ''}{' '}
+            {isCurrentStep ? `Current #${step}` : null}
           </button>
         </li>
       );
@@ -57,17 +57,35 @@ export default function Game6() {
   );
 
   return (
-    <div className='game'>
-      <div className='game-board'>
-        <Board onClick={selectSquare} squares={currentSquares} />
-        <button className='game-restart' onClick={restart}>
-          Restart
-        </button>
+    <>
+      <div className='game'>
+        <div className='game-board'>
+          <Board onClick={onSelectSquare} squares={currentSquares} />
+          <button className='game-restart' onClick={restart}>
+            Restart
+          </button>
+        </div>
+        <div className='game-info'>
+          <div>{status}</div>
+          <ol>{moves}</ol>
+        </div>
       </div>
-      <div className='game-info'>
-        <div>{status}</div>
-        <ol>{moves}</ol>
+      <div className='game-history'>
+        <div className='game-history'>
+          <ol>
+            <li>history: {JSON.stringify(history)}</li>
+            <li>currentStep: {currentStep}</li>
+            <li>
+              currentSquares: {currentSquares.join(', ')} (history[currentStep])
+            </li>
+            <li>newHistory: {JSON.stringify(history.slice(0, currentStep + 1))}</li>
+            <li>squares: {[...currentSquares].join(', ')}</li>
+            <li>nextValue: {calculateNextValue(currentSquares)}</li>
+          </ol>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
+
+export default Game6;

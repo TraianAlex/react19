@@ -2,27 +2,26 @@ import { useState } from 'react';
 
 import { calculateStatus, calculateWinner } from '../common/game-utils';
 
-export function Board() {
+export const Board = () => {
   const [squares, setSquares] = useState(Array(9).fill(null));
 
-  const nextValue = calculateNextValue(squares);
   const winner = calculateWinner(squares);
-  const status = calculateStatus(winner, squares, nextValue);
+  const status = calculateStatus(winner, squares);
 
-  function selectSquare(square: number) {
+  const selectSquare = (square: number) => {
     if (winner || squares[square]) {
       return;
     }
     const squaresCopy = [...squares];
-    squaresCopy[square] = nextValue;
+    squaresCopy[square] = calculateNextValue(squares);
     setSquares(squaresCopy);
   }
 
-  function restart() {
+  const restart = () => {
     setSquares(Array(9).fill(null));
   }
 
-  function renderSquare(i: number) {
+  const renderSquare = (i: number) => {
     return (
       <button className='board-square' onClick={() => selectSquare(i)}>
         {squares[i]}
@@ -55,6 +54,6 @@ export function Board() {
   );
 }
 
-function calculateNextValue(squares: any[]) {
+const calculateNextValue = (squares: any[]) => {
   return squares.filter(Boolean).length % 2 === 0 ? 'X' : 'O';
 }

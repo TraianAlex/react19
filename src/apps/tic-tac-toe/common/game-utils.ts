@@ -18,25 +18,15 @@ export function calculateWinner(squares: (string | null)[]): string | null {
   return null;
 }
 
-export function calculateStatus(
-  winner: string | null,
-  squares: any[],
-  nextValue: string
-) {
+export function calculateStatus(winner: string | null, squares: any[]) {
   return winner
     ? `Winner: ${winner}`
     : squares.every(Boolean) // When all squares are filled, it's a draw
     ? `Scratch: Cat's game`
-    : `Next player: ${nextValue}`;
+    : `Next player: ${calculateNextValue(squares)}`;
 }
 
-export function calculateNextValue(squares: {
-  filter: (arg0: { (r: any): boolean; (r: any): boolean }) => {
-    (): any;
-    new (): any;
-    length: any;
-  };
-}) {
+export function calculateNextValue(squares: any[]) {
   const xSquaresCount = squares.filter((r) => r === 'X').length;
   const oSquaresCount = squares.filter((r) => r === 'O').length;
   return oSquaresCount === xSquaresCount ? 'X' : 'O';

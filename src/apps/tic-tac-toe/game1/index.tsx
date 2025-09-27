@@ -3,19 +3,19 @@ import { useState } from 'react';
 import { Board } from './board';
 import '../common/game.scss';
 
-export default function Game1() {
+export const Game1 = () => {
   const [history, setHistory] = useState([Array(9).fill(null)]);
   const [currentMove, setCurrentMove] = useState(0);
   const xIsNext = currentMove % 2 === 0;
   const currentSquares = history[currentMove];
 
-  function handlePlay(nextSquares: (string | null)[]) {
+  const handlePlay = (nextSquares: (string | null)[]) => {
     const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
     setHistory(nextHistory);
     setCurrentMove(nextHistory.length - 1);
   }
 
-  function jumpTo(nextMove: number) {
+  const jumpTo = (nextMove: number) => {
     setCurrentMove(nextMove);
   }
 
@@ -44,3 +44,5 @@ export default function Game1() {
     </div>
   );
 }
+
+export default Game1;

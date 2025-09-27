@@ -6,7 +6,7 @@ import {
   calculateWinner,
 } from '../common/game-utils';
 
-export function Board() {
+export const Board = () => {
   const [squares, setSquares] = useState(
     () =>
       JSON.parse(window.localStorage.getItem('squares') || 'null') ||
@@ -17,24 +17,23 @@ export function Board() {
     window.localStorage.setItem('squares', JSON.stringify(squares));
   }, [squares]);
 
-  const nextValue = calculateNextValue(squares);
   const winner = calculateWinner(squares);
-  const status = calculateStatus(winner, squares, nextValue);
+  const status = calculateStatus(winner, squares);
 
-  function selectSquare(square: number) {
+  const selectSquare = (square: number) => {
     if (winner || squares[square]) {
       return;
     }
     const squaresCopy = [...squares];
-    squaresCopy[square] = nextValue;
+    squaresCopy[square] = calculateNextValue(squares);
     setSquares(squaresCopy);
   }
 
-  function restart() {
+  const restart = () => {
     setSquares(Array(9).fill(null));
   }
 
-  function renderSquare(i: number) {
+  const renderSquare = (i: number) => {
     return (
       <button className='board-square' onClick={() => selectSquare(i)}>
         {squares[i]}
