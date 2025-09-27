@@ -29,9 +29,9 @@ const Profile: React.FC = () => {
 
   if (!user) {
     return (
-      <div className='d-flex justify-content-center align-items-center vh-100'>
-        <h2>Error</h2>
-        <p>Error fetching profile information. Please try again later.</p>
+      <div className='d-flex flex-column justify-content-center align-items-center vh-100'>
+        <h2 className='text-danger'>Error fetching profile information.</h2>
+        <p className='text-muted'>Please try again later.</p>
       </div>
     );
   }

@@ -7,11 +7,11 @@ const Sandbox: React.FC = () => {
         <div className='col'>
           <div className='card' style={{ width: '18rem' }}>
             <ul className='list-group list-group-flush'>
-              <li className='list-group-item'>
+            <li className='list-group-item'>
                 <Link to='playground'>Playground</Link>
               </li>
               <li className='list-group-item'>
-                <Link to='game2'>Game 2</Link>
+                <Link to='compound-components'>Compound Components</Link>
               </li>
               <li className='list-group-item'>
                 <Link to='game3'>Game 3</Link>
