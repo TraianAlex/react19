@@ -26,9 +26,17 @@ const Game5 = lazy(() => import('./apps/tic-tac-toe/game5'));
 const Game6 = lazy(() => import('./apps/tic-tac-toe/game6'));
 const Sandbox = lazy(() => import('./sandbox'));
 const Playground = lazy(() => import('./sandbox/playground/Playground'));
-const CompoundComponents = lazy(() => import('./sandbox/playground/CompoundComponents'));
-const FlexibleCompoundComponents = lazy(() => import('./sandbox/playground/FlexibleCompoundComponents'));
-const CompoundComponentsSimple = lazy(() => import('./sandbox/playground/CompoundComponentsSimple'));
+const CompoundComponents = lazy(
+  () => import('./sandbox/playground/CompoundComponents')
+);
+const FlexibleCompoundComponents = lazy(
+  () => import('./sandbox/playground/FlexibleCompoundComponents')
+);
+const CompoundComponentsSimple = lazy(
+  () => import('./sandbox/playground/CompoundComponentsSimple')
+);
+const TodosTest = lazy(() => import('./pocs/todos-test'));
+const TodosBasic = lazy(() => import('./pocs/todos-test/todo-standard/Todos'));
 
 const App = () => {
   return (
@@ -56,13 +64,28 @@ const App = () => {
                 </Route>
                 <Route path='sandbox' element={<Sandbox />}>
                   <Route path='playground' element={<Playground />} />
-                  <Route path='flexible-compound-components' element={<FlexibleCompoundComponents />} />
-                  <Route path='compound-components' element={<CompoundComponents />} />
-                  <Route path='compound-components-simple' element={<CompoundComponentsSimple />} />
+                  <Route
+                    path='flexible-compound-components'
+                    element={<FlexibleCompoundComponents />}
+                  />
+                  <Route
+                    path='compound-components'
+                    element={<CompoundComponents />}
+                  />
+                  <Route
+                    path='compound-components-simple'
+                    element={<CompoundComponentsSimple />}
+                  />
                   <Route path='game3' element={<h1>Game 3</h1>} />
                   <Route path='game4' element={<h1>Game 4</h1>} />
                   <Route path='game5' element={<h1>Game 5</h1>} />
                   <Route path='game6' element={<h1>Game 6</h1>} />
+                </Route>
+                <Route path='todos-test' element={<TodosTest />}>
+                  <Route path='todos-basic' element={<TodosBasic />} />
+                  <Route path='todos-state1' element={<h1>Todos State 1</h1>} />
+                  <Route path='todos-state2' element={<h1>Todos State 2</h1>} />
+                  <Route path='todos-state3' element={<h1>Todos State 3</h1>} />
                 </Route>
                 <Route path='login' element={<Login />} />
                 <Route

@@ -77,6 +77,11 @@ export const NavigationBar = () => {
                       Auth
                     </Link>
                   </li>
+                  <li>
+                    <Link className='dropdown-item' to='todos-test'>
+                      Todos test
+                    </Link>
+                  </li>
                 </ul>
               </li>
               <li className='nav-item dropdown'>
