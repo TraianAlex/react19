@@ -1,6 +1,6 @@
 import { Component, ReactNode } from 'react';
 
-function logErrorToMyService(error: any, errorInfo: any) {
+const logErrorToMyService = (error: any, errorInfo: any) => {
   console.log('error:', error);
 }
 

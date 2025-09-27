@@ -1,6 +1,6 @@
 import { memo } from "react";
 
-function ToDoItemText({ important, todoText }) {
+const ToDoItemText = ({ important, todoText }) => {
   return (
     <>
       {important ? (
@@ -11,6 +11,6 @@ function ToDoItemText({ important, todoText }) {
       {todoText.slice(0, 60)}
     </>
   );
-}
+};
 
 export default memo(ToDoItemText);

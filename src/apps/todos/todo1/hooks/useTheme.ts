@@ -1,6 +1,6 @@
 import { useDebugValue, useState } from "react";
 
-export default function useTheme() {
+export const useTheme = () => {
   const [darkTheme, setDarkTheme] = useState(false);
 
   const toggleTheme = () => {
@@ -19,4 +19,6 @@ export default function useTheme() {
     darkTheme,
     toggleTheme,
   };
-}
+};
+
+export default useTheme;

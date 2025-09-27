@@ -35,4 +35,5 @@ const Todos1 = () => {
     </TodosDataProvider>
   );
 };
+
 export default Todos1;

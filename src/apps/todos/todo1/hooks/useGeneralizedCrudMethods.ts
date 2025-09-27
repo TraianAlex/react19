@@ -15,16 +15,16 @@ const useGeneralizedCrudMethods = (
     throw new Error('useGeneralizedCrudMethods no url passed in error');
   }
 
-  function formatErrorString(e: any, url: string) {
+  const formatErrorString = (e: any, url: string) => {
     const errorString =
       e?.response?.status === 404
         ? e?.message + ' url ' + url
         : e?.message + e?.response?.data;
     console.log(errorString);
     return errorString;
-  }
+  };
 
-  async function getData(callbackDone: () => void) {
+  const getData = async (callbackDone: () => void) => {
     try {
       setLoadingStatus(LOADING_STATES[0]);
       const results = await axios.get(url);
@@ -35,7 +35,7 @@ const useGeneralizedCrudMethods = (
       setLoadingStatus(LOADING_STATES[1]);
     }
     if (callbackDone) callbackDone();
-  }
+  };
 
   useEffect(() => {
     async function getDataUseEffect(callbackDone: () => void) {
@@ -53,11 +53,11 @@ const useGeneralizedCrudMethods = (
     getDataUseEffect(() => {});
   }, [url]);
 
-  function createRecord(createObject: any, callbackDone: () => void) {
+  const createRecord = (createObject: any, callbackDone: () => void) => {
     // NEED TO HANDLE FAILURE CASE HERE WITH REWIND TO STARTING DATA
     // AND VERIFY createObject has id
 
-    async function addData() {
+    const addData = async () => {
       const startingData = data?.map(function (rec: any): any {
         return { ...rec };
       });
@@ -74,13 +74,14 @@ const useGeneralizedCrudMethods = (
         errorNotificationFn?.(errorString);
         if (callbackDone) callbackDone();
       }
-    }
+    };
     addData();
-  }
+  };
 
-  function updateRecord(updateObject: any, callbackDone: () => void) {
+  const updateRecord = (updateObject: any, callbackDone: () => void) => {
     const id = updateObject.id; // all todo must have a column "id"
-    async function updateData() {
+  
+    const updateData = async () => {
       //const startingData = [...data]; // FAILS BECAUSE NOT DEEP COPY
       const startingData = data?.map(function (rec: any) {
         return { ...rec };
@@ -106,7 +107,7 @@ const useGeneralizedCrudMethods = (
         errorNotificationFn?.(errorString);
         if (callbackDone) callbackDone();
       }
-    }
+    };
 
     if (data?.find((rec: any) => rec.id === id)) {
       updateData();
@@ -114,13 +115,13 @@ const useGeneralizedCrudMethods = (
       const errorString = `No data record found for id ${id}`;
       errorNotificationFn?.(errorString);
     }
-  }
+  };
 
-  function deleteRecord(val: any, callbackDone: () => void) {
+  const deleteRecord = (val: any, callbackDone: () => void) => {
     // handle case of passed in as integer or array of integers.
     const ids = Array.isArray(val) ? val : [val];
 
-    async function deleteData() {
+    const deleteData = async () => {
       const startingData = data?.map(function (rec: any) {
         return { ...rec };
       });
@@ -136,12 +137,12 @@ const useGeneralizedCrudMethods = (
         errorNotificationFn?.(errorString);
         if (callbackDone) callbackDone();
       }
-    }
+    };
 
-    function recordExists(id: any) {
+    const recordExists = (id: any) => {
       const r = data?.find((rec: any) => rec.id === id);
       return r ? true : false;
-    }
+    };
 
     if (ids.every(recordExists)) {
       deleteData();
@@ -149,9 +150,9 @@ const useGeneralizedCrudMethods = (
       const errorString = `No data record found for id ${ids.toString()}`;
       errorNotificationFn?.(errorString);
     }
-  }
+  };
 
-  function reFetch(callbackDone: () => void) {
+  const reFetch = (callbackDone: () => void) => {
     //setReFetchCount(reFetchCount + 1);
     //console.log("1");
     const promise = getData(() => {
@@ -163,7 +164,7 @@ const useGeneralizedCrudMethods = (
     //   console.log("4");
     // });
     // console.log("2");
-  }
+  };
 
   return {
     data, // returned data after loadingStatus === "success"
