@@ -16,7 +16,7 @@ export const useEditContactContext = () => {
   return context;
 };
 // Root component that manages state and logic
-export const Root = ({
+export const RootProvider = ({
   contactId,
   children,
 }: {

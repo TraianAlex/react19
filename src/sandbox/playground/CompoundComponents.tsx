@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { Modal } from '../compound-components/components/Modal';
-import { Root } from '../compound-components/context/useEditContactContext';
+import { RootProvider } from '../compound-components/context/useEditContactContext';
 import { Title } from '../compound-components/components/Title';
 import { SubmitButtons } from '../compound-components/components/SubmitButtons';
 import { FormInputs } from '../compound-components/components/FormInputs';
@@ -21,7 +21,7 @@ const CompoundComponents = () => {
           Open Contact Modal
         </button>
         {showModal && (
-          <EditContact.Root contactId={contactId}>
+          <EditContact.RootProvider contactId={contactId}>
             <Modal
               onClose={() => setShowModal(false)}
               title={<EditContact.Title />}
@@ -29,11 +29,11 @@ const CompoundComponents = () => {
             >
               <EditContact.FormInputs />
             </Modal>
-          </EditContact.Root>
+          </EditContact.RootProvider>
         )}
       </div>
 
-      <EditContact.Root contactId={contactId}>
+      <EditContact.RootProvider contactId={contactId}>
         <div className='right-section'>
           <EditContact.Title />
           <EditContact.SubmitButtons />
@@ -41,7 +41,7 @@ const CompoundComponents = () => {
         <div className='content'>
           <EditContact.FormInputs />
         </div>
-      </EditContact.Root>
+      </EditContact.RootProvider>
     </>
   );
 };
@@ -50,7 +50,7 @@ export default CompoundComponents;
 
 // Export as a compound component
 export const EditContact = {
-  Root,
+  RootProvider,
   Title,
   SubmitButtons,
   FormInputs,
