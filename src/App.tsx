@@ -25,8 +25,9 @@ const Game4 = lazy(() => import('./apps/tic-tac-toe/game4'));
 const Game5 = lazy(() => import('./apps/tic-tac-toe/game5'));
 const Game6 = lazy(() => import('./apps/tic-tac-toe/game6'));
 const Sandbox = lazy(() => import('./sandbox'));
-const CompoundComponents = lazy(() => import('./sandbox/playground/CompoundComponents'));
 const Playground = lazy(() => import('./sandbox/playground/Playground'));
+const CompoundComponents = lazy(() => import('./sandbox/playground/CompoundComponents'));
+const FlexibleCompoundComponents = lazy(() => import('./sandbox/playground/FlexibleCompoundComponents'));
 
 const App = () => {
   return (
@@ -53,7 +54,8 @@ const App = () => {
                   <Route path='game6' element={<Game6 />} />
                 </Route>
                 <Route path='sandbox' element={<Sandbox />}>
-                <Route path='playground' element={<Playground />} />
+                  <Route path='playground' element={<Playground />} />
+                  <Route path='flexible-compound-components' element={<FlexibleCompoundComponents />} />
                   <Route path='compound-components' element={<CompoundComponents />} />
                   <Route path='game3' element={<h1>Game 3</h1>} />
                   <Route path='game4' element={<h1>Game 4</h1>} />

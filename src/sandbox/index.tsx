@@ -14,6 +14,9 @@ const Sandbox: React.FC = () => {
                 <Link to='compound-components'>Compound Components</Link>
               </li>
               <li className='list-group-item'>
+                <Link to='flexible-compound-components'>Flexible Compound Components</Link>
+              </li>
+              <li className='list-group-item'>
                 <Link to='game3'>Game 3</Link>
               </li>
               <li className='list-group-item'>
