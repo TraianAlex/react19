@@ -111,9 +111,9 @@ export const NavigationBar = () => {
                 </ul>
               </li>
               <li className='nav-item'>
-                <a className='nav-link disabled' aria-disabled='true'>
-                  Disabled
-                </a>
+                <Link to='sandbox' className='nav-link' aria-current='page'>
+                  Sandbox
+                </Link>
               </li>
             </ul>
             <form className='d-flex' role='search'>
@@ -130,11 +130,7 @@ export const NavigationBar = () => {
             <ul className='navbar-nav'>
               {isAuthenticated && (
                 <li className='nav-item'>
-                  <Link
-                    to='profile'
-                    className='nav-link active'
-                    aria-current='page'
-                  >
+                  <Link to='profile' className='nav-link' aria-current='page'>
                     Profile
                   </Link>
                 </li>
