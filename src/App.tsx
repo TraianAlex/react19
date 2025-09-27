@@ -25,7 +25,7 @@ const Game4 = lazy(() => import('./apps/tic-tac-toe/game4'));
 const Game5 = lazy(() => import('./apps/tic-tac-toe/game5'));
 const Game6 = lazy(() => import('./apps/tic-tac-toe/game6'));
 
-function App() {
+const App = () => {
   return (
     <Provider store={store}>
       <BrowserRouter>
@@ -68,6 +68,6 @@ function App() {
       </BrowserRouter>
     </Provider>
   );
-}
+};
 
 export default App;
