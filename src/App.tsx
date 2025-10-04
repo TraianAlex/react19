@@ -62,10 +62,12 @@ const App = () => {
                   <Route path='recipe/:recipeId' element={<HomeDetails />} />
                 </Route>
                 <Route path='todos' element={<Todos />}>
+                  <Route index element={<Todos1 />} />
                   <Route path='todo1' element={<Todos1 />} />
                   <Route path='todo2' element={<h1>TODO2</h1>} />
                 </Route>
                 <Route path='speakers-app' element={<SpeakersApp />}>
+                  <Route index element={<SpeakersHome />} />
                   <Route path='home' element={<SpeakersHome />} />
                   <Route path='speakerlist' element={<SpeakerList />} />
                   <Route path='speakers' element={<Speakers />} />
@@ -74,6 +76,7 @@ const App = () => {
                 </Route>
                 <Route path='watch-list' element={<WatchList />} />
                 <Route path='tic-tac-toe' element={<TicTacToe />}>
+                  <Route index element={<Game1 />} />
                   <Route path='game1' element={<Game1 />} />
                   <Route path='game2' element={<Game2 />} />
                   <Route path='game3' element={<Game3 />} />
@@ -82,6 +85,7 @@ const App = () => {
                   <Route path='game6' element={<Game6 />} />
                 </Route>
                 <Route path='sandbox' element={<Sandbox />}>
+                  <Route index element={<Playground />} />
                   <Route path='playground' element={<Playground />} />
                   <Route
                     path='flexible-compound-components'
@@ -101,6 +105,7 @@ const App = () => {
                   <Route path='game6' element={<h1>Game 6</h1>} />
                 </Route>
                 <Route path='todos-test' element={<TodosTest />}>
+                  <Route index element={<TodosBasic />} />
                   <Route path='todos-basic' element={<TodosBasic />} />
                   <Route path='todos-state1' element={<h1>Todos State 1</h1>} />
                   <Route path='todos-state2' element={<h1>Todos State 2</h1>} />
