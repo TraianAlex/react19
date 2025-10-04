@@ -12,20 +12,20 @@
 
 body,
 html {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   color: var(--dark);
   background: linear-gradient(
-          0deg,
-          rgba(250, 250, 250, 0.5),
-          rgba(250, 250, 250, 0.5)
-  ),
-  #fff;
+      0deg,
+      rgba(250, 250, 250, 0.5),
+      rgba(250, 250, 250, 0.5)
+    ),
+    #fff;
   padding-bottom: 1rem;
 }
 
 .theme-light:before,
 .theme-dark:before {
-  content: "";
+  content: '';
   position: fixed;
   z-index: 0;
   left: 0;
@@ -36,11 +36,11 @@ html {
 
 .theme-light:before {
   background: linear-gradient(
-          0deg,
-          rgba(250, 250, 250, 0.5),
-          rgba(250, 250, 250, 0.5)
-  ),
-  #fff;
+      0deg,
+      rgba(250, 250, 250, 0.5),
+      rgba(250, 250, 250, 0.5)
+    ),
+    #fff;
 }
 .theme-dark::before {
   background: #ccc;
@@ -70,7 +70,7 @@ a:focus {
   border-color: var(--primary);
 }
 
-.form-check-input[type="checkbox"] {
+.form-check-input[type='checkbox'] {
   border-radius: 0.25em;
 }
 
@@ -299,7 +299,7 @@ header ul li button:focus {
 .heartdarkbutton,
 .heartredbutton {
   display: inline-block;
-  font-family: "Font Awesome 5 Free";
+  font-family: 'Font Awesome 5 Free';
   font-weight: 900;
   font-size: inherit;
   text-rendering: auto;
@@ -313,7 +313,7 @@ header ul li button:focus {
 
 .heartdarkbutton::before,
 .heartredbutton::before {
-  content: "\f004";
+  content: '\f004';
 }
 
 .heartdarkbutton::before {
@@ -382,7 +382,7 @@ header ul li button:focus {
 }
 
 .blue-box-background {
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQAQMAAAC032DuAAAAAXNSR0IArs4c6QAAAANQTFRFdsvgfwLFxQAAABBJREFUGBljGAWjYBTQDQAAA3AAATXTgHYAAAAASUVORK5CYII=");
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQAQMAAAC032DuAAAAAXNSR0IArs4c6QAAAANQTFRFdsvgfwLFxQAAABBJREFUGBljGAWjYBTQDQAAA3AAATXTgHYAAAAASUVORK5CYII=');
   height: 80px;
   width: 80px;
 }
@@ -407,7 +407,7 @@ header ul li button:focus {
 
 .carousel-container {
   position: relative;
-  overflow: visible;               /* CHANGED from hidden */
+  overflow: visible; /* CHANGED from hidden */
   min-height: 300px;
 }
 
@@ -416,7 +416,7 @@ header ul li button:focus {
   min-height: 300px;
   display: flex;
   align-items: center;
-  justify-content: center;         /* NEW */
+  justify-content: center; /* NEW */
 }
 
 .carousel-speaker-card {
@@ -469,11 +469,11 @@ header ul li button:focus {
 }
 
 .carousel-nav-prev {
-  left: 10px;                      /* CHANGED from -30px */
+  left: 10px; /* CHANGED from -30px */
 }
 
 .carousel-nav-next {
-  right: 10px;                     /* CHANGED from -30px */
+  right: 10px; /* CHANGED from -30px */
 }
 
 .carousel-nav-icon {
@@ -541,11 +541,11 @@ header ul li button:focus {
   }
 
   .carousel-nav-prev {
-    left: 10px;                    /* CHANGED from -20px */
+    left: 10px; /* CHANGED from -20px */
   }
 
   .carousel-nav-next {
-    right: 10px;                   /* CHANGED from -20px */
+    right: 10px; /* CHANGED from -20px */
   }
 
   .carousel-nav-btn {
@@ -734,8 +734,12 @@ header ul li button:focus {
 }
 
 @keyframes signup-spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .signup-submit-btn:hover:not(:disabled) {
@@ -953,7 +957,7 @@ header ul li button:focus {
 
 /* Animation classes */
 .slide-out-left {
-  animation: slideOutLeft .8s ease-in-out forwards;
+  animation: slideOutLeft 0.8s ease-in-out forwards;
   position: absolute;
   top: 0;
   left: 0;
@@ -962,13 +966,13 @@ header ul li button:focus {
 }
 
 .slide-in-left {
-  animation: slideInLeft .8s ease-in-out forwards;
+  animation: slideInLeft 0.8s ease-in-out forwards;
   position: relative;
   z-index: 2;
 }
 
 .slide-out-right {
-  animation: slideOutRight .8s ease-in-out forwards;
+  animation: slideOutRight 0.8s ease-in-out forwards;
   position: absolute;
   top: 0;
   left: 0;
@@ -977,7 +981,7 @@ header ul li button:focus {
 }
 
 .slide-in-right {
-  animation: slideInRight .8s ease-in-out forwards;
+  animation: slideInRight 0.8s ease-in-out forwards;
   position: relative;
   z-index: 2;
 }

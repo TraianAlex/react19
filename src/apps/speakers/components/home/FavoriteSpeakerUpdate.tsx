@@ -12,7 +12,7 @@ export default function FavoriteSpeakerUpdate({
     callback: (data: any) => void
   ) {
     try {
-      const response = await fetch(`/api/speakers/${speaker.id}`, {
+      const response = await fetch(`http://localhost:4000/api/speakers/${speaker.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -27,6 +27,7 @@ export default function FavoriteSpeakerUpdate({
   }
 
   const [updating, setUpdating] = useState(false);
+
   return (
     <button
       className={

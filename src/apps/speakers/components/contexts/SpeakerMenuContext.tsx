@@ -31,6 +31,7 @@ export const SpeakerMenuProvider = ({
     searchText,
     setSearchText,
   };
+
   return (
     <SpeakerMenuContext.Provider value={value}>
       {children}

@@ -1,4 +1,5 @@
-import React, { createContext } from 'react';
+import { createContext, ReactNode } from 'react';
+
 import useSpeakersData from '../hooks/useSpeakersData';
 
 export const SpeakersDataContext = createContext({
@@ -18,7 +19,7 @@ export const SpeakersDataContext = createContext({
 export const SpeakersDataProvider = ({
   children,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
 }) => {
   const {
     speakerList,
