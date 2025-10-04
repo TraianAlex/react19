@@ -1,5 +1,6 @@
-import SpeakerDetailRecord from './SpeakerDetailRecord';
 import { startTransition, useState } from 'react';
+
+import SpeakerDetailRecord from './SpeakerDetailRecord';
 import {
   useViewTransitionCarousel,
   ViewTransitionCarouselProvider,

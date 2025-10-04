@@ -12,7 +12,6 @@ function useSpeakerModal() {
   return {
     modalShow,
     setModalShow,
-
     modalSpeakerId,
     setModalSpeakerId,
     modalSpeakerFirstName,

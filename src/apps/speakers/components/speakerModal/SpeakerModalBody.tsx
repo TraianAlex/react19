@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+
 import { SpeakerModalContext } from '../contexts/SpeakerModalContext';
 
 export default function NotesModalBody() {
@@ -13,6 +14,7 @@ export default function NotesModalBody() {
     modalSpeakerEmail,
     setModalSpeakerEmail,
   } = useContext(SpeakerModalContext);
+
   return (
     <div className='modal-body'>
       <div className='notes-box'>

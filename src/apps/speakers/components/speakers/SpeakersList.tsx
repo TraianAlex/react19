@@ -30,6 +30,7 @@ export default function SpeakersList() {
   if (loadingStatus === 'loading') {
     return <div className='card'>Loading...</div>;
   }
+
   return (
     <>
       {speakerListFiltered.map(function (speakerRec) {

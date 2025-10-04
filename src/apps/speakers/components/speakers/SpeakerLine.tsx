@@ -1,4 +1,5 @@
 import { memo } from 'react';
+
 import FavoriteSpeakerToggleLine from './FavoriteSpeakerToggleLine';
 import SpeakerImageToggleOnScroll from './SpeakerImageToggleOnScroll';
 

@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 import SpeakerLine from './SpeakerLine';
 import {
   useCallback,
@@ -8,7 +10,6 @@ import {
   useTransition,
 } from 'react';
 import { ThemeContext } from '../contexts/ThemeContext';
-import axios from 'axios';
 
 function List({ state, dispatch }: { state: any; dispatch: any }) {
   const [updatingId, setUpdatingId] = useState(0);
@@ -31,7 +32,7 @@ function List({ state, dispatch }: { state: any; dispatch: any }) {
     });
     async function updateAsync(rec: any) {
       setUpdatingId(rec.id);
-      await axios.put(`/api/speakers/${rec.id}`, speakerRecUpdated);
+      await axios.put(`http://localhost:4000/api/speakers/${rec.id}`, speakerRecUpdated);
       setUpdatingId(0);
     }
     updateAsync(speakerRecUpdated);

@@ -1,8 +1,10 @@
 import { useContext } from 'react';
+
 import { SpeakersDataContext } from '../contexts/SpeakersDataContext';
 
 export default function DeleteSpeakerButton({ id }: { id: number }) {
   const { deleteSpeaker } = useContext(SpeakersDataContext);
+
   return (
     <button
       onClick={(e) => {

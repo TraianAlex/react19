@@ -1,4 +1,5 @@
 import { startTransition, useActionState, useState } from 'react';
+
 import { serverSignupAction } from './serverSignupAction';
 import SubmitButton from './SubmitButton';
 import { signupSchema, initialSignupState } from './signupSchema';
@@ -33,7 +34,7 @@ export default function SignupForm() {
       formAction(formData);
     });
   }
-  console.log('validationError', validationError);
+
   const displayMessage = validationError
     ? { text: validationError, isSuccess: false }
     : state.message && !isPending

@@ -63,6 +63,7 @@ function useGeneralizedCrudMethods(
     }
     addData();
   }
+
   function updateRecord(updateObject: any, callbackDone: () => void) {
     const id = updateObject.id; // all speakers must have a column "id"
     async function updateData() {
@@ -102,6 +103,7 @@ function useGeneralizedCrudMethods(
       errorNotificationFn?.(errorString);
     }
   }
+
   function deleteRecord(id: any, callbackDone: () => void) {
     async function deleteData() {
       const startingData = data.map(function (rec) {
