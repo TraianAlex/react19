@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
+
 import { ThemeContext } from '../contexts/ThemeContext';
 import SpeakerCarousel from './SpeakerCarousel';
 import SignupForm from './SignupForm';
@@ -14,7 +15,7 @@ export default function Home() {
     async function getDataAsync() {
       try {
         setLoading(true);
-        const response = await fetch('/api/speakers');
+        const response = await fetch('http://localhost:4000/api/speakers');
         const results = await response.json();
         setSpeakers(results);
       } finally {
