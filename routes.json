@@ -1,5 +1,7 @@
 {
   "/api/*": "/$1",
   "/api/todos": "/todos",
-  "/api/todos/:id": "/todos/:id"
+  "/api/todos/:id": "/todos/:id",
+  "/api/speakers": "/speakers",
+  "/api/speakers/:id": "/speakers/:id"
 }

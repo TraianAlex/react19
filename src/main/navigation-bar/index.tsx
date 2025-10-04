@@ -101,6 +101,11 @@ export const NavigationBar = () => {
                     </Link>
                   </li>
                   <li>
+                    <Link className='dropdown-item' to='speakers-app'>
+                      Speakers
+                    </Link>
+                  </li>
+                  <li>
                     <Link className='dropdown-item' to='watch-list'>
                       WatchList
                     </Link>

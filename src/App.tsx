@@ -37,6 +37,18 @@ const CompoundComponentsSimple = lazy(
 );
 const TodosTest = lazy(() => import('./pocs/todos-test'));
 const TodosBasic = lazy(() => import('./pocs/todos-test/todo-standard/Todos'));
+const SpeakersApp = lazy(() => import('./apps/speakers/Speakers'));
+const SpeakerList = lazy(
+  () => import('./apps/speakers/components/speakers/SpeakerList')
+);
+const Speaker = lazy(
+  () => import('./apps/speakers/components/speakers/Speaker')
+);
+const About = lazy(() => import('./apps/speakers/components/about/About'));
+const Speakers = lazy(
+  () => import('./apps/speakers/components/speakers/Speakers')
+);
+const SpeakersHome = lazy(() => import('./apps/speakers/components/home/Home'));
 
 const App = () => {
   return (
@@ -52,6 +64,13 @@ const App = () => {
                 <Route path='todos' element={<Todos />}>
                   <Route path='todo1' element={<Todos1 />} />
                   <Route path='todo2' element={<h1>TODO2</h1>} />
+                </Route>
+                <Route path='speakers-app' element={<SpeakersApp />}>
+                  <Route path='home' element={<SpeakersHome />} />
+                  <Route path='speakerlist' element={<SpeakerList />} />
+                  <Route path='speakers' element={<Speakers />} />
+                  <Route path='speaker/:id' element={<Speaker />} />
+                  <Route path='about' element={<About />} />
                 </Route>
                 <Route path='watch-list' element={<WatchList />} />
                 <Route path='tic-tac-toe' element={<TicTacToe />}>

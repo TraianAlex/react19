@@ -4,7 +4,7 @@ import ToDoListWithToolbar from './components/todo/ToDoListWithToolbar';
 import { TodosDataProvider } from './contexts/ToDosDataContext';
 import ToDoManager from './components/todo/ToDoManager';
 import Layout from './components/layout/Layout';
-import './styles/site.css';
+import './styles/site.scss';
 
 const Todos1 = () => {
   const [displayStatus, setDisplayStatus] = useState('all'); // all, pending, completed
