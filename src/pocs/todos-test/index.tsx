@@ -1,35 +1,124 @@
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 
 const TodosTest: React.FC = () => {
+  const location = useLocation();
+  const isActive = (path: string) => {
+    return location.pathname === '/' + path;
+  };
+
   return (
     <div className='container mt-5 pt-5'>
       <div className='row'>
         <div className='col'>
           <div className='card' style={{ width: '18rem' }}>
             <ul className='list-group list-group-flush'>
-            <li className='list-group-item'>
-                <Link to='todos-basic'>Todos Basic</Link>
+              <li
+                className={`list-group-item ${
+                  isActive('todos-test/todos-basic') || isActive('todos-test')
+                    ? 'active '
+                    : ''
+                }`}
+              >
+                <Link
+                  to='todos-basic'
+                  className={
+                    isActive('todos-test/todos-basic') || isActive('todos-test')
+                      ? 'text-white'
+                      : ''
+                  }
+                >
+                  Todos Basic
+                </Link>
               </li>
-              <li className='list-group-item'>
-                <Link to='todos-state1'>Todos state 1</Link>
+              <li
+                className={`list-group-item ${
+                  isActive('todos-test/todos-state1') ? 'active' : ''
+                }`}
+              >
+                <Link
+                  to='todos-state1'
+                  className={
+                    isActive('todos-test/todos-state1') ? 'text-white' : ''
+                  }
+                >
+                  Todos state 1
+                </Link>
               </li>
-              <li className='list-group-item'>
-                <Link to='todos-state2'>Todos state 2</Link>
+              <li
+                className={`list-group-item ${
+                  isActive('todos-test/todos-state2') ? 'active' : ''
+                }`}
+              >
+                <Link
+                  to='todos-state2'
+                  className={
+                    isActive('todos-test/todos-state2') ? 'text-white' : ''
+                  }
+                >
+                  Todos state 2
+                </Link>
               </li>
-              <li className='list-group-item'>
-                <Link to='todos-state3'>Todos state 3</Link>
+              <li
+                className={`list-group-item ${
+                  isActive('todos-test/todos-state3') ? 'active' : ''
+                }`}
+              >
+                <Link
+                  to='todos-state3'
+                  className={
+                    isActive('todos-test/todos-state3') ? 'text-white' : ''
+                  }
+                >
+                  Todos state 3
+                </Link>
               </li>
-              <li className='list-group-item'>
-                <Link to='game3'>Game 3</Link>
+              <li
+                className={`list-group-item ${
+                  isActive('todos-test/game3') ? 'active' : ''
+                }`}
+              >
+                <Link
+                  to='game3'
+                  className={isActive('todos-test/game3') ? 'text-white' : ''}
+                >
+                  Game 3
+                </Link>
               </li>
-              <li className='list-group-item'>
-                <Link to='game4'>Game 4</Link>
+              <li
+                className={`list-group-item ${
+                  isActive('todos-test/game4') ? 'active' : ''
+                }`}
+              >
+                <Link
+                  to='game4'
+                  className={isActive('todos-test/game4') ? 'text-white' : ''}
+                >
+                  Game 4
+                </Link>
               </li>
-              <li className='list-group-item'>
-                <Link to='game5'>Game 5</Link>
+              <li
+                className={`list-group-item ${
+                  isActive('todos-test/game5') ? 'active' : ''
+                }`}
+              >
+                <Link
+                  to='game5'
+                  className={isActive('todos-test/game5') ? 'text-white' : ''}
+                >
+                  Game 5
+                </Link>
               </li>
-              <li className='list-group-item'>
-                <Link to='game6'>Game 6</Link>
+              <li
+                className={`list-group-item ${
+                  isActive('todos-test/game6') ? 'active' : ''
+                }`}
+              >
+                <Link
+                  to='game6'
+                  className={isActive('todos-test/game6') ? 'text-white' : ''}
+                >
+                  Game 6
+                </Link>
               </li>
             </ul>
           </div>

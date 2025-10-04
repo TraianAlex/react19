@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { AppDispatch, RootState } from '../../pocs/auth/state/store';
@@ -11,6 +11,7 @@ import {
 export const NavigationBar = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
+  const location = useLocation();
   const { isAuthenticated, user } = useSelector(
     (state: RootState) => state.auth
   );
@@ -25,6 +26,12 @@ export const NavigationBar = () => {
     dispatch(logoutUserThunk()).then(() => {
       navigate('/login');
     });
+  };
+
+  const isActive = (path: string) => {
+    return (
+      location.pathname === path || location.pathname.startsWith(path + '/')
+    );
   };
 
   return (
@@ -57,7 +64,11 @@ export const NavigationBar = () => {
           <div className='collapse navbar-collapse' id='navbarSupportedContent'>
             <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
               <li className='nav-item'>
-                <Link to='/' className='nav-link active' aria-current='page'>
+                <Link
+                  to='/'
+                  className={`nav-link ${isActive('/') ? 'active' : ''}`}
+                  aria-current={isActive('/') ? 'page' : undefined}
+                >
                   Home
                 </Link>
               </li>
@@ -73,12 +84,22 @@ export const NavigationBar = () => {
                 </a>
                 <ul className='dropdown-menu'>
                   <li>
-                    <Link className='dropdown-item' to='profile'>
+                    <Link
+                      className={`dropdown-item ${
+                        isActive('/profile') ? 'active' : ''
+                      }`}
+                      to='profile'
+                    >
                       Auth
                     </Link>
                   </li>
                   <li>
-                    <Link className='dropdown-item' to='todos-test'>
+                    <Link
+                      className={`dropdown-item ${
+                        isActive('/todos-test') ? 'active' : ''
+                      }`}
+                      to='todos-test'
+                    >
                       Todos test
                     </Link>
                   </li>
@@ -96,17 +117,32 @@ export const NavigationBar = () => {
                 </a>
                 <ul className='dropdown-menu'>
                   <li>
-                    <Link className='dropdown-item' to='todos'>
+                    <Link
+                      className={`dropdown-item ${
+                        isActive('/todos') ? 'active' : ''
+                      }`}
+                      to='todos'
+                    >
                       Todos
                     </Link>
                   </li>
                   <li>
-                    <Link className='dropdown-item' to='speakers-app'>
+                    <Link
+                      className={`dropdown-item ${
+                        isActive('/speakers-app') ? 'active' : ''
+                      }`}
+                      to='speakers-app'
+                    >
                       Speakers
                     </Link>
                   </li>
                   <li>
-                    <Link className='dropdown-item' to='watch-list'>
+                    <Link
+                      className={`dropdown-item ${
+                        isActive('/watch-list') ? 'active' : ''
+                      }`}
+                      to='watch-list'
+                    >
                       WatchList
                     </Link>
                   </li>
@@ -114,14 +150,23 @@ export const NavigationBar = () => {
                     <hr className='dropdown-divider' />
                   </li>
                   <li>
-                    <Link className='dropdown-item' to='tic-tac-toe'>
+                    <Link
+                      className={`dropdown-item ${
+                        isActive('/tic-tac-toe') ? 'active' : ''
+                      }`}
+                      to='tic-tac-toe'
+                    >
                       Tic Tac Toe
                     </Link>
                   </li>
                 </ul>
               </li>
               <li className='nav-item'>
-                <Link to='sandbox' className='nav-link' aria-current='page'>
+                <Link
+                  to='sandbox'
+                  className={`nav-link ${isActive('/sandbox') ? 'active' : ''}`}
+                  aria-current={isActive('/sandbox') ? 'page' : undefined}
+                >
                   Sandbox
                 </Link>
               </li>
@@ -140,7 +185,13 @@ export const NavigationBar = () => {
             <ul className='navbar-nav'>
               {isAuthenticated && (
                 <li className='nav-item'>
-                  <Link to='profile' className='nav-link' aria-current='page'>
+                  <Link
+                    to='profile'
+                    className={`nav-link ${
+                      isActive('/profile') ? 'active' : ''
+                    }`}
+                    aria-current={isActive('/profile') ? 'page' : undefined}
+                  >
                     Profile
                   </Link>
                 </li>
@@ -157,8 +208,8 @@ export const NavigationBar = () => {
                 <li className='nav-item'>
                   <Link
                     to='login'
-                    className='nav-link active'
-                    aria-current='page'
+                    className={`nav-link ${isActive('/login') ? 'active' : ''}`}
+                    aria-current={isActive('/login') ? 'page' : undefined}
                   >
                     Login
                   </Link>
