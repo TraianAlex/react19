@@ -29,6 +29,7 @@ const CATEGORY_MAP: Record<FoodCategory, string> = {
 export const apiUrl = 'https://www.themealdb.com/api/json/v1/1';
 
 export default function Home() {
+  // throw new Error('Test error boundaries');
   const [searchParams] = useSearchParams();
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [loading, setLoading] = useState<boolean>(true);

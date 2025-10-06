@@ -1,5 +1,5 @@
 import { Component, ComponentType, ReactNode } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavigateFunction, useNavigate } from 'react-router-dom';
 import { ErrorBoundary, FallbackProps } from 'react-error-boundary';
 
 interface CustomErrorBoundaryProps {
@@ -36,6 +36,7 @@ interface ErrorBoundaryState {
 interface CustomErrorBoundaryProps {
   children: ReactNode;
   errorUI?: ReactNode;
+  navigate?: NavigateFunction; // workaround for the error boundary not having access to the navigate function
 }
 
 export class CustomErrorBoundary2 extends Component<
@@ -64,12 +65,18 @@ export class CustomErrorBoundary2 extends Component<
         return this.props.errorUI;
       }
       return (
-        <>
-          <h2 className='d-flex justify-content-center align-items-center vh-100'>
-            Oops! Something went wrong.
-          </h2>
-          <Link to='/'>Go to Home Page</Link>
-        </>
+        <div className='d-flex flex-column justify-content-center align-items-center vh-100'>
+          <h2>Oops! Something went wrong.</h2>
+          {!this.props.navigate && <Link to='/'>Go to Home Page</Link>}
+          {this.props.navigate && (
+            <button
+              className='btn btn-primary'
+              onClick={() => this.props.navigate?.('/')} // workaround for the error boundary not having access to the navigate function
+            >
+              Go to Home Page
+            </button>
+          )}
+        </div>
       );
     }
 
@@ -80,3 +87,15 @@ export class CustomErrorBoundary2 extends Component<
 function logErrorToMyService(error: any, errorInfo: any) {
   console.error('error:', error);
 }
+
+// use a hook in error boundary class component
+export const ErrorBoundaryWithHook = ({
+  children,
+}: {
+  children: ReactNode;
+}) => {
+  const navigate = useNavigate();
+  return (
+    <CustomErrorBoundary2 navigate={navigate}>{children}</CustomErrorBoundary2>
+  );
+};

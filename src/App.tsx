@@ -10,6 +10,7 @@ import LoadingSpinner from './components/loading-spinner';
 import {
   CustomErrorBoundary,
   CustomErrorBoundary2,
+  ErrorBoundaryWithHook,
 } from './components/CustomErrorBoundary.tsx';
 
 const NotFound = lazy(() => import('./components/not-found'));
@@ -57,7 +58,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <CustomErrorBoundary>
+        <ErrorBoundaryWithHook>
           <Suspense fallback={<LoadingSpinner />}>
             <Layout>
               <Routes>
@@ -129,7 +130,7 @@ const App = () => {
               </Routes>
             </Layout>
           </Suspense>
-        </CustomErrorBoundary>
+        </ErrorBoundaryWithHook>
       </BrowserRouter>
     </Provider>
   );
