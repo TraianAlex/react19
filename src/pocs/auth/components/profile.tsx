@@ -6,6 +6,7 @@ import { getUserProfileThunk } from '../state/authSlice';
 import LoadingSpinner from '../../../components/loading-spinner';
 
 const Profile: React.FC = () => {
+  // throw new Error('Test error boundaries');
   const dispatch = useDispatch<AppDispatch>();
   const { user, loading } = useSelector((state: RootState) => state.auth);
   const [localLoading, setLocalLoading] = useState(true);

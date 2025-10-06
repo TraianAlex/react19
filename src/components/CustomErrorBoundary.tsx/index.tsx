@@ -71,7 +71,10 @@ export class CustomErrorBoundary2 extends Component<
           {this.props.navigate && (
             <button
               className='btn btn-primary'
-              onClick={() => this.props.navigate?.('/')} // workaround for the error boundary not having access to the navigate function
+              onClick={() => {
+                this.props.navigate?.('/');
+                window.location.reload();
+              }} // workaround for the error boundary not having access to the navigate function
             >
               Go to Home Page
             </button>
