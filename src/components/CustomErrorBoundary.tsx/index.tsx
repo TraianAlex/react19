@@ -1,5 +1,5 @@
 import { Component, ComponentType, ReactNode } from 'react';
-
+import { Link } from 'react-router-dom';
 import { ErrorBoundary, FallbackProps } from 'react-error-boundary';
 
 interface CustomErrorBoundaryProps {
@@ -29,10 +29,6 @@ export const CustomErrorBoundary = ({
 };
 
 // The second way to handle errors
-function logErrorToMyService(error: any, errorInfo: any) {
-  console.log('error:', error);
-}
-
 interface ErrorBoundaryState {
   hasError: boolean;
 }
@@ -68,12 +64,19 @@ export class CustomErrorBoundary2 extends Component<
         return this.props.errorUI;
       }
       return (
-        <h1 className='d-flex justify-content-center align-items-center vh-100'>
-          Something went wrong.
-        </h1>
+        <>
+          <h2 className='d-flex justify-content-center align-items-center vh-100'>
+            Oops! Something went wrong.
+          </h2>
+          <Link to='/'>Go to Home Page</Link>
+        </>
       );
     }
 
     return this.props.children;
   }
+}
+
+function logErrorToMyService(error: any, errorInfo: any) {
+  console.error('error:', error);
 }

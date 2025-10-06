@@ -7,7 +7,10 @@ import Layout from './main/layout.tsx';
 import { ProtectedRoute } from './pocs/auth/private-routes';
 import store from './pocs/auth/state/store';
 import LoadingSpinner from './components/loading-spinner';
-import { CustomErrorBoundary } from './components/CustomErrorBoundary.tsx';
+import {
+  CustomErrorBoundary,
+  CustomErrorBoundary2,
+} from './components/CustomErrorBoundary.tsx';
 
 const NotFound = lazy(() => import('./components/not-found'));
 const Home = lazy(() => import('./main/home'));
