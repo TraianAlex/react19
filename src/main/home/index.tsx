@@ -1,15 +1,10 @@
-import { useEffect, useState } from 'react';
-import { Outlet, useSearchParams, Link } from 'react-router-dom';
+import { Outlet, Link, useSearchParams } from 'react-router-dom';
 
 import { HomeList } from './home-list';
 import LoadingSpinner from '../../components/loading-spinner';
+import useRecipes from './useRecipes';
 
-type Recipe = {
-  strMeal: string;
-  idMeal: string;
-};
-
-type FoodCategory =
+export type FoodCategory =
   | 'seafood'
   | 'beef'
   | 'chicken'
@@ -17,7 +12,7 @@ type FoodCategory =
   | 'vegetarian'
   | 'intercontinental';
 
-const CATEGORY_MAP: Record<FoodCategory, string> = {
+export const CATEGORY_MAP: Record<FoodCategory, string> = {
   seafood: 'Seafood',
   beef: 'Beef',
   chicken: 'Chicken',
@@ -26,49 +21,10 @@ const CATEGORY_MAP: Record<FoodCategory, string> = {
   intercontinental: 'Intercontinental',
 };
 
-export const apiUrl = 'https://www.themealdb.com/api/json/v1/1';
-
 export default function Home() {
   const [searchParams] = useSearchParams();
-  const [recipes, setRecipes] = useState<Recipe[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
-  const [currentCategory, setCurrentCategory] =
-    useState<FoodCategory>('seafood');
-
   const category = (searchParams.get('category') as FoodCategory) || 'seafood';
-
-  useEffect(() => {
-    const fetchRecipes = async () => {
-      setLoading(true);
-      setError(null);
-
-      try {
-        const categoryName = CATEGORY_MAP[category];
-        const response =
-          categoryName === 'Intercontinental'
-            ? await fetch(`${apiUrl}/search.php?s=`)
-            : await fetch(`${apiUrl}/filter.php?c=${categoryName}`);
-
-        if (!response.ok) {
-          throw new Error('Failed to fetch recipes');
-        }
-        const data = await response.json();
-
-        if (!data.meals || data.meals.length === 0) {
-          throw new Error('No recipes found for this category');
-        }
-        setRecipes(data.meals);
-        setCurrentCategory(category);
-      } catch (err: any) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchRecipes();
-  }, [category]);
+  const { recipes, loading, error, currentCategory } = useRecipes(category);
 
   if (loading) {
     return <LoadingSpinner />;

@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import LoadingSpinner from '../../../components/loading-spinner';
-import { apiUrl } from '..';
+import useRecipeDetails from './useRecipeDetails';
 
-type Recipe = {
+export type Recipe = {
   strMeal: string;
   strMealThumb: string;
   strCategory: string;
@@ -15,36 +14,11 @@ type Recipe = {
 
 const HomeDetails = () => {
   const { recipeId } = useParams<{ recipeId: string }>();
-  const [recipe, setRecipe] = useState<Recipe | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-  // Get the state by navigate - location
   const navigate = useNavigate();
   const location = useLocation();
+  const { recipe, error, loading } = useRecipeDetails(recipeId || '');
   // Access the state passed via Link
   const recipeByButton = (location.state || {}).recipe as Recipe;
-
-  const fetchRecipe = async (id: string): Promise<void> => {
-    try {
-      const response = await fetch(`${apiUrl}/lookup.php?i=${id}`);
-      if (!response.ok) {
-        throw new Error('Failed to fetch recipe details');
-      }
-      const data = await response.json();
-      if (!data.meals || data.meals.length === 0) {
-        throw new Error('Recipe not found');
-      }
-      setRecipe(data.meals[0]);
-    } catch (err: any) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    if (recipeId) fetchRecipe(recipeId);
-  }, [recipeId]);
 
   if (loading) {
     return <LoadingSpinner />;
