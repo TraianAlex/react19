@@ -14,3 +14,7 @@ If you are developing a production application, we recommend using TypeScript wi
 node 22.12.0
 
 json-server --watch db.json --port 4000 --routes Routes.json
+
+
+
+pkill -f "npm run dev" || pkill -f "vite" || echo "No development server processes found"

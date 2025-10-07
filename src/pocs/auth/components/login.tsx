@@ -25,8 +25,21 @@ const Login: React.FC = () => {
     }
   }, [isAuthenticated, navigate]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  // const handleSubmit = async (e: React.FormEvent) => {
+  //   e.preventDefault();
+
+  //   try {
+  //     await dispatch(loginUserThunk({ email, password })).unwrap();
+  //     navigate('/profile');
+  //   } catch (err) {
+  //     setError('Login failed. Please try again.');
+  //   }
+  // };
+
+  // FormActions 19.0+
+  const handleSubmit = async (formData: FormData) => {
+    const email = formData.get('email') as string;
+    const password = formData.get('password') as string;
 
     try {
       await dispatch(loginUserThunk({ email, password })).unwrap();
@@ -37,10 +50,14 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className='d-flex justify-content-center align-items-center vh-100'>
-      <form onSubmit={handleSubmit} className='d-flex'>
+    <div className='d-flex justify-content-center vh-100'>
+      <form
+        action={handleSubmit}
+        className='d-flex flex-column gap-2 w-25 justify-content-center align-items-center'
+      >
         <input
           type='email'
+          name='email'
           className='form-control'
           placeholder='Email'
           value={email}
@@ -51,7 +68,8 @@ const Login: React.FC = () => {
         />
         <input
           type='password'
-          className='form-control ms-2'
+          name='password'
+          className='form-control'
           placeholder='Password'
           value={password}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -60,7 +78,9 @@ const Login: React.FC = () => {
           required
         />
         {error && <p style={{ color: 'red' }}>{error}</p>}
-        <button type='submit' className='btn btn-primary ms-2'>Login</button>
+        <button type='submit' className='btn btn-primary ms-2 w-100'>
+          Login
+        </button>
       </form>
     </div>
   );
