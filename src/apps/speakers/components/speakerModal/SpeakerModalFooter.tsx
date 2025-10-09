@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { Activity, useContext } from 'react';
 
 import { SpeakerModalContext } from '../contexts/SpeakerModalContext';
 import { SpeakersDataContext } from '../contexts/SpeakersDataContext';
@@ -17,7 +17,7 @@ export default function NotesModalFooter() {
 
   return (
     <div className='modal-footer justify-content-center'>
-      {modalSpeakerId !== 0 && (
+      <Activity mode={modalSpeakerId !== 0 ? 'visible' : 'hidden'}>
         <button
           onClick={() => {
             updateSpeaker(
@@ -36,7 +36,7 @@ export default function NotesModalFooter() {
         >
           Save
         </button>
-      )}
+      </Activity>
 
       <button
         className='btn btn-danger'
@@ -48,7 +48,7 @@ export default function NotesModalFooter() {
         Discard
       </button>
 
-      {modalSpeakerId === 0 && (
+      <Activity mode={modalSpeakerId === 0 ? 'visible' : 'hidden'}>
         <button
           className='btn btn-accent'
           onClick={() => {
@@ -73,7 +73,7 @@ export default function NotesModalFooter() {
         >
           Add
         </button>
-      )}
+      </Activity>
     </div>
   );
 }
