@@ -72,6 +72,15 @@ export const RootProvider = ({
     }
   };
 
+  const onCancel = () => {
+    setFormState({
+      name: '',
+      email: '',
+      phone: '',
+    });
+    onClose?.();
+  };
+
   // Context value
   const value = {
     contact,
@@ -81,6 +90,7 @@ export const RootProvider = ({
     isLoading,
     handleSubmit,
     onClose,
+    onCancel,
   };
 
   return (
