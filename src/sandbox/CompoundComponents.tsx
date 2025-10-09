@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Activity, useState } from 'react';
 
 import { Modal } from './compound-components/components/Modal';
 import { RootProvider } from './compound-components/context/useEditContactContext';
@@ -20,8 +20,11 @@ const CompoundComponents = () => {
         >
           Open Contact Modal
         </button>
-        {showModal && (
-          <EditContact.RootProvider contactId={contactId}>
+        <Activity mode={showModal ? 'visible' : 'hidden'}>
+          <EditContact.RootProvider
+            contactId={contactId}
+            onClose={() => setShowModal(false)}
+          >
             <Modal
               onClose={() => setShowModal(false)}
               title={<EditContact.Title />}
@@ -30,7 +33,7 @@ const CompoundComponents = () => {
               <EditContact.FormInputs />
             </Modal>
           </EditContact.RootProvider>
-        )}
+        </Activity>
       </div>
 
       <EditContact.RootProvider contactId={contactId}>

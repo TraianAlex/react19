@@ -18,9 +18,11 @@ export const useEditContactContext = () => {
 // Root component that manages state and logic
 export const RootProvider = ({
   contactId,
+  onClose,
   children,
 }: {
   contactId: string;
+  onClose?: () => void;
   children: React.ReactNode;
 }) => {
   const [formState, setFormState] = useState({
@@ -78,6 +80,7 @@ export const RootProvider = ({
     error,
     isLoading,
     handleSubmit,
+    onClose,
   };
 
   return (

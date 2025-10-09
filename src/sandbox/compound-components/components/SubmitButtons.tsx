@@ -1,7 +1,8 @@
 import { useEditContactContext } from '../context/useEditContactContext';
 
 export const SubmitButtons = () => {
-  const { handleSubmit, isLoading } = useEditContactContext();
+  const { handleSubmit, isLoading, onClose } = useEditContactContext();
+
   return (
     <div className='button-group mt-1'>
       <button
@@ -11,7 +12,9 @@ export const SubmitButtons = () => {
       >
         {isLoading ? 'Saving...' : 'Save'}
       </button>
-      <button className='btn btn-secondary'>Cancel</button>
+      <button className='btn btn-secondary' onClick={onClose}>
+        Cancel
+      </button>
     </div>
   );
 };
