@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
-import { Modal } from '../compound-components/components/Modal';
-import { RootProvider } from '../compound-components/context/useEditContactContext';
-import { Title } from '../compound-components/components/Title';
-import { SubmitButtons } from '../compound-components/components/SubmitButtons';
-import { FormInputs } from '../compound-components/components/FormInputs';
+import { Modal } from './compound-components/components/Modal';
+import { RootProvider } from './compound-components/context/useEditContactContext';
+import { Title } from './compound-components/components/Title';
+import { SubmitButtons } from './compound-components/components/SubmitButtons';
+import { FormInputs } from './compound-components/components/FormInputs';
 
 const CompoundComponents = () => {
   const contactId = '1';

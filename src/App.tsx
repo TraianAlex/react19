@@ -29,15 +29,13 @@ const Game4 = lazy(() => import('./apps/tic-tac-toe/game4'));
 const Game5 = lazy(() => import('./apps/tic-tac-toe/game5'));
 const Game6 = lazy(() => import('./apps/tic-tac-toe/game6'));
 const Sandbox = lazy(() => import('./sandbox'));
-const Playground = lazy(() => import('./sandbox/playground/Playground'));
-const CompoundComponents = lazy(
-  () => import('./sandbox/playground/CompoundComponents')
-);
+const Playground = lazy(() => import('./sandbox/Playground'));
+const CompoundComponents = lazy(() => import('./sandbox/CompoundComponents'));
 const FlexibleCompoundComponents = lazy(
-  () => import('./sandbox/playground/FlexibleCompoundComponents')
+  () => import('./sandbox/FlexibleCompoundComponents')
 );
 const CompoundComponentsSimple = lazy(
-  () => import('./sandbox/playground/CompoundComponentsSimple')
+  () => import('./sandbox/CompoundComponentsSimple')
 );
 const TodosTest = lazy(() => import('./pocs/todos-test'));
 const TodosBasic = lazy(() => import('./pocs/todos-test/todo-standard/Todos'));
