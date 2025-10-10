@@ -35,12 +35,6 @@
       "completed": false,
       "important": false,
       "id": 27
-    },
-    {
-      "todoText": "ddddd",
-      "completed": false,
-      "important": false,
-      "id": 28
     }
   ],
   "speakers": [
@@ -169,6 +163,20 @@
       "bio": "Tammy has held a number of executive and management roles over the past 15 years, including VP engineering Roles at USA Tech, Cantaloupe Systems, E-Color, and Untangle Inc.",
       "imageUrl": "/images/Speaker-1530.jpg",
       "email": "Tamara.Baker@codecamp.net"
+    },
+    {
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "john@gmail.com",
+      "imageUrl": "/images/Speaker-New.jpg",
+      "sat": true,
+      "sun": true,
+      "favorite": true,
+      "company": "Code Camp",
+      "twitterHandle": "unknown",
+      "userBioShort": "Dummy Bio",
+      "bio": "Dummy Bio",
+      "id": 41809
     }
   ]
 }

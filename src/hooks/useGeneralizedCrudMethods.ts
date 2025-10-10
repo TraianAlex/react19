@@ -3,26 +3,26 @@ import axios from 'axios';
 
 const LOADING_STATES = ['loading', 'errored', 'success'];
 
-const useGeneralizedCrudMethods = (
+function useGeneralizedCrudMethods(
   url: string,
-  errorNotificationFn: (error: string) => void
-) => {
+  errorNotificationFn?: (error: string) => void
+) {
   const [data, setData] = useState<any[]>([]);
   const [error, setError] = useState<any>();
   const [loadingStatus, setLoadingStatus] = useState('loading');
 
   if (!url || url.length === 0) {
-    throw new Error('useGeneralizedCrudMethods no url passed in error');
+    throw 'useGeneralizedCrudMethods no url passed in error';
   }
 
-  const formatErrorString = (e: any, url: string) => {
+  function formatErrorString(e: any, url: string) {
     const errorString =
       e?.response?.status === 404
         ? e?.message + ' url ' + url
         : e?.message + e?.response?.data;
     console.log(errorString);
     return errorString;
-  };
+  }
 
   const getData = async (callbackDone: () => void) => {
     try {
@@ -53,17 +53,17 @@ const useGeneralizedCrudMethods = (
     getDataUseEffect(() => {});
   }, [url]);
 
-  const createRecord = (createObject: any, callbackDone: () => void) => {
+  function createRecord(createObject: any, callbackDone: () => void) {
     // NEED TO HANDLE FAILURE CASE HERE WITH REWIND TO STARTING DATA
     // AND VERIFY createObject has id
 
-    const addData = async () => {
-      const startingData = data?.map(function (rec: any): any {
+    async function addData() {
+      const startingData = data.map(function (rec) {
         return { ...rec };
       });
       try {
-        createObject.id = Math.max(...data?.map((o: any) => o.id), 0) + 1;
-        setData(function (oriState: any) {
+        createObject.id = Math.max(...data.map((o) => o.id), 0) + 1;
+        setData(function (oriState) {
           return [createObject, ...oriState];
         });
         await axios.post(`${url}`, createObject);
@@ -74,32 +74,33 @@ const useGeneralizedCrudMethods = (
         errorNotificationFn?.(errorString);
         if (callbackDone) callbackDone();
       }
-    };
+    }
     addData();
-  };
+  }
 
-  const updateRecord = (updateObject: any, callbackDone: () => void) => {
-    const id = updateObject.id; // all todo must have a column "id"
-  
-    const updateData = async () => {
+  function updateRecord(updateObject: any, callbackDone: () => void) {
+    const id = updateObject.id; // all speakers must have a column "id"
+    async function updateData() {
       //const startingData = [...data]; // FAILS BECAUSE NOT DEEP COPY
-      const startingData = data?.map(function (rec: any) {
+      const startingData = data.map(function (rec) {
         return { ...rec };
       });
       try {
-        setData(function (oriState: any) {
-          const dataRecord = oriState.find((rec: any) => rec.id === id);
+        setData(function (oriState) {
+          const dataRecord = oriState.find((rec) => rec.id === id);
 
           // only update the fields passed in for the updateObject
           for (const [key, value] of Object.entries(updateObject)) {
             dataRecord[key] = value === undefined ? dataRecord[key] : value;
           }
-          return oriState.map((rec: any) => (rec.id === id ? dataRecord : rec));
+          return oriState.map((rec) => (rec.id === id ? dataRecord : rec));
         });
         await new Promise((resolve) => setTimeout(resolve, 2000));
 
-        const updatedRecord = data?.find((rec: any) => rec.id === id);
+        // get the full record back that has been updated
+        const updatedRecord = data.find((rec) => rec.id === id);
         await axios.put(`${url}/${id}`, updatedRecord);
+        // console.log(`done  call axios.put`);
         if (callbackDone) callbackDone();
       } catch (e) {
         setData(startingData);
@@ -107,29 +108,26 @@ const useGeneralizedCrudMethods = (
         errorNotificationFn?.(errorString);
         if (callbackDone) callbackDone();
       }
-    };
+    }
 
-    if (data?.find((rec: any) => rec.id === id)) {
+    if (data.find((rec) => rec.id === id)) {
       updateData();
     } else {
       const errorString = `No data record found for id ${id}`;
       errorNotificationFn?.(errorString);
     }
-  };
+  }
 
-  const deleteRecord = (val: any, callbackDone: () => void) => {
-    // handle case of passed in as integer or array of integers.
-    const ids = Array.isArray(val) ? val : [val];
-
-    const deleteData = async () => {
-      const startingData = data?.map(function (rec: any) {
+  function deleteRecord(id: any, callbackDone: () => void) {
+    async function deleteData() {
+      const startingData = data.map(function (rec) {
         return { ...rec };
       });
       try {
-        setData(function (oriState: any) {
-          return oriState.filter((rec: any) => !ids.includes(rec.id));
+        setData(function (oriState) {
+          return oriState.filter((rec) => rec.id != id);
         });
-        await axios.delete(`${url}/${ids.toString()}`);
+        await axios.delete(`${url}/${id}`);
         if (callbackDone) callbackDone();
       } catch (e) {
         setData(startingData);
@@ -137,20 +135,14 @@ const useGeneralizedCrudMethods = (
         errorNotificationFn?.(errorString);
         if (callbackDone) callbackDone();
       }
-    };
-
-    const recordExists = (id: any) => {
-      const r = data?.find((rec: any) => rec.id === id);
-      return r ? true : false;
-    };
-
-    if (ids.every(recordExists)) {
+    }
+    if (data.find((rec) => rec.id === id)) {
       deleteData();
     } else {
-      const errorString = `No data record found for id ${ids.toString()}`;
+      const errorString = `No data record found for id ${id}`;
       errorNotificationFn?.(errorString);
     }
-  };
+  }
 
   const reFetch = (callbackDone: () => void) => {
     //setReFetchCount(reFetchCount + 1);
@@ -169,12 +161,12 @@ const useGeneralizedCrudMethods = (
   return {
     data, // returned data after loadingStatus === "success"
     loadingStatus, // "success", "errored", "loading"
-    error, // error string used??
+    error, // error string
     reFetch, // gets the data again from the rest server
     createRecord, // creates new record at end, takes first record as parameter, second as callback function when done
     updateRecord, // update new record at end, takes single record as parameter, second as callback function when done
     deleteRecord, // takes primary key named "id"
   };
-};
+}
 
 export default useGeneralizedCrudMethods;

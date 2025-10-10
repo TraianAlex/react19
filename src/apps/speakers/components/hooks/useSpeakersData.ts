@@ -1,4 +1,4 @@
-import useGeneralizedCrudMethods from './useGeneralizedCrudMethods';
+import useGeneralizedCrudMethods from '../../../../hooks/useGeneralizedCrudMethods';
 
 function useSpeakersData() {
   const url = 'http://localhost:4000/api/speakers';
