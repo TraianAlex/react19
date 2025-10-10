@@ -143,17 +143,10 @@ const useGeneralizedCrudMethods = (
   };
 
   const reFetch = (callbackDone: () => void) => {
-    //setReFetchCount(reFetchCount + 1);
-    //console.log("1");
     const promise = getData(() => {
-      //console.log("3");
       if (callbackDone) callbackDone();
     });
     return promise;
-    // Promise.all([promise]).then(() => {
-    //   console.log("4");
-    // });
-    // console.log("2");
   };
 
   return {
