@@ -31,10 +31,16 @@
       "id": 25
     },
     {
-      "todoText": "aaaaaaa",
+      "todoText": "eeeee",
+      "completed": false,
+      "important": true,
+      "id": 28
+    },
+    {
+      "todoText": "ooooo",
       "completed": false,
       "important": false,
-      "id": 27
+      "id": 29
     }
   ],
   "speakers": [
@@ -72,7 +78,7 @@
       "lastName": "Nielsen",
       "sat": true,
       "sun": true,
-      "favorite": false,
+      "favorite": true,
       "bio": "As Head of Ecosystem Programs, Dave uses emerging technologies and open source projects like Microservices, Serverless & Kubernetes to bring the magic of Redis to the broader community.",
       "company": "Intel",
       "twitterHandle": "davenielsen",
@@ -165,7 +171,7 @@
       "email": "Tamara.Baker@codecamp.net"
     },
     {
-      "firstName": "John",
+      "firstName": "John X",
       "lastName": "Doe",
       "email": "john@gmail.com",
       "imageUrl": "/images/Speaker-New.jpg",

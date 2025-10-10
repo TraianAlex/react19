@@ -3,26 +3,26 @@ import axios from 'axios';
 
 const LOADING_STATES = ['loading', 'errored', 'success'];
 
-function useGeneralizedCrudMethods(
+const useGeneralizedCrudMethods = (
   url: string,
-  errorNotificationFn?: (error: string) => void
-) {
+  errorNotificationFn: (error: string) => void
+) => {
   const [data, setData] = useState<any[]>([]);
   const [error, setError] = useState<any>();
   const [loadingStatus, setLoadingStatus] = useState('loading');
 
   if (!url || url.length === 0) {
-    throw 'useGeneralizedCrudMethods no url passed in error';
+    throw new Error('useGeneralizedCrudMethods no url passed in error');
   }
 
-  function formatErrorString(e: any, url: string) {
+  const formatErrorString = (e: any, url: string) => {
     const errorString =
       e?.response?.status === 404
         ? e?.message + ' url ' + url
         : e?.message + e?.response?.data;
     console.log(errorString);
     return errorString;
-  }
+  };
 
   const getData = async (callbackDone: () => void) => {
     try {
@@ -38,33 +38,21 @@ function useGeneralizedCrudMethods(
   };
 
   useEffect(() => {
-    async function getDataUseEffect(callbackDone: () => void) {
-      try {
-        setLoadingStatus(LOADING_STATES[0]);
-        const results = await axios.get(url);
-        setData(results.data as any);
-        setLoadingStatus(LOADING_STATES[2]);
-      } catch (e) {
-        setError(e as any);
-        setLoadingStatus(LOADING_STATES[1]);
-      }
-      if (callbackDone) callbackDone();
-    }
-    getDataUseEffect(() => {});
+    getData(() => {});
   }, [url]);
 
-  function createRecord(createObject: any, callbackDone: () => void) {
+  const createRecord = (createObject: any, callbackDone: () => void) => {
     // NEED TO HANDLE FAILURE CASE HERE WITH REWIND TO STARTING DATA
     // AND VERIFY createObject has id
 
-    async function addData() {
-      const startingData = data.map(function (rec) {
+    const addData = async () => {
+      const startingData = data?.map((rec: any): any => {
         return { ...rec };
       });
       try {
-        createObject.id = Math.max(...data.map((o) => o.id), 0) + 1;
-        setData(function (oriState) {
-          return [createObject, ...oriState];
+        createObject.id = Math.max(...data?.map((o: any) => o.id), 0) + 1;
+        setData((prevState: any) => {
+          return [createObject, ...prevState];
         });
         await axios.post(`${url}`, createObject);
         if (callbackDone) callbackDone();
@@ -74,33 +62,34 @@ function useGeneralizedCrudMethods(
         errorNotificationFn?.(errorString);
         if (callbackDone) callbackDone();
       }
-    }
+    };
     addData();
-  }
+  };
 
-  function updateRecord(updateObject: any, callbackDone: () => void) {
-    const id = updateObject.id; // all speakers must have a column "id"
-    async function updateData() {
+  const updateRecord = (updateObject: any, callbackDone: () => void) => {
+    const id = updateObject.id; // all todo must have a column "id"
+
+    const updateData = async () => {
       //const startingData = [...data]; // FAILS BECAUSE NOT DEEP COPY
-      const startingData = data.map(function (rec) {
+      const startingData = data?.map(function (rec: any) {
         return { ...rec };
       });
       try {
-        setData(function (oriState) {
-          const dataRecord = oriState.find((rec) => rec.id === id);
+        setData((prevState: any) => {
+          const dataRecord = prevState.find((rec: any) => rec.id === id);
 
           // only update the fields passed in for the updateObject
           for (const [key, value] of Object.entries(updateObject)) {
             dataRecord[key] = value === undefined ? dataRecord[key] : value;
           }
-          return oriState.map((rec) => (rec.id === id ? dataRecord : rec));
+          return prevState.map((rec: any) =>
+            rec.id === id ? dataRecord : rec
+          );
         });
         await new Promise((resolve) => setTimeout(resolve, 2000));
 
-        // get the full record back that has been updated
-        const updatedRecord = data.find((rec) => rec.id === id);
+        const updatedRecord = data?.find((rec: any) => rec.id === id);
         await axios.put(`${url}/${id}`, updatedRecord);
-        // console.log(`done  call axios.put`);
         if (callbackDone) callbackDone();
       } catch (e) {
         setData(startingData);
@@ -108,26 +97,29 @@ function useGeneralizedCrudMethods(
         errorNotificationFn?.(errorString);
         if (callbackDone) callbackDone();
       }
-    }
+    };
 
-    if (data.find((rec) => rec.id === id)) {
+    if (data?.find((rec: any) => rec.id === id)) {
       updateData();
     } else {
       const errorString = `No data record found for id ${id}`;
       errorNotificationFn?.(errorString);
     }
-  }
+  };
 
-  function deleteRecord(id: any, callbackDone: () => void) {
-    async function deleteData() {
-      const startingData = data.map(function (rec) {
+  const deleteRecord = (val: any, callbackDone: () => void) => {
+    // handle case of passed in as integer or array of integers.
+    const ids = Array.isArray(val) ? val : [val];
+
+    const deleteData = async () => {
+      const startingData = data?.map((rec: any) => {
         return { ...rec };
       });
       try {
-        setData(function (oriState) {
-          return oriState.filter((rec) => rec.id != id);
+        setData((prevState: any) => {
+          return prevState.filter((rec: any) => !ids.includes(rec.id));
         });
-        await axios.delete(`${url}/${id}`);
+        await axios.delete(`${url}/${ids.toString()}`);
         if (callbackDone) callbackDone();
       } catch (e) {
         setData(startingData);
@@ -135,14 +127,20 @@ function useGeneralizedCrudMethods(
         errorNotificationFn?.(errorString);
         if (callbackDone) callbackDone();
       }
-    }
-    if (data.find((rec) => rec.id === id)) {
+    };
+
+    const recordExists = (id: any) => {
+      const r = data?.find((rec: any) => rec.id === id);
+      return r ? true : false;
+    };
+
+    if (ids.every(recordExists)) {
       deleteData();
     } else {
-      const errorString = `No data record found for id ${id}`;
+      const errorString = `No data record found for id ${ids.toString()}`;
       errorNotificationFn?.(errorString);
     }
-  }
+  };
 
   const reFetch = (callbackDone: () => void) => {
     //setReFetchCount(reFetchCount + 1);
@@ -167,6 +165,6 @@ function useGeneralizedCrudMethods(
     updateRecord, // update new record at end, takes single record as parameter, second as callback function when done
     deleteRecord, // takes primary key named "id"
   };
-}
+};
 
 export default useGeneralizedCrudMethods;
