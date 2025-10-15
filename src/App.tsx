@@ -54,6 +54,7 @@ const Speakers = lazy(
   () => import('./apps/speakers/components/speakers/Speakers')
 );
 const SpeakersHome = lazy(() => import('./apps/speakers/components/home/Home'));
+const TodosFlux = lazy(() => import('./pocs/todos-test/ToDoFlux/App'));
 
 const App = () => {
   return (
@@ -116,6 +117,7 @@ const App = () => {
                   <Route path='todos-state2' element={<h1>Todos State 2</h1>} />
                   <Route path='todos-state3' element={<h1>Todos State 3</h1>} />
                   <Route path='todo-context' element={<TodosContext />} />
+                  <Route path='todos-flux' element={<TodosFlux />} />
                 </Route>
                 <Route path='login' element={<Login />} />
                 <Route

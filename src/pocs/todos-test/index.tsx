@@ -112,14 +112,16 @@ const TodosTest: React.FC = () => {
               </li>
               <li
                 className={`list-group-item ${
-                  isActive('todos-test/game6') ? 'active' : ''
+                  isActive('todos-test/todos-flux') ? 'active' : ''
                 }`}
               >
                 <Link
-                  to='game6'
-                  className={isActive('todos-test/game6') ? 'text-white' : ''}
+                  to='todos-flux'
+                  className={
+                    isActive('todos-test/todos-flux') ? 'text-white' : ''
+                  }
                 >
-                  Game 6
+                  Todos Flux
                 </Link>
               </li>
             </ul>
