@@ -1,0 +1,71 @@
+.todo-context .container {
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+/* Flex */
+.todo-context .flex {
+  display: flex;
+}
+
+.todo-context .flex-row {
+  flex-direction: row;
+}
+
+.todo-context .flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.todo-context .justify-center {
+  justify-content: center;
+}
+
+.todo-context .justify-between {
+  justify-content: space-between;
+}
+
+.todo-context .items-center {
+  align-items: center;
+}
+
+/* Text */
+.todo-context .text-center {
+  text-align: center;
+}
+
+/* Margins */
+.mt-4 {
+  margin-top: 40px;
+}
+
+/* Todo */
+.todo-context .todo-item {
+  background-color: #ccc;
+  color: #333;
+  margin: 10px 0px;
+  border-radius: 5px;
+  padding: 10px 20px;
+  box-shadow: rgba(0, 0, 0, 0.5) 1px 1px 1px;
+}
+
+.todo-context .remove-todo {
+  cursor: pointer;
+  background-color: red;
+  padding: 2px 7px;
+  font-size: 24px;
+  color: #fff;
+  border-radius: 50%;
+  text-align: center;
+}
+
+/* Form */
+.todo-context .input {
+  padding: 5px;
+  width: 100%;
+}
+
+.todo-context .btn {
+  display: inline-block;
+  padding: 5px;
+}

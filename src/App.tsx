@@ -39,6 +39,9 @@ const CompoundComponentsSimple = lazy(
 );
 const TodosTest = lazy(() => import('./pocs/todos-test'));
 const TodosBasic = lazy(() => import('./pocs/todos-test/todo-standard/Todos'));
+const TodosContext = lazy(
+  () => import('./pocs/todos-test/TodoContext/TodosContext')
+);
 const SpeakersApp = lazy(() => import('./apps/speakers/Speakers'));
 const SpeakerList = lazy(
   () => import('./apps/speakers/components/speakers/SpeakerList')
@@ -112,6 +115,7 @@ const App = () => {
                   <Route path='todos-state1' element={<h1>Todos State 1</h1>} />
                   <Route path='todos-state2' element={<h1>Todos State 2</h1>} />
                   <Route path='todos-state3' element={<h1>Todos State 3</h1>} />
+                  <Route path='todo-context' element={<TodosContext />} />
                 </Route>
                 <Route path='login' element={<Login />} />
                 <Route
