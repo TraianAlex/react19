@@ -124,6 +124,20 @@ const TodosTest: React.FC = () => {
                   Todos Flux
                 </Link>
               </li>
+              <li
+                className={`list-group-item ${
+                  isActive('todos-test/todos-redux') ? 'active' : ''
+                }`}
+              >
+                <Link
+                  to='todos-redux'
+                  className={
+                    isActive('todos-test/todos-redux') ? 'text-white' : ''
+                  }
+                >
+                  Todos Redux
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
