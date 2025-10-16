@@ -80,14 +80,18 @@ const Sandbox: React.FC = () => {
               </li>
               <li
                 className={`list-group-item ${
-                  isActive('sandbox/game3') ? 'active' : ''
+                  isActive('sandbox/increment-redux-hooks') ? 'active' : ''
                 }`}
               >
                 <Link
-                  to='game3'
-                  className={isActive('sandbox/game3') ? 'text-white' : ''}
+                  to='increment-redux-hooks'
+                  className={
+                    isActive('sandbox/increment-redux-hooks')
+                      ? 'text-white'
+                      : ''
+                  }
                 >
-                  Game 3
+                  Increment Redux hooks
                 </Link>
               </li>
               <li
