@@ -1,5 +1,5 @@
-// import { resolveEach } from './reduxResolver'; // there is a package redux-resolver
-import { resolveEach } from 'redux-resolver';
+import { resolveEach } from './reduxResolver'; // there is a package redux-resolver
+// import { resolveEach } from 'redux-resolver';
 import { fromJS, Map } from 'immutable';
 import * as actionTypes from './actionTypes';
 

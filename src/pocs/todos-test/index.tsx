@@ -138,6 +138,24 @@ const TodosTest: React.FC = () => {
                   Todos Redux
                 </Link>
               </li>
+              <li
+                className={`list-group-item ${
+                  isActive('todos-test/todos-context-fakeapi-localstorage')
+                    ? 'active'
+                    : ''
+                }`}
+              >
+                <Link
+                  to='todos-context-fakeapi-localstorage'
+                  className={
+                    isActive('todos-test/todos-context-fakeapi-localstorage')
+                      ? 'text-white'
+                      : ''
+                  }
+                >
+                  Todos Context FakeAPI LocalStorage
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

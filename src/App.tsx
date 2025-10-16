@@ -59,6 +59,9 @@ const TodosRedux = lazy(
   () => import('./pocs/todos-test/ToDoRedux/TodoListRedux')
 );
 const IncrementReduxHooks = lazy(() => import('./sandbox/ReduxWithHooks/App'));
+const TodoApp = lazy(
+  () => import('./pocs/todos-test/todos-context-fakeapi-localstorage/TodoApp')
+);
 
 const App = () => {
   return (
@@ -126,6 +129,10 @@ const App = () => {
                   <Route path='todo-context' element={<TodosContext />} />
                   <Route path='todos-flux' element={<TodosFlux />} />
                   <Route path='todos-redux' element={<TodosRedux />} />
+                  <Route
+                    path='todos-context-fakeapi-localstorage'
+                    element={<TodoApp />}
+                  />
                 </Route>
                 <Route path='login' element={<Login />} />
                 <Route
