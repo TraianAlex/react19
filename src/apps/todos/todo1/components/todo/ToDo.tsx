@@ -4,7 +4,7 @@ import ErrorBoundary from '../common/ErrorBoundary';
 import ToDoItemText from './ToDoItemText';
 
 interface ToDoProps {
-  todoItem: any;
+  todoItem?: any;
   handleToggleCompleted: (id: any) => void;
   handleDelete: (id: any) => void;
   handleEdit: (todoItem: any) => void;
@@ -28,6 +28,12 @@ const Inner = ({
           return handleToggleCompleted(todoItem.id);
         }}
       >
+        <span
+          className='sequence-number'
+          style={{ marginRight: '8px', color: '#666', fontSize: '0.8em' }}
+        >
+          #{todoItem.sequence || '?'}
+        </span>
         <ToDoItemText
           important={todoItem.important}
           todoText={todoItem.todoText}

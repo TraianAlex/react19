@@ -29,7 +29,10 @@ const useTodosData = () => {
   };
 
   return {
-    todoList: data,
+    // todoList: data,
+    todoList:
+      data?.sort((a: any, b: any) => (a.sequence || 0) - (b.sequence || 0)) ||
+      [],
     loadingStatus,
     createTodo,
     updateTodo,

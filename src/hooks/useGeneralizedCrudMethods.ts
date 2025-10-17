@@ -51,6 +51,10 @@ const useGeneralizedCrudMethods = (
       });
       try {
         createObject.id = Math.max(...data?.map((o: any) => o.id), 0) + 1;
+        // Set sequence to be the highest sequence + 1, or 1 if no todos exist
+        if (createObject.hasOwnProperty('todoText')) {
+          createObject.sequence = Math.max(...data?.map((o: any) => o.sequence || 0), 0) + 1;
+        }
         setData((prevState: any) => {
           return [createObject, ...prevState];
         });

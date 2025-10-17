@@ -4,43 +4,50 @@
       "id": 1,
       "todoText": "Give dog a bath",
       "completed": false,
-      "important": true
+      "important": true,
+      "sequence": 5
     },
     {
       "id": 8,
       "todoText": "Hang laundry",
       "completed": false,
-      "important": true
+      "important": true,
+      "sequence": 3
     },
     {
       "id": 9,
       "todoText": "Do expense report",
       "completed": false,
-      "important": true
-    },
-    {
-      "todoText": "ccc",
-      "completed": false,
       "important": true,
-      "id": 17
+      "sequence": 7
     },
     {
-      "todoText": "fffff",
-      "completed": false,
-      "important": true,
-      "id": 25
-    },
-    {
-      "todoText": "eeeee",
-      "completed": false,
-      "important": true,
-      "id": 28
-    },
-    {
-      "todoText": "ooooo",
+      "todoText": "aaaaaaa",
       "completed": false,
       "important": false,
-      "id": 29
+      "id": 10,
+      "sequence": 4
+    },
+    {
+      "todoText": "bbbbbb",
+      "completed": false,
+      "important": false,
+      "id": 14,
+      "sequence": 1
+    },
+    {
+      "todoText": "cccccc",
+      "completed": false,
+      "important": false,
+      "id": 15,
+      "sequence": 2
+    },
+    {
+      "todoText": "dddddd",
+      "completed": false,
+      "important": false,
+      "id": 16,
+      "sequence": 6
     }
   ],
   "speakers": [
@@ -78,7 +85,7 @@
       "lastName": "Nielsen",
       "sat": true,
       "sun": true,
-      "favorite": true,
+      "favorite": false,
       "bio": "As Head of Ecosystem Programs, Dave uses emerging technologies and open source projects like Microservices, Serverless & Kubernetes to bring the magic of Redis to the broader community.",
       "company": "Intel",
       "twitterHandle": "davenielsen",
@@ -106,7 +113,7 @@
       "lastName": "Chuvyrov",
       "sat": true,
       "sun": false,
-      "favorite": false,
+      "favorite": true,
       "bio": "Eugene Chuvyrov is  a Senior Cloud Architect at Microsoft. He works directly with both startups and enterprises to enable their solutions in Microsoft cloud, and to make Azure better as a result of this work with partners.",
       "company": "Microsoft",
       "twitterHandle": "EugeneChuvyrov",
@@ -120,7 +127,7 @@
       "lastName": "McDowell",
       "sat": true,
       "sun": false,
-      "favorite": false,
+      "favorite": true,
       "bio": "Gayle Laakmann McDowell is the founder and CEO of CareerCup.com and the author of three best selling books.",
       "company": "CareerCup",
       "twitterHandle": "gayle",
@@ -134,7 +141,7 @@
       "lastName": "Mantle",
       "sat": true,
       "sun": true,
-      "favorite": false,
+      "favorite": true,
       "bio": "Mickey has been developing software systems and products for over 40 years, as a systems programmer, Tech Lead, Manager, VP Engineering, CTO, COO, and now CEO/CTO of his own company.",
       "company": "Wanderful, Inc.",
       "twitterHandle": "mwmantleCA",
@@ -148,7 +155,7 @@
       "lastName": "Everitt",
       "sat": true,
       "sun": true,
-      "favorite": false,
+      "favorite": true,
       "bio": "Paul is the PyCharm and WebStorm Developer Advocate at JetBrains. Before that, Paul was a partner at Agendaless Consulting and co-founder of Zope Corporation, taking the first open source application server through $14M of funding.",
       "company": "JetBrains, Inc.",
       "twitterHandle": "paulweveritt",
@@ -183,6 +190,34 @@
       "userBioShort": "Dummy Bio",
       "bio": "Dummy Bio",
       "id": 41809
+    },
+    {
+      "firstName": "Alexandru",
+      "lastName": "Traian",
+      "email": "vic@info.com",
+      "imageUrl": "/images/Speaker-New.jpg",
+      "sat": true,
+      "sun": true,
+      "favorite": false,
+      "company": "Code Camp",
+      "twitterHandle": "unknown",
+      "userBioShort": "Dummy Bio",
+      "bio": "Dummy Bio",
+      "id": 41810
+    },
+    {
+      "firstName": "Traian",
+      "lastName": "Victor",
+      "email": "traian@hotmail.com",
+      "imageUrl": "/images/Speaker-New.jpg",
+      "sat": true,
+      "sun": true,
+      "favorite": false,
+      "company": "Code Camp",
+      "twitterHandle": "unknown",
+      "userBioShort": "Dummy Bio",
+      "bio": "Dummy Bio",
+      "id": 41811
     }
   ]
 }
