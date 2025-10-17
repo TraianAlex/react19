@@ -7,7 +7,7 @@ const TicTacToe: React.FC = () => {
   };
 
   return (
-    <div className='container mt-5 pt-5'>
+    <div className='container-fluid mt-5 pt-5'>
       <div className='row'>
         <div className='col'>
           <div className='card' style={{ width: '18rem' }}>

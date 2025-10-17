@@ -71,7 +71,7 @@ const TodoLocalForm = ({
           type='submit'
           role='submit'
           variant='light'
-          className='todo-item rotate-center'
+          className='todo-item rotate-center m-1'
         >
           Save
         </Button>

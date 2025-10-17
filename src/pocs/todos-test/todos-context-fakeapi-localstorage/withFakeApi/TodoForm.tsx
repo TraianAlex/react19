@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Alert, Button, Col, Form } from 'react-bootstrap';
 import { displayError } from '../../../../shared/utils/utils';
 import { useFakeApi } from './useFakeApi';
+import { Todo } from '../Context';
 
 const TodoForm = () => {
   const [error, setError] = useState('');
@@ -19,7 +20,7 @@ const TodoForm = () => {
       ? { id: todo.id, title, completed: false }
       : { title, completed: false };
 
-    todo ? updateTodo(newTodo) : createTodo(newTodo);
+    todo ? updateTodo(newTodo as Todo) : createTodo(newTodo as Todo);
   };
 
   useEffect(() => {
@@ -48,7 +49,7 @@ const TodoForm = () => {
             required
           />
         </Form.Group>
-        <Button type='submit' variant='light' className='todo-item'>
+        <Button type='submit' variant='light' className='todo-item m-1'>
           Save
         </Button>
       </form>
