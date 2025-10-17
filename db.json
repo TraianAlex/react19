@@ -205,7 +205,7 @@
       "imageUrl": "/images/Speaker-New.jpg",
       "sat": true,
       "sun": true,
-      "favorite": false,
+      "favorite": true,
       "company": "Code Camp",
       "twitterHandle": "unknown",
       "userBioShort": "Dummy Bio",
