@@ -27,7 +27,7 @@ const TodoForm = () => {
         value={title}
         placeholder='Things you wanna do...'
       />
-      <button type='submit' className='btn btn-primary m-1'>
+      <button type='submit' className='btn btn-primary ms-1'>
         Save
       </button>
     </form>

@@ -9,7 +9,7 @@ const TodosContext = () => {
       <div className='container flex flex-col mt-4 todo-context'>
         <h2 className='text-center'>Todo App With Context</h2>
         <TodoForm />
-        <div className='flex flex-col mt-4'>
+        <div className='flex flex-col mt-2'>
           <TodoList />
         </div>
       </div>
