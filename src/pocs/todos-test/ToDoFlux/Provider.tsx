@@ -30,7 +30,7 @@ export const connect = (select = (state: any, props: any) => state) => {
 };
 
 /**************************************************************
- import React, { Component } from "react";
+ import { Component } from "react";
 import createStore from "./store";
 
 export default class Provider extends Component {

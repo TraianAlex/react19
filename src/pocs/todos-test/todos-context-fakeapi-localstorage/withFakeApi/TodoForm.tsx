@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Alert, Button, Col, Form } from 'react-bootstrap';
 import { displayError } from '../../../../shared/utils/utils';
 import { useFakeApi } from './useFakeApi';

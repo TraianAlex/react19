@@ -1,6 +1,4 @@
 // // @ts-nocheck
-// import React from 'react';
-
 // import { render } from '../test-util';
 // import { TodoItem } from '../useLocalStorage/TodoItem';
 

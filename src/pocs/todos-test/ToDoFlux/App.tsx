@@ -41,7 +41,7 @@ const App = ({
 export default connect((state: any) => state)(App);
 
 /***************************************************
-import React, { Component } from "react";
+import { Component } from "react";
 import TodoList from "./TodoList";
 import { connect } from "./Provider";
 import { CREATE_TODO, UPDATE_TODO } from "./store";

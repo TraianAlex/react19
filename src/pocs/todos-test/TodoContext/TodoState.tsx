@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import { useReducer } from 'react';
 
 import TodoContext from './Context';
 import TodoReducer from './Reducer';
