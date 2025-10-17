@@ -1,13 +1,9 @@
-import { useEffect, useContext } from 'react';
+import { useContext } from 'react';
 
 import TodoContext from './Context';
 
 const TodoList = () => {
-  const { getTodos, todos, loading, deleteTodo } = useContext(TodoContext);
-
-  useEffect(() => {
-    getTodos();
-  }, []);
+  const { todos, loading, deleteTodo } = useContext(TodoContext);
 
   return (
     <>

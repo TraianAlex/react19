@@ -1,4 +1,4 @@
-import { useReducer } from 'react';
+import { useEffect, useReducer } from 'react';
 
 import TodoContext from './Context';
 import TodoReducer from './Reducer';
@@ -83,6 +83,10 @@ const TodoState = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
+  useEffect(() => {
+    getTodos();
+  }, []);
+
   const { todos, title, loading } = state;
 
   return (
@@ -91,7 +95,6 @@ const TodoState = ({ children }: { children: React.ReactNode }) => {
         todos,
         title,
         loading,
-        getTodos,
         setTodoTitle,
         createTodo,
         deleteTodo,
