@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@mescius/spread-sheets": "^18.2.4",
+    "@mescius/spread-sheets-react": "^18.2.4",
     "@popperjs/core": "^2.11.8",
     "@reduxjs/toolkit": "^2.9.0",
     "axios": "^1.11.0",
