@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useFakeApi } from './useFakeApi';
 import 'font-awesome/css/font-awesome.css';
 import { Todo } from '../Context';
+import { LoaderMessage } from '../../../../components/LoaderMessage';
 
 const TodoList = () => {
   const { getTodos, todos, loading, onUpdateTodo, deleteTodo } = useFakeApi();
@@ -10,6 +11,18 @@ const TodoList = () => {
   useEffect(() => {
     getTodos();
   }, []);
+
+  if (loading) {
+    return (
+      <div>
+        <LoaderMessage
+          loadingMsg='Loading todos...'
+          doneMsg='Todos loaded'
+          isLoading={loading}
+        />
+      </div>
+    );
+  }
 
   return (
     <>

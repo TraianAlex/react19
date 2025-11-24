@@ -41,3 +41,7 @@ export const maskedNumber = (creditCard: string) => {
   const lastFourDigits = creditCard.slice(-4);
   return lastFourDigits.padStart(creditCard.length, '*');
 };
+
+export function mockDelay(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms))
+}

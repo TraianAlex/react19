@@ -11,6 +11,7 @@ import {
   CLEAR_TODO_TITLE,
 } from '../Types';
 import { Todo } from '../Context';
+import { mockDelay } from '../../../../shared/utils/utils';
 
 const getRandomId = () => `${Math.random()}-${Math.random()}`;
 
@@ -29,9 +30,11 @@ export const useFakeApi = () => {
   const getTodos = async () => {
     try {
       const todos = await fetch(
-        'https://jsonplaceholder.typicode.com/todos?_limit=5',
+        'https://jsonplaceholder.typicode.com/todos?_limit=5'
       );
       const toJSON = await todos.json();
+
+      await mockDelay(1000);
 
       dispatch({ type: GET_TODOS, payload: toJSON });
     } catch (err: any) {
@@ -74,7 +77,7 @@ export const useFakeApi = () => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify(newTodo),
-        },
+        }
       );
       const toJSON = await todo.json();
 

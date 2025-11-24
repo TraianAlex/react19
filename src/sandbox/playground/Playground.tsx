@@ -25,7 +25,7 @@ const Playground = () => {
         <Child clickParentHandler={handleClick} value={value} />
       </div> */}
       <main>
-        <Marquee text='Hello, world!' />
+        <Marquee>🧛‍♀️ Welcome to Horrorville 🧛‍♀️'</Marquee>
         {/* <TabTest /> */}
         {/* <AppWithContext /> */}
         {/* <ResetState /> */}
