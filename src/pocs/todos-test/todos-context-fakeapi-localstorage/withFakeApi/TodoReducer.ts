@@ -2,6 +2,7 @@ import {
   SET_TODO_TITLE,
   GET_TODOS,
   CREATE_TODO,
+  LOADING_TODO,
   ON_UPDATE_TODO,
   UPDATE_TODO,
   DELETE_TODO,
@@ -33,9 +34,15 @@ export default (state: State, { type, payload }: Action) => {
         ...state,
         title: payload as string,
       };
+    case LOADING_TODO:
+      return {
+        ...state,
+        loading: payload as boolean,
+      };
     case CREATE_TODO:
       return {
         ...state,
+        loading: false,
         todos: [payload as Todo, ...state.todos],
       };
     case ON_UPDATE_TODO:
@@ -47,6 +54,7 @@ export default (state: State, { type, payload }: Action) => {
       return {
         ...state,
         todo: null,
+        loading: false,
         todos: [
           payload as Todo,
           ...state.todos.filter(
@@ -62,6 +70,7 @@ export default (state: State, { type, payload }: Action) => {
     case DELETE_TODO:
       return {
         ...state,
+        loading: false,
         todos: state.todos.filter((todo: Todo) => todo.id !== payload),
       };
     default:

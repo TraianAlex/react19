@@ -6,7 +6,8 @@ import { Todo } from '../Context';
 
 const TodoForm = () => {
   const [error, setError] = useState('');
-  const { todo, title, setTodoTitle, createTodo, updateTodo } = useFakeApi();
+  const { todo, title, setTodoTitle, createTodo, updateTodo, loading } =
+    useFakeApi();
 
   const onCreateTodo = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -47,9 +48,22 @@ const TodoForm = () => {
             value={title}
             placeholder='Things you wanna do...'
             required
+            disabled={loading}
           />
         </Form.Group>
-        <Button type='submit' variant='light' className='todo-item m-1'>
+        <Button
+          type='submit'
+          variant='light'
+          className='todo-item m-1'
+          disabled={loading}
+        >
+          {loading ? (
+            <span
+              className='spinner-border spinner-border-sm me-2'
+              role='status'
+              aria-hidden='true'
+            ></span>
+          ) : null}
           Save
         </Button>
       </form>

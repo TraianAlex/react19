@@ -5,6 +5,7 @@ import {
   SET_TODO_TITLE,
   GET_TODOS,
   CREATE_TODO,
+  LOADING_TODO,
   ON_UPDATE_TODO,
   UPDATE_TODO,
   DELETE_TODO,
@@ -29,6 +30,8 @@ export const useFakeApi = () => {
 
   const getTodos = async () => {
     try {
+      dispatch({ type: LOADING_TODO, payload: true });
+
       const todos = await fetch(
         'https://jsonplaceholder.typicode.com/todos?_limit=5'
       );
@@ -38,12 +41,15 @@ export const useFakeApi = () => {
 
       dispatch({ type: GET_TODOS, payload: toJSON });
     } catch (err: any) {
+      dispatch({ type: LOADING_TODO, payload: false });
       console.error(err.message);
     }
   };
 
   const createTodo = async (newTodo: Todo) => {
     try {
+      dispatch({ type: LOADING_TODO, payload: true });
+
       const todo = await fetch('https://jsonplaceholder.typicode.com/todos', {
         method: 'POST',
         headers: {
@@ -55,8 +61,12 @@ export const useFakeApi = () => {
       const data = { ...toJSON, id: getRandomId() };
 
       dispatch({ type: CLEAR_TODO_TITLE });
+
+      await mockDelay(1000);
+
       dispatch({ type: CREATE_TODO, payload: data });
     } catch (err: any) {
+      dispatch({ type: LOADING_TODO, payload: false });
       console.error(err.message);
     }
   };
@@ -69,6 +79,8 @@ export const useFakeApi = () => {
 
   const updateTodo = async (newTodo: Todo) => {
     try {
+      dispatch({ type: LOADING_TODO, payload: true });
+
       const todo = await fetch(
         `https://jsonplaceholder.typicode.com/todos/${newTodo.id}`,
         {
@@ -81,21 +93,29 @@ export const useFakeApi = () => {
       );
       const toJSON = await todo.json();
 
+      await mockDelay(1000);
+
       dispatch({ type: CLEAR_TODO_TITLE });
       dispatch({ type: UPDATE_TODO, payload: toJSON });
     } catch (err: any) {
+      dispatch({ type: LOADING_TODO, payload: false });
       console.error(err.message);
     }
   };
 
   const deleteTodo = async (id: string) => {
     try {
+      dispatch({ type: LOADING_TODO, payload: true });
+
       await fetch(`https://jsonplaceholder.typicode.com/todos/${id}`, {
         method: 'DELETE',
       });
 
+      await mockDelay(1000);
+
       dispatch({ type: DELETE_TODO, payload: id });
     } catch (err: any) {
+      dispatch({ type: LOADING_TODO, payload: false });
       console.error(err.message);
     }
   };

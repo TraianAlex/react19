@@ -6,7 +6,7 @@ const TodoState = ({ children }: { children: ReactNode }) => {
   const initialState = {
     todos: [],
     title: '',
-    loading: true,
+    loading: false,
   };
 
   const [state, dispatch] = useReducer(TodoReducer, initialState);
