@@ -3,6 +3,7 @@ import { Child, TabTest } from './Child';
 import SpreadJS from '../components/SpreadJS';
 import { AppWithContext } from '../context/TestContext';
 import ResetState from '../diverse/reset-state';
+import { Marquee } from '../components/Marquee';
 
 const Playground = () => {
   const [value, setValue] = useState(1);
@@ -17,17 +18,18 @@ const Playground = () => {
   return (
     <div className='container'>
       <h2 onClick={handleClick}>Playground</h2>
-      <div className='d-flex gap-2'>
+      {/* <div className='d-flex gap-2'>
         <button onClick={handleClick} className='btn btn-primary'>
           Parent button
         </button>
         <Child clickParentHandler={handleClick} value={value} />
-      </div>
-      <div>
+      </div> */}
+      <main>
+        <Marquee text='Hello, world!' />
         {/* <TabTest /> */}
         {/* <AppWithContext /> */}
         {/* <ResetState /> */}
-      </div>
+      </main>
       {/* <SpreadJS /> */}
     </div>
   );
