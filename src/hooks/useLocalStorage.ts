@@ -1,28 +1,43 @@
-import { useEffect, useRef, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 /**
  * @param {String} key The key to set in localStorage for this value
  * @param {Object} defaultValue The value to use if it is not already in localStorage
  * @param {{serialize: Function, deserialize: Function}} options The serialize and deserialize functions to use (defaults to JSON.stringify and JSON.parse respectively)
  */
+
+export interface UseLocalStorageOptions<T> {
+  storage?: Storage;
+  serialize?: (value: any) => string;
+  deserialize?: (value: string) => any;
+  crossTabSync?: boolean;
+}
+
 interface UseLocalStorageStateProps {
   key: string;
   defaultValue?: any;
-  serialize?: (value: any) => string;
-  deserialize?: (value: string) => any;
+  options?: UseLocalStorageOptions<any>;
 }
 
-const useLocalStorageState = ({
-  key,
-  defaultValue,
-  serialize = JSON.stringify,
-  deserialize = JSON.parse,
-}: UseLocalStorageStateProps) => {
-  const [state, setState] = useState(() => {
-    const valueInLocalStorage = window.localStorage.getItem(key);
+const useLocalStorageState = <T = any>(
+  key: string,
+  defaultValue: T | (() => T),
+  options: UseLocalStorageOptions<T> = {}
+): [T, Dispatch<SetStateAction<T>>] => {
+  const {
+    storage = window.localStorage,
+    serialize = JSON.stringify as (v: T) => string,
+    deserialize = JSON.parse as (raw: string) => T,
+    crossTabSync = true,
+  } = options;
+
+  const [state, setState] = useState<T>(() => {
+    const valueInLocalStorage = storage.getItem(key);
     if (valueInLocalStorage) {
       return deserialize(valueInLocalStorage);
     }
-    return typeof defaultValue === 'function' ? defaultValue() : defaultValue;
+    return typeof defaultValue === 'function'
+      ? (defaultValue as () => T)()
+      : defaultValue;
   });
 
   const prevKeyRef = useRef(key);
@@ -30,13 +45,45 @@ const useLocalStorageState = ({
   useEffect(() => {
     const prevKey = prevKeyRef.current;
     if (prevKey !== key) {
-      window.localStorage.removeItem(prevKey);
+      storage.removeItem(prevKey);
     }
     prevKeyRef.current = key;
-    window.localStorage.setItem(key, serialize(state));
-  }, [key, state, serialize]);
+    storage.setItem(key, serialize(state));
+  }, [key, state, serialize, storage]);
+
+  useEffect(() => {
+    if (!crossTabSync || typeof window === 'undefined') {
+      return;
+    }
+
+    const handleStorage = (ev: StorageEvent) => {
+      if (ev.key !== key || ev.storageArea !== storage) return;
+      if (ev.newValue === null) return; // key was removed elsewhere
+      try {
+        setState(deserialize(ev.newValue));
+      } catch {
+        // ignore malformed data
+      }
+    };
+
+    window.addEventListener('storage', handleStorage);
+    return () => {
+      window.removeEventListener('storage', handleStorage);
+    };
+  }, [key, storage, crossTabSync, deserialize, setState]);
 
   return [state, setState];
 };
 
 export { useLocalStorageState };
+
+//   { counter, setCounter } = useLocalStorageState('counter', 0, { crossTabSync: true });
+//   // persist a Date object in ISO string format
+//   { dateSignal, setDateSignal } = useLocalStorageState('last-login', new Date(), {
+//     serializer: (v) => v.toISOString(),
+//     deserializer: (str) => new Date(str),
+//   });
+//   // use sessionStorage instead
+//   { sessionCounter, setSessionCounter } = useLocalStorageState('counter', 0, {
+//     storage: sessionStorage,
+//   });

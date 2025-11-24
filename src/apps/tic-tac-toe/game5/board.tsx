@@ -6,10 +6,9 @@ import {
 } from '../common/game-utils';
 
 export const Board = () => {
-  const [squares, setSquares] = useLocalStorageState({
-    key: 'squares',
-    defaultValue: () => Array(9).fill(null),
-  });
+  const [squares, setSquares] = useLocalStorageState('squares', () =>
+    Array(9).fill(null)
+  );
 
   const winner = calculateWinner(squares);
   const status = calculateStatus(winner, squares);

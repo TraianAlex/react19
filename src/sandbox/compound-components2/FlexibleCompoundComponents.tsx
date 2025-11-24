@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
-import Banner from './compound-components2/Banner';
-import RadioImageForm from './compound-components2/RadioImageForm';
-import DATA from './data';
+import Banner from './Banner';
+import RadioImageForm from './RadioImageForm';
+import DATA from '../data';
 
 const FlexibleCompoundComponents = () => {
   const [value, setValue] = useState('');

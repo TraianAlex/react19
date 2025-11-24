@@ -10,14 +10,13 @@ import { Board } from './board';
 import '../common/game.scss';
 
 export const Game6 = () => {
-  const [history, setHistory] = useLocalStorageState({
-    key: 'tic-tac-toe:history',
-    defaultValue: [Array(9).fill(null)],
-  });
-  const [currentStep, setCurrentStep] = useLocalStorageState({
-    key: 'tic-tac-toe:step',
-    defaultValue: 0,
-  });
+  const [history, setHistory] = useLocalStorageState('tic-tac-toe:history', [
+    Array(9).fill(null),
+  ]);
+  const [currentStep, setCurrentStep] = useLocalStorageState(
+    'tic-tac-toe:step',
+    0
+  );
 
   const currentSquares = history[currentStep];
   const winner = calculateWinner(currentSquares);
@@ -47,7 +46,7 @@ export const Game6 = () => {
       const isCurrentStep = step === currentStep;
       return (
         <li key={step}>
-          <button disabled={isCurrentStep} onClick={() => setCurrentStep(step)}>
+          <button disabled={isCurrentStep} onClick={() => setCurrentStep(step as number)}>
             {!isCurrentStep ? desc : ''}{' '}
             {isCurrentStep ? `Current #${step}` : null}
           </button>
@@ -78,7 +77,9 @@ export const Game6 = () => {
             <li>
               currentSquares: {currentSquares.join(', ')} (history[currentStep])
             </li>
-            <li>newHistory: {JSON.stringify(history.slice(0, currentStep + 1))}</li>
+            <li>
+              newHistory: {JSON.stringify(history.slice(0, currentStep + 1))}
+            </li>
             <li>squares: {[...currentSquares].join(', ')}</li>
             <li>nextValue: {calculateNextValue(currentSquares)}</li>
           </ol>
