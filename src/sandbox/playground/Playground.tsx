@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { Child, TabTest } from './Child';
 import SpreadJS from '../components/SpreadJS';
-import { AppWithContext } from '../context/TestContext';
+import { AppContextProvider, SectionContext } from '../context/TestContext';
 import ResetState from '../diverse/reset-state';
 import { Marquee } from '../components/Marquee';
 import MenuDemo from '../compound-components/menu/MenuDemo';
@@ -29,7 +29,9 @@ const Playground = () => {
         <Marquee>🧛‍♀️ Welcome to Horrorville 🧛‍♀️'</Marquee>
         <MenuDemo />
         {/* <TabTest /> */}
-        {/* <AppWithContext /> */}
+        <AppContextProvider>
+          <SectionContext />
+        </AppContextProvider>
         {/* <ResetState /> */}
       </main>
       {/* <SpreadJS /> */}

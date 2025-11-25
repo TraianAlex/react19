@@ -5,7 +5,11 @@ const ThemeContext = createContext({
   toggleTheme: () => {},
 });
 
-export const AppWithContext = () => {
+export const AppContextProvider = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
   const toggleTheme = () => {
@@ -14,19 +18,18 @@ export const AppWithContext = () => {
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      <PageWithContext />
+      {children}
     </ThemeContext.Provider>
   );
 };
 
-const PageWithContext = () => {
-  return <SectionWithContext />;
-};
-
-const SectionWithContext = () => {
+export const SectionContext = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
   return (
-    <div className={`theme-${theme} p-2`} onClick={toggleTheme}>
+    <div
+      className={`theme-${theme} p-2 border border-primary`}
+      onClick={toggleTheme}
+    >
       Content {theme}
     </div>
   );
