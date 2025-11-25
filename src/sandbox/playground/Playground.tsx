@@ -4,6 +4,7 @@ import SpreadJS from '../components/SpreadJS';
 import { AppWithContext } from '../context/TestContext';
 import ResetState from '../diverse/reset-state';
 import { Marquee } from '../components/Marquee';
+import MenuDemo from '../compound-components/menu/MenuDemo';
 
 const Playground = () => {
   const [value, setValue] = useState(1);
@@ -24,8 +25,9 @@ const Playground = () => {
         </button>
         <Child clickParentHandler={handleClick} value={value} />
       </div> */}
-      <main>
+      <main className='d-flex flex-column gap-2'>
         <Marquee>🧛‍♀️ Welcome to Horrorville 🧛‍♀️'</Marquee>
+        <MenuDemo />
         {/* <TabTest /> */}
         {/* <AppWithContext /> */}
         {/* <ResetState /> */}
