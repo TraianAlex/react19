@@ -1,21 +1,18 @@
-import Menu from "./Menu"
-import MenuButton from "./MenuButton"
-import MenuDropdown from "./MenuDropDown"
-import MenuItem from "./MenuItems"
+import { Menu } from './index';
 
 function MenuDemoContext() {
-  const sports = ["Tennis", "Pickleball", "Racquetball", "Squash"]
-  
+  const sports = ['Tennis', 'Pickleball', 'Racquetball', 'Squash'];
+
   return (
     <Menu>
-      <MenuButton>Sports</MenuButton>
-      <MenuDropdown>
-        {sports.map(sport => (
-          <MenuItem key={sport}>{sport}</MenuItem>
+      <Menu.Button>Sports</Menu.Button>
+      <Menu.Dropdown>
+        {sports.map((sport) => (
+          <Menu.Items key={sport}>{sport}</Menu.Items>
         ))}
-      </MenuDropdown>
+      </Menu.Dropdown>
     </Menu>
-  )
+  );
 }
 
 export default MenuDemoContext;
