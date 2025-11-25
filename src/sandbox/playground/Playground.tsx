@@ -6,6 +6,7 @@ import ResetState from '../diverse/reset-state';
 import { Marquee } from '../components/Marquee';
 import MenuDemo from '../compound-components/menu/MenuDemo';
 import MenuDemoContext from '../compound-components/menu-context/MenuDemo';
+import ToggleDemo from '../compound-components/Toggle/ToggleDemo';
 
 const Playground = () => {
   const [value, setValue] = useState(1);
@@ -30,6 +31,7 @@ const Playground = () => {
         <Marquee>🧛‍♀️ Welcome to Horrorville 🧛‍♀️'</Marquee>
         <MenuDemo />
         <MenuDemoContext />
+        <ToggleDemo />
         {/* <TabTest /> */}
         <AppContextProvider>
           <SectionContext />
