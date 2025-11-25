@@ -5,6 +5,7 @@ import { AppContextProvider, SectionContext } from '../context/TestContext';
 import ResetState from '../diverse/reset-state';
 import { Marquee } from '../components/Marquee';
 import MenuDemo from '../compound-components/menu/MenuDemo';
+import MenuDemoContext from '../compound-components/menu-context/MenuDemo';
 
 const Playground = () => {
   const [value, setValue] = useState(1);
@@ -28,6 +29,7 @@ const Playground = () => {
       <main className='d-flex flex-column gap-2'>
         <Marquee>🧛‍♀️ Welcome to Horrorville 🧛‍♀️'</Marquee>
         <MenuDemo />
+        <MenuDemoContext />
         {/* <TabTest /> */}
         <AppContextProvider>
           <SectionContext />

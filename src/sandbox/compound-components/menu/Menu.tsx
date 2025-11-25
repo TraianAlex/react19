@@ -1,18 +1,19 @@
-import { Children, cloneElement, ReactElement, useState } from 'react';
+import { Children, cloneElement, ReactElement, useId, useState } from 'react';
 
 interface MenuProps {
   children: React.ReactNode;
 }
 
 export default function Menu({ children }: MenuProps) {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
+  const menuId = useId();
 
   function toggle() {
     setOpen((prevOpen) => !prevOpen);
   }
 
   return (
-    <div className='menu'>
+    <div className='menu' role='menu'>
       {Children.map(children, (child) => {
         return cloneElement(child as ReactElement<any>, {
           open,
