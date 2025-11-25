@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import Banner from './Banner';
 import RadioImageForm from './RadioImageForm';
-import DATA from '../data';
+import DATA from '../../data';
 
 const CompoundComponentsSimple = () => {
   const [value, setValue] = useState('');
