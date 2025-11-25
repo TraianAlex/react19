@@ -7,6 +7,7 @@ import { Marquee } from '../components/Marquee';
 import MenuDemo from '../compound-components/menu/MenuDemo';
 import MenuDemoContext from '../compound-components/menu-context/MenuDemo';
 import ToggleDemo from '../compound-components/Toggle/ToggleDemo';
+import MenuDemoToggle from '../compound-components/menu-toggle/MenuDemo';
 
 const Playground = () => {
   const [value, setValue] = useState(1);
@@ -32,6 +33,7 @@ const Playground = () => {
         <MenuDemo />
         <MenuDemoContext />
         <ToggleDemo />
+        <MenuDemoToggle />
         {/* <TabTest /> */}
         <AppContextProvider>
           <SectionContext />
