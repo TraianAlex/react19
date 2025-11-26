@@ -1,11 +1,11 @@
-import { useContext } from 'react';
-import { ToggleContext } from './Toggle';
+import { useToggleContext } from './Toggle';
 
 interface ToggleOnProps {
   children: React.ReactNode;
 }
 
 export default function ToggleOn({ children }: ToggleOnProps) {
-  const { on } = useContext(ToggleContext);
+  const { on } = useToggleContext();
+
   return on ? null : children;
 }

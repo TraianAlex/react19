@@ -1,12 +1,11 @@
-import { useContext } from 'react';
-import { ToggleContext } from './Toggle';
+import { useToggleContext } from './Toggle';
 
 interface ToggleDisplayProps {
   children: (on: boolean, toggle: () => void) => React.ReactNode | null;
 }
 
 export default function ToggleDisplay({ children }: ToggleDisplayProps) {
-  const { on, toggle } = useContext(ToggleContext);
+  const { on, toggle } = useToggleContext();
 
   if (!children || typeof children !== 'function') {
     throw new Error('You must pass ToggleDisplay a function as a child');

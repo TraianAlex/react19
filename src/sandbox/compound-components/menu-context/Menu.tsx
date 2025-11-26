@@ -1,14 +1,22 @@
-import { createContext, useId, useState } from 'react';
+import { createContext, useContext, useId, useState } from 'react';
 
 interface MenuProps {
   children: React.ReactNode;
 }
 
-export const MenuContext = createContext({
+const MenuContext = createContext({
   open: false,
   toggle: () => {},
   menuId: '',
 });
+
+export const useMenuContext = () => {
+  const context = useContext(MenuContext);
+  if (!context) {
+    throw new Error('useMenuContext must be used within a MenuProvider');
+  }
+  return context;
+};
 
 export default function Menu({ children }: MenuProps) {
   const [open, setOpen] = useState(false);
