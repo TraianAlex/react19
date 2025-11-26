@@ -1,0 +1,12 @@
+.box {
+  height: 100px;
+  width: 100px;
+  border: 1px solid black;
+  cursor: pointer;
+  background-color: white;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.box.filled {
+  background-color: blue;
+}
