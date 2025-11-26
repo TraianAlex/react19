@@ -4,7 +4,7 @@ function MenuToggleDemo() {
   const sports = ['Tennis', 'Pickleball', 'Racquetball', 'Squash'];
 
   return (
-    <Menu>
+    <Menu onOpen={() => console.log('menu opened')}>
       <Menu.Button>Sports</Menu.Button>
       <Menu.Dropdown>
         {sports.map((sport) => (

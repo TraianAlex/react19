@@ -11,7 +11,7 @@ interface TodoState {
   text: string;
 }
 
-const TodosBasic: React.FC = () => {
+const TodosBasic = () => {
   const [title] = useState<string>('Default state');
   const [todos, setTodos] = useState<TodoState[]>([]);
   const [list, setList] = useState<string[]>([]);

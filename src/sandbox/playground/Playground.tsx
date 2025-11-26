@@ -33,9 +33,9 @@ const Playground = () => {
         <Marquee>🧛‍♀️ Welcome to Horrorville 🧛‍♀️'</Marquee>
         <MenuDemo />
         <MenuDemoContext />
+        <MenuToggleBeforeDemo />
         <ToggleStarDemo onChange={() => 'persist it'} />
         <MenuToggleDemo />
-        <MenuToggleBeforeDemo />
         {/* <TabTest /> */}
         <AppContextProvider>
           <SectionContext />

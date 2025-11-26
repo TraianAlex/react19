@@ -2,7 +2,7 @@ import { BsStar, BsStarFill } from 'react-icons/bs';
 
 import { Toggle } from '../Toggle/index';
 
-function ToggleStarDemo({ onChange }: { onChange?: (on: boolean) => void }) {
+function ToggleStarDemo({ onChange }: { onChange: () => void }) {
   return (
     <Toggle onToggle={onChange}>
       <Toggle.Button>

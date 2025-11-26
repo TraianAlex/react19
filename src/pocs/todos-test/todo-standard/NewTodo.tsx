@@ -15,26 +15,32 @@ const NewTodoForm: React.FC<NewTodoProps> = ({
   const textInputRef = useRef<HTMLInputElement>(null);
   const listInputRef = useRef<HTMLInputElement>(null);
 
-  const todoSubmitHandler = (event: React.FormEvent) => {
+  const todoSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const enteredText = textInputRef.current!.value;
-    if (enteredText === '') {
+    const form = event.currentTarget;
+    const formData = new FormData(event.currentTarget);
+    const enteredText = formData.get('todo-text') as string;
+    if (!enteredText || enteredText.trim() === '') {
       alert('Enter text');
       return;
     }
-    onAddTodo(enteredText);
-    textInputRef.current!.value = '';
+    onAddTodo(enteredText.trim());
+    form.reset();
+    textInputRef.current?.focus();
   };
 
-  const createListHandler = (event: React.FormEvent) => {
+  const createListHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const enteredText = listInputRef.current!.value;
-    if (enteredText === '') {
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const enteredText = formData.get('todo-list') as string;
+    if (!enteredText || enteredText.trim() === '') {
       alert('Enter text');
       return;
     }
     createList(enteredText);
-    listInputRef.current!.value = '';
+    form.reset();
+    listInputRef.current?.focus();
   };
 
   console.log('render NewTodoForm component');
@@ -43,12 +49,12 @@ const NewTodoForm: React.FC<NewTodoProps> = ({
     <>
       <FormStyled onSubmit={createListHandler}>
         <div className='formControl'>
-          <label htmlFor='todo-text' className='label'>
-            Todo {'user'}
+          <label htmlFor='todo-list' className='label'>
+            Todo {user}
           </label>
           <input
             type='text'
-            id='todo-text'
+            name='todo-list'
             ref={listInputRef}
             className='input'
           />
@@ -64,7 +70,7 @@ const NewTodoForm: React.FC<NewTodoProps> = ({
           </label>
           <input
             type='text'
-            id='todo-list'
+            name='todo-text'
             ref={textInputRef}
             className='input'
           />

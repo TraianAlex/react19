@@ -1,8 +1,8 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useRef, useState } from 'react';
 
 interface ToggleProps {
   children: React.ReactNode;
-  onToggle?: (on: boolean) => void;
+  onToggle?: () => void;
 }
 
 const ToggleContext = createContext({
@@ -18,14 +18,17 @@ export const useToggleContext = () => {
   return context;
 };
 
-export default function Toggle({ children, onToggle }: ToggleProps) {
+export default function Toggle({ children, onToggle = () => {} }: ToggleProps) {
   const [on, setOn] = useState(false);
+  const firstRender = useRef(true); // to prevent the onToggle from being called on the first render
 
   useEffect(() => {
-    if (onToggle) {
-      onToggle(on);
+    if (firstRender.current) {
+      firstRender.current = false;
+    } else {
+      onToggle();
     }
-  }, [on, onToggle]);
+  }, [on]);
 
   function toggle() {
     setOn((prevOn) => !prevOn);

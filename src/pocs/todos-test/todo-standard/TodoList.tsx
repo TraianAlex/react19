@@ -5,7 +5,7 @@ interface TodoListProps {
   todos: { id: string; text: string }[];
 }
 
-const TodoList: React.FC<TodoListProps> = ({ todos, onDeleteTodo }) => {
+const TodoList = ({ todos, onDeleteTodo }: TodoListProps) => {
   console.log('render TodoList component', todos);
 
   return (
