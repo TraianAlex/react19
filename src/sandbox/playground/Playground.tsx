@@ -6,7 +6,7 @@ import ResetState from '../diverse/reset-state';
 import { Marquee } from '../components/Marquee';
 import MenuDemo from '../compound-components/menu/MenuDemo';
 import MenuDemoContext from '../compound-components/menu-context/MenuDemo';
-import ToggleDemo from '../compound-components/Toggle/ToggleDemo';
+import ToggleStarDemo from '../compound-components/start-toggle/ToggleStarDemo';
 import MenuToggleDemo from '../compound-components/menu-toggle/MenuToggleDemo';
 import MenuToggleBeforeDemo from '../compound-components/menu-toggle-before/MenuToggleBeforeDemo';
 
@@ -33,7 +33,7 @@ const Playground = () => {
         <Marquee>🧛‍♀️ Welcome to Horrorville 🧛‍♀️'</Marquee>
         <MenuDemo />
         <MenuDemoContext />
-        <ToggleDemo />
+        <ToggleStarDemo onChange={() => 'persist it'} />
         <MenuToggleDemo />
         <MenuToggleBeforeDemo />
         {/* <TabTest /> */}

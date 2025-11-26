@@ -1,10 +1,10 @@
 import { BsStar, BsStarFill } from 'react-icons/bs';
 
-import { Toggle } from './index';
+import { Toggle } from '../Toggle/index';
 
-function ToggleDemo() {
+function ToggleStarDemo({ onChange }: { onChange?: (on: boolean) => void }) {
   return (
-    <Toggle>
+    <Toggle onToggle={onChange}>
       <Toggle.Button>
         <Toggle.On>
           <BsStarFill className='star filled' />
@@ -17,4 +17,4 @@ function ToggleDemo() {
   );
 }
 
-export default ToggleDemo;
+export default ToggleStarDemo;

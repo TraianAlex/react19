@@ -1,7 +1,8 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 
 interface ToggleProps {
   children: React.ReactNode;
+  onToggle?: (on: boolean) => void;
 }
 
 const ToggleContext = createContext({
@@ -17,8 +18,14 @@ export const useToggleContext = () => {
   return context;
 };
 
-export default function Toggle({ children }: ToggleProps) {
+export default function Toggle({ children, onToggle }: ToggleProps) {
   const [on, setOn] = useState(false);
+
+  useEffect(() => {
+    if (onToggle) {
+      onToggle(on);
+    }
+  }, [on, onToggle]);
 
   function toggle() {
     setOn((prevOn) => !prevOn);
