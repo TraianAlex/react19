@@ -1,6 +1,6 @@
 import { Menu } from './index';
 
-function MenuDemoToggle() {
+function MenuToggleDemo() {
   const sports = ['Tennis', 'Pickleball', 'Racquetball', 'Squash'];
 
   return (
@@ -15,4 +15,4 @@ function MenuDemoToggle() {
   );
 }
 
-export default MenuDemoToggle;
+export default MenuToggleDemo;
