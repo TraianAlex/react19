@@ -40,7 +40,7 @@ const Playground = () => {
         <AppContextProvider>
           <SectionContext />
         </AppContextProvider>
-        {/* <ResetState /> */}
+        <ResetState />
       </main>
       {/* <SpreadJS /> */}
     </div>

@@ -10,9 +10,11 @@ function Counter() {
   };
 
   return (
-    <div>
-      <p>{score}</p>
-      <button onClick={handleClick}>Click +1</button>
+    <div className='d-flex gap-2 mb-2'>
+      <p>Score:{score}</p>
+      <button className='btn btn-primary' onClick={handleClick}>
+        Click +1
+      </button>
       <p>Click count ref: {clickCountRef.current}</p>
     </div>
   );
@@ -22,17 +24,26 @@ function App() {
   const [showFirst, setShowFirst] = useState(true);
 
   return (
-    <div>
-      {/* Same position in tree - state is preserved */}
-      {showFirst ? <Counter /> : <Counter />}
+    <div className='d-flex justify-content-evenly align-items-center gap-2'>
+      <div>
+        {/* Same position in tree - state is preserved */}
+        {showFirst ? <Counter /> : <Counter />}
 
-      {/* Different positions in tree - state is reset */}
-      {showFirst && <Counter />}
-      {!showFirst && <Counter />}
+        {/* Different positions in tree - state is reset */}
+        {showFirst && <Counter />}
+        {!showFirst && <Counter />}
 
-      {/* Force reset with key */}
-      <Counter key={showFirst ? 'first' : 'second'} />
-      <button onClick={() => setShowFirst(!showFirst)}>Toggle</button>
+        {/* Force reset with key */}
+        <Counter key={showFirst ? 'first' : 'second'} />
+      </div>
+      <div>
+        <button
+          className='btn btn-secondary'
+          onClick={() => setShowFirst(!showFirst)}
+        >
+          Toggle
+        </button>
+      </div>
     </div>
   );
 }

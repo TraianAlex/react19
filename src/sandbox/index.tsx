@@ -1,7 +1,7 @@
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 
-const Sandbox: React.FC = () => {
+const Sandbox = () => {
   const location = useLocation();
   const [isCompoundComponentsOpen, setIsCompoundComponentsOpen] =
     useState(false);
@@ -20,9 +20,9 @@ const Sandbox: React.FC = () => {
 
   return (
     <div className='container-fluid mt-5 pt-5'>
-      <div className='row'>
-        <div className='col'>
-          <div className='card' style={{ width: '18rem' }}>
+      <div className='row d-flex gap-2'>
+        <div className='col' style={{ flex: '0 0 auto', width: '18rem' }}>
+          <div className='card'>
             <ul className='list-group list-group-flush'>
               <li
                 className={`list-group-item ${
@@ -185,8 +185,8 @@ const Sandbox: React.FC = () => {
             </ul>
           </div>
         </div>
-        <div className='col'>
-          <div className='mt-4'>
+        <div className='col flex-shrink-1 flex-grow-1 flex-basis-0'>
+          <div>
             <Outlet />
           </div>
         </div>
