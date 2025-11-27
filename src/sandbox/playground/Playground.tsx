@@ -1,14 +1,10 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { Child, TabTest } from './Child';
 import SpreadJS from '../components/SpreadJS';
 import { AppContextProvider, SectionContext } from '../context/TestContext';
 import ResetState from '../diverse/reset-state';
 import { Marquee } from '../components/Marquee';
-import MenuDemo from '../compound-components/menu/MenuDemo';
-import MenuDemoContext from '../compound-components/menu-context/MenuDemo';
-import ToggleStarDemo from '../compound-components/start-toggle/ToggleStarDemo';
-import MenuToggleDemo from '../compound-components/menu-toggle/MenuToggleDemo';
-import MenuToggleBeforeDemo from '../compound-components/menu-toggle-before/MenuToggleBeforeDemo';
+import CompoundComponentsDemo from '../compound-components/CompoundComponentsDemo';
 
 const Playground = () => {
   const [value, setValue] = useState(1);
@@ -31,13 +27,7 @@ const Playground = () => {
       </div> */}
       <main className='d-flex flex-column gap-2'>
         <Marquee>🧛‍♀️ Welcome to Horrorville 🧛‍♀️'</Marquee>
-        <div className='d-flex gap-2'>
-          <MenuDemo />
-          <MenuDemoContext />
-          <MenuToggleBeforeDemo />
-          <MenuToggleDemo />
-        </div>
-        <ToggleStarDemo onChange={() => 'persist it'} />
+        <CompoundComponentsDemo />
         {/* <TabTest /> */}
         <AppContextProvider>
           <SectionContext />
