@@ -5,7 +5,7 @@ function MenuDemoContext() {
 
   return (
     <Menu>
-      <Menu.Button>Sports</Menu.Button>
+      <Menu.Button>Sports (context)</Menu.Button>
       <Menu.Dropdown>
         {sports.map((sport) => (
           <Menu.Items key={sport}>{sport}</Menu.Items>

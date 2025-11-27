@@ -8,7 +8,7 @@ function MenuDemo() {
   
   return (
     <Menu>
-      <MenuButton>Sports</MenuButton>
+      <MenuButton>Sports (old way)</MenuButton>
       <MenuDropdown>
         {sports.map(sport => (
           <MenuItem key={sport}>{sport}</MenuItem>

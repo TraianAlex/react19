@@ -8,7 +8,7 @@ function MenuToggleBeforeDemo() {
     <Toggle>
       <Menu>
         <Toggle.Button>
-          <Menu.Button>Menu</Menu.Button>
+          <Menu.Button>Menu (before)</Menu.Button>
         </Toggle.Button>
         <Toggle.On>
           <Menu.Dropdown>

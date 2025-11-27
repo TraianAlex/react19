@@ -18,19 +18,19 @@ export const useToggleContext = () => {
   return context;
 };
 
-export default function Toggle({ children, onToggle = () => {} }: ToggleProps) {
+export default function Toggle({ children, onToggle }: ToggleProps) {
   const [on, setOn] = useState(false);
-  const firstRender = useRef(true); // to prevent the onToggle from being called on the first render
+  const hasToggledRef = useRef(false); // Track if toggle has been called at least once
 
   useEffect(() => {
-    if (firstRender.current) {
-      firstRender.current = false;
-    } else {
+    // Only call onToggle if the toggle has been used (not on initial mount)
+    if (hasToggledRef.current && onToggle) {
       onToggle();
     }
   }, [on]);
 
   function toggle() {
+    hasToggledRef.current = true; // Mark that toggle has been called
     setOn((prevOn) => !prevOn);
   }
 
@@ -40,3 +40,31 @@ export default function Toggle({ children, onToggle = () => {} }: ToggleProps) {
     </ToggleContext.Provider>
   );
 }
+
+/*
+const ToggleContext = React.createContext()
+
+export default function Toggle({ children, onToggle }) {
+    const [on, setOn] = React.useState(false)
+    const firstRender = true
+    
+
+    function toggle() {
+        setOn(prevOn => !prevOn)
+    }
+
+    React.useEffect(() => {
+        if (firstRender.current) {
+            firstRender.current = false
+        } else {
+            onToggle()
+        }
+    }, [on])
+
+    return (
+        <ToggleContext.Provider value={{ on, toggle }}>
+            {children}
+        </ToggleContext.Provider>
+    )
+}
+*/

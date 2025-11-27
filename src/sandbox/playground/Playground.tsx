@@ -31,11 +31,13 @@ const Playground = () => {
       </div> */}
       <main className='d-flex flex-column gap-2'>
         <Marquee>🧛‍♀️ Welcome to Horrorville 🧛‍♀️'</Marquee>
-        <MenuDemo />
-        <MenuDemoContext />
-        <MenuToggleBeforeDemo />
+        <div className='d-flex gap-2'>
+          <MenuDemo />
+          <MenuDemoContext />
+          <MenuToggleBeforeDemo />
+          <MenuToggleDemo />
+        </div>
         <ToggleStarDemo onChange={() => 'persist it'} />
-        <MenuToggleDemo />
         {/* <TabTest /> */}
         <AppContextProvider>
           <SectionContext />
