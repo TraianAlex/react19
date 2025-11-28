@@ -1,10 +1,13 @@
 import { Routes, Route } from 'react-router-dom';
 import './Vanlife.modules.scss';
 import Layout from './components/Layout';
+import Error from './components/Error';
 import Home from './pages/Home';
 import About from './pages/About';
 import NotFound from './pages/NotFound';
 import Login, { action as loginAction } from './pages/Login';
+import Vans from './pages/vans/Vans';
+import './server'; // Initialize MirageJS server
 
 const Vanlife = () => {
   return (
@@ -14,13 +17,8 @@ const Vanlife = () => {
           <Route index element={<Home />} />
           <Route path='about' element={<About />} />
           <Route path='login' element={<Login />} action={loginAction} />
+          <Route path='vans' element={<Vans />} errorElement={<Error />} />
           {/* <Route
-        path='vans'
-        element={<Vans />}
-        errorElement={<Error />}
-        loader={vansLoader}
-      />
-      <Route
         path='vans/:id'
         element={<VanDetail />}
         errorElement={<Error />}
