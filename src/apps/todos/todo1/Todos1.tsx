@@ -14,25 +14,27 @@ const Todos1 = () => {
   const [isPending, startTransition] = useTransition();
 
   return (
-    <TodosDataProvider>
-      <Layout>
-        <ToDoListWithToolbar
-          displayStatus={displayStatus}
-          setDisplayStatus={setDisplayStatus}
-          important={important}
-          setImportant={setImportant}
-          setSearchText={setSearchText}
-          startTransition={startTransition}
-          isPending={isPending}
-        >
-          <ToDoManager
+    <div className='todos-app'>
+      <TodosDataProvider>
+        <Layout>
+          <ToDoListWithToolbar
             displayStatus={displayStatus}
+            setDisplayStatus={setDisplayStatus}
             important={important}
-            searchText={searchText}
-          />
-        </ToDoListWithToolbar>
-      </Layout>
-    </TodosDataProvider>
+            setImportant={setImportant}
+            setSearchText={setSearchText}
+            startTransition={startTransition}
+            isPending={isPending}
+          >
+            <ToDoManager
+              displayStatus={displayStatus}
+              important={important}
+              searchText={searchText}
+            />
+          </ToDoListWithToolbar>
+        </Layout>
+      </TodosDataProvider>
+    </div>
   );
 };
 

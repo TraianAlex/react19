@@ -8,7 +8,7 @@ interface HeaderProps {
 
 const Header = ({ layoutVersion, darkTheme, toggleTheme }: HeaderProps) => {
   return (
-    <header className='header1'>
+    <header className='header'>
       <h2>To-do List</h2>
       <span className='nav-item'>
         <input

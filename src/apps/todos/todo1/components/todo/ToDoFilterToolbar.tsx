@@ -23,7 +23,7 @@ const ToDoFilterToolbar = ({
 
   return (
     <nav className='navbar navbar-expand'>
-      <div className='container1-fluid'>
+      <div className='container-fluid'>
         <ul className='navbar-nav'>
           <div className='filters'>
             <li className='nav-item'>

@@ -35,6 +35,7 @@ const FlexibleCompoundComponents = () => {
               {DATA.map(
                 ({ label, value, imgSrc }): React.ReactElement => (
                   <RadioImageForm.RadioInput
+                    key={value}
                     label={label}
                     value={value}
                     name={label}

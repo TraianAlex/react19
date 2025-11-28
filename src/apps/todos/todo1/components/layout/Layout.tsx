@@ -13,7 +13,7 @@ const Inner = ({ children }: LayoutProps) => {
   const layoutVersion = 'Layout Version 3.0';
 
   return (
-    <div className='container1' data-theme={darkTheme ? 'dark' : 'light'}>
+    <div className='container' data-theme={darkTheme ? 'dark' : 'light'}>
       <Header layoutVersion={layoutVersion} />
       {children}
       <Footer />
