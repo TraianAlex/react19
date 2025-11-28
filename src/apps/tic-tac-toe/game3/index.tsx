@@ -1,5 +1,5 @@
 import { Board } from './board';
-import '../common/game.scss';
+import '../common/game.modules.scss';
 
 export const Game3 = () => {
   return (

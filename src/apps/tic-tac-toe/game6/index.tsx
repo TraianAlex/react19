@@ -7,7 +7,7 @@ import {
   calculateWinner,
 } from '../common/game-utils';
 import { Board } from './board';
-import '../common/game.scss';
+import '../common/game.modules.scss';
 
 export const Game6 = () => {
   const [history, setHistory] = useLocalStorageState('tic-tac-toe:history', [
@@ -46,7 +46,11 @@ export const Game6 = () => {
       const isCurrentStep = step === currentStep;
       return (
         <li key={step}>
-          <button disabled={isCurrentStep} onClick={() => setCurrentStep(step as number)}>
+          <button
+            className='btn btn-outline-primary mb-1'
+            disabled={isCurrentStep}
+            onClick={() => setCurrentStep(step as number)}
+          >
             {!isCurrentStep ? desc : ''}{' '}
             {isCurrentStep ? `Current #${step}` : null}
           </button>

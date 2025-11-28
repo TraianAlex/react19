@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { Board } from './board';
-import '../common/game.scss';
+import '../common/game.modules.scss';
 
 export const Game1 = () => {
   const [history, setHistory] = useState([Array(9).fill(null)]);
@@ -27,8 +27,13 @@ export const Game1 = () => {
       description = 'Go to game start';
     }
     return (
-      <li key={move}>
-        <button onClick={() => jumpTo(move)}>{description}</button>
+      <li key={move} className='mb-1'>
+        <button
+          className='btn btn-outline-primary'
+          onClick={() => jumpTo(move)}
+        >
+          {description}
+        </button>
       </li>
     );
   });

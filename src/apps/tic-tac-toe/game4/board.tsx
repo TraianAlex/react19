@@ -59,7 +59,7 @@ export const Board = () => {
         {renderSquare(7)}
         {renderSquare(8)}
       </div>
-      <button className='game-restart' onClick={restart}>
+      <button className='btn btn-outline-primary game-restart' onClick={restart}>
         Restart
       </button>
     </div>

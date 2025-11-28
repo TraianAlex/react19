@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { calculateWinner } from '../common/game-utils';
-import '../common/game.scss';
+import '../common/game.modules.scss';
 import { Board } from './board';
 
 interface GameState {
@@ -57,8 +57,13 @@ export default class Game2 extends Component<{}, GameState> {
     const moves = history.map((step, move) => {
       const desc = move ? 'Go to move #' + move : 'Go to game start';
       return (
-        <li key={move}>
-          <button onClick={() => this.jumpTo(move)}>{desc}</button>
+        <li key={move} className='mb-1'>
+          <button
+            className='btn btn-outline-primary'
+            onClick={() => this.jumpTo(move)}
+          >
+            {desc}
+          </button>
         </li>
       );
     });
