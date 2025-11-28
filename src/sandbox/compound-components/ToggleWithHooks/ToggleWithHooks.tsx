@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from 'react';
 import useEffectOnUpdate from '../../hooks/useEffectOnUpdate';
+import useToggle from '../../hooks/useToggle';
 
 interface ToggleWithHooksProps {
   children: React.ReactNode;
@@ -14,7 +15,9 @@ const ToggleWithHooksContext = createContext({
 export const useToggleWithHooksContext = () => {
   const context = useContext(ToggleWithHooksContext);
   if (!context) {
-    throw new Error('useToggleWithHooksContext must be used within a ToggleWithHooksProvider');
+    throw new Error(
+      'useToggleWithHooksContext must be used within a ToggleWithHooksProvider'
+    );
   }
   return context;
 };
@@ -23,11 +26,7 @@ export default function ToggleWithHooks({
   children,
   onToggle,
 }: ToggleWithHooksProps) {
-  const [on, setOn] = useState(false);
-
-  function toggle() {
-    setOn((prevOn) => !prevOn);
-  }
+  const [on, toggle] = useToggle({});
 
   useEffectOnUpdate(onToggle, [on]);
 

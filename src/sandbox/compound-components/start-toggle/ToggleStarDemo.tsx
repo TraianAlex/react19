@@ -3,8 +3,11 @@ import './ToggleStarDemo.modules.scss';
 
 import { Toggle } from '../Toggle/index';
 import { ToggleWithHooks } from '../ToggleWithHooks/index';
+import useToggle from '../../hooks/useToggle';
 
 function ToggleStarDemo({ onChange }: { onChange: () => void }) {
+  const [on, toggle] = useToggle({});
+
   return (
     <>
       <div>Star with toggle</div>
@@ -40,6 +43,15 @@ function ToggleStarDemo({ onChange }: { onChange: () => void }) {
           </ToggleWithHooks.Display>
         </ToggleWithHooks.Button>
       </ToggleWithHooks>
+
+      <div>Star with toggle+hooks</div>
+      <>
+        {on ? (
+          <BsStarFill onClick={toggle} className='star filled' />
+        ) : (
+          <BsStar onClick={toggle} className='star' />
+        )}
+      </>
     </>
   );
 }
