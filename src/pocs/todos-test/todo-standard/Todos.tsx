@@ -44,7 +44,7 @@ const TodosBasic = () => {
   console.log('render TodosBasic component');
 
   return (
-    <>
+    <div className='container-fluid'>
       <Decoration title={title} />
       <List list={list} />
       <NewTodoForm
@@ -52,9 +52,9 @@ const TodosBasic = () => {
         createList={createList}
         user={user}
       />
-      <TodoList todos={todos} onDeleteTodo={todoDeleteHandler} />
       <Count count={count} />
-    </>
+      <TodoList todos={todos} onDeleteTodo={todoDeleteHandler} />
+    </div>
   );
 };
 

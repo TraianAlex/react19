@@ -4,6 +4,8 @@ import TodoList from './TodoList';
 import TodoState from './TodoState';
 
 const TodosContext = () => {
+  console.log('render TodosContext component');
+
   return (
     <TodoState>
       <div className='container flex flex-col mt-4 todo-context'>

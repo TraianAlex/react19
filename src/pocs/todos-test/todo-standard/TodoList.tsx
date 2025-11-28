@@ -13,7 +13,12 @@ const TodoList = ({ todos, onDeleteTodo }: TodoListProps) => {
       {todos?.map((todo: any) => (
         <li key={todo.id}>
           <span>{todo.text}</span>
-          <button onClick={onDeleteTodo.bind(null, todo.id)}>DELETE</button>
+          <button
+            className='btn btn-outline-danger btn-sm'
+            onClick={onDeleteTodo.bind(null, todo.id)}
+          >
+            DELETE
+          </button>
         </li>
       ))}
     </ListStyled>

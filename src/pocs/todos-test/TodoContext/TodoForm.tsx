@@ -14,6 +14,8 @@ const TodoForm = () => {
     createTodo(title);
   };
 
+  console.log('render TodoForm component');
+
   return (
     <form
       className='flex justify-center items-center mt-4'

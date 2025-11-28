@@ -24,6 +24,8 @@ const App = ({
     dispatch({ type: CREATE_TODO, todo: newTodo });
   };
 
+  console.log('render App component');
+
   return (
     <div>
       <h2>To do List</h2>

@@ -23,6 +23,8 @@ export const App = ({
     createTodo(newTodo);
   };
 
+  console.log('render App component');
+
   return (
     <div>
       <form onSubmit={addTodo}>

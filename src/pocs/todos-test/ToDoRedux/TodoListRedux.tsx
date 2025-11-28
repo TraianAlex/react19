@@ -7,6 +7,8 @@ import reducer from './reducer';
 const store = createStore(reducer);
 
 const TodoListRedux = () => {
+  console.log('render TodoListRedux component');
+
   return (
     <Provider store={store}>
       <div>

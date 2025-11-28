@@ -1,4 +1,6 @@
 export const TodoList = ({ todos }: { todos: { title: string }[] }) => {
+  console.log('render TodoList component');
+
   const todoItems = todos.map((todo, i) => (
     <li className='list-group-item' key={i}>
       {todo.title}

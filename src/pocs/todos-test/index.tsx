@@ -8,9 +8,9 @@ const TodosTest: React.FC = () => {
 
   return (
     <div className='container-fluid mt-5 pt-5'>
-      <div className='row'>
-        <div className='col'>
-          <div className='card' style={{ width: '18rem' }}>
+      <div className='row d-flex gap-2'>
+        <div className='col' style={{ flex: '0 0 auto', width: '18rem' }}>
+          <div className='card'>
             <ul className='list-group list-group-flush'>
               <li
                 className={`list-group-item ${

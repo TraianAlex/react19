@@ -5,6 +5,8 @@ import TodoContext from './Context';
 const TodoList = () => {
   const { todos, loading, deleteTodo } = useContext(TodoContext);
 
+  console.log('render TodoList component');
+
   return (
     <>
       {!loading &&
