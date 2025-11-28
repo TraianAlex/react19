@@ -73,6 +73,7 @@ const IncrementReduxHooks = lazy(() => import('./sandbox/ReduxWithHooks/App'));
 const TodoApp = lazy(
   () => import('./pocs/todos-test/todos-context-fakeapi-localstorage/TodoApp')
 );
+const Vanlife = lazy(() => import('./apps/vanlife/Vanlife'));
 
 const App = () => {
   return (
@@ -98,6 +99,7 @@ const App = () => {
                   <Route path='speaker/:id' element={<Speaker />} />
                   <Route path='about' element={<About />} />
                 </Route>
+                <Route path='vanlife/*' element={<Vanlife />} />
                 <Route path='watch-list' element={<WatchList />} />
                 <Route path='tic-tac-toe' element={<TicTacToe />}>
                   <Route index element={<Game1 />} />
