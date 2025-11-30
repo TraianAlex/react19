@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import './Vanlife.modules.scss';
 import Layout from './components/Layout';
@@ -7,9 +8,19 @@ import About from './pages/About';
 import NotFound from './pages/NotFound';
 import Login, { action as loginAction } from './pages/Login';
 import Vans from './pages/vans/Vans';
-import './server'; // Initialize MirageJS server
+import { makeServer, shutdownServer } from './server';
 
 const Vanlife = () => {
+  useEffect(() => {
+    // Start MirageJS server when component mounts
+    makeServer();
+
+    // Cleanup: shutdown server when component unmounts (navigating away)
+    return () => {
+      shutdownServer();
+    };
+  }, []);
+
   return (
     <div className='vanlife d-flex justify-content-center mt-5'>
       <Routes>
