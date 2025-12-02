@@ -9,15 +9,22 @@ import NotFound from './pages/NotFound';
 import Login, { action as loginAction } from './pages/Login';
 import Vans from './pages/vans/Vans';
 import { makeServer, shutdownServer } from './server';
+import VanDetail from './pages/vans/VanDetail';
 
 const Vanlife = () => {
   useEffect(() => {
     // Start MirageJS server when component mounts
     makeServer();
 
-    // Cleanup: shutdown server when component unmounts (navigating away)
+    // Cleanup: shutdown server only when navigating away (not on refresh)
     return () => {
-      shutdownServer();
+      // Check if we're still on a vanlife route
+      // If yes, it's a page refresh, so keep server alive
+      // If no, we're navigating away, so shutdown server
+      const currentPath = window.location.pathname;
+      if (!currentPath.startsWith('/vanlife')) {
+        shutdownServer();
+      }
     };
   }, []);
 
@@ -29,12 +36,11 @@ const Vanlife = () => {
           <Route path='about' element={<About />} />
           <Route path='login' element={<Login />} action={loginAction} />
           <Route path='vans' element={<Vans />} errorElement={<Error />} />
-          {/* <Route
-        path='vans/:id'
-        element={<VanDetail />}
-        errorElement={<Error />}
-        loader={vanDetailLoader}
-      /> */}
+          <Route
+            path='vans/:id'
+            element={<VanDetail />}
+            errorElement={<Error />}
+          />
 
           {/* <Route element={<AuthRequired />}>
         <Route path='host' element={<HostLayout />}>

@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { getVans } from '../../api';
 // import { getAllVans } from '../../api/firebase';
+import { Van } from '../../types';
 
 export default function Vans() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [vans, setVans] = useState<any[]>([]);
+  const [vans, setVans] = useState<Van[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -59,6 +60,7 @@ export default function Vans() {
         </Link>
       </div>
     ));
+  
     return (
       <>
         <div className='van-list-filter-buttons'>
