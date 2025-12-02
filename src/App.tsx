@@ -16,9 +16,11 @@ import {
 const NotFound = lazy(() => import('./components/not-found'));
 const Home = lazy(() => import('./main/home'));
 const HomeDetails = lazy(() => import('./main/home/home-detail'));
-const Todos = lazy(() => import('./apps/todos'));
+const TodosLayout = lazy(() => import('./apps/todos/TodosLayout'));
 const WatchList = lazy(() => import('./apps/watch-list'));
-const TicTacToe = lazy(() => import('./apps/tic-tac-toe'));
+const TicTacToeLayout = lazy(
+  () => import('./apps/tic-tac-toe/TicTacToeLayout')
+);
 const Login = lazy(() => import('./pocs/auth/components/login'));
 const Profile = lazy(() => import('./pocs/auth/components/profile'));
 const Todos1 = lazy(() => import('./apps/todos/todo1/Todos1'));
@@ -28,7 +30,7 @@ const Game3 = lazy(() => import('./apps/tic-tac-toe/game3'));
 const Game4 = lazy(() => import('./apps/tic-tac-toe/game4'));
 const Game5 = lazy(() => import('./apps/tic-tac-toe/game5'));
 const Game6 = lazy(() => import('./apps/tic-tac-toe/game6'));
-const Sandbox = lazy(() => import('./sandbox'));
+const SandboxLayout = lazy(() => import('./sandbox/SandboxLayout'));
 const Playground = lazy(() => import('./sandbox/playground/Playground'));
 const CompoundComponents = lazy(
   () =>
@@ -48,7 +50,7 @@ const CompoundComponentsSimple = lazy(
       './sandbox/compound-components/compound-components1/CompoundComponentsSimple'
     )
 );
-const TodosTest = lazy(() => import('./pocs/todos-test'));
+const TodosTestLayout = lazy(() => import('./pocs/todos-test/TodosTestLayout'));
 const TodosBasic = lazy(() => import('./pocs/todos-test/todo-standard/Todos'));
 const TodosContext = lazy(
   () => import('./pocs/todos-test/TodoContext/TodosContext')
@@ -86,7 +88,7 @@ const App = () => {
                 <Route path='/' element={<Home />}>
                   <Route path='recipe/:recipeId' element={<HomeDetails />} />
                 </Route>
-                <Route path='todos' element={<Todos />}>
+                <Route path='todos' element={<TodosLayout />}>
                   <Route index element={<Todos1 />} />
                   <Route path='todo1' element={<Todos1 />} />
                   <Route path='todo2' element={<h1>TODO2</h1>} />
@@ -101,7 +103,7 @@ const App = () => {
                 </Route>
                 <Route path='vanlife/*' element={<Vanlife />} />
                 <Route path='watch-list' element={<WatchList />} />
-                <Route path='tic-tac-toe' element={<TicTacToe />}>
+                <Route path='tic-tac-toe' element={<TicTacToeLayout />}>
                   <Route index element={<Game1 />} />
                   <Route path='game1' element={<Game1 />} />
                   <Route path='game2' element={<Game2 />} />
@@ -110,7 +112,7 @@ const App = () => {
                   <Route path='game5' element={<Game5 />} />
                   <Route path='game6' element={<Game6 />} />
                 </Route>
-                <Route path='sandbox' element={<Sandbox />}>
+                <Route path='sandbox' element={<SandboxLayout />}>
                   <Route index element={<Playground />} />
                   <Route path='playground' element={<Playground />} />
                   <Route
@@ -133,7 +135,7 @@ const App = () => {
                   <Route path='game5' element={<h1>Game 5</h1>} />
                   <Route path='game6' element={<h1>Game 6</h1>} />
                 </Route>
-                <Route path='todos-test' element={<TodosTest />}>
+                <Route path='todos-test' element={<TodosTestLayout />}>
                   <Route index element={<TodosBasic />} />
                   <Route path='todos-basic' element={<TodosBasic />} />
                   <Route path='todos-state1' element={<h1>Todos State 1</h1>} />

@@ -1,6 +1,6 @@
 import { Link, Outlet, useLocation } from 'react-router-dom';
 
-const TodosTest: React.FC = () => {
+const TodosTestLayout = () => {
   const location = useLocation();
   const isActive = (path: string) => {
     return location.pathname === '/' + path;
@@ -169,4 +169,4 @@ const TodosTest: React.FC = () => {
   );
 };
 
-export default TodosTest;
+export default TodosTestLayout;

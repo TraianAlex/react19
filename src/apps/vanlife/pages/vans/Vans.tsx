@@ -9,6 +9,8 @@ export default function Vans() {
   const [vans, setVans] = useState<Van[]>([]);
   const [loading, setLoading] = useState(true);
 
+  const typeFilter = searchParams.get('type');
+
   useEffect(() => {
     getVans()
       .then((data) => {
@@ -21,8 +23,6 @@ export default function Vans() {
       });
   }, []);
 
-  const typeFilter = searchParams.get('type');
-
   function handleFilterChange(key: string, value: string | null) {
     setSearchParams((prevParams) => {
       if (value === null) {
@@ -34,12 +34,12 @@ export default function Vans() {
     });
   }
 
-  function renderVanElements(vans: any) {
+  function renderVanElements(vans: Van[]) {
     const displayedVans = typeFilter
-      ? vans.filter((van: any) => van.type === typeFilter)
+      ? vans.filter((van) => van.type === typeFilter)
       : vans;
 
-    const vanElements = displayedVans.map((van: any) => (
+    const vanElements = displayedVans.map((van) => (
       <div key={van.id} className='van-tile'>
         <Link
           to={van.id}
@@ -60,7 +60,7 @@ export default function Vans() {
         </Link>
       </div>
     ));
-  
+
     return (
       <>
         <div className='van-list-filter-buttons'>

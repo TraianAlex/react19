@@ -1,7 +1,7 @@
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 
-const Sandbox = () => {
+const SandboxLayout = () => {
   const location = useLocation();
   const [isCompoundComponentsOpen, setIsCompoundComponentsOpen] =
     useState(false);
@@ -195,4 +195,4 @@ const Sandbox = () => {
   );
 };
 
-export default Sandbox;
+export default SandboxLayout;

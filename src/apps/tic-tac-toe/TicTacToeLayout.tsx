@@ -1,6 +1,6 @@
 import { Link, Outlet, useLocation } from 'react-router-dom';
 
-const TicTacToe: React.FC = () => {
+const TicTacToeLayout: React.FC = () => {
   const location = useLocation();
   const isActive = (path: string) => {
     return location.pathname === '/' + path;
@@ -103,4 +103,4 @@ const TicTacToe: React.FC = () => {
   );
 };
 
-export default TicTacToe;
+export default TicTacToeLayout;

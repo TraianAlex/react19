@@ -10,6 +10,8 @@ import Login, { action as loginAction } from './pages/Login';
 import Vans from './pages/vans/Vans';
 import { makeServer, shutdownServer } from './server';
 import VanDetail from './pages/vans/VanDetail';
+import HostLayout from './components/HostLayout';
+import Dashboard from './pages/Host/Dashboard';
 
 const Vanlife = () => {
   useEffect(() => {
@@ -42,15 +44,10 @@ const Vanlife = () => {
             errorElement={<Error />}
           />
 
-          {/* <Route element={<AuthRequired />}>
-        <Route path='host' element={<HostLayout />}>
-          <Route
-            index
-            element={<Dashboard />}
-            errorElement={<Error />}
-            loader={dashboardLoader}
-          />
-          <Route path='income' element={<Income />} />
+          {/* <Route element={<AuthRequired />}>*/}
+          <Route path='host' element={<HostLayout />}>
+            <Route index element={<Dashboard />} errorElement={<Error />} />
+            {/* <Route path='income' element={<Income />} />
           <Route path='reviews' element={<Reviews />} />
           <Route
             path='vans'
@@ -67,9 +64,9 @@ const Vanlife = () => {
             <Route index element={<HostVanInfo />} />
             <Route path='pricing' element={<HostVanPricing />} />
             <Route path='photos' element={<HostVanPhotos />} />
+          </Route> */}
           </Route>
-        </Route>
-      </Route> */}
+          {/* </Route> */}
           <Route path='*' element={<NotFound />} />
         </Route>
       </Routes>
