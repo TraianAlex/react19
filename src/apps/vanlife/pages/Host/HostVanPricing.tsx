@@ -5,7 +5,7 @@ export default function HostVanPricing() {
   const { currentVan } = useOutletContext<{ currentVan: Van | null }>();
 
   if (!currentVan) {
-    return <h3>Loading...</h3>;
+    return <h3 aria-live='polite'>Loading...</h3>;
   }
 
   return (

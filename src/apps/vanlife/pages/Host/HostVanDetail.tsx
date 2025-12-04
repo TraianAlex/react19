@@ -39,7 +39,7 @@ export default function HostVanDetail() {
         <Link to='..' relative='path' className='back-button'>
           &larr; <span>Back to all vans</span>
         </Link>
-        <h2>Loading...</h2>
+        <h2 aria-live='polite'>Loading...</h2>
       </section>
     );
   }
@@ -50,7 +50,7 @@ export default function HostVanDetail() {
         <Link to='..' relative='path' className='back-button'>
           &larr; <span>Back to all vans</span>
         </Link>
-        <h2>Van not found</h2>
+        <h2 aria-live='assertive'>Van not found</h2>
       </section>
     );
   }

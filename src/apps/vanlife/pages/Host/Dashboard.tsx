@@ -70,8 +70,16 @@ export default function Dashboard() {
           <h2>Your listed vans</h2>
           <Link to='vans'>View all</Link>
         </div>
-        {loading ? <h3>Loading...</h3> : renderVanElements(vans)}
-        {error && <h3>Error fetching host vans: {error.message}</h3>}
+        {loading ? (
+          <h3 aria-live='polite'>Loading...</h3>
+        ) : (
+          renderVanElements(vans)
+        )}
+        {error && (
+          <h3 aria-live='assertive'>
+            Error fetching host vans: {error.message}
+          </h3>
+        )}
       </section>
     </>
   );

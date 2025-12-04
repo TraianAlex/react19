@@ -30,17 +30,17 @@ export default function VanDetail() {
   }, [id]);
 
   if (loading) {
-    return <h2>Loading...</h2>;
+    return <h2 aria-live='polite'>Loading...</h2>;
   }
 
   if (!van) {
-    return <h2>Van not found</h2>;
+    return <h2 aria-live='assertive'>Van not found</h2>;
   }
 
   if (error) {
     return (
       <div className='van-detail-container'>
-        <h2>Error fetching van: {error.message}</h2>
+        <h2 aria-live='assertive'>Error fetching van: {error.message}</h2>
         <Link to={`..${search}`} relative='path' className='back-button'>
           &larr; <span>Back to {type} vans</span>
         </Link>

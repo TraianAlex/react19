@@ -47,7 +47,7 @@ export default function HostVans() {
     return (
       <section>
         <h1 className='host-vans-title'>Your listed vans</h1>
-        <h2>Loading vans...</h2>
+        <h2 aria-live='polite'>Loading vans...</h2>
       </section>
     );
   }
@@ -56,7 +56,7 @@ export default function HostVans() {
     return (
       <section>
         <h1 className='host-vans-title'>Your listed vans</h1>
-        <h2>Error fetching vans: {error.message}</h2>
+        <h2 aria-live='assertive'>Error fetching vans: {error.message}</h2>
       </section>
     );
   }

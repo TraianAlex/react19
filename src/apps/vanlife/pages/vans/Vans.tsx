@@ -106,7 +106,7 @@ export default function Vans() {
   if (loading) {
     return (
       <div className='van-list-container'>
-        <h1>Explore our van options</h1>
+        <h1 aria-live='polite'>Explore our van options</h1>
         <h2>Loading vans...</h2>
       </div>
     );
@@ -115,7 +115,7 @@ export default function Vans() {
   if (error) {
     return (
       <div className='van-list-container'>
-        <h1>Error fetching vans</h1>
+        <h1 aria-live='assertive'>Error fetching vans</h1>
         <p>{error.message}</p>
       </div>
     );
