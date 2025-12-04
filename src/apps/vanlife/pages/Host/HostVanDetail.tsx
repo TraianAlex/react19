@@ -8,17 +8,16 @@ export default function HostVanDetail() {
   const { id } = useParams();
   const [currentVan, setCurrentVan] = useState<Van | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<any>(null);
 
   useEffect(() => {
     async function fetchVan() {
       try {
         setLoading(true);
         const data = await getHostVans(id);
-        // getHostVans returns data.vans which could be an array or single object
-        const vanData = Array.isArray(data) ? data[0] : (data as Van);
-        setCurrentVan(vanData);
-      } catch (err) {
-        console.error('Failed to fetch van:', err);
+        setCurrentVan(data);
+      } catch (error) {
+        setError(error as any);
       } finally {
         setLoading(false);
       }
@@ -52,6 +51,17 @@ export default function HostVanDetail() {
           &larr; <span>Back to all vans</span>
         </Link>
         <h2>Van not found</h2>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section>
+        <h2>Error fetching van: {error.message}</h2>
+        <Link to='..' relative='path' className='back-button'>
+          &larr; <span>Back to all vans</span>
+        </Link>
       </section>
     );
   }

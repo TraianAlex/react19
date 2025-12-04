@@ -7,17 +7,20 @@ import { Van } from '../../types';
 export default function HostVans() {
   const [vans, setVans] = useState<Van[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<any>(null);
 
   useEffect(() => {
-    getHostVans()
-      .then((data) => {
+    async function fetchHostVans() {
+      try {
+        const data = await getHostVans();
         setVans(data);
+      } catch (error) {
+        setError(error as any);
+      } finally {
         setLoading(false);
-      })
-      .catch((error) => {
-        console.error('Error fetching host vans:', error);
-        setLoading(false);
-      });
+      }
+    }
+    fetchHostVans();
   }, []);
 
   function renderVanElements(vans: Van[]) {
@@ -45,6 +48,15 @@ export default function HostVans() {
       <section>
         <h1 className='host-vans-title'>Your listed vans</h1>
         <h2>Loading vans...</h2>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section>
+        <h1 className='host-vans-title'>Your listed vans</h1>
+        <h2>Error fetching vans: {error.message}</h2>
       </section>
     );
   }

@@ -8,19 +8,22 @@ export default function Vans() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [vans, setVans] = useState<Van[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<any>(null);
 
   const typeFilter = searchParams.get('type');
 
   useEffect(() => {
-    getVans()
-      .then((data) => {
+    async function fetchVans() {
+      try {
+        const data = await getVans();
         setVans(data);
+      } catch (error) {
+        setError(error as any);
+      } finally {
         setLoading(false);
-      })
-      .catch((error) => {
-        console.error('Error fetching vans:', error);
-        setLoading(false);
-      });
+      }
+    }
+    fetchVans();
   }, []);
 
   function handleFilterChange(key: string, value: string | null) {
@@ -109,6 +112,15 @@ export default function Vans() {
     );
   }
 
+  if (error) {
+    return (
+      <div className='van-list-container'>
+        <h1>Error fetching vans</h1>
+        <p>{error.message}</p>
+      </div>
+    );
+  }
+
   return (
     <div className='van-list-container'>
       <h1>Explore our van options</h1>
@@ -116,3 +128,15 @@ export default function Vans() {
     </div>
   );
 }
+
+/*
+function genNewSearchParamString(key: string, value: string | null) {
+  const sp = new URLSearchParams(searchParams);
+  if (value === null) {
+    sp.delete(key);
+  } else {
+    sp.set(key, value);
+  }
+  return `?${sp.toString()}`;
+}
+*/

@@ -9,6 +9,7 @@ export default function VanDetail() {
   const { id } = useParams();
   const [van, setVan] = useState<Van | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<any>(null);
 
   const search = location.state?.search || '';
   const type = location.state?.type || 'all';
@@ -20,7 +21,7 @@ export default function VanDetail() {
         const data = await getVans(id);
         setVan(data);
       } catch (err) {
-        console.error('Failed to fetch van:', err);
+        setError(error as any);
       } finally {
         setLoading(false);
       }
@@ -34,6 +35,17 @@ export default function VanDetail() {
 
   if (!van) {
     return <h2>Van not found</h2>;
+  }
+
+  if (error) {
+    return (
+      <div className='van-detail-container'>
+        <h2>Error fetching van: {error.message}</h2>
+        <Link to={`..${search}`} relative='path' className='back-button'>
+          &larr; <span>Back to {type} vans</span>
+        </Link>
+      </div>
+    );
   }
 
   return (
