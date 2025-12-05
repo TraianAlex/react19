@@ -28,7 +28,7 @@ const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const navigation = useNavigation();
-  const from = location.state?.from || '/host';
+  const from = location.state?.from || '/vanlife/host';
 
   if (data?.token) {
     navigate(from, { replace: true });
@@ -41,7 +41,7 @@ const Login = () => {
       )}
       <h1>Sign in to your account</h1>
       {data?.error && <h3 className='login-error'>{data.error}</h3>}
-      <Form action='/login' method='post' className='login-form'>
+      <Form method='post' className='login-form'>
         <input name='email' type='email' placeholder='Email address' />
         <input name='password' type='password' placeholder='Password' />
         <button disabled={navigation.state === 'submitting'}>

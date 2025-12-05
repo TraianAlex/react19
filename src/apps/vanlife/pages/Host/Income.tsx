@@ -1,3 +1,5 @@
+import incomeGraphImage from '../../assets/images/income-graph.png';
+
 export default function Income() {
   const transactionsData = [
     { amount: 720, date: "Jan 3, '23", id: '1' },
@@ -13,7 +15,7 @@ export default function Income() {
       <h2>$2,260</h2>
       <img
         className='graph'
-        src='/images/income-graph.png'
+        src={incomeGraphImage}
         alt='Income graph'
       />
       <div className='info-header'>

@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
-import bgImg from '/images/about-hero.png';
+import aboutHeroImage from '../assets/images/about-hero.png';
 
 const About = () => {
   return (
     <div>
-      <img src={bgImg} className='about-hero-image' />
+      <img src={aboutHeroImage} className='about-hero-image' />
       <div className='about-page-content mt-5'>
         <h1>Don’t squeeze in a sedan when you could relax in a van.</h1>
         <p className='mt-3'>

@@ -1,5 +1,11 @@
 import { lazy, Suspense } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+  Outlet,
+} from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 import './App.scss';
@@ -76,96 +82,181 @@ const TodoApp = lazy(
   () => import('./pocs/todos-test/todos-context-fakeapi-localstorage/TodoApp')
 );
 const Vanlife = lazy(() => import('./apps/vanlife/Vanlife'));
+import { action as vanlifeLoginAction } from './apps/vanlife/pages/Login';
+const VanlifeLayout = lazy(() => import('./apps/vanlife/components/Layout'));
+const VanlifeHome = lazy(() => import('./apps/vanlife/pages/Home'));
+const VanlifeAbout = lazy(() => import('./apps/vanlife/pages/About'));
+const VanlifeNotFound = lazy(() => import('./apps/vanlife/pages/NotFound'));
+const VanlifeLogin = lazy(() => import('./apps/vanlife/pages/Login'));
+const VanlifeVans = lazy(() => import('./apps/vanlife/pages/vans/Vans'));
+const VanlifeVanDetail = lazy(
+  () => import('./apps/vanlife/pages/vans/VanDetail')
+);
+const VanlifeHostLayout = lazy(
+  () => import('./apps/vanlife/components/HostLayout')
+);
+const VanlifeDashboard = lazy(
+  () => import('./apps/vanlife/pages/Host/Dashboard')
+);
+const VanlifeIncome = lazy(() => import('./apps/vanlife/pages/Host/Income'));
+const VanlifeHostVans = lazy(
+  () => import('./apps/vanlife/pages/Host/HostVans')
+);
+const VanlifeHostVanDetail = lazy(
+  () => import('./apps/vanlife/pages/Host/HostVanDetail')
+);
+const VanlifeHostVanPricing = lazy(
+  () => import('./apps/vanlife/pages/Host/HostVanPricing')
+);
+const VanlifeHostVanPhotos = lazy(
+  () => import('./apps/vanlife/pages/Host/HostVanPhotos')
+);
+const VanlifeHostVanInfo = lazy(
+  () => import('./apps/vanlife/pages/Host/HostVanInfo')
+);
+const VanlifeReviews = lazy(() => import('./apps/vanlife/pages/Host/Reviews'));
+const VanlifeAuthRequired = lazy(
+  () => import('./apps/vanlife/components/AuthRequired')
+);
+const VanlifeError = lazy(() => import('./apps/vanlife/components/Error'));
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route
+      element={
+        <ErrorBoundaryWithHook>
+          <Suspense fallback={<LoadingSpinner />}>
+            <Layout>
+              <Outlet />
+            </Layout>
+          </Suspense>
+        </ErrorBoundaryWithHook>
+      }
+    >
+      <Route path='/' element={<Home />}>
+        <Route path='recipe/:recipeId' element={<HomeDetails />} />
+      </Route>
+      <Route path='todos' element={<TodosLayout />}>
+        <Route index element={<Todos1 />} />
+        <Route path='todo1' element={<Todos1 />} />
+        <Route path='todo2' element={<h1>TODO2</h1>} />
+      </Route>
+      <Route path='speakers-app' element={<SpeakersApp />}>
+        <Route index element={<SpeakersHome />} />
+        <Route path='home' element={<SpeakersHome />} />
+        <Route path='speakerlist' element={<SpeakerList />} />
+        <Route path='speakers' element={<Speakers />} />
+        <Route path='speaker/:id' element={<Speaker />} />
+        <Route path='about' element={<About />} />
+      </Route>
+      <Route path='vanlife' element={<Vanlife />}>
+        <Route path='/vanlife' element={<VanlifeLayout />}>
+          <Route index element={<VanlifeHome />} />
+          <Route path='about' element={<VanlifeAbout />} />
+          <Route
+            path='login'
+            element={<VanlifeLogin />}
+            action={vanlifeLoginAction}
+          />
+          <Route
+            path='vans'
+            element={<VanlifeVans />}
+            errorElement={<VanlifeError />}
+          />
+          <Route
+            path='vans/:id'
+            element={<VanlifeVanDetail />}
+            errorElement={<VanlifeError />}
+          />
+          <Route element={<VanlifeAuthRequired />}>
+            <Route path='host' element={<VanlifeHostLayout />}>
+              <Route
+                index
+                element={<VanlifeDashboard />}
+                errorElement={<VanlifeError />}
+              />
+              <Route path='income' element={<VanlifeIncome />} />
+              <Route path='reviews' element={<VanlifeReviews />} />
+              <Route
+                path='vans'
+                element={<VanlifeHostVans />}
+                errorElement={<VanlifeError />}
+              />
+              <Route
+                path='vans/:id'
+                element={<VanlifeHostVanDetail />}
+                errorElement={<VanlifeError />}
+              >
+                <Route index element={<VanlifeHostVanInfo />} />
+                <Route path='pricing' element={<VanlifeHostVanPricing />} />
+                <Route path='photos' element={<VanlifeHostVanPhotos />} />
+              </Route>
+            </Route>
+          </Route>
+          <Route path='*' element={<VanlifeNotFound />} />
+        </Route>
+      </Route>
+      <Route path='watch-list' element={<WatchList />} />
+      <Route path='tic-tac-toe' element={<TicTacToeLayout />}>
+        <Route index element={<Game1 />} />
+        <Route path='game1' element={<Game1 />} />
+        <Route path='game2' element={<Game2 />} />
+        <Route path='game3' element={<Game3 />} />
+        <Route path='game4' element={<Game4 />} />
+        <Route path='game5' element={<Game5 />} />
+        <Route path='game6' element={<Game6 />} />
+      </Route>
+      <Route path='sandbox' element={<SandboxLayout />}>
+        <Route index element={<Playground />} />
+        <Route path='playground' element={<Playground />} />
+        <Route
+          path='flexible-compound-components'
+          element={<FlexibleCompoundComponents />}
+        />
+        <Route path='compound-components' element={<CompoundComponents />} />
+        <Route
+          path='compound-components-simple'
+          element={<CompoundComponentsSimple />}
+        />
+        <Route path='increment-redux-hooks' element={<IncrementReduxHooks />} />
+        <Route path='game4' element={<h1>Game 4</h1>} />
+        <Route path='game5' element={<h1>Game 5</h1>} />
+        <Route path='game6' element={<h1>Game 6</h1>} />
+      </Route>
+      <Route path='todos-test' element={<TodosTestLayout />}>
+        <Route index element={<TodosBasic />} />
+        <Route path='todos-basic' element={<TodosBasic />} />
+        <Route path='todos-state1' element={<h1>Todos State 1</h1>} />
+        <Route path='todos-state2' element={<h1>Todos State 2</h1>} />
+        <Route path='todos-state3' element={<h1>Todos State 3</h1>} />
+        <Route path='todo-context' element={<TodosContext />} />
+        <Route path='todos-flux' element={<TodosFlux />} />
+        <Route path='todos-redux' element={<TodosRedux />} />
+        <Route
+          path='todos-context-fakeapi-localstorage'
+          element={<TodoApp />}
+        />
+      </Route>
+      <Route path='login' element={<Login />} />
+      <Route
+        path='profile'
+        element={
+          <ProtectedRoute>
+            <Profile />
+          </ProtectedRoute>
+        }
+      />
+      <Route path='loading-spinner' element={<LoadingSpinner />} />
+      <Route path='not-found' element={<NotFound />} />
+      <Route path='*' element={<NotFound />} />
+    </Route>
+  )
+);
 
 const App = () => {
   return (
     <Provider store={store}>
-      <BrowserRouter>
-        <ErrorBoundaryWithHook>
-          <Suspense fallback={<LoadingSpinner />}>
-            <Layout>
-              <Routes>
-                <Route path='/' element={<Home />}>
-                  <Route path='recipe/:recipeId' element={<HomeDetails />} />
-                </Route>
-                <Route path='todos' element={<TodosLayout />}>
-                  <Route index element={<Todos1 />} />
-                  <Route path='todo1' element={<Todos1 />} />
-                  <Route path='todo2' element={<h1>TODO2</h1>} />
-                </Route>
-                <Route path='speakers-app' element={<SpeakersApp />}>
-                  <Route index element={<SpeakersHome />} />
-                  <Route path='home' element={<SpeakersHome />} />
-                  <Route path='speakerlist' element={<SpeakerList />} />
-                  <Route path='speakers' element={<Speakers />} />
-                  <Route path='speaker/:id' element={<Speaker />} />
-                  <Route path='about' element={<About />} />
-                </Route>
-                <Route path='vanlife/*' element={<Vanlife />} />
-                <Route path='watch-list' element={<WatchList />} />
-                <Route path='tic-tac-toe' element={<TicTacToeLayout />}>
-                  <Route index element={<Game1 />} />
-                  <Route path='game1' element={<Game1 />} />
-                  <Route path='game2' element={<Game2 />} />
-                  <Route path='game3' element={<Game3 />} />
-                  <Route path='game4' element={<Game4 />} />
-                  <Route path='game5' element={<Game5 />} />
-                  <Route path='game6' element={<Game6 />} />
-                </Route>
-                <Route path='sandbox' element={<SandboxLayout />}>
-                  <Route index element={<Playground />} />
-                  <Route path='playground' element={<Playground />} />
-                  <Route
-                    path='flexible-compound-components'
-                    element={<FlexibleCompoundComponents />}
-                  />
-                  <Route
-                    path='compound-components'
-                    element={<CompoundComponents />}
-                  />
-                  <Route
-                    path='compound-components-simple'
-                    element={<CompoundComponentsSimple />}
-                  />
-                  <Route
-                    path='increment-redux-hooks'
-                    element={<IncrementReduxHooks />}
-                  />
-                  <Route path='game4' element={<h1>Game 4</h1>} />
-                  <Route path='game5' element={<h1>Game 5</h1>} />
-                  <Route path='game6' element={<h1>Game 6</h1>} />
-                </Route>
-                <Route path='todos-test' element={<TodosTestLayout />}>
-                  <Route index element={<TodosBasic />} />
-                  <Route path='todos-basic' element={<TodosBasic />} />
-                  <Route path='todos-state1' element={<h1>Todos State 1</h1>} />
-                  <Route path='todos-state2' element={<h1>Todos State 2</h1>} />
-                  <Route path='todos-state3' element={<h1>Todos State 3</h1>} />
-                  <Route path='todo-context' element={<TodosContext />} />
-                  <Route path='todos-flux' element={<TodosFlux />} />
-                  <Route path='todos-redux' element={<TodosRedux />} />
-                  <Route
-                    path='todos-context-fakeapi-localstorage'
-                    element={<TodoApp />}
-                  />
-                </Route>
-                <Route path='login' element={<Login />} />
-                <Route
-                  path='profile'
-                  element={
-                    <ProtectedRoute>
-                      <Profile />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route path='loading-spinner' element={<LoadingSpinner />} />
-                <Route path='not-found' element={<NotFound />} />
-                <Route path='*' element={<NotFound />} />
-              </Routes>
-            </Layout>
-          </Suspense>
-        </ErrorBoundaryWithHook>
-      </BrowserRouter>
+      <RouterProvider router={router} />
     </Provider>
   );
 };
