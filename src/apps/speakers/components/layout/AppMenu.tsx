@@ -1,13 +1,15 @@
 import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { ThemeContext } from '../contexts/ThemeContext';
 
 export default function AppMenu() {
-  const { setRoute } = {
-    setRoute: (route: string) => {
-      window.location.href = route;
-    },
-  };
+  const navigate = useNavigate();
+  // const { setRoute } = {
+  //   setRoute: (route: string) => {
+  //     window.location.href = route;
+  //   },
+  // };
   const { toggleTheme } = useContext(ThemeContext);
 
   return (
@@ -17,7 +19,7 @@ export default function AppMenu() {
           <li className='nav-item'>
             <button
               onClick={() => {
-                setRoute('/speakers-app/home');
+                navigate('/speakers-app/home');
               }}
               className='nav-link'
             >
@@ -28,7 +30,7 @@ export default function AppMenu() {
           <li className='nav-item'>
             <button
               onClick={() => {
-                setRoute('/speakers-app/speakers');
+                navigate('/speakers-app/speakers');
               }}
               className='nav-link'
             >
@@ -39,7 +41,7 @@ export default function AppMenu() {
           <li className='nav-item'>
             <button
               onClick={() => {
-                setRoute('/speakers-app/speakerlist');
+                navigate('/speakers-app/speakerlist');
               }}
               className='nav-link'
             >
@@ -49,7 +51,7 @@ export default function AppMenu() {
           <li className='nav-item'>
             <button
               onClick={() => {
-                setRoute('/speakers-app/about');
+                navigate('/speakers-app/about');
               }}
               className='nav-item nav-link'
             >
