@@ -1,10 +1,10 @@
 import { Outlet, Navigate, useLocation } from 'react-router-dom';
 
 export default function AuthRequired() {
-  const isLoggedIn = localStorage.getItem('loggedin');
+  const isLoggedIn = JSON.parse(localStorage.getItem('loggedin') || 'false');
   const location = useLocation();
 
-  if (false) {
+  if (!isLoggedIn) {
     return (
       <Navigate
         to='login'

@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import {
   useNavigate,
   useNavigation,
@@ -14,7 +15,7 @@ export const action = async ({ request }: { request: Request }) => {
 
   try {
     const data = await loginUser({ email, password });
-    localStorage.setItem('loggedin', 'true');
+    localStorage.setItem('loggedin', JSON.stringify(true));
     return data;
   } catch (err) {
     return {
@@ -30,9 +31,11 @@ const Login = () => {
   const navigation = useNavigation();
   const from = location.state?.from || '/vanlife/host';
 
-  if (data?.token) {
-    navigate(from, { replace: true });
-  }
+  useEffect(() => {
+    if (data?.token) {
+      navigate(from, { replace: true });
+    }
+  }, [data, navigate, from]);
 
   return (
     <div className='login-container'>
