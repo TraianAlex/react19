@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BsStarFill } from 'react-icons/bs';
-// import { getHostVans } from "../../api/firebase"
-import { getHostVans } from '../../api';
+import { getHostVans } from "../../api/firebase"
+// import { getHostVans } from '../../api';
 import { Van } from '../../types';
 
 export default function Dashboard() {
@@ -14,7 +14,7 @@ export default function Dashboard() {
     async function fetchHostVans() {
       try {
         const data = await getHostVans();
-        setVans(data);
+        setVans(data as Van[]);
       } catch (error) {
         setError(error as any);
       } finally {

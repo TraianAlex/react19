@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getHostVans } from '../../api';
-// import { getHostVans } from "../../api/firebase"
+// import { getHostVans } from '../../api';
+import { getHostVans } from "../../api/firebase"
 import { Van } from '../../types';
 
 export default function HostVans() {
@@ -13,7 +13,7 @@ export default function HostVans() {
     async function fetchHostVans() {
       try {
         const data = await getHostVans();
-        setVans(data);
+        setVans(data as Van[]);
       } catch (error) {
         setError(error as any);
       } finally {

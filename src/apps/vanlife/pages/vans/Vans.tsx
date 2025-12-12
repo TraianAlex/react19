@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { getVans } from '../../api';
-// import { getAllVans } from '../../api/firebase';
+//import { getVans } from '../../api';
+import { getAllVans } from '../../api/firebase';
 import { Van } from '../../types';
 
 export default function Vans() {
@@ -15,8 +15,8 @@ export default function Vans() {
   useEffect(() => {
     async function fetchVans() {
       try {
-        const data = await getVans();
-        setVans(data);
+        const data = await getAllVans();
+        setVans(data as Van[]);
       } catch (error) {
         setError(error as any);
       } finally {

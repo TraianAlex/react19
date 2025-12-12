@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation, useParams } from 'react-router-dom';
-import { getVans } from '../../api';
+// import { getVans } from '../../api';
 import { Van } from '../../types';
-// import { getVan } from "../../api/firebase"
+import { getVan } from "../../api/firebase"
 
 export default function VanDetail() {
   const location = useLocation();
@@ -18,8 +18,8 @@ export default function VanDetail() {
     async function fetchVan() {
       try {
         setLoading(true);
-        const data = await getVans(id);
-        setVan(data);
+        const data = await getVan(id as string);
+        setVan(data as Van);
       } catch (err) {
         setError(error as any);
       } finally {

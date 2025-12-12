@@ -16,6 +16,7 @@
     "@reduxjs/toolkit": "^2.9.0",
     "axios": "^1.11.0",
     "bootstrap": "^5.3.8",
+    "firebase": "^12.6.0",
     "font-awesome": "^4.7.0",
     "immutable": "^5.1.4",
     "react": "^19.2.3",
