@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import GrandParent from './GrandParent';
 import stylesModule from './styles.module.scss';
 
@@ -8,9 +8,9 @@ export default function AppParentGrandChild() {
   const [count, setCount] = useState(0);
   const [darkMode, setDarkMode] = useState(false);
 
-  function increment() {
+  const increment = useCallback(() => {
     setCount((prevCount) => prevCount + 1);
-  }
+  }, []);
 
   function decrement() {
     setCount((prevCount) => prevCount - 1);
@@ -44,7 +44,7 @@ export default function AppParentGrandChild() {
         {darkMode ? 'Switch to Light' : 'Switch to Dark'}
       </button>
       <p className='m-2'>App component</p>
-      <GrandParent style={style} />
+      <GrandParent style={style} increment={increment} />
       <GrandParent style={undefined} />
     </div>
   );

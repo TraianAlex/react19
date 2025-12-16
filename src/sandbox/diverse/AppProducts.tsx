@@ -1,6 +1,6 @@
 import { products } from '../data';
 import stylesModule from './AppProducts.module.scss';
-import { lazy, useMemo, useState } from 'react';
+import { lazy, useCallback, useMemo, useState } from 'react';
 
 export const styles = stylesModule as Record<string, string>;
 const ProductsList = lazy(() =>
@@ -14,6 +14,7 @@ export function AppProducts() {
   const [showProducts, setShowProducts] = useState(false);
   const [sort, setSort] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
 
   function increment() {
     setCount((prevCount) => prevCount + 1);
@@ -50,10 +51,22 @@ export function AppProducts() {
 
   const visibleProducts = sort ? memoizedSortedProducts : products;
 
-  const themeStyle = useMemo(() => ({
-    backgroundColor: darkMode ? '#2b283a' : 'whitesmoke',
-    color: darkMode ? 'white' : '#2b283a',
-  }), [darkMode]);
+  const productStyles = useMemo(
+    () => ({
+      backgroundColor: darkMode ? '#2b283a' : 'whitesmoke',
+      color: darkMode ? 'white' : '#2b283a',
+    }),
+    [darkMode]
+  );
+
+  const selectedStyles = {
+    backgroundColor: '#93c47d',
+  };
+
+  const chooseProduct = useCallback((id: string) => {
+    console.log('New product selected');
+    setSelectedProduct(id);
+  }, []);
 
   return (
     <>
@@ -70,7 +83,7 @@ export function AppProducts() {
         className='btn btn-secondary me-2'
         onClick={() => setShowProducts((prev) => !prev)}
       >
-        Show Products
+        {showProducts ? 'Hide ' : 'Show '} Products
       </button>
       <button
         className='btn btn-secondary me-2'
@@ -89,7 +102,13 @@ export function AppProducts() {
       <h2>There are {productsCount} products</h2>
       <div className={styles.productsList}>
         {showProducts && (
-          <ProductsList products={visibleProducts} themeStyle={themeStyle} />
+          <ProductsList
+            products={visibleProducts}
+            themeStyle={productStyles}
+            chooseProduct={chooseProduct}
+            selectedProduct={selectedProduct}
+            selectedStyles={selectedStyles}
+          />
         )}
       </div>
     </>
