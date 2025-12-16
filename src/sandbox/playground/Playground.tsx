@@ -5,6 +5,7 @@ import { AppContextProvider, SectionContext } from '../context/TestContext';
 import ResetState from '../diverse/reset-state';
 import { Marquee } from '../components/Marquee';
 import CompoundComponentsDemo from '../compound-components/CompoundComponentsDemo';
+import { AppProducts } from '../diverse/AppProducts';
 
 const Playground = () => {
   const [value, setValue] = useState(1);
@@ -34,6 +35,7 @@ const Playground = () => {
         </AppContextProvider>
         <ResetState />
       </main>
+      <AppProducts />
       {/* <SpreadJS /> */}
     </div>
   );
