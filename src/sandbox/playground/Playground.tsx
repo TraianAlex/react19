@@ -6,6 +6,7 @@ import ResetState from '../diverse/reset-state';
 import { Marquee } from '../components/Marquee';
 import CompoundComponentsDemo from '../compound-components/CompoundComponentsDemo';
 import { AppProducts } from '../diverse/AppProducts';
+import AppParentGrandChild from '../parent-grandchild/AppParentGrandChild';
 
 const Playground = () => {
   const [value, setValue] = useState(1);
@@ -36,6 +37,7 @@ const Playground = () => {
         <ResetState />
       </main>
       <AppProducts />
+      <AppParentGrandChild />
       {/* <SpreadJS /> */}
     </div>
   );

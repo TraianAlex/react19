@@ -43,5 +43,10 @@ export const maskedNumber = (creditCard: string) => {
 };
 
 export function mockDelay(ms: number) {
-  return new Promise((resolve) => setTimeout(resolve, ms))
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+export function sleep(ms: number) {
+  const wakeUpTime = Date.now() + ms;
+  while (Date.now() < wakeUpTime) {}
 }

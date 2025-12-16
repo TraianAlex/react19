@@ -1,16 +1,15 @@
+import { sleep } from '../../shared/utils/utils';
 import { styles } from './AppProducts';
 import { memo } from 'react';
 
-function sleep(ms: number) {
-  const wakeUpTime = Date.now() + ms;
-  while (Date.now() < wakeUpTime) {}
-}
-
-function Product({ product, darkMode }: { product: any; darkMode: boolean }) {
-  const themeStyle = {
-    backgroundColor: darkMode ? '#2b283a' : 'whitesmoke',
-    color: darkMode ? 'white' : '#2b283a',
-  };
+function Product({
+  product,
+  themeStyle,
+}: {
+  product: any;
+  themeStyle: React.CSSProperties;
+}) {
+  sleep(1);
   console.log('Product rendered');
 
   return (
@@ -24,12 +23,12 @@ const ProductMemo = memo(Product);
 
 export function ProductsList({
   products,
-  darkMode,
+  themeStyle,
 }: {
   products: any[];
-  darkMode: boolean;
+  themeStyle: React.CSSProperties;
 }) {
   return products.map((product) => (
-    <ProductMemo key={product.id} product={product} darkMode={darkMode} />
+    <ProductMemo key={product.id} product={product} themeStyle={themeStyle} />
   ));
 }

@@ -50,6 +50,11 @@ export function AppProducts() {
 
   const visibleProducts = sort ? memoizedSortedProducts : products;
 
+  const themeStyle = useMemo(() => ({
+    backgroundColor: darkMode ? '#2b283a' : 'whitesmoke',
+    color: darkMode ? 'white' : '#2b283a',
+  }), [darkMode]);
+
   return (
     <>
       <h2>The current count is {count}</h2>
@@ -84,7 +89,7 @@ export function AppProducts() {
       <h2>There are {productsCount} products</h2>
       <div className={styles.productsList}>
         {showProducts && (
-          <ProductsList products={visibleProducts} darkMode={darkMode} />
+          <ProductsList products={visibleProducts} themeStyle={themeStyle} />
         )}
       </div>
     </>
