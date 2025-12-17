@@ -120,6 +120,8 @@ const VanlifeAuthRequired = lazy(
 );
 const VanlifeError = lazy(() => import('./apps/vanlife/components/Error'));
 
+import { loader as vansLoader } from './apps/vanlife/pages/vans/Vans';
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route
@@ -162,6 +164,7 @@ const router = createBrowserRouter(
             path='vans'
             element={<VanlifeVans />}
             errorElement={<VanlifeError />}
+            loader={vansLoader}
           />
           <Route
             path='vans/:id'

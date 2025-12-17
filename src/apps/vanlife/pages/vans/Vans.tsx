@@ -1,30 +1,36 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useLoaderData, useSearchParams } from 'react-router-dom';
 //import { getVans } from '../../api';
 import { getAllVans } from '../../api/firebase';
 import { Van } from '../../types';
 
+export const loader = async () => {
+  const vans = await getAllVans();
+  return { vans };
+};
+
 export default function Vans() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [vans, setVans] = useState<Van[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<any>(null);
+  // const [vans, setVans] = useState<Van[]>([]);
+  // const [loading, setLoading] = useState(true);
+  // const [error, setError] = useState<any>(null);
+  const { vans } = useLoaderData<typeof loader>();
 
   const typeFilter = searchParams.get('type');
 
-  useEffect(() => {
-    async function fetchVans() {
-      try {
-        const data = await getAllVans();
-        setVans(data as Van[]);
-      } catch (error) {
-        setError(error as any);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchVans();
-  }, []);
+  // useEffect(() => {
+  //   async function fetchVans() {
+  //     try {
+  //       const data = await getAllVans();
+  //       setVans(data as Van[]);
+  //     } catch (error) {
+  //       setError(error as any);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   }
+  //   fetchVans();
+  // }, []);
 
   function handleFilterChange(key: string, value: string | null) {
     setSearchParams((prevParams) => {
@@ -50,8 +56,9 @@ export default function Vans() {
             search: `?${searchParams.toString()}`,
             type: typeFilter,
           }}
+          aria-label={`View details for ${van.name}, priced at $${van.price} per day`}
         >
-          <img src={van.imageUrl} />
+          <img src={van.imageUrl} alt={`Image of ${van.name}`} />
           <div className='van-info'>
             <h3>{van.name}</h3>
             <p>
@@ -103,28 +110,28 @@ export default function Vans() {
     );
   }
 
-  if (loading) {
-    return (
-      <div className='van-list-container'>
-        <h1 aria-live='polite'>Explore our van options</h1>
-        <h2>Loading vans...</h2>
-      </div>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <div className='van-list-container'>
+  //       <h1 aria-live='polite'>Explore our van options</h1>
+  //       <h2>Loading vans...</h2>
+  //     </div>
+  //   );
+  // }
 
-  if (error) {
-    return (
-      <div className='van-list-container'>
-        <h1 aria-live='assertive'>Error fetching vans</h1>
-        <p>{error.message}</p>
-      </div>
-    );
-  }
+  // if (error) {
+  //   return (
+  //     <div className='van-list-container'>
+  //       <h1 aria-live='assertive'>Error fetching vans</h1>
+  //       <p>{error.message}</p>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className='van-list-container'>
       <h1>Explore our van options</h1>
-      {renderVanElements(vans)}
+      {renderVanElements(vans as Van[])}
     </div>
   );
 }
