@@ -1,20 +1,18 @@
-// import { useEffect, useState } from 'react';
-import { Link, useLoaderData } from 'react-router-dom';
+import { Await, Link, useLoaderData } from 'react-router-dom';
 // import { getHostVans } from '../../api';
-import { getHostVans } from "../../api/firebase"
+import { getHostVans } from '../../api/firebase';
 import { Van } from '../../types';
+import { Suspense } from 'react';
 
-
-export const loader = async () => {
-  const vans = await getHostVans();
-  return { vans: vans as Van[] };
+export const loader = () => {
+  return { vans: getHostVans() as Promise<Van[]> };
 };
 
 export default function HostVans() {
   // const [vans, setVans] = useState<Van[]>([]);
   // const [loading, setLoading] = useState(true);
   // const [error, setError] = useState<any>(null);
-  const { vans } = useLoaderData<typeof loader>();
+  const dataPromise = useLoaderData<typeof loader>();
 
   // useEffect(() => {
   //   async function fetchHostVans() {
@@ -71,7 +69,9 @@ export default function HostVans() {
   return (
     <section>
       <h1 className='host-vans-title'>Your listed vans</h1>
-      {renderVanElements(vans)}
+      <Suspense fallback={<h2>Loading vans...</h2>}>
+        <Await resolve={dataPromise.vans}>{renderVanElements}</Await>
+      </Suspense>
     </section>
   );
 }

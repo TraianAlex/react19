@@ -1,20 +1,19 @@
-// import { useEffect, useState } from 'react';
-import { Link, useLoaderData } from 'react-router-dom';
+import { Await, Link, useLoaderData } from 'react-router-dom';
 import { BsStarFill } from 'react-icons/bs';
-import { getHostVans } from "../../api/firebase"
+import { getHostVans } from '../../api/firebase';
 // import { getHostVans } from '../../api';
 import { Van } from '../../types';
+import { Suspense } from 'react';
 
-export const loader = async () => {
-  const vans = await getHostVans();
-  return { vans: vans as Van[] };
+export const loader = () => {
+  return { vans: getHostVans() as Promise<Van[]> };
 };
 
 export default function Dashboard() {
   // const [vans, setVans] = useState<Van[]>([]);
   // const [loading, setLoading] = useState(true);
   // const [error, setError] = useState<any>(null);
-  const { vans } = useLoaderData<typeof loader>();
+  const dataPromise = useLoaderData<typeof loader>();
 
   // useEffect(() => {
   //   async function fetchHostVans() {
@@ -79,7 +78,9 @@ export default function Dashboard() {
         {/* {loading ? (
           <h3 aria-live='polite'>Loading...</h3>
         ) : ( */}
-          {renderVanElements(vans as Van[])}
+        <Suspense fallback={<h3>Loading...</h3>}>
+          <Await resolve={dataPromise.vans}>{renderVanElements}</Await>
+        </Suspense>
         {/* )}
         {error && (
           <h3 aria-live='assertive'>

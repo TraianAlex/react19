@@ -1,12 +1,11 @@
-// import { useEffect, useState } from 'react';
-import { Link, useLoaderData, useSearchParams } from 'react-router-dom';
+import { Await, Link, useLoaderData, useSearchParams } from 'react-router-dom';
 //import { getVans } from '../../api';
 import { getAllVans } from '../../api/firebase';
 import { Van } from '../../types';
+import { Suspense } from 'react';
 
-export const loader = async () => {
-  const vans = await getAllVans();
-  return { vans };
+export const loader = () => {
+  return { vans: getAllVans() as Promise<Van[]> };
 };
 
 export default function Vans() {
@@ -14,7 +13,7 @@ export default function Vans() {
   // const [vans, setVans] = useState<Van[]>([]);
   // const [loading, setLoading] = useState(true);
   // const [error, setError] = useState<any>(null);
-  const { vans } = useLoaderData<typeof loader>();
+  const dataPromise = useLoaderData<typeof loader>();
 
   const typeFilter = searchParams.get('type');
 
@@ -43,7 +42,7 @@ export default function Vans() {
     });
   }
 
-  function renderVanElements(vans: Van[]) {
+  function renderVanElements(vans: any[]) {
     const displayedVans = typeFilter
       ? vans.filter((van) => van.type === typeFilter)
       : vans;
@@ -131,7 +130,9 @@ export default function Vans() {
   return (
     <div className='van-list-container'>
       <h1>Explore our van options</h1>
-      {renderVanElements(vans as Van[])}
+      <Suspense fallback={<h2>Loading vans...</h2>}>
+        <Await resolve={dataPromise.vans}>{renderVanElements}</Await>
+      </Suspense>
     </div>
   );
 }

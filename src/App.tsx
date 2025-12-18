@@ -118,12 +118,14 @@ const VanlifeAuthRequired = lazy(
   () => import('./apps/vanlife/components/AuthRequired')
 );
 const VanlifeError = lazy(() => import('./apps/vanlife/components/Error'));
+const Weather = lazy(() => import('./pocs/weather/Weather'));
 import { action as vanlifeLoginAction } from './apps/vanlife/pages/Login';
 import { loader as vansLoader } from './apps/vanlife/pages/vans/Vans';
 import { loader as vanlifeVanDetailLoader } from './apps/vanlife/pages/vans/VanDetail';
 import { loader as vanlifeDashboardLoader } from './apps/vanlife/pages/Host/Dashboard';
 import { loader as vanlifeHostVanDetailLoader } from './apps/vanlife/pages/Host/HostVanDetail';
 import { loader as vanlifeHostVansLoader } from './apps/vanlife/pages/Host/HostVans';
+import { loader as weatherLoader } from './pocs/weather/Weather';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -256,6 +258,7 @@ const router = createBrowserRouter(
           </ProtectedRoute>
         }
       />
+      <Route path='weather' element={<Weather />} loader={weatherLoader} />
       <Route path='loading-spinner' element={<LoadingSpinner />} />
       <Route path='not-found' element={<NotFound />} />
       <Route path='*' element={<NotFound />} />

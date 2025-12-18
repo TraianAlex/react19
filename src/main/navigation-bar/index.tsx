@@ -103,6 +103,16 @@ export const NavigationBar = () => {
                       Todos test
                     </Link>
                   </li>
+                  <li>
+                    <Link
+                      className={`dropdown-item ${
+                        isActive('/weather') ? 'active' : ''
+                      }`}
+                      to='weather'
+                    >
+                      Weather
+                    </Link>
+                  </li>
                 </ul>
               </li>
               <li className='nav-item dropdown'>
