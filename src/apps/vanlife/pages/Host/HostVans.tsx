@@ -1,27 +1,34 @@
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+// import { useEffect, useState } from 'react';
+import { Link, useLoaderData } from 'react-router-dom';
 // import { getHostVans } from '../../api';
 import { getHostVans } from "../../api/firebase"
 import { Van } from '../../types';
 
-export default function HostVans() {
-  const [vans, setVans] = useState<Van[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<any>(null);
 
-  useEffect(() => {
-    async function fetchHostVans() {
-      try {
-        const data = await getHostVans();
-        setVans(data as Van[]);
-      } catch (error) {
-        setError(error as any);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchHostVans();
-  }, []);
+export const loader = async () => {
+  const vans = await getHostVans();
+  return { vans: vans as Van[] };
+};
+
+export default function HostVans() {
+  // const [vans, setVans] = useState<Van[]>([]);
+  // const [loading, setLoading] = useState(true);
+  // const [error, setError] = useState<any>(null);
+  const { vans } = useLoaderData<typeof loader>();
+
+  // useEffect(() => {
+  //   async function fetchHostVans() {
+  //     try {
+  //       const data = await getHostVans();
+  //       setVans(data as Van[]);
+  //     } catch (error) {
+  //       setError(error as any);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   }
+  //   fetchHostVans();
+  // }, []);
 
   function renderVanElements(vans: Van[]) {
     const hostVansEls = vans.map((van) => (
@@ -43,23 +50,23 @@ export default function HostVans() {
     );
   }
 
-  if (loading) {
-    return (
-      <section>
-        <h1 className='host-vans-title'>Your listed vans</h1>
-        <h2 aria-live='polite'>Loading vans...</h2>
-      </section>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <section>
+  //       <h1 className='host-vans-title'>Your listed vans</h1>
+  //       <h2 aria-live='polite'>Loading vans...</h2>
+  //     </section>
+  //   );
+  // }
 
-  if (error) {
-    return (
-      <section>
-        <h1 className='host-vans-title'>Your listed vans</h1>
-        <h2 aria-live='assertive'>Error fetching vans: {error.message}</h2>
-      </section>
-    );
-  }
+  // if (error) {
+  //   return (
+  //     <section>
+  //       <h1 className='host-vans-title'>Your listed vans</h1>
+  //       <h2 aria-live='assertive'>Error fetching vans: {error.message}</h2>
+  //     </section>
+  //   );
+  // }
 
   return (
     <section>

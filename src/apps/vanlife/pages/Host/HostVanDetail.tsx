@@ -1,31 +1,40 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, Link, NavLink, Outlet } from 'react-router-dom';
+// import { useEffect, useState } from 'react';
+import { useParams, Link, NavLink, Outlet, LoaderFunctionArgs, useLoaderData } from 'react-router-dom';
 import { getVan } from "../../api/firebase"
 // import { getHostVans } from '../../api';
 import { Van } from '../../types';
 
+export const loader = async ({ params }: LoaderFunctionArgs) => {
+  if (!params.id) {
+    throw new Response('Van ID is required', { status: 400 });
+  }
+  const van = await getVan(params.id);
+  return { currentVan: van as Van };
+};
+
 export default function HostVanDetail() {
   const { id } = useParams();
-  const [currentVan, setCurrentVan] = useState<Van | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<any>(null);
+  // const [currentVan, setCurrentVan] = useState<Van | null>(null);
+  // const [loading, setLoading] = useState(true);
+  // const [error, setError] = useState<any>(null);
+  const { currentVan } = useLoaderData<typeof loader>();
 
-  useEffect(() => {
-    async function fetchVan() {
-      try {
-        setLoading(true);
-        const data = await getVan(id as string);
-        setCurrentVan(data as Van);
-      } catch (error) {
-        setError(error as any);
-      } finally {
-        setLoading(false);
-      }
-    }
-    if (id) {
-      fetchVan();
-    }
-  }, [id]);
+  // useEffect(() => {
+  //   async function fetchVan() {
+  //     try {
+  //       setLoading(true);
+  //       const data = await getVan(id as string);
+  //       setCurrentVan(data as Van);
+  //     } catch (error) {
+  //       setError(error as any);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   }
+  //   if (id) {
+  //     fetchVan();
+  //   }
+  // }, [id]);
 
   const activeStyles = {
     fontWeight: 'bold',
@@ -33,16 +42,16 @@ export default function HostVanDetail() {
     color: '#161616',
   };
 
-  if (loading) {
-    return (
-      <section>
-        <Link to='..' relative='path' className='back-button'>
-          &larr; <span>Back to all vans</span>
-        </Link>
-        <h2 aria-live='polite'>Loading...</h2>
-      </section>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <section>
+  //       <Link to='..' relative='path' className='back-button'>
+  //         &larr; <span>Back to all vans</span>
+  //       </Link>
+  //       <h2 aria-live='polite'>Loading...</h2>
+  //     </section>
+  //   );
+  // }
 
   if (!currentVan) {
     return (
@@ -55,16 +64,16 @@ export default function HostVanDetail() {
     );
   }
 
-  if (error) {
-    return (
-      <section>
-        <h2>Error fetching van: {error.message}</h2>
-        <Link to='..' relative='path' className='back-button'>
-          &larr; <span>Back to all vans</span>
-        </Link>
-      </section>
-    );
-  }
+  // if (error) {
+  //   return (
+  //     <section>
+  //       <h2>Error fetching van: {error.message}</h2>
+  //       <Link to='..' relative='path' className='back-button'>
+  //         &larr; <span>Back to all vans</span>
+  //       </Link>
+  //     </section>
+  //   );
+  // }
 
   return (
     <section>

@@ -82,7 +82,6 @@ const TodoApp = lazy(
   () => import('./pocs/todos-test/todos-context-fakeapi-localstorage/TodoApp')
 );
 const Vanlife = lazy(() => import('./apps/vanlife/Vanlife'));
-import { action as vanlifeLoginAction } from './apps/vanlife/pages/Login';
 const VanlifeLayout = lazy(() => import('./apps/vanlife/components/Layout'));
 const VanlifeHome = lazy(() => import('./apps/vanlife/pages/Home'));
 const VanlifeAbout = lazy(() => import('./apps/vanlife/pages/About'));
@@ -119,8 +118,12 @@ const VanlifeAuthRequired = lazy(
   () => import('./apps/vanlife/components/AuthRequired')
 );
 const VanlifeError = lazy(() => import('./apps/vanlife/components/Error'));
-
+import { action as vanlifeLoginAction } from './apps/vanlife/pages/Login';
 import { loader as vansLoader } from './apps/vanlife/pages/vans/Vans';
+import { loader as vanlifeVanDetailLoader } from './apps/vanlife/pages/vans/VanDetail';
+import { loader as vanlifeDashboardLoader } from './apps/vanlife/pages/Host/Dashboard';
+import { loader as vanlifeHostVanDetailLoader } from './apps/vanlife/pages/Host/HostVanDetail';
+import { loader as vanlifeHostVansLoader } from './apps/vanlife/pages/Host/HostVans';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -170,6 +173,7 @@ const router = createBrowserRouter(
             path='vans/:id'
             element={<VanlifeVanDetail />}
             errorElement={<VanlifeError />}
+            loader={vanlifeVanDetailLoader}
           />
           <Route element={<VanlifeAuthRequired />}>
             <Route path='host' element={<VanlifeHostLayout />}>
@@ -177,6 +181,7 @@ const router = createBrowserRouter(
                 index
                 element={<VanlifeDashboard />}
                 errorElement={<VanlifeError />}
+                loader={vanlifeDashboardLoader}
               />
               <Route path='income' element={<VanlifeIncome />} />
               <Route path='reviews' element={<VanlifeReviews />} />
@@ -184,11 +189,13 @@ const router = createBrowserRouter(
                 path='vans'
                 element={<VanlifeHostVans />}
                 errorElement={<VanlifeError />}
+                loader={vanlifeHostVansLoader}
               />
               <Route
                 path='vans/:id'
                 element={<VanlifeHostVanDetail />}
                 errorElement={<VanlifeError />}
+                loader={vanlifeHostVanDetailLoader}
               >
                 <Route index element={<VanlifeHostVanInfo />} />
                 <Route path='pricing' element={<VanlifeHostVanPricing />} />

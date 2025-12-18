@@ -1,28 +1,34 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+// import { useEffect, useState } from 'react';
+import { Link, useLoaderData } from 'react-router-dom';
 import { BsStarFill } from 'react-icons/bs';
 import { getHostVans } from "../../api/firebase"
 // import { getHostVans } from '../../api';
 import { Van } from '../../types';
 
-export default function Dashboard() {
-  const [vans, setVans] = useState<Van[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<any>(null);
+export const loader = async () => {
+  const vans = await getHostVans();
+  return { vans: vans as Van[] };
+};
 
-  useEffect(() => {
-    async function fetchHostVans() {
-      try {
-        const data = await getHostVans();
-        setVans(data as Van[]);
-      } catch (error) {
-        setError(error as any);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchHostVans();
-  }, []);
+export default function Dashboard() {
+  // const [vans, setVans] = useState<Van[]>([]);
+  // const [loading, setLoading] = useState(true);
+  // const [error, setError] = useState<any>(null);
+  const { vans } = useLoaderData<typeof loader>();
+
+  // useEffect(() => {
+  //   async function fetchHostVans() {
+  //     try {
+  //       const data = await getHostVans();
+  //       setVans(data as Van[]);
+  //     } catch (error) {
+  //       setError(error as any);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   }
+  //   fetchHostVans();
+  // }, []);
 
   function renderVanElements(vans: Van[]) {
     const hostVansEls = vans.map((van) => (
@@ -70,16 +76,16 @@ export default function Dashboard() {
           <h2>Your listed vans</h2>
           <Link to='vans'>View all</Link>
         </div>
-        {loading ? (
+        {/* {loading ? (
           <h3 aria-live='polite'>Loading...</h3>
-        ) : (
-          renderVanElements(vans)
-        )}
+        ) : ( */}
+          {renderVanElements(vans as Van[])}
+        {/* )}
         {error && (
           <h3 aria-live='assertive'>
             Error fetching host vans: {error.message}
           </h3>
-        )}
+        )} */}
       </section>
     </>
   );
