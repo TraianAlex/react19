@@ -74,26 +74,32 @@ const TodosTestLayout = () => {
               </li>
               <li
                 className={`list-group-item ${
-                  isActive('todos-test/game3') ? 'active' : ''
+                  isActive('todos-test/todos-actions') ? 'active' : ''
                 }`}
               >
                 <Link
-                  to='game3'
-                  className={isActive('todos-test/game3') ? 'text-white' : ''}
+                  to='todos-actions'
+                  className={
+                    isActive('todos-test/todos-actions') ? 'text-white' : ''
+                  }
                 >
-                  Game 3
+                  Todos Actions
                 </Link>
               </li>
               <li
                 className={`list-group-item ${
-                  isActive('todos-test/todos-action') ? 'active' : ''
+                  isActive('todos-test/todos-server-actions') ? 'active' : ''
                 }`}
               >
                 <Link
-                  to='todos-action'
-                  className={isActive('todos-test/todos-action') ? 'text-white' : ''}
+                  to='todos-server-actions'
+                  className={
+                    isActive('todos-test/todos-server-actions')
+                      ? 'text-white'
+                      : ''
+                  }
                 >
-                  Todos Action
+                  Server fn with Form Actions
                 </Link>
               </li>
               <li

@@ -82,7 +82,7 @@ const TodoApp = lazy(
   () => import('./pocs/todos-test/todos-context-fakeapi-localstorage/TodoApp')
 );
 const TodosAction = lazy(
-  () => import('./pocs/todos-test/todos-action/TodosAction')
+  () => import('./pocs/todos-test/todos-server-actions/TodosAction')
 );
 const Vanlife = lazy(() => import('./apps/vanlife/Vanlife'));
 const VanlifeLayout = lazy(() => import('./apps/vanlife/components/Layout'));
@@ -244,7 +244,7 @@ const router = createBrowserRouter(
         <Route path='todos-state1' element={<h1>Todos State 1</h1>} />
         <Route path='todos-state2' element={<h1>Todos State 2</h1>} />
         <Route path='todos-state3' element={<h1>Todos State 3</h1>} />
-        <Route path='todos-action' element={<TodosAction />} />
+        <Route path='todos-server-actions' element={<TodosAction />} />
         <Route path='todo-context' element={<TodosContext />} />
         <Route path='todos-flux' element={<TodosFlux />} />
         <Route path='todos-redux' element={<TodosRedux />} />
