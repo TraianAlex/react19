@@ -86,14 +86,14 @@ const TodosTestLayout = () => {
               </li>
               <li
                 className={`list-group-item ${
-                  isActive('todos-test/game4') ? 'active' : ''
+                  isActive('todos-test/todos-action') ? 'active' : ''
                 }`}
               >
                 <Link
-                  to='game4'
-                  className={isActive('todos-test/game4') ? 'text-white' : ''}
+                  to='todos-action'
+                  className={isActive('todos-test/todos-action') ? 'text-white' : ''}
                 >
-                  Game 4
+                  Todos Action
                 </Link>
               </li>
               <li
