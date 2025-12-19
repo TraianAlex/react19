@@ -7,6 +7,7 @@ import {
   Outlet,
 } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import './App.scss';
 import Layout from './main/layout.tsx';
@@ -83,6 +84,9 @@ const TodoApp = lazy(
 );
 const TodosAction = lazy(
   () => import('./pocs/todos-test/todos-server-actions/TodosAction')
+);
+const TodosActions = lazy(
+  () => import('./pocs/todos-test/todos-actions/TodosActions')
 );
 const Vanlife = lazy(() => import('./apps/vanlife/Vanlife'));
 const VanlifeLayout = lazy(() => import('./apps/vanlife/components/Layout'));
@@ -245,6 +249,7 @@ const router = createBrowserRouter(
         <Route path='todos-state2' element={<h1>Todos State 2</h1>} />
         <Route path='todos-state3' element={<h1>Todos State 3</h1>} />
         <Route path='todos-server-actions' element={<TodosAction />} />
+        <Route path='todos-actions' element={<TodosActions />} />
         <Route path='todo-context' element={<TodosContext />} />
         <Route path='todos-flux' element={<TodosFlux />} />
         <Route path='todos-redux' element={<TodosRedux />} />
@@ -270,11 +275,15 @@ const router = createBrowserRouter(
   )
 );
 
+const queryClient = new QueryClient();
+
 const App = () => {
   return (
-    <Provider store={store}>
-      <RouterProvider router={router} />
-    </Provider>
+    <QueryClientProvider client={queryClient}>
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
+    </QueryClientProvider>
   );
 };
 
