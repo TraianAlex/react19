@@ -1,5 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
+import { mockDelay } from '../../../shared/utils/utils';
 
 export default function TodosActions() {
   const mutation = useMutation({
@@ -12,7 +13,7 @@ export default function TodosActions() {
 
       console.log(title, description, priority, dueDate, completed);
       // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await mockDelay(1000);
       return { title, description, priority, dueDate, completed };
     },
     onSuccess: () => {
