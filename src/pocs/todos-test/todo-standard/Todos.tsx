@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import TodoList from './TodoList';
 import NewTodoForm from './NewTodo';
@@ -22,24 +22,24 @@ const TodosBasic = () => {
     setUser('Alex');
   }, []);
 
-  const todoAddHandler = (text: string) => {
+  const todoAddHandler = useCallback((text: string) => {
     setTodos((prevTodos) => [
       ...prevTodos,
       { id: Math.random().toString(), text: text },
     ]);
-    setCount(count + 1);
-  };
+    setCount((prevCount) => prevCount + 1);
+  }, []);
 
-  const createList = (text: string) => {
-    setList([...list, text]);
-  };
+  const createList = useCallback((text: string) => {
+    setList((prevList) => [...prevList, text]);
+  }, []);
 
-  const todoDeleteHandler = (todoId: string) => {
+  const todoDeleteHandler = useCallback((todoId: string) => {
     setTodos((prevTodos) => {
       return prevTodos.filter((todo) => todo.id !== todoId);
     });
-    setCount(count - 1);
-  };
+    setCount((prevCount) => prevCount - 1);
+  }, []);
 
   console.log('render TodosBasic component');
 

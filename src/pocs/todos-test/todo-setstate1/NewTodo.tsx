@@ -1,56 +1,48 @@
-import { memo, useRef } from 'react';
+import { useRef } from 'react';
 import styled from 'styled-components';
+import { useSelector } from './store';
+import { createList, todoAddHandler } from './Todos';
+import { todoStore } from './TodoStore';
 
-type NewTodoProps = {
-  onAddTodo: (todoText: string) => void;
-  createList: (text: string) => void;
-  user: string | undefined;
-};
-
-const NewTodoForm = memo(({ onAddTodo, createList, user }: NewTodoProps) => {
+const NewTodoForm: React.FC = () => {
+  const user = useSelector(todoStore, 'user');
   const textInputRef = useRef<HTMLInputElement>(null);
   const listInputRef = useRef<HTMLInputElement>(null);
 
-  const todoSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
+  const todoSubmitHandler = (event: React.FormEvent) => {
     event.preventDefault();
-    const form = event.currentTarget;
-    const formData = new FormData(event.currentTarget);
-    const enteredText = formData.get('todo-text') as string;
-    if (!enteredText || enteredText.trim() === '') {
+    const enteredText = textInputRef.current!.value;
+    if (enteredText === '') {
       alert('Enter text');
       return;
     }
-    onAddTodo(enteredText.trim());
-    form.reset();
-    textInputRef.current?.focus();
+    todoAddHandler(enteredText);
+    textInputRef.current!.value = '';
   };
 
-  const createListHandler = (event: React.FormEvent<HTMLFormElement>) => {
+  const createListHandler = (event: React.FormEvent) => {
     event.preventDefault();
-    const form = event.currentTarget;
-    const formData = new FormData(form);
-    const enteredText = formData.get('todo-list') as string;
-    if (!enteredText || enteredText.trim() === '') {
+    const enteredText = listInputRef.current!.value;
+    if (enteredText === '') {
       alert('Enter text');
       return;
     }
     createList(enteredText);
-    form.reset();
-    listInputRef.current?.focus();
+    listInputRef.current!.value = '';
   };
 
-  console.log('render NewTodoForm component');
+  console.log('render NewTodoForm');
 
   return (
     <>
       <FormStyled onSubmit={createListHandler}>
         <div className='formControl'>
-          <label htmlFor='todo-list' className='label'>
-            Todo {user}
+          <label htmlFor='todo-text' className='label'>
+            Todo {'user'}
           </label>
           <input
             type='text'
-            name='todo-list'
+            id='todo-text'
             ref={listInputRef}
             className='input'
           />
@@ -66,7 +58,7 @@ const NewTodoForm = memo(({ onAddTodo, createList, user }: NewTodoProps) => {
           </label>
           <input
             type='text'
-            name='todo-text'
+            id='todo-list'
             ref={textInputRef}
             className='input'
           />
@@ -77,7 +69,7 @@ const NewTodoForm = memo(({ onAddTodo, createList, user }: NewTodoProps) => {
       </FormStyled>
     </>
   );
-});
+};
 
 export default NewTodoForm;
 

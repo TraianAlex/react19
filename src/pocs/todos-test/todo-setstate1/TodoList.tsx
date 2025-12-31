@@ -1,30 +1,24 @@
-import { memo } from 'react';
+import { useSelector } from './store';
+import { todoStore } from './TodoStore';
 import styled from 'styled-components';
+import { todoDeleteHandler } from './Todos';
 
-interface TodoListProps {
-  onDeleteTodo: (id: string) => void;
-  todos: { id: string; text: string }[];
-}
+const TodoList: React.FC = () => {
+  const todos = useSelector(todoStore, 'todos');
 
-const TodoList = memo(({ todos, onDeleteTodo }: TodoListProps) => {
-  console.log('render TodoList component', todos);
+  console.log('render TodoList', todos);
 
   return (
     <ListStyled>
       {todos?.map((todo: any) => (
         <li key={todo.id}>
           <span>{todo.text}</span>
-          <button
-            className='btn btn-outline-danger btn-sm'
-            onClick={onDeleteTodo.bind(null, todo.id)}
-          >
-            DELETE
-          </button>
+          <button onClick={todoDeleteHandler.bind(null, todo.id)}>DELETE</button>
         </li>
       ))}
     </ListStyled>
   );
-});
+};
 
 export default TodoList;
 

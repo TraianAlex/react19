@@ -1,4 +1,6 @@
-export const Decoration = ({ title }: any) => {
+import { memo } from 'react';
+
+export const Decoration = memo(({ title }: { title: string }) => {
   console.log('render Title Decoration component');
 
   return (
@@ -6,4 +8,4 @@ export const Decoration = ({ title }: any) => {
       <u>{title}</u>
     </h5>
   );
-};
+});

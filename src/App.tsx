@@ -126,6 +126,7 @@ const VanlifeAuthRequired = lazy(
 );
 const VanlifeError = lazy(() => import('./apps/vanlife/components/Error'));
 const Weather = lazy(() => import('./pocs/weather/Weather'));
+const TodosSetState1 = lazy(() => import('./pocs/todos-test/todo-setstate1/Todos'));
 import { action as vanlifeLoginAction } from './apps/vanlife/pages/Login';
 import { loader as vansLoader } from './apps/vanlife/pages/vans/Vans';
 import { loader as vanlifeVanDetailLoader } from './apps/vanlife/pages/vans/VanDetail';
@@ -245,7 +246,7 @@ const router = createBrowserRouter(
       <Route path='todos-test' element={<TodosTestLayout />}>
         <Route index element={<TodosBasic />} />
         <Route path='todos-basic' element={<TodosBasic />} />
-        <Route path='todos-state1' element={<h1>Todos State 1</h1>} />
+        <Route path='todos-state1' element={<TodosSetState1 />} />
         <Route path='todos-state2' element={<h1>Todos State 2</h1>} />
         <Route path='todos-state3' element={<h1>Todos State 3</h1>} />
         <Route path='todos-server-actions' element={<TodosAction />} />
