@@ -126,8 +126,14 @@ const VanlifeAuthRequired = lazy(
 );
 const VanlifeError = lazy(() => import('./apps/vanlife/components/Error'));
 const Weather = lazy(() => import('./pocs/weather/Weather'));
-const TodosSetState1 = lazy(() => import('./pocs/todos-test/todo-setstate1/Todos'));
-const TodosSetState2 = lazy(() => import('./pocs/todos-test/todo-setstate2/Todos'));
+const TodosSetState1 = lazy(
+  () => import('./pocs/todos-test/todo-setstate1/Todos')
+);
+const TodosSetState2 = lazy(
+  () => import('./pocs/todos-test/todo-setstate2/Todos')
+);
+const RscLayout = lazy(() => import('./pocs/rsc/RscLayout'));
+const AppHeader = lazy(() => import('./pocs/rsc/simple-rsc/app-header'));
 import { action as vanlifeLoginAction } from './apps/vanlife/pages/Login';
 import { loader as vansLoader } from './apps/vanlife/pages/vans/Vans';
 import { loader as vanlifeVanDetailLoader } from './apps/vanlife/pages/vans/VanDetail';
@@ -259,6 +265,10 @@ const router = createBrowserRouter(
           path='todos-context-fakeapi-localstorage'
           element={<TodoApp />}
         />
+      </Route>
+      <Route path='rsc' element={<RscLayout />}>
+        <Route index element={<AppHeader />} />
+        <Route path='rsc-simple' element={<AppHeader />} />
       </Route>
       <Route path='login' element={<Login />} />
       <Route
