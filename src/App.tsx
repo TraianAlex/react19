@@ -134,6 +134,10 @@ const TodosSetState2 = lazy(
 );
 const RscLayout = lazy(() => import('./pocs/rsc/RscLayout'));
 const AppHeader = lazy(() => import('./pocs/rsc/simple-rsc/app-header'));
+const TransitionLayout = lazy(() => import('./pocs/transition/TransitionLayout'));
+const TransitionTabs = lazy(() => import('./pocs/transition/transition-delay/TransitionTabs'));
+const TransitionOptimistic = lazy(() => import('./pocs/transition/transition-optimistic/TransitionTabs'));
+const TransitionSuspense = lazy(() => import('./pocs/transition/transition-suspense/TransitionTabs'));
 import { action as vanlifeLoginAction } from './apps/vanlife/pages/Login';
 import { loader as vansLoader } from './apps/vanlife/pages/vans/Vans';
 import { loader as vanlifeVanDetailLoader } from './apps/vanlife/pages/vans/VanDetail';
@@ -269,6 +273,12 @@ const router = createBrowserRouter(
       <Route path='rsc' element={<RscLayout />}>
         <Route index element={<AppHeader />} />
         <Route path='rsc-simple' element={<AppHeader />} />
+      </Route>
+        <Route path='transition' element={<TransitionLayout />}>
+          <Route index element={<TransitionTabs />} />
+          <Route path='transition-tabs' element={<TransitionTabs />} />
+          <Route path='transition-optimistic' element={<TransitionOptimistic />} />
+          <Route path='transition-suspense' element={<TransitionSuspense />} />
       </Route>
       <Route path='login' element={<Login />} />
       <Route
