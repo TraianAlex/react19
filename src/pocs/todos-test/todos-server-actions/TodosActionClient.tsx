@@ -17,13 +17,13 @@ export default function TodosActionClient() {
   );
   const [isTransitioning, startTransition] = useTransition();
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    startTransition(() => {
-      formAction(formData);
-    });
-  };
+  // const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  //   event.preventDefault();
+  //   const formData = new FormData(event.currentTarget);
+  //   startTransition(() => {
+  //     formAction(formData);
+  //   });
+  // };
 
   const isLoading = isPending || isTransitioning;
 
@@ -35,7 +35,8 @@ export default function TodosActionClient() {
         Function. The form is submitted from a client component.
       </p>
 
-      <form onSubmit={handleSubmit} className={styles.todosActionForm}>
+      {/* <form onSubmit={handleSubmit} className={styles.todosActionForm}></form> */}
+      <form action={formAction} className={styles.todosActionForm}>
         <div className={styles.formGroup}>
           <label htmlFor='title'>Title *</label>
           <input

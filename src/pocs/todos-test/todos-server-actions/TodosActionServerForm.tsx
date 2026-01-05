@@ -22,18 +22,19 @@ export default function TodosActionServerForm({
   );
   const [isTransitioning, startTransition] = useTransition();
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    startTransition(() => {
-      formAction(formData);
-    });
-  };
+  // const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  //   event.preventDefault();
+  //   const formData = new FormData(event.currentTarget);
+  //   startTransition(() => {
+  //     formAction(formData);
+  //   });
+  // };
 
   const isLoading = isPending || isTransitioning;
 
   return (
-    <form onSubmit={handleSubmit} className={styles.todosActionForm}>
+    // <form onSubmit={handleSubmit} className={styles.todosActionForm}>
+    <form action={formAction} className={styles.todosActionForm}>
       <div className={styles.formGroup}>
         <label htmlFor='title-server'>Title *</label>
         <input
