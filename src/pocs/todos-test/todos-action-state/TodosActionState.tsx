@@ -68,14 +68,21 @@ export default function TodosActionState() {
     setEditingTodoId(null);
   };
 
-  const handleUpdate = async (formData: FormData) => {
+  // Unified form handler for both create and update
+  const handleSubmit = async (formData: FormData) => {
     if (editingTodoId) {
+      // Update mode
       formData.set('action', 'update');
       formData.set('id', editingTodoId.toString());
       startTransition(() => {
         formAction(formData);
       });
       setEditingTodoId(null);
+    } else {
+      // Create mode - use default formAction which handles create
+      startTransition(() => {
+        formAction(formData);
+      });
     }
   };
 
@@ -108,70 +115,76 @@ export default function TodosActionState() {
             <div className='card-body'>
               <h2 className='card-title mb-4'>Todos with useActionState</h2>
 
-              {editingTodo ? (
-                <form action={handleUpdate}>
-                  <h5 className='mb-3'>Edit Todo</h5>
-                  <div className='mb-3'>
-                    <label htmlFor='edit-title' className='form-label'>
-                      Title *
-                    </label>
-                    <input
-                      type='text'
-                      className={`form-control ${
-                        state.error && !state.message ? 'is-invalid' : ''
-                      }`}
-                      id='edit-title'
-                      name='title'
-                      defaultValue={editingTodo.title}
-                      required
-                      disabled={isPending || isTransitioning}
-                    />
-                  </div>
+              <form key={editingTodoId || 'create'} action={handleSubmit}>
+                {editingTodo && <h5 className='mb-3'>Edit Todo</h5>}
 
-                  <div className='mb-3'>
-                    <label htmlFor='edit-date' className='form-label'>
-                      Date *
-                    </label>
-                    <input
-                      type='date'
-                      className={`form-control ${
-                        state.error && !state.message ? 'is-invalid' : ''
-                      }`}
-                      id='edit-date'
-                      name='date'
-                      defaultValue={editingTodo.date || ''}
-                      required
-                      disabled={isPending || isTransitioning}
-                    />
-                  </div>
+                <div className='mb-3'>
+                  <label htmlFor='title' className='form-label'>
+                    Title *
+                  </label>
+                  <input
+                    type='text'
+                    className={`form-control ${
+                      state.error && !state.message ? 'is-invalid' : ''
+                    }`}
+                    id='title'
+                    name='title'
+                    defaultValue={editingTodo?.title || ''}
+                    required
+                    disabled={isPending || isTransitioning}
+                  />
+                </div>
 
+                <div className='mb-3'>
+                  <label htmlFor='date' className='form-label'>
+                    Date *
+                  </label>
+                  <input
+                    type='date'
+                    className={`form-control ${
+                      state.error && !state.message ? 'is-invalid' : ''
+                    }`}
+                    id='date'
+                    name='date'
+                    defaultValue={editingTodo?.date || ''}
+                    required
+                    disabled={isPending || isTransitioning}
+                  />
+                </div>
+
+                {editingTodo && (
                   <div className='mb-3 form-check'>
                     <input
                       type='checkbox'
                       className='form-check-input'
-                      id='edit-completed'
+                      id='completed'
                       name='completed'
                       defaultChecked={editingTodo.completed}
                       disabled={isPending || isTransitioning}
                     />
-                    <label
-                      className='form-check-label'
-                      htmlFor='edit-completed'
-                    >
+                    <label className='form-check-label' htmlFor='completed'>
                       Completed
                     </label>
                   </div>
+                )}
 
-                  <div className='d-flex gap-2'>
-                    <button
-                      type='submit'
-                      className='btn btn-primary flex-fill'
-                      disabled={isPending || isTransitioning}
-                    >
-                      {isPending || isTransitioning
+                <div className={editingTodo ? 'd-flex gap-2' : ''}>
+                  <button
+                    type='submit'
+                    className={`btn btn-primary ${
+                      editingTodo ? 'flex-fill' : 'w-100'
+                    }`}
+                    disabled={isPending || isTransitioning}
+                  >
+                    {isPending || isTransitioning
+                      ? editingTodo
                         ? 'Updating...'
-                        : 'Update Todo'}
-                    </button>
+                        : 'Creating...'
+                      : editingTodo
+                      ? 'Update Todo'
+                      : 'Create Todo'}
+                  </button>
+                  {editingTodo && (
                     <button
                       type='button'
                       className='btn btn-secondary'
@@ -180,51 +193,9 @@ export default function TodosActionState() {
                     >
                       Cancel
                     </button>
-                  </div>
-                </form>
-              ) : (
-                <form action={formAction}>
-                  <div className='mb-3'>
-                    <label htmlFor='title' className='form-label'>
-                      Title *
-                    </label>
-                    <input
-                      type='text'
-                      className={`form-control ${
-                        state.error && !state.message ? 'is-invalid' : ''
-                      }`}
-                      id='title'
-                      name='title'
-                      required
-                      disabled={isPending}
-                    />
-                  </div>
-
-                  <div className='mb-3'>
-                    <label htmlFor='date' className='form-label'>
-                      Date *
-                    </label>
-                    <input
-                      type='date'
-                      className={`form-control ${
-                        state.error && !state.message ? 'is-invalid' : ''
-                      }`}
-                      id='date'
-                      name='date'
-                      required
-                      disabled={isPending}
-                    />
-                  </div>
-
-                  <button
-                    type='submit'
-                    className='btn btn-primary w-100'
-                    disabled={isPending}
-                  >
-                    {isPending ? 'Creating...' : 'Create Todo'}
-                  </button>
-                </form>
-              )}
+                  )}
+                </div>
+              </form>
 
               {state.todos.length > 0 && (
                 <div className='mt-4'>
