@@ -14,7 +14,9 @@ const HooksLayout = () => {
             <ul className='list-group list-group-flush'>
               <li
                 className={`list-group-item ${
-                  isActive('hooks/use-hook-notes-app') || isActive('hooks') ? 'active ' : ''
+                  isActive('hooks/use-hook-notes-app') || isActive('hooks')
+                    ? 'active '
+                    : ''
                 }`}
               >
                 <Link
@@ -25,7 +27,21 @@ const HooksLayout = () => {
                       : ''
                   }
                 >
-                  Use Hook Notes App
+                  Use Hook Notes App (Example 2)
+                </Link>
+              </li>
+              <li
+                className={`list-group-item ${
+                  isActive('hooks/parallel-dashboard') ? 'active ' : ''
+                }`}
+              >
+                <Link
+                  to='parallel-dashboard'
+                  className={
+                    isActive('hooks/parallel-dashboard') ? 'text-white' : ''
+                  }
+                >
+                  Parallel Dashboard (Example 3)
                 </Link>
               </li>
             </ul>

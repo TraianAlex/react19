@@ -1,18 +1,95 @@
 {
   "notes": [
     {
-      "id": 1,
-      "title": "Note 1",
-      "content": "This is the first note",
-      "createdAt": "2021-01-01",
-      "category": "Personal"
+      "id": "1",
+      "title": "Getting Started with React 19",
+      "content": "React 19 introduces many exciting new features including the use() hook, useActionState, and improved Server Components support. The use() hook allows you to unwrap promises directly in your component, making async data fetching much cleaner.\n\nKey benefits:\n- Simpler code with less boilerplate\n- Better integration with Suspense\n- Automatic error handling with Error Boundaries\n- Parallel loading capabilities",
+      "createdAt": "2024-01-15T10:00:00Z",
+      "category": "Technology"
     },
     {
-      "id": 2,
-      "title": "Note 2",
-      "content": "This is the second note",
-      "createdAt": "2021-01-02",
-      "category": "Work"
+      "id": "2",
+      "title": "Understanding Parallel vs Sequential Loading",
+      "content": "When fetching multiple resources, parallel loading is much faster than sequential (waterfall) loading. With parallel loading, all requests start simultaneously, reducing total load time significantly.\n\nExample:\n- Parallel: 3 requests × 200ms = ~200ms total\n- Sequential: 200ms + 200ms + 200ms = 600ms total",
+      "createdAt": "2024-01-16T14:30:00Z",
+      "category": "Technology"
+    },
+    {
+      "id": "3",
+      "title": "Best Practices for React Performance",
+      "content": "Performance optimization in React involves several strategies:\n\n1. Memoization with useMemo and useCallback\n2. Code splitting and lazy loading\n3. Virtual scrolling for long lists\n4. Proper key usage in lists\n5. Avoiding unnecessary re-renders",
+      "createdAt": "2024-01-17T09:15:00Z",
+      "category": "Performance"
+    },
+    {
+      "id": "4",
+      "title": "Personal Development Goals",
+      "content": "My goals for this year:\n\n- Master React 19 new features\n- Improve TypeScript skills\n- Learn more about performance optimization\n- Contribute to open source projects",
+      "createdAt": "2024-01-18T11:20:00Z",
+      "category": "Personal"
+    }
+  ],
+  "comments": [
+    {
+      "id": "1",
+      "noteId": "1",
+      "author": "John Doe",
+      "comment": "Great article! The use() hook is really game-changing for async data fetching.",
+      "createdAt": "2024-01-16T10:30:00Z"
+    },
+    {
+      "id": "2",
+      "noteId": "1",
+      "author": "Jane Smith",
+      "comment": "I've been using this pattern and it's made my code so much cleaner. Thanks for sharing!",
+      "createdAt": "2024-01-16T15:45:00Z"
+    },
+    {
+      "id": "3",
+      "noteId": "1",
+      "author": "Bob Johnson",
+      "comment": "Can you provide more examples of error handling with use()?",
+      "createdAt": "2024-01-17T08:20:00Z"
+    },
+    {
+      "id": "4",
+      "noteId": "2",
+      "author": "Alice Williams",
+      "comment": "This is a great explanation of parallel loading. Very helpful!",
+      "createdAt": "2024-01-17T10:00:00Z"
+    },
+    {
+      "id": "5",
+      "noteId": "3",
+      "author": "Charlie Brown",
+      "comment": "Performance optimization is crucial. Thanks for the tips!",
+      "createdAt": "2024-01-18T12:00:00Z"
+    }
+  ],
+  "stats": [
+    {
+      "noteId": "1",
+      "views": 1250,
+      "likes": 89,
+      "shares": 23
+    },
+    {
+      "noteId": "2",
+      "views": 856,
+      "likes": 45,
+      "shares": 12
+    },
+    {
+      "noteId": "3",
+      "views": 642,
+      "likes": 32,
+      "shares": 8
+    },
+    {
+      "noteId": "4",
+      "views": 234,
+      "likes": 15,
+      "shares": 3
     }
   ],
   "todos": [

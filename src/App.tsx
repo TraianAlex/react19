@@ -151,6 +151,9 @@ const TodosActionState = lazy(
 );
 const HooksLayout = lazy(() => import('./pocs/hooks/HooksLayout'));
 const NotesApp = lazy(() => import('./pocs/hooks/useHookNotesApp/NotesApp'));
+const NoteDashboardApp = lazy(
+  () => import('./pocs/hooks/useHookParallelDashboard/NoteDashboardApp')
+);
 import { action as vanlifeLoginAction } from './apps/vanlife/pages/Login';
 import { loader as vansLoader } from './apps/vanlife/pages/vans/Vans';
 import { loader as vanlifeVanDetailLoader } from './apps/vanlife/pages/vans/VanDetail';
@@ -300,6 +303,11 @@ const router = createBrowserRouter(
       <Route path='hooks' element={<HooksLayout />}>
         <Route index element={<NotesApp />} />
         <Route path='use-hook-notes-app' element={<NotesApp />} />
+        <Route path='parallel-dashboard' element={<NoteDashboardApp />} />
+        <Route
+          path='parallel-dashboard/:noteId'
+          element={<NoteDashboardApp />}
+        />
       </Route>
       <Route path='login' element={<Login />} />
       <Route
