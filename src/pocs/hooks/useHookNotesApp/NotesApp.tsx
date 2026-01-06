@@ -7,7 +7,8 @@ import type { Note } from './notesApi';
 /**
  * Notes App - Complete Example Using React 19's use() Hook
  *
- * This app demonstrates EXAMPLE 1 from useHookExample.tsx:
+ * This app demonstrates EXAMPLE 2 (Promise Caching Pattern) from useHookExample.tsx:
+ * - External promise cache using Map/module-level cache
  * - Proper promise memoization with useMemo
  * - use() hook to unwrap promises
  * - Suspense boundaries for loading states
@@ -15,9 +16,10 @@ import type { Note } from './notesApi';
  *
  * Key Learning Points:
  * 1. Always memoize promises passed to use() to prevent infinite loops
- * 2. Wrap components using use() in Suspense boundaries
- * 3. Use ErrorBoundary to catch promise rejections
- * 4. use() can only be called during render, not in effects or handlers
+ * 2. Use external caches (Map or module-level) to prevent duplicate requests
+ * 3. Wrap components using use() in Suspense boundaries
+ * 4. Use ErrorBoundary to catch promise rejections
+ * 5. use() can only be called during render, not in effects or handlers
  */
 
 interface ErrorBoundaryState {

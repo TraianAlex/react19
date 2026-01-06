@@ -14,10 +14,13 @@ const notePromiseCache = new Map<string, Promise<Note>>();
 /**
  * Note Detail Component
  *
- * Demonstrates EXAMPLE 1 pattern:
+ * Demonstrates EXAMPLE 2 pattern (Promise Caching Pattern):
+ * - External promise cache using Map to prevent duplicate requests
  * - Memoized promise with useMemo
  * - use() hook to unwrap promise
  * - Suspense boundary for loading state
+ *
+ * This is EXAMPLE 2 from useHookExample.tsx - Promise Caching Pattern
  */
 function NoteDetailContent({ noteId }: { noteId: string }) {
   // ✅ Memoize the promise with cache - CRITICAL to prevent infinite loops

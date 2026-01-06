@@ -9,10 +9,13 @@ let cachedNotesPromise: Promise<Note[]> | null = null;
 /**
  * Notes List Component
  *
- * Demonstrates EXAMPLE 1 pattern:
+ * Demonstrates EXAMPLE 2 pattern (Promise Caching Pattern):
+ * - Module-level promise cache to prevent duplicate requests
  * - Memoized promise with useMemo
  * - use() hook to unwrap promise
  * - Suspense boundary for loading state
+ *
+ * This combines EXAMPLE 1 (basic memoization) with EXAMPLE 2 (caching pattern)
  */
 function NotesListContent({
   onSelectNote,
