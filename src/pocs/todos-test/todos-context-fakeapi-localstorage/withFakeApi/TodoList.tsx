@@ -1,16 +1,36 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { Alert } from 'react-bootstrap';
+import { toast } from 'react-hot-toast';
+import 'font-awesome/css/font-awesome.css';
 
 import { useFakeApi } from './useFakeApi';
-import 'font-awesome/css/font-awesome.css';
 import { Todo } from '../Context';
 import { LoaderMessage } from '../../../../components/LoaderMessage';
+import { displayError } from '../../../../shared/utils/utils';
 
 const TodoList = () => {
+  const [error, setError] = useState<string | null>(null);
   const { getTodos, todos, loading, onUpdateTodo, deleteTodo } = useFakeApi();
 
   useEffect(() => {
-    getTodos();
+    const getData = async () => {
+      try {
+        await getTodos();
+      } catch (err) {
+        displayError(err as string, setError);
+      }
+    };
+    getData();
   }, []);
+
+  const onDeleteTodo = async (id: string) => {
+    try {
+      await deleteTodo(id);
+      toast.success('Todo deleted successfully');
+    } catch (err) {
+      displayError(err as string, setError);
+    }
+  };
 
   if (loading) {
     return (
@@ -26,6 +46,7 @@ const TodoList = () => {
 
   return (
     <>
+      {error && <Alert variant='danger'>{error}</Alert>}
       {!loading &&
         todos &&
         todos.map((todo: Todo) => (
@@ -41,7 +62,7 @@ const TodoList = () => {
               ></i>
               <i
                 className='edit-todo pr-2 pl-2 fa fa-trash me-2'
-                onClick={() => deleteTodo(todo.id)}
+                onClick={() => onDeleteTodo(todo.id)}
               ></i>
             </span>
           </div>

@@ -3,7 +3,7 @@ import TodoContext, { State } from '../Context';
 import TodoReducer from './TodoReducer';
 
 const TodoState = ({ children }: { children: ReactNode }) => {
-  const initialState = {
+  const initialState: State = {
     todos: [],
     todo: null,
     title: '',

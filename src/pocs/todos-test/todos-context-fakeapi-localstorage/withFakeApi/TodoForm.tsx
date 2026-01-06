@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Alert, Button, Col, Form } from 'react-bootstrap';
+import { toast } from 'react-hot-toast';
+
 import { displayError } from '../../../../shared/utils/utils';
 import { useFakeApi } from './useFakeApi';
 import { Todo } from '../Context';
@@ -9,19 +11,27 @@ const TodoForm = () => {
   const { todo, title, setTodoTitle, createTodo, updateTodo, loading } =
     useFakeApi();
 
-  const onCreateTodo = (e: React.FormEvent<HTMLFormElement>) => {
+  const onCreateTodo = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     if (title === '' || title.length < 2) {
-      displayError('Please enter a todo!', setError);
+      displayError('Please enter minimum 2 characters!', setError);
       return;
     }
-
     const newTodo = todo
       ? { id: todo.id, title, completed: false }
       : { title, completed: false };
 
-    todo ? updateTodo(newTodo as Todo) : createTodo(newTodo as Todo);
+    try {
+      if (todo) {
+        await updateTodo(newTodo as Todo);
+        toast.success('Todo updated successfully');
+      } else {
+        await createTodo(newTodo as Todo);
+        toast.success('Todo created successfully');
+      }
+    } catch (err) {
+      displayError(err as string, setError);
+    }
   };
 
   useEffect(() => {

@@ -30,10 +30,15 @@ export const useFakeApi = () => {
     try {
       dispatch({ type: LOADING_TODO, payload: true });
 
-      const todos = await fetch(
+      const response = await fetch(
         'https://jsonplaceholder.typicode.com/todos?_limit=5'
       );
-      const toJSON = await todos.json();
+      if (!response.ok) {
+        throw new Error(
+          `Failed to fetch todos: ${response.status} ${response.statusText}`
+        );
+      }
+      const toJSON = await response.json();
 
       await mockDelay(1000);
 
@@ -44,7 +49,9 @@ export const useFakeApi = () => {
       }
     } catch (err: unknown) {
       dispatch({ type: LOADING_TODO, payload: false });
-      console.error(err instanceof Error ? err.message : 'Unknown error');
+      const errorMessage = err instanceof Error ? err.message : 'Unknown error';
+      // You can dispatch an error action here if you add one to your reducer
+      throw errorMessage; // Re-throw to allow caller to handle
     }
   };
 
@@ -52,14 +59,22 @@ export const useFakeApi = () => {
     try {
       dispatch({ type: LOADING_TODO, payload: true });
 
-      const todo = await fetch('https://jsonplaceholder.typicode.com/todos', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newTodo),
-      });
-      const toJSON = await todo.json();
+      const response = await fetch(
+        'https://jsonplaceholder.typicode.com/todos',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(newTodo),
+        }
+      );
+      if (!response.ok) {
+        throw new Error(
+          `Failed to create todo: ${response.status} ${response.statusText}`
+        );
+      }
+      const toJSON = await response.json();
       const data = { ...toJSON, id: generateId(state.todos) };
 
       dispatch({ type: CLEAR_TODO_TITLE });
@@ -67,9 +82,10 @@ export const useFakeApi = () => {
       await mockDelay(1000);
 
       dispatch({ type: CREATE_TODO, payload: data });
-    } catch (err: any) {
+    } catch (err: unknown) {
       dispatch({ type: LOADING_TODO, payload: false });
-      console.error(err.message);
+      const errorMessage = err instanceof Error ? err.message : 'Unknown error';
+      throw errorMessage; // Re-throw to allow caller to handle
     }
   };
 
@@ -83,7 +99,7 @@ export const useFakeApi = () => {
     try {
       dispatch({ type: LOADING_TODO, payload: true });
 
-      const todo = await fetch(
+      const response = await fetch(
         `https://jsonplaceholder.typicode.com/todos/${newTodo.id}`,
         {
           method: 'PUT',
@@ -93,15 +109,21 @@ export const useFakeApi = () => {
           body: JSON.stringify(newTodo),
         }
       );
-      const toJSON = await todo.json();
+      if (!response.ok) {
+        throw new Error(
+          `Failed to update todo: ${response.status} ${response.statusText}`
+        );
+      }
+      const toJSON = await response.json();
 
       await mockDelay(1000);
 
       dispatch({ type: CLEAR_TODO_TITLE });
       dispatch({ type: UPDATE_TODO, payload: toJSON });
-    } catch (err: any) {
+    } catch (err: unknown) {
       dispatch({ type: LOADING_TODO, payload: false });
-      console.error(err.message);
+      const errorMessage = err instanceof Error ? err.message : 'Unknown error';
+      throw errorMessage; // Re-throw to allow caller to handle
     }
   };
 
@@ -109,16 +131,25 @@ export const useFakeApi = () => {
     try {
       dispatch({ type: LOADING_TODO, payload: true });
 
-      await fetch(`https://jsonplaceholder.typicode.com/todos/${id}`, {
-        method: 'DELETE',
-      });
+      const response = await fetch(
+        `https://jsonplaceholder.typicode.com/todos/${id}`,
+        {
+          method: 'DELETE',
+        }
+      );
+      if (!response.ok) {
+        throw new Error(
+          `Failed to delete todo: ${response.status} ${response.statusText}`
+        );
+      }
 
       await mockDelay(1000);
 
       dispatch({ type: DELETE_TODO, payload: id });
-    } catch (err: any) {
+    } catch (err: unknown) {
       dispatch({ type: LOADING_TODO, payload: false });
-      console.error(err.message);
+      const errorMessage = err instanceof Error ? err.message : 'Unknown error';
+      throw errorMessage; // Re-throw to allow caller to handle
     }
   };
 
