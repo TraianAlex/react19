@@ -154,6 +154,7 @@ const NotesApp = lazy(() => import('./pocs/hooks/useHookNotesApp/NotesApp'));
 const NoteDashboardApp = lazy(
   () => import('./pocs/hooks/useHookParallelDashboard/NoteDashboardApp')
 );
+const ContextApp = lazy(() => import('./pocs/hooks/useHookContextApp/ContextApp'));
 import { action as vanlifeLoginAction } from './apps/vanlife/pages/Login';
 import { loader as vansLoader } from './apps/vanlife/pages/vans/Vans';
 import { loader as vanlifeVanDetailLoader } from './apps/vanlife/pages/vans/VanDetail';
@@ -308,6 +309,7 @@ const router = createBrowserRouter(
           path='parallel-dashboard/:noteId'
           element={<NoteDashboardApp />}
         />
+        <Route path='context-app' element={<ContextApp />} />
       </Route>
       <Route path='login' element={<Login />} />
       <Route

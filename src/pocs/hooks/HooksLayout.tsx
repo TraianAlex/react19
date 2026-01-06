@@ -44,6 +44,18 @@ const HooksLayout = () => {
                   Parallel Dashboard (Example 3)
                 </Link>
               </li>
+              <li
+                className={`list-group-item ${
+                  isActive('hooks/context-app') ? 'active ' : ''
+                }`}
+              >
+                <Link
+                  to='context-app'
+                  className={isActive('hooks/context-app') ? 'text-white' : ''}
+                >
+                  Context App (Example 5)
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
