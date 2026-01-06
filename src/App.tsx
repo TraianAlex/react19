@@ -154,7 +154,12 @@ const NotesApp = lazy(() => import('./pocs/hooks/useHookNotesApp/NotesApp'));
 const NoteDashboardApp = lazy(
   () => import('./pocs/hooks/useHookParallelDashboard/NoteDashboardApp')
 );
-const ContextApp = lazy(() => import('./pocs/hooks/useHookContextApp/ContextApp'));
+const ContextApp = lazy(
+  () => import('./pocs/hooks/useHookContextApp/ContextApp')
+);
+const ProgressiveNoteApp = lazy(
+  () => import('./pocs/hooks/useHookProgressiveApp/ProgressiveNoteApp')
+);
 import { action as vanlifeLoginAction } from './apps/vanlife/pages/Login';
 import { loader as vansLoader } from './apps/vanlife/pages/vans/Vans';
 import { loader as vanlifeVanDetailLoader } from './apps/vanlife/pages/vans/VanDetail';
@@ -310,6 +315,10 @@ const router = createBrowserRouter(
           element={<NoteDashboardApp />}
         />
         <Route path='context-app' element={<ContextApp />} />
+        <Route
+          path='progressive-note/:noteId'
+          element={<ProgressiveNoteApp />}
+        />
       </Route>
       <Route path='login' element={<Login />} />
       <Route

@@ -56,6 +56,20 @@ const HooksLayout = () => {
                   Context App (Example 5)
                 </Link>
               </li>
+              <li
+                className={`list-group-item ${
+                  isActive('hooks/progressive-note') ? 'active ' : ''
+                }`}
+              >
+                <Link
+                  to='progressive-note/1'
+                  className={
+                    isActive('hooks/progressive-note') ? 'text-white' : ''
+                  }
+                >
+                  Progressive Note App (Example 6)
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

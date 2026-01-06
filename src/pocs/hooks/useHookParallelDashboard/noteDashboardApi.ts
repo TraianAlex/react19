@@ -15,7 +15,7 @@ export interface NoteComment {
   id: string;
   noteId: string;
   author: string;
-  comment: string;
+  text: string;
   createdAt: string;
 }
 

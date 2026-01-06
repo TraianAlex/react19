@@ -5,28 +5,40 @@
       "title": "Getting Started with React 19",
       "content": "React 19 introduces many exciting new features including the use() hook, useActionState, and improved Server Components support. The use() hook allows you to unwrap promises directly in your component, making async data fetching much cleaner.\n\nKey benefits:\n- Simpler code with less boilerplate\n- Better integration with Suspense\n- Automatic error handling with Error Boundaries\n- Parallel loading capabilities",
       "createdAt": "2024-01-15T10:00:00Z",
-      "category": "Technology"
+      "category": "Technology",
+      "author": "Sarah Johnson"
     },
     {
       "id": "2",
       "title": "Understanding Parallel vs Sequential Loading",
       "content": "When fetching multiple resources, parallel loading is much faster than sequential (waterfall) loading. With parallel loading, all requests start simultaneously, reducing total load time significantly.\n\nExample:\n- Parallel: 3 requests × 200ms = ~200ms total\n- Sequential: 200ms + 200ms + 200ms = 600ms total",
       "createdAt": "2024-01-16T14:30:00Z",
-      "category": "Technology"
+      "category": "Technology",
+      "author": "Mike Chen"
     },
     {
       "id": "3",
       "title": "Best Practices for React Performance",
       "content": "Performance optimization in React involves several strategies:\n\n1. Memoization with useMemo and useCallback\n2. Code splitting and lazy loading\n3. Virtual scrolling for long lists\n4. Proper key usage in lists\n5. Avoiding unnecessary re-renders",
       "createdAt": "2024-01-17T09:15:00Z",
-      "category": "Performance"
+      "category": "Performance",
+      "author": "Emily Rodriguez"
     },
     {
       "id": "4",
       "title": "Personal Development Goals",
       "content": "My goals for this year:\n\n- Master React 19 new features\n- Improve TypeScript skills\n- Learn more about performance optimization\n- Contribute to open source projects",
       "createdAt": "2024-01-18T11:20:00Z",
-      "category": "Personal"
+      "category": "Personal",
+      "author": "Alex Thompson"
+    },
+    {
+      "id": "5",
+      "title": "Advanced TypeScript Patterns",
+      "content": "TypeScript offers powerful patterns for building robust applications:\n\n- Conditional types for complex type transformations\n- Template literal types for string manipulation\n- Mapped types for creating new types from existing ones\n- Utility types for common transformations",
+      "createdAt": "2024-01-19T08:00:00Z",
+      "category": "Technology",
+      "author": "David Kim"
     }
   ],
   "comments": [
@@ -34,36 +46,118 @@
       "id": "1",
       "noteId": "1",
       "author": "John Doe",
-      "comment": "Great article! The use() hook is really game-changing for async data fetching.",
+      "text": "Great article! The use() hook is really game-changing for async data fetching.",
       "createdAt": "2024-01-16T10:30:00Z"
     },
     {
       "id": "2",
       "noteId": "1",
       "author": "Jane Smith",
-      "comment": "I've been using this pattern and it's made my code so much cleaner. Thanks for sharing!",
+      "text": "I've been using this pattern and it's made my code so much cleaner. Thanks for sharing!",
       "createdAt": "2024-01-16T15:45:00Z"
     },
     {
       "id": "3",
       "noteId": "1",
       "author": "Bob Johnson",
-      "comment": "Can you provide more examples of error handling with use()?",
+      "text": "Can you provide more examples of error handling with use()?",
       "createdAt": "2024-01-17T08:20:00Z"
     },
     {
       "id": "4",
       "noteId": "2",
       "author": "Alice Williams",
-      "comment": "This is a great explanation of parallel loading. Very helpful!",
+      "text": "This is a great explanation of parallel loading. Very helpful!",
       "createdAt": "2024-01-17T10:00:00Z"
     },
     {
       "id": "5",
       "noteId": "3",
       "author": "Charlie Brown",
-      "comment": "Performance optimization is crucial. Thanks for the tips!",
+      "text": "Performance optimization is crucial. Thanks for the tips!",
       "createdAt": "2024-01-18T12:00:00Z"
+    },
+    {
+      "id": "6",
+      "noteId": "2",
+      "author": "Robert Taylor",
+      "text": "I've implemented parallel loading in my project and saw a 40% improvement in load times!",
+      "createdAt": "2024-01-18T14:30:00Z"
+    },
+    {
+      "id": "7",
+      "noteId": "4",
+      "author": "Lisa Anderson",
+      "text": "These are excellent goals. Good luck with your learning journey!",
+      "createdAt": "2024-01-19T09:00:00Z"
+    }
+  ],
+  "related": [
+    {
+      "id": "2",
+      "noteId": "1",
+      "title": "Understanding Parallel vs Sequential Loading",
+      "category": "Technology"
+    },
+    {
+      "id": "3",
+      "noteId": "1",
+      "title": "Best Practices for React Performance",
+      "category": "Performance"
+    },
+    {
+      "id": "5",
+      "noteId": "1",
+      "title": "Advanced TypeScript Patterns",
+      "category": "Technology"
+    },
+    {
+      "id": "1",
+      "noteId": "2",
+      "title": "Getting Started with React 19",
+      "category": "Technology"
+    },
+    {
+      "id": "3",
+      "noteId": "2",
+      "title": "Best Practices for React Performance",
+      "category": "Performance"
+    },
+    {
+      "id": "5",
+      "noteId": "2",
+      "title": "Advanced TypeScript Patterns",
+      "category": "Technology"
+    },
+    {
+      "id": "1",
+      "noteId": "3",
+      "title": "Getting Started with React 19",
+      "category": "Technology"
+    },
+    {
+      "id": "2",
+      "noteId": "3",
+      "title": "Understanding Parallel vs Sequential Loading",
+      "category": "Technology"
+    },
+    {
+      "id": "3",
+      "noteId": "4",
+      "title": "Best Practices for React Performance",
+      "category": "Performance"
+    },
+    {
+      "id": "1",
+      "noteId": "5",
+      "title": "Getting Started with React 19",
+      "category": "Technology"
+    },
+    {
+      "id": "2",
+      "noteId": "5",
+      "title": "Understanding Parallel vs Sequential Loading",
+      "category": "Technology"
     }
   ],
   "stats": [

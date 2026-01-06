@@ -130,7 +130,7 @@ function NoteDashboardContent({ noteId }: NoteDashboardProps) {
                           {new Date(comment.createdAt).toLocaleDateString()}
                         </small>
                       </div>
-                      <p className='mb-0'>{comment.comment}</p>
+                      <p className='mb-0'>{comment.text}</p>
                     </div>
                   ))}
                 </div>
