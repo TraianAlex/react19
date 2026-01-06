@@ -1,4 +1,20 @@
 {
+  "notes": [
+    {
+      "id": 1,
+      "title": "Note 1",
+      "content": "This is the first note",
+      "createdAt": "2021-01-01",
+      "category": "Personal"
+    },
+    {
+      "id": 2,
+      "title": "Note 2",
+      "content": "This is the second note",
+      "createdAt": "2021-01-02",
+      "category": "Work"
+    }
+  ],
   "todos": [
     {
       "id": 1,

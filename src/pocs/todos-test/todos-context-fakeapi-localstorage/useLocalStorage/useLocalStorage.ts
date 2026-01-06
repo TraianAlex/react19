@@ -8,9 +8,10 @@ export const useLocalStorage = () => {
     throw new Error(`useLocalStorage must be used within a TodoLocalState`);
   }
 
-  const [todos, setTodos] = context;
+  const todos = context[0] as unknown as Todo[];
+  const setTodos = context[1] as unknown as (todos: Todo[]) => void;
 
-  const createTodo = (newTodo: Todo) => setTodos([...todos, newTodo] as any);
+  const createTodo = (newTodo: Todo) => setTodos([...todos, newTodo]);
 
   const updateTodo = (id: string, newTodo: Todo) => {
     todos.forEach((todo: Todo, index: number) => {

@@ -149,6 +149,8 @@ const TransitionSuspense = lazy(
 const TodosActionState = lazy(
   () => import('./pocs/todos-test/todos-action-state/TodosActionState')
 );
+const HooksLayout = lazy(() => import('./pocs/hooks/HooksLayout'));
+const NotesApp = lazy(() => import('./pocs/hooks/useHookNotesApp/NotesApp'));
 import { action as vanlifeLoginAction } from './apps/vanlife/pages/Login';
 import { loader as vansLoader } from './apps/vanlife/pages/vans/Vans';
 import { loader as vanlifeVanDetailLoader } from './apps/vanlife/pages/vans/VanDetail';
@@ -294,6 +296,10 @@ const router = createBrowserRouter(
           element={<TransitionOptimistic />}
         />
         <Route path='transition-suspense' element={<TransitionSuspense />} />
+      </Route>
+      <Route path='hooks' element={<HooksLayout />}>
+        <Route index element={<NotesApp />} />
+        <Route path='use-hook-notes-app' element={<NotesApp />} />
       </Route>
       <Route path='login' element={<Login />} />
       <Route
