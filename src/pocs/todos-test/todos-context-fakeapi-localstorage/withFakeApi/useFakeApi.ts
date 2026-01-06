@@ -12,9 +12,7 @@ import {
   CLEAR_TODO_TITLE,
 } from '../Types';
 import { Todo } from '../Context';
-import { mockDelay } from '../../../../shared/utils/utils';
-
-const getRandomId = () => `${Math.random()}-${Math.random()}`;
+import { generateId, mockDelay } from '../../../../shared/utils/utils';
 
 export const useFakeApi = () => {
   const context = useContext(TodoContext);
@@ -39,10 +37,14 @@ export const useFakeApi = () => {
 
       await mockDelay(1000);
 
-      dispatch({ type: GET_TODOS, payload: toJSON });
-    } catch (err: any) {
+      if (toJSON && Array.isArray(toJSON)) {
+        dispatch({ type: GET_TODOS, payload: toJSON });
+      } else {
+        dispatch({ type: GET_TODOS, payload: [] as Todo[] });
+      }
+    } catch (err: unknown) {
       dispatch({ type: LOADING_TODO, payload: false });
-      console.error(err.message);
+      console.error(err instanceof Error ? err.message : 'Unknown error');
     }
   };
 
@@ -58,7 +60,7 @@ export const useFakeApi = () => {
         body: JSON.stringify(newTodo),
       });
       const toJSON = await todo.json();
-      const data = { ...toJSON, id: getRandomId() };
+      const data = { ...toJSON, id: generateId(state.todos) };
 
       dispatch({ type: CLEAR_TODO_TITLE });
 

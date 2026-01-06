@@ -8,18 +8,7 @@ import {
   DELETE_TODO,
   CLEAR_TODO_TITLE,
 } from '../Types';
-import { Todo } from '../Context';
-
-interface State {
-  todos: Todo[];
-  title: string;
-  loading: boolean;
-}
-
-interface Action {
-  type: string;
-  payload?: any;
-}
+import { State, Action, Todo } from '../Context';
 
 export default (state: State, { type, payload }: Action) => {
   switch (type) {

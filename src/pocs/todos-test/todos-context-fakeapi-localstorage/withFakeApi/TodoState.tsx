@@ -1,10 +1,11 @@
 import { ReactNode, useMemo, useReducer } from 'react';
-import TodoContext from '../Context';
+import TodoContext, { State } from '../Context';
 import TodoReducer from './TodoReducer';
 
 const TodoState = ({ children }: { children: ReactNode }) => {
   const initialState = {
     todos: [],
+    todo: null,
     title: '',
     loading: false,
   };
@@ -12,7 +13,7 @@ const TodoState = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(TodoReducer, initialState);
 
   const value = useMemo(
-    () => [state, dispatch] as [any, (action: any) => void],
+    () => [state, dispatch] as [State, (action: any) => void],
     [state]
   );
 

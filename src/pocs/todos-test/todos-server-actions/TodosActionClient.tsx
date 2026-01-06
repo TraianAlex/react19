@@ -161,15 +161,26 @@ export default function TodosActionClient() {
         </button>
 
         {state.message && (
-          <div
-            className={cx(styles.message, {
-              [styles.success]: state.isSuccess,
-              [styles.error]: !state.isSuccess,
-            })}
-            role='alert'
-          >
-            {state.message}
-          </div>
+          <>
+            <div
+              className={cx(styles.message, {
+                [styles.success]: state.isSuccess,
+                [styles.error]: !state.isSuccess,
+              })}
+              role='alert'
+            >
+              {state.message}
+            </div>
+            <div
+              className={cx(styles.message, {
+                [styles.success]: state.isSuccess,
+                [styles.error]: !state.isSuccess,
+              })}
+              role='alert'
+            >
+              {JSON.stringify(state.todos)}
+            </div>
+          </>
         )}
       </form>
     </div>

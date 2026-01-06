@@ -21,6 +21,7 @@ export interface TodoActionState {
   message: string;
   isSuccess: boolean;
   errors?: Record<string, string>;
+  todos?: TodoFormData; // just to pass the form data to the client
 }
 
 const initialTodoState: TodoActionState = {
@@ -116,6 +117,16 @@ export async function createTodoAction(
     ...initialTodoState,
     message: `Todo "${title}" created successfully!`,
     isSuccess: true,
+    // just to pass the form data to the client and keep the form reseted
+    todos: {
+      title,
+      description,
+      priority,
+      dueDate,
+      completed,
+      category,
+      tags: tags,
+    },
   };
 }
 

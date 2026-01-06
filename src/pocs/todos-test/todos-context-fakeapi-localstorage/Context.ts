@@ -6,9 +6,16 @@ export interface Todo {
   completed: boolean;
 }
 
-interface Action {
+export interface State {
+  todos: Todo[];
+  todo: Todo | null;
+  title: string;
+  loading: boolean;
+}
+
+export interface Action {
   type: string;
   payload?: any;
 }
 
-export default createContext<[any, (action: Action) => void] | null>(null);
+export default createContext<[State, (action: Action) => void] | null>(null);
