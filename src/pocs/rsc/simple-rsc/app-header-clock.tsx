@@ -5,8 +5,10 @@ import AppShowSun from './app-show-sun';
 
 export default function AppHeaderClock({
   isoDateString,
+  children,
 }: {
   isoDateString: string;
+  children: React.ReactNode;
 }) {
   const [currentDate, setCurrentDate] = useState(new Date(isoDateString));
 
@@ -24,6 +26,7 @@ export default function AppHeaderClock({
     <div>
       {new Date(currentDate).toLocaleTimeString()}
       <div>
+        {children}
         <AppShowSun isoDateString={currentDate.toISOString()} />
       </div>
     </div>

@@ -51,7 +51,7 @@ export default function AppHeaderWithServerAction() {
     <div className='bg-light text-dark w-auto p-4'>
       <h2>Clock App with Server Actions</h2>
       <hr />
-      <AppHeaderClock isoDateString={new Date().toISOString()} />
+      <AppHeaderClock isoDateString={new Date().toISOString()} children={undefined} />
 
       <div className='mt-4'>
         <h3>Server Actions Demo</h3>
