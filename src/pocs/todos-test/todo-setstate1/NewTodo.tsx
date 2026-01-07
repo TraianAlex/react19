@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import styled from 'styled-components';
 import { useSelector } from './store';
-import { createList, todoAddHandler } from './Todos';
+import { todoAddHandler, createList } from './TodoStore';
 import { todoStore } from './TodoStore';
 
 const NewTodoForm: React.FC = () => {
@@ -38,7 +38,7 @@ const NewTodoForm: React.FC = () => {
       <FormStyled onSubmit={createListHandler}>
         <div className='formControl'>
           <label htmlFor='todo-text' className='label'>
-            Todo {'user'}
+            Todo {user}
           </label>
           <input
             type='text'

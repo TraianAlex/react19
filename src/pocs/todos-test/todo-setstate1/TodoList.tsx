@@ -1,7 +1,7 @@
 import { useSelector } from './store';
 import { todoStore } from './TodoStore';
 import styled from 'styled-components';
-import { todoDeleteHandler } from './Todos';
+import { todoDeleteHandler } from './TodoStore';
 
 const TodoList: React.FC = () => {
   const todos = useSelector(todoStore, 'todos');

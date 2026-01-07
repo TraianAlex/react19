@@ -27,7 +27,7 @@ const HooksLayout = () => {
                       : ''
                   }
                 >
-                  Use Hook Notes App (Example 2)
+                  Use Hook Notes (Example 2)
                 </Link>
               </li>
               <li
@@ -67,7 +67,7 @@ const HooksLayout = () => {
                     isActive('hooks/progressive-note') ? 'text-white' : ''
                   }
                 >
-                  Progressive Note App (Example 6)
+                  Progressive Note (Example 6)
                 </Link>
               </li>
             </ul>

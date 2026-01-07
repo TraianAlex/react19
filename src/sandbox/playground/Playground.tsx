@@ -6,10 +6,13 @@ import ResetState from '../diverse/reset-state';
 import { Marquee } from '../components/Marquee';
 import CompoundComponentsDemo from '../compound-components/CompoundComponentsDemo';
 import { AppProducts } from '../diverse/AppProducts';
+import { useTypeWritting } from '../../hooks/useTypeWritting';
 import AppParentGrandChild from '../parent-grandchild/AppParentGrandChild';
 
 const Playground = () => {
   const [value, setValue] = useState(1);
+
+  const text = useTypeWritting(['Hello, world!', 'This is a test!', 'We play around with code!']);
 
   const handleClick = () => {
     setValue((prev) => prev + 1);
@@ -29,6 +32,7 @@ const Playground = () => {
       </div> */}
       <main className='d-flex flex-column gap-2'>
         <Marquee>🧛‍♀️ Welcome to Horrorville 🧛‍♀️'</Marquee>
+        <h3 className='text-center'>{text}</h3>
         <CompoundComponentsDemo />
         {/* <TabTest /> */}
         <AppContextProvider>

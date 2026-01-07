@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useCallback, useContext, Dispatch, SetStateAction } from 'react';
 
 import TodoLocalContext, { Todo } from '../Context';
 
@@ -9,23 +9,37 @@ export const useLocalStorage = () => {
   }
 
   const todos = context[0] as unknown as Todo[];
-  const setTodos = context[1] as unknown as (todos: Todo[]) => void;
+  const setTodos = context[1] as unknown as Dispatch<SetStateAction<Todo[]>>;
 
-  const createTodo = (newTodo: Todo) => setTodos([...todos, newTodo]);
+  const createTodo = useCallback(
+    (newTodo: Todo) => setTodos((oldTodos) => [...oldTodos, newTodo]),
+    [setTodos]
+  );
 
-  const updateTodo = (id: string, newTodo: Todo) => {
-    todos.forEach((todo: Todo, index: number) => {
-      if (todo.id === id) {
-        todos.splice(index, 1);
-      }
-    });
-    createTodo(newTodo);
-  };
+  const updateTodo = useCallback(
+    (id: string, newTodo: Todo) => {
+      const newTodos = todos.map((todo: Todo) => {
+        if (todo.id === id) {
+          return newTodo;
+        }
+        return todo;
+      });
+      // todos.forEach((todo: Todo, index: number) => {
+      //   if (todo.id === id) {
+      //     todos.splice(index, 1);
+      //   }
+      // });
+      setTodos(newTodos);
+    },
+    [setTodos, todos]
+  );
 
-  const deleteTodo = (id: string) => {
-    const newTodos = todos.filter((todo: Todo) => todo.id !== id);
-    setTodos(newTodos);
-  };
+  const deleteTodo = useCallback(
+    (id: string) => {
+      setTodos((oldTodos) => oldTodos.filter((todo: Todo) => todo.id !== id));
+    },
+    [setTodos]
+  );
 
   return {
     todos,

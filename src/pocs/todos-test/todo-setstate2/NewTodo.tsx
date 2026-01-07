@@ -45,7 +45,7 @@ const NewTodoForm = () => {
       <FormStyled onSubmit={createListHandler}>
         <div className='formControl'>
           <label htmlFor='todo-text' className='label'>
-            Todo {'user'}
+            Todo {user}
           </label>
           <input
             type='text'
