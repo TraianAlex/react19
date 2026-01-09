@@ -173,11 +173,11 @@ const router = createBrowserRouter(
     <Route
       element={
         <ErrorBoundaryWithHook>
-          <Suspense fallback={<LoadingSpinner />}>
+          {/* <Suspense fallback={<LoadingSpinner />}> */}
             <Layout>
               <Outlet />
             </Layout>
-          </Suspense>
+          {/* </Suspense> */}
         </ErrorBoundaryWithHook>
       }
     >

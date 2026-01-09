@@ -12,7 +12,6 @@ function Product({
   chooseProduct: (id: string) => void;
 }) {
   sleep(1);
-  console.log('Product rendered');
 
   return (
     <div

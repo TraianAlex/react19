@@ -209,34 +209,6 @@
       "sequence": 7
     },
     {
-      "todoText": "aaaaaaa",
-      "completed": false,
-      "important": false,
-      "id": 10,
-      "sequence": 3
-    },
-    {
-      "todoText": "bbbbbb",
-      "completed": false,
-      "important": false,
-      "id": 14,
-      "sequence": 4
-    },
-    {
-      "todoText": "cccccc",
-      "completed": false,
-      "important": false,
-      "id": 15,
-      "sequence": 1
-    },
-    {
-      "todoText": "dddddd",
-      "completed": false,
-      "important": false,
-      "id": 16,
-      "sequence": 6
-    },
-    {
       "todoText": "fgdfgfdg",
       "completed": false,
       "important": false,
@@ -256,13 +228,6 @@
       "important": false,
       "id": 19,
       "sequence": 10
-    },
-    {
-      "todoText": "aaaaaaa",
-      "completed": false,
-      "important": false,
-      "id": 20,
-      "sequence": 11
     }
   ],
   "speakers": [
