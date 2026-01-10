@@ -160,6 +160,9 @@ const ContextApp = lazy(
 const ProgressiveNoteApp = lazy(
   () => import('./pocs/hooks/useHookProgressiveApp/ProgressiveNoteApp')
 );
+const React19FeaturesApp = lazy(
+  () => import('./pocs/react19-features/React19FeaturesApp')
+);
 import { action as vanlifeLoginAction } from './apps/vanlife/pages/Login';
 import { loader as vansLoader } from './apps/vanlife/pages/vans/Vans';
 import { loader as vanlifeVanDetailLoader } from './apps/vanlife/pages/vans/VanDetail';
@@ -174,9 +177,9 @@ const router = createBrowserRouter(
       element={
         <ErrorBoundaryWithHook>
           {/* <Suspense fallback={<LoadingSpinner />}> */}
-            <Layout>
-              <Outlet />
-            </Layout>
+          <Layout>
+            <Outlet />
+          </Layout>
           {/* </Suspense> */}
         </ErrorBoundaryWithHook>
       }
@@ -320,6 +323,7 @@ const router = createBrowserRouter(
           element={<ProgressiveNoteApp />}
         />
       </Route>
+      <Route path='react19-features' element={<React19FeaturesApp />} />
       <Route path='login' element={<Login />} />
       <Route
         path='profile'

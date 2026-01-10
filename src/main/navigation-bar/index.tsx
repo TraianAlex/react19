@@ -136,6 +136,16 @@ export const NavigationBar = () => {
                   <li>
                     <Link
                       className={`dropdown-item ${
+                        isActive('/react19-features') ? 'active' : ''
+                      }`}
+                      to='react19-features'
+                    >
+                      React 19 Features
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      className={`dropdown-item ${
                         isActive('/weather') ? 'active' : ''
                       }`}
                       to='weather'
