@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ErrorBoundary } from 'react-error-boundary';
 import NoteContent from './NoteContent';
@@ -45,11 +45,12 @@ export default function ProgressiveNoteApp() {
   const [currentNoteId, setCurrentNoteId] = useState<string>(noteId || '1');
 
   // Sync noteId from URL params when it changes
-  useEffect(() => {
-    if (noteId && noteId !== currentNoteId) {
-      setCurrentNoteId(noteId);
-    }
-  }, [noteId, currentNoteId]);
+  // remove it to avoid extra unnecessary render
+  // useEffect(() => {
+  //   if (noteId && noteId !== currentNoteId) {
+  //     setCurrentNoteId(noteId);
+  //   }
+  // }, [noteId, currentNoteId]);
 
   const handleSelectNote = (id: string) => {
     setCurrentNoteId(id);

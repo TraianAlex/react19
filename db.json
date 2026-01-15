@@ -207,27 +207,6 @@
       "completed": false,
       "important": true,
       "sequence": 7
-    },
-    {
-      "todoText": "fgdfgfdg",
-      "completed": false,
-      "important": false,
-      "id": 17,
-      "sequence": 8
-    },
-    {
-      "todoText": "dfgdfg",
-      "completed": false,
-      "important": false,
-      "id": 18,
-      "sequence": 9
-    },
-    {
-      "todoText": "dfgdfg",
-      "completed": false,
-      "important": false,
-      "id": 19,
-      "sequence": 10
     }
   ],
   "speakers": [

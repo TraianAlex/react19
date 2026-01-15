@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 
 import TodoContext from '../Context';
 import {
@@ -54,6 +54,13 @@ export const useFakeApi = () => {
       throw errorMessage; // Re-throw to allow caller to handle
     }
   };
+
+  useEffect(() => {
+    const getData = async () => {
+        await getTodos();
+    };
+    getData();
+  }, []);
 
   const createTodo = async (newTodo: Todo) => {
     try {

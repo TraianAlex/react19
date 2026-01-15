@@ -38,6 +38,7 @@ export default (state: State, { type, payload }: Action) => {
       return {
         ...state,
         todo: payload as Todo,
+        title: payload.title
       };
     case UPDATE_TODO:
       return {

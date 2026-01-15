@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Alert } from 'react-bootstrap';
 import { toast } from 'react-hot-toast';
 import 'font-awesome/css/font-awesome.css';
@@ -10,18 +10,19 @@ import { displayError } from '../../../../shared/utils/utils';
 
 const TodoList = () => {
   const [error, setError] = useState<string | null>(null);
-  const { getTodos, todos, loading, onUpdateTodo, deleteTodo } = useFakeApi();
+  const { todos, loading, onUpdateTodo, deleteTodo } = useFakeApi();
 
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        await getTodos();
-      } catch (err) {
-        displayError(err as string, setError);
-      }
-    };
-    getData();
-  }, []);
+  // No need effect in component. The hook will update the state on first load
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     try {
+  //       await getTodos();
+  //     } catch (err) {
+  //       displayError(err as string, setError);
+  //     }
+  //   };
+  //   getData();
+  // }, []);
 
   const onDeleteTodo = async (id: string) => {
     try {

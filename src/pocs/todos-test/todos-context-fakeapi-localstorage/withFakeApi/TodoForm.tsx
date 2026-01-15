@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Alert, Button, Col, Form } from 'react-bootstrap';
 import { toast } from 'react-hot-toast';
 
@@ -34,11 +34,12 @@ const TodoForm = () => {
     }
   };
 
-  useEffect(() => {
-    if (todo) {
-      setTodoTitle(todo.title);
-    }
-  }, [todo]);
+  // set title directly in reducer ON_UPDATE_TODO
+  // useEffect(() => {
+  //   if (todo) {
+  //     setTodoTitle(todo.title);
+  //   }
+  // }, [todo]);
 
   return (
     <>

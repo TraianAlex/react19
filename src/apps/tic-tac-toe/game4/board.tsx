@@ -13,9 +13,12 @@ export const Board = () => {
       Array(9).fill(null)
   );
 
-  useEffect(() => {
-    window.localStorage.setItem('squares', JSON.stringify(squares));
-  }, [squares]);
+  // antipatern - this is not necessary since this depends on user event
+  // It causes an unnecessary render when squares change and introduces 
+  // complexity where state can be directly computed during render or during an user event
+  // useEffect(() => {
+  //   window.localStorage.setItem('squares', JSON.stringify(squares));
+  // }, [squares]);
 
   const winner = calculateWinner(squares);
   const status = calculateStatus(winner, squares);
@@ -27,6 +30,7 @@ export const Board = () => {
     const squaresCopy = [...squares];
     squaresCopy[square] = calculateNextValue(squares);
     setSquares(squaresCopy);
+    window.localStorage.setItem('squares', JSON.stringify(squares));
   };
 
   const restart = () => {

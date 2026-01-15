@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import TodoList from './TodoList';
 import NewTodoForm from './NewTodo';
@@ -16,11 +16,7 @@ const TodosBasic = () => {
   const [todos, setTodos] = useState<TodoState[]>([]);
   const [list, setList] = useState<string[]>([]);
   const [count, setCount] = useState<number>(0);
-  const [user, setUser] = useState<string | undefined>();
-
-  useEffect(() => {
-    setUser('Alex');
-  }, []);
+  const [user,] = useState<string | undefined>('Alex');
 
   const todoAddHandler = useCallback((text: string) => {
     setTodos((prevTodos) => [
