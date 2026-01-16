@@ -274,9 +274,4 @@ export async function todoAction(
   return await createTodoAction(prevState, formData);
 }
 
-// Helper function to get initial todos from API
-export async function getInitialTodos(): Promise<Todo[]> {
-  return await fetchTodosAction();
-}
-
 export const initialTodoActionState = initialState;

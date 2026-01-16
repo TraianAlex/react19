@@ -1,29 +1,19 @@
 import { useActionState, useTransition, useEffect, useState } from 'react';
-import {
-  todoAction,
-  initialTodoActionState,
-  getInitialTodos,
-  type TodoActionState,
-  type Todo,
-} from './serverAction';
 import { toast } from 'react-hot-toast';
+import { todoAction, initialTodoActionState, type Todo } from './serverAction';
 
 export default function TodosActionState() {
-  const [isLoadingInitial, setIsLoadingInitial] = useState(true);
   const [editingTodoId, setEditingTodoId] = useState<number | null>(null);
-
   const [state, formAction, isPending] = useActionState(
     todoAction,
     initialTodoActionState
   );
-
   const [isTransitioning, startTransition] = useTransition();
 
   // Fetch initial todos on mount
   useEffect(() => {
     async function loadInitialTodos() {
       try {
-        const todos = await getInitialTodos();
         // Trigger refresh action to update state with fetched todos
         const formData = new FormData();
         formData.set('action', 'refresh');
@@ -32,12 +22,9 @@ export default function TodosActionState() {
         });
       } catch (error) {
         console.error('Failed to load initial todos:', error);
-      } finally {
-        setIsLoadingInitial(false);
       }
     }
     loadInitialTodos();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Show toast notifications when error or message changes
@@ -90,22 +77,6 @@ export default function TodosActionState() {
   const editingTodo = editingTodoId
     ? state.todos.find((todo) => todo.id === editingTodoId)
     : null;
-
-  if (isLoadingInitial) {
-    return (
-      <div className='container mt-4'>
-        <div className='row justify-content-center'>
-          <div className='col-md-8 col-lg-6'>
-            <div className='card'>
-              <div className='card-body text-center'>
-                <h2 className='card-title mb-4'>Loading todos...</h2>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className='container mt-4'>
@@ -197,7 +168,17 @@ export default function TodosActionState() {
                 </div>
               </form>
 
-              {state.todos.length > 0 && (
+              {isPending || isTransitioning ? (
+                <div className='container mt-4'>
+                  <div className='row justify-content-center'>
+                    <div className='col-md-8 col-lg-6'>
+                      <div className='card-body text-center'>
+                        <h3 className='card-title mb-4'>Loading todos...</h3>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ) : (
                 <div className='mt-4'>
                   <h3>Your Todos</h3>
                   <ul className='list-group'>
@@ -250,7 +231,7 @@ export default function TodosActionState() {
                 </div>
               )}
 
-              {state.todos.length === 0 && !isPending && !isLoadingInitial && (
+              {state.todos.length === 0 && !isPending && (
                 <div className='mt-4 text-center text-muted'>
                   <p>No todos yet. Create your first todo above!</p>
                 </div>
