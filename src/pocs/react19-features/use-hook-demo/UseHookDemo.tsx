@@ -1,51 +1,9 @@
-import { Suspense, use, useState } from 'react';
+import { Suspense, useState } from 'react';
 import { jsonPlaceholderApi } from '../shared/api';
 import { LoadingSpinner } from '../shared/components/LoadingSpinner';
 import { ErrorBoundary } from '../shared/components/ErrorBoundary';
-import type { Post } from '../shared/types';
-
-// Component that uses the new `use()` hook with promises
-function PostsList({ postsPromise }: { postsPromise: Promise<Post[]> }) {
-  // React 19's new use() hook - can consume promises directly
-  const posts = use(postsPromise);
-
-  return (
-    <div className='row'>
-      {posts.slice(0, 6).map((post) => (
-        <div key={post.id} className='col-md-6 col-lg-4 mb-3'>
-          <div
-            className='card h-100'
-            data-post-id={post.id}
-            style={{ cursor: 'pointer' }}
-          >
-            <div className='card-body'>
-              <h6 className='card-title text-truncate'>{post.title}</h6>
-              <p className='card-text small text-muted'>
-                {post.body.substring(0, 100)}...
-              </p>
-              <small className='text-muted'>User ID: {post.userId}</small>
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-// Component demonstrating use() with context-like behavior
-function PostDetail({ postPromise }: { postPromise: Promise<Post> }) {
-  const post = use(postPromise);
-
-  return (
-    <div className='card'>
-      <div className='card-body'>
-        <h5 className='card-title'>{post.title}</h5>
-        <p className='card-text'>{post.body}</p>
-        <small className='text-muted'>By User {post.userId}</small>
-      </div>
-    </div>
-  );
-}
+import { PostsList } from './PostList';
+import { PostDetail } from './PostDetail';
 
 export function UseHookDemo() {
   const [selectedPostId, setSelectedPostId] = useState<number | null>(null);

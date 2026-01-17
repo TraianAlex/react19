@@ -115,6 +115,16 @@ export default function TodosActions() {
               </form>
             </div>
           </div>
+          {mutation.isPending && (
+            <div className='card'>
+              <div className='card-body'>Loading...</div>
+            </div>
+          )}
+          {mutation.data && (
+            <div className='card'>
+              <div className='card-body'>{JSON.stringify(mutation.data)}</div>
+            </div>
+          )}
         </div>
       </div>
     </div>

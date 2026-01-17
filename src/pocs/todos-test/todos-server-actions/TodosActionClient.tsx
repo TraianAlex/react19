@@ -1,9 +1,5 @@
 import { useActionState, useTransition } from 'react';
-import {
-  createTodoAction,
-  initialTodoActionState,
-  type TodoActionState,
-} from './serverAction';
+import { createTodoAction, initialTodoActionState } from './serverAction';
 import stylesModule from './TodosAction.module.scss';
 import classNames from 'classnames';
 

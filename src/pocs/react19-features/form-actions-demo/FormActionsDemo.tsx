@@ -1,58 +1,8 @@
 import { useActionState } from 'react';
 import { useFormStatus } from 'react-dom';
-import { jsonPlaceholderApi } from '../shared/api';
-import type { ActionResult, Post } from '../shared/types';
-
-// Form action for creating posts
-async function createPostAction(
-  prevState: ActionResult<Post>,
-  formData: FormData
-): Promise<ActionResult<Post>> {
-  try {
-    const title = formData.get('title') as string;
-    const body = formData.get('body') as string;
-    const userId = parseInt(formData.get('userId') as string);
-
-    // Validation
-    if (!title?.trim()) {
-      return { success: false, error: 'Title is required' };
-    }
-    if (!body?.trim()) {
-      return { success: false, error: 'Body is required' };
-    }
-    if (!userId || userId < 1) {
-      return { success: false, error: 'Valid User ID is required' };
-    }
-
-    const post = await jsonPlaceholderApi.createPost({ title, body, userId });
-    return { success: true, data: post };
-  } catch (error) {
-    return {
-      success: false,
-      error: error instanceof Error ? error.message : 'Failed to create post',
-    };
-  }
-}
-
-// Submit button component that uses useFormStatus
-function SubmitButton() {
-  const { pending } = useFormStatus();
-
-  return (
-    <button type='submit' className='btn btn-primary' disabled={pending}>
-      {pending ? (
-        <>
-          <span className='spinner-border spinner-border-sm me-2' role='status'>
-            <span className='visually-hidden'>Loading...</span>
-          </span>
-          Creating Post...
-        </>
-      ) : (
-        'Create Post'
-      )}
-    </button>
-  );
-}
+import SubmitButton from './SubmitButton';
+import ContactSubmitButton from './ContactSubmitButton';
+import { contactFormAction, createPostAction } from './actions';
 
 // Form status indicator
 function FormStatusIndicator() {
@@ -70,54 +20,25 @@ function FormStatusIndicator() {
   );
 }
 
-// Contact form with different validation
-async function contactFormAction(
-  prevState: ActionResult,
-  formData: FormData
-): Promise<ActionResult> {
-  try {
-    const name = formData.get('name') as string;
-    const email = formData.get('email') as string;
-    const message = formData.get('message') as string;
-
-    // Simulate validation
-    if (!name?.trim()) {
-      return { success: false, error: 'Name is required' };
-    }
-    if (!email?.includes('@')) {
-      return { success: false, error: 'Valid email is required' };
-    }
-    if (!message?.trim()) {
-      return { success: false, error: 'Message is required' };
-    }
-
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-
-    return {
-      success: true,
-      data: { name, email, message },
-      error: undefined,
-    };
-  } catch (error) {
-    return {
-      success: false,
-      error: 'Failed to send message',
-    };
-  }
-}
-
 export function FormActionsDemo() {
   // React 19's useActionState hook
-  const [postState, postAction] = useActionState(createPostAction, {
+  const initialPostState = {
     success: false,
-    error: null,
-  });
+    error: undefined,
+  };
+  const [postState, postAction] = useActionState(
+    createPostAction,
+    initialPostState
+  );
 
-  const [contactState, contactAction] = useActionState(contactFormAction, {
+  const initialContactState = {
     success: false,
-    error: null,
-  });
+    error: undefined,
+  };
+  const [contactState, contactAction] = useActionState(
+    contactFormAction,
+    initialContactState
+  );
 
   return (
     <div className='container-fluid'>
@@ -326,25 +247,5 @@ export function FormActionsDemo() {
         </div>
       </div>
     </div>
-  );
-}
-
-// Separate submit button for contact form
-function ContactSubmitButton() {
-  const { pending } = useFormStatus();
-
-  return (
-    <button type='submit' className='btn btn-success' disabled={pending}>
-      {pending ? (
-        <>
-          <span className='spinner-border spinner-border-sm me-2' role='status'>
-            <span className='visually-hidden'>Loading...</span>
-          </span>
-          Sending...
-        </>
-      ) : (
-        'Send Message'
-      )}
-    </button>
   );
 }

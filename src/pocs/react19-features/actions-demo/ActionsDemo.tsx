@@ -2,30 +2,7 @@ import { useState, useTransition } from 'react';
 import { jsonPlaceholderApi } from '../shared/api';
 import type { Post } from '../shared/types';
 import { LoadingSpinner } from '../shared/components/LoadingSpinner';
-
-// Server Action simulation - in real React 19, these would be server functions
-async function createPostAction(formData: FormData) {
-  const title = formData.get('title') as string;
-  const body = formData.get('body') as string;
-  const userId = parseInt(formData.get('userId') as string);
-
-  if (!title || !body || !userId) {
-    throw new Error('All fields are required');
-  }
-
-  return await jsonPlaceholderApi.createPost({ title, body, userId });
-}
-
-async function updatePostAction(id: number, formData: FormData) {
-  const title = formData.get('title') as string;
-  const body = formData.get('body') as string;
-
-  const updates: Partial<Post> = {};
-  if (title) updates.title = title;
-  if (body) updates.body = body;
-
-  return await jsonPlaceholderApi.updatePost(id, updates);
-}
+import { createPostAction, deletePostAction, updatePostAction } from './actions';
 
 export function ActionsDemo() {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -99,7 +76,7 @@ export function ActionsDemo() {
     startTransition(async () => {
       try {
         setError(null);
-        await jsonPlaceholderApi.deletePost(id);
+        await deletePostAction(id);
         setPosts((prev) => prev.filter((p) => p.id !== id));
         setSuccess('Post deleted successfully!');
       } catch (err) {

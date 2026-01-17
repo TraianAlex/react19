@@ -209,7 +209,7 @@ export function OptimisticDemo() {
           )}
 
           <div className='d-flex flex-column gap-2'>
-            {optimisticTodos.map((todo) => (
+            {optimisticTodos.map((todo: OptimisticTodo) => (
               <div
                 key={todo.id}
                 className={`card ${todo.optimistic ? 'border-warning' : ''}`}
