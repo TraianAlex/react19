@@ -1,5 +1,3 @@
-// Shared types for React 19 feature demos
-
 export interface Post {
   id: number;
   title: string;

@@ -2,7 +2,6 @@ import { use } from 'react';
 import { Comment } from '../shared/types';
 import { promiseCache } from './SuspenseDemo';
 
-// Component that fetches comments for a post
 export function PostComments({ postId }: { postId: number }) {
   const cacheKey = `comments-${postId}`;
 

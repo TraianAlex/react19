@@ -3,7 +3,6 @@ import { PostContent } from './PostContent';
 import { LoadingSpinner } from '../shared/components/LoadingSpinner';
 import { jsonPlaceholderApi } from '../shared/api';
 
-// Component that demonstrates multiple concurrent suspense boundaries
 export function ConcurrentPosts() {
   const post1Promise = useMemo(() => jsonPlaceholderApi.getPost(1), []);
   const post2Promise = useMemo(() => jsonPlaceholderApi.getPost(2), []);

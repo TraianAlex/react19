@@ -1,7 +1,6 @@
 import { jsonPlaceholderApi } from '../shared/api';
 import { ActionResult, Post } from '../shared/types';
 
-// Form action for creating posts
 export async function createPostAction(
   prevState: ActionResult<Post>,
   formData: FormData
@@ -11,7 +10,6 @@ export async function createPostAction(
     const body = formData.get('body') as string;
     const userId = parseInt(formData.get('userId') as string);
 
-    // Validation
     if (!title?.trim()) {
       return { success: false, error: 'Title is required' };
     }
@@ -32,7 +30,6 @@ export async function createPostAction(
   }
 }
 
-// Contact form with different validation
 export async function contactFormAction(
   prevState: ActionResult,
   formData: FormData

@@ -1,6 +1,5 @@
 import { useFormStatus } from 'react-dom';
 
-// Separate submit button for contact form
 export default function ContactSubmitButton() {
   const { pending } = useFormStatus();
 

@@ -13,7 +13,6 @@ export function OptimisticDemo() {
   const [error, setError] = useState<string | null>(null);
   const [newTodoText, setNewTodoText] = useState('');
 
-  // React 19's useOptimistic hook for optimistic updates
   const [optimisticTodos, addOptimisticTodo] = useOptimistic(
     todos,
     (state: Todo[], optimisticTodo: OptimisticTodo) => {
@@ -29,7 +28,6 @@ export function OptimisticDemo() {
     }
   );
 
-  // Load todos from API
   const loadTodos = () => {
     startTransition(async () => {
       try {
@@ -44,7 +42,6 @@ export function OptimisticDemo() {
     });
   };
 
-  // Add todo with optimistic update
   const addTodo = () => {
     if (!newTodoText.trim()) return;
 
@@ -80,7 +77,6 @@ export function OptimisticDemo() {
     });
   };
 
-  // Toggle todo completion with optimistic update
   const toggleTodo = (todo: Todo) => {
     const updatedTodo = { ...todo, completed: !todo.completed };
 
@@ -105,7 +101,6 @@ export function OptimisticDemo() {
     });
   };
 
-  // Delete todo with optimistic update
   const deleteTodo = (todoId: number) => {
     // Optimistically remove from UI
     const filteredTodos = todos.filter((t) => t.id !== todoId);

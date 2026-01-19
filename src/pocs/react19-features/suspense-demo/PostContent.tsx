@@ -1,7 +1,6 @@
 import { use } from 'react';
 import { Post } from '../shared/types';
 
-// Component that fetches and displays post
 export function PostContent({ postPromise }: { postPromise: Promise<Post> }) {
   const post = use(postPromise);
 

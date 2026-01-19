@@ -5,7 +5,6 @@ import { PostContent } from './PostContent';
 import { jsonPlaceholderApi } from '../shared/api';
 import { promiseCache } from './SuspenseDemo';
 
-// Nested suspense component
 export function NestedSuspenseContent({ postId }: { postId: number }) {
   const cacheKey = `post-${postId}`;
 

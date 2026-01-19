@@ -1,11 +1,8 @@
-// Shared API utilities for React 19 feature demos
-
 export const API_ENDPOINTS = {
   jsonPlaceholder: 'https://jsonplaceholder.typicode.com',
   localServer: 'http://localhost:4000',
 };
 
-// Simulate network delay for better demo experience
 export const delay = (ms: number) =>
   new Promise((resolve) => setTimeout(resolve, ms));
 

@@ -1,6 +1,5 @@
 import { startTransition, useState } from 'react';
 
-// Batch updates demonstration
 export default function BatchUpdatesDemo() {
   const [count1, setCount1] = useState(0);
   const [count2, setCount2] = useState(0);

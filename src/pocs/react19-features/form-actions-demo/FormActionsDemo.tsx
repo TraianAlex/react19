@@ -4,7 +4,6 @@ import SubmitButton from './SubmitButton';
 import ContactSubmitButton from './ContactSubmitButton';
 import { contactFormAction, createPostAction } from './actions';
 
-// Form status indicator
 function FormStatusIndicator() {
   const { pending, data, method } = useFormStatus();
 
@@ -20,24 +19,20 @@ function FormStatusIndicator() {
   );
 }
 
+const initialState = {
+  success: false,
+  error: undefined,
+};
+
 export function FormActionsDemo() {
-  // React 19's useActionState hook
-  const initialPostState = {
-    success: false,
-    error: undefined,
-  };
   const [postState, postAction] = useActionState(
     createPostAction,
-    initialPostState
+    initialState
   );
 
-  const initialContactState = {
-    success: false,
-    error: undefined,
-  };
   const [contactState, contactAction] = useActionState(
     contactFormAction,
-    initialContactState
+    initialState
   );
 
   return (
