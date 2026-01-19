@@ -3,9 +3,8 @@ import { createContext, useContext, useState, useEffect } from 'react';
 import { useGetContact } from '../hooks/useGetContact';
 import { useSaveContact } from '../hooks/useSaveContact';
 
-// Create the context
 const EditContactContext = createContext({} as any);
-// Hook to use the context
+
 export const useEditContactContext = () => {
   const context = useContext(EditContactContext);
   if (!context) {
@@ -15,7 +14,7 @@ export const useEditContactContext = () => {
   }
   return context;
 };
-// Root component that manages state and logic
+
 export const RootProvider = ({
   contactId,
   onClose,
@@ -33,13 +32,10 @@ export const RootProvider = ({
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  // Fetch contact details
   const { data: contact } = useGetContact(contactId);
 
-  // Save contact mutation
   const saveContact = useSaveContact({
     onSuccess: () => {
-      // Handle success
       console.log('onSuccess');
     },
     onError: (err: Error) => {
@@ -48,7 +44,6 @@ export const RootProvider = ({
     },
   });
 
-  // Set initial form data
   useEffect(() => {
     if (contact) {
       setFormState({
@@ -59,7 +54,6 @@ export const RootProvider = ({
     }
   }, [contact]);
 
-  // Handle form submission
   const handleSubmit = async () => {
     setIsLoading(true);
     try {
@@ -81,7 +75,6 @@ export const RootProvider = ({
     onClose?.();
   };
 
-  // Context value
   const value = {
     contact,
     formState,

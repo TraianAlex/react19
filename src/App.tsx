@@ -132,6 +132,7 @@ const TodosSetState1 = lazy(
 const TodosSetState2 = lazy(
   () => import('./pocs/todos-test/todo-setstate2/Todos')
 );
+const Todos3 = lazy(() => import('./pocs/todos-test/todo-setstate3/Todos'));
 const RscLayout = lazy(() => import('./pocs/rsc/RscLayout'));
 const AppHeader = lazy(() => import('./pocs/rsc/simple-rsc/app-header'));
 const TransitionLayout = lazy(
@@ -284,7 +285,7 @@ const router = createBrowserRouter(
         <Route path='todos-basic' element={<TodosBasic />} />
         <Route path='todos-state1' element={<TodosSetState1 />} />
         <Route path='todos-state2' element={<TodosSetState2 />} />
-        <Route path='todos-state3' element={<h1>Todos State 3</h1>} />
+        <Route path='todos-state3' element={<Todos3 />} />
         <Route path='todos-server-actions' element={<TodosAction />} />
         <Route path='todos-actions' element={<TodosActions />} />
         <Route path='todos-action-state' element={<TodosActionState />} />
