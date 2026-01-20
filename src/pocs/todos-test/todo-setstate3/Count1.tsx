@@ -1,14 +1,14 @@
 import { useStore } from './TodoStore';
 
-export const Count = () => {
-  const count = useStore('count');
+export const Count1 = () => {
+  const count = useStore('count1');
 
-  console.log('render Count');
+  console.log('render Count1');
 
   return (
     <div style={{ width: '90%', margin: 'auto' }}>
       <hr />
-      <div>{count} rows</div>
+      <div>Count1: {count} rows</div>
     </div>
   );
 };

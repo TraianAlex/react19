@@ -11,7 +11,7 @@ type TodosType = {
   todos: TodosState[];
   title: string;
   subTitle: string;
-  count: number;
+  count1: number;
   count2: number;
   user: string;
   list: string[];
@@ -22,7 +22,7 @@ const initialState: TodosType = {
   todos: [],
   title: 'SetState3',
   subTitle: '',
-  count: 0,
+  count1: 0,
   count2: 0,
   user: '',
   list: [],
@@ -39,11 +39,11 @@ export const setSubTitle = (text: string) => {
 };
 
 export const todoAddHandler = (text: string) => {
-  setState('todos', (p: State['count']) => [
+  setState('todos', (p: State['todos']) => [
     ...p,
-    { id: Math.random().toString(), text: text },
+    { id: Math.random().toString(), text },
   ]);
-  setState('count', (p: State['count']) => p + 1);
+  setState('count1', (p: State['count1']) => p + 1);
 };
 
 export const createList = (text: string) => {
@@ -54,11 +54,11 @@ export const todoDeleteHandler = (todoId: string) => {
   setState('todos', (p: State['todos']) => [
     ...p.filter((todo: TodosState) => todo.id !== todoId),
   ]);
-  setState('count', (p: State['count']) => p - 1);
+  setState('count1', (p: State['count1']) => p - 1);
 };
 
 export const setCount = (nr: number) => {
-  setState('count', (p: State['count']) => p + nr);
+  setState('count1', (p: State['count1']) => p + nr);
 };
 
 export const setCount2 = (nr: number) => {

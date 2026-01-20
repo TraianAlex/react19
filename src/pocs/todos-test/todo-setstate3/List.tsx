@@ -6,7 +6,7 @@ export const List = () => {
 
   useEffect(() => {
     setList(() => ['initial list']);
-  }, [setList]);
+  }, []);
 
   console.log('render List');
 

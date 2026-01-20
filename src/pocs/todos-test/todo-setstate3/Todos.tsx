@@ -3,7 +3,7 @@ import TodoList from './TodoList';
 import NewTodoForm from './NewTodo';
 import { Container } from 'react-bootstrap';
 import { Header } from './Header';
-import { Count } from './Count';
+import { Count1 } from './Count1';
 import { List } from './List';
 import { setSubTitle } from './TodoStore';
 import { Footer } from './Footer';
@@ -33,7 +33,7 @@ const Todos3 = () => {
       <Header />
       <List />
       <NewTodoForm />
-      <Count />
+      <Count1 />
       <TodoList />
       <Footer />
     </Container>

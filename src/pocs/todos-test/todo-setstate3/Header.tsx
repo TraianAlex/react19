@@ -4,7 +4,7 @@ import { setSubTitle, useStore } from './TodoStore';
 export const Header = () => {
   const title = useStore('title');
   const subTitle = useStore('subTitle');
-  const count = useStore('count');
+  const count1 = useStore('count1');
 
   const modifSubtitle = async () => {
     await pause(1000);
@@ -28,7 +28,7 @@ export const Header = () => {
         >
           Colours: {randomColor()}
         </span>
-        Count1: {count}
+        Count1: {count1}
       </div>
       <div>
         SubTitle: {subTitle}
