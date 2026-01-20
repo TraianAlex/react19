@@ -8,29 +8,20 @@ export const Footer = () => {
   console.log('render Footer, random string');
 
   return (
-    <div style={{ width: '90%', margin: 'auto' }}>
+    <footer className='text-center'>
       <hr />
-      <Count2 /> Random string: {randomString()}
-      <button
-        style={{
-          border: '1px solid black',
-          marginLeft: '10px',
-          padding: '0 5px',
-        }}
+      <Count2 />
+      <div className='badge bg-secondary text-center'>Random string: {randomString()}</div>
+      <button className='btn btn-outline-primary ms-2'
         onClick={() => setRender(!render)}
       >
         Render
       </button>
-      <button
-        style={{
-          border: '1px solid black',
-          marginLeft: '10px',
-          padding: '0 5px',
-        }}
+      <button className='btn btn-outline-primary ms-2'
         onClick={() => clearCookies()}
       >
         Clear Cookies
       </button>
-    </div>
+    </footer>
   );
 };

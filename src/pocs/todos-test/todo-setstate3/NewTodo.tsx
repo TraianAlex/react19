@@ -58,16 +58,11 @@ const NewTodoForm = () => {
             id="todo-text"
             ref={listInputRef}
             className="input"
+            placeholder='add something or just click Add To List button'
           />
         </div>
         <button type="submit" className="button">
           ADD TO LIST
-        </button>
-        <button onClick={handleClick1} type="button" className="button">
-          COUNT1
-        </button>
-        <button onClick={handleClick2} type="button" className="button">
-          COUNT2
         </button>
       </FormStyled>
       <FormStyled onSubmit={todoSubmitHandler}>
@@ -80,12 +75,21 @@ const NewTodoForm = () => {
             id="todo-list"
             ref={textInputRef}
             className="input"
+            placeholder='add something or just click Add Todo button'
           />
         </div>
         <button type="submit" className="button">
           ADD TODO
         </button>
       </FormStyled>
+      <FormStyled>
+        <button onClick={handleClick1} type="button" className="button">
+            COUNT1
+          </button>
+          <button onClick={handleClick2} type="button" className="button">
+            COUNT2
+          </button>
+        </FormStyled>
     </>
   );
 };
@@ -129,6 +133,7 @@ const FormStyled = styled.form`
   button {
     background: #50005a;
     border: 1px solid #50005a;
+    border-radius: 0.5rem;
     color: white;
     padding: 0.3rem 1rem;
     cursor: pointer;

@@ -1,5 +1,5 @@
 import { dayOfYear, pause, randomColor } from './utils';
-import { setSubTitle, useSelector, useStore } from './TodoStore';
+import { setSubTitle, useSelector } from './TodoStore';
 
 export const Header = () => {
   const title = useSelector<string>((state) => state.title);
@@ -14,7 +14,7 @@ export const Header = () => {
   console.log('render Header');
 
   return (
-    <div style={{ width: '90%', margin: 'auto' }}>
+    <div className='d-flex justify-content-between gap-2'>
       <div>
         Title: {title} / Today is the {dayOfYear(new Date())} day
       </div>
@@ -28,22 +28,16 @@ export const Header = () => {
         >
           Colours: {randomColor()}
         </span>
-        Count1: {count1}
+        <div>Count1: {count1}</div>
       </div>
       <div>
         SubTitle: {subTitle}
-        <button
-          style={{
-            border: '1px solid black',
-            marginLeft: '5px',
-            padding: ' 0 5px',
-          }}
+        <button className='btn btn-outline-primary ms-2'
           onClick={modifSubtitle}
         >
           Modify Subtitle
         </button>
       </div>
-      <hr />
     </div>
   );
 };

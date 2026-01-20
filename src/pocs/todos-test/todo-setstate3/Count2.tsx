@@ -7,5 +7,5 @@ export const Count2 = memo(() => {
 
   console.log('render Count2');
 
-  return <div style={{ width: '90%', margin: 'auto' }}>Count2: {count2}</div>;
+  return <div className='text-center mb-2'>Count2: {count2}</div>;
 });

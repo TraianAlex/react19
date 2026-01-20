@@ -11,8 +11,7 @@ export const List = () => {
   console.log('render List');
 
   return (
-    <div style={{ width: '90%', margin: 'auto' }}>
-      <hr />
+    <div className='text-center border border-secondary rounded p-2 mt-3'>
       {list?.map((item: string, i: number) => (
         <span key={Math.random()}>
           {item} {i + 1} /{' '}

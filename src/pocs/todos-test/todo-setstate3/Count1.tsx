@@ -7,7 +7,7 @@ export const Count1 = () => {
   console.log('render Count1');
 
   return (
-    <div style={{ width: '90%', margin: 'auto' }}>
+    <div className='text-center'>
       <hr />
       <div>Count1: {count1} rows</div>
     </div>
