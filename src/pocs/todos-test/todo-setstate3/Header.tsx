@@ -1,10 +1,11 @@
 import { dayOfYear, pause, randomColor, randomString } from './utils';
+import { State } from './store';
 import { setSubTitle, useSelector } from './TodoStore';
 
 export const Header = () => {
-  const title = useSelector<string>((state) => state.title);
-  const subTitle = useSelector<string>((state) => state.subTitle);
-  const count1 = useSelector<number>((state) => state.count1);
+  const title = useSelector<string>((state: State) => state.title);
+  const subTitle = useSelector<string>((state: State) => state.subTitle);
+  const count1 = useSelector<number>((state: State) => state.count1);
 
   const modifSubtitle = async () => {
     await pause(1000);
