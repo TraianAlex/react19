@@ -1,16 +1,16 @@
 import { useRef } from 'react';
 import styled from 'styled-components';
 import {
-  useStore,
   todoAddHandler,
   createList,
-  todoDeleteHandler,
   setCount,
   setCount2,
+  useSelector,
 } from './TodoStore';
 
 const NewTodoForm = () => {
-  const user = useStore('user');
+  // const [user] = useStore('user');
+  const user = useSelector<string>((state) => state.user);
   const textInputRef = useRef<HTMLInputElement>(null);
   const listInputRef = useRef<HTMLInputElement>(null);
 
