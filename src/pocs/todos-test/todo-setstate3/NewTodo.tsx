@@ -1,12 +1,7 @@
 import { useRef } from 'react';
 import styled from 'styled-components';
-import {
-  todoAddHandler,
-  createList,
-  setCount,
-  setCount2,
-  useSelector,
-} from './TodoStore';
+import { useSelector } from './actions';
+import { todoAddHandler, createList, setCount, setCount2 } from './actions';
 
 const NewTodoForm = () => {
   // const [user] = useStore('user');

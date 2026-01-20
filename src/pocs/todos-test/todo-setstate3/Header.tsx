@@ -1,6 +1,6 @@
 import { dayOfYear, pause, randomColor, randomString } from './utils';
 import { State } from './store';
-import { setSubTitle, useSelector } from './TodoStore';
+import { useSelector, setSubTitle } from './actions';
 
 export const Header = () => {
   const title = useSelector<string>((state: State) => state.title);

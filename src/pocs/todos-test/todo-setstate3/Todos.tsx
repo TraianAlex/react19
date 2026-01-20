@@ -5,7 +5,7 @@ import { Container } from 'react-bootstrap';
 import { Header } from './Header';
 import { Count1 } from './Count1';
 import { List } from './List';
-import { setSubTitle } from './TodoStore';
+import { setSubTitle } from './actions';
 import { Footer } from './Footer';
 import { toCamelCase } from './utils';
 

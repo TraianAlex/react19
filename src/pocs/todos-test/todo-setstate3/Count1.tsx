@@ -1,4 +1,4 @@
-import { useSelector } from './TodoStore';
+import { useSelector } from './actions';
 
 export const Count1 = () => {
   // const [count1] = useStore('count1');

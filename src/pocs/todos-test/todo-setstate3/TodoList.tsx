@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { todoDeleteHandler, TodosState, useSelector } from './TodoStore';
+import { TodosState } from './TodoStore';
+import { useSelector, todoDeleteHandler } from './actions';
 
 const TodoList = () => {
   const todos = useSelector<TodosState[]>((state) => state.todos);
@@ -11,7 +12,7 @@ const TodoList = () => {
       {todos?.map((todo: any, i: number) => (
         <li key={todo.id}>
           <span>
-            {todo.text} {i + 1}
+            {todo.text} {crypto.randomUUID().slice(0, 5)}
           </span>
           <button className='btn btn-outline-danger btn-sm' onClick={todoDeleteHandler.bind(null, todo.id)}>DELETE</button>
         </li>

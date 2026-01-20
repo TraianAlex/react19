@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { State } from './store';
-import { useSelector } from './TodoStore';
+import { useSelector } from './actions';
 
 export const Count2 = memo(() => {
   // const [count2] = useStore('count2');

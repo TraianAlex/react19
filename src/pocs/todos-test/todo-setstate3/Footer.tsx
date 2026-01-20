@@ -1,5 +1,5 @@
 import { Count2 } from './Count2';
-import { useStore } from './TodoStore';
+import { useStore } from './actions';
 import { clearCookies, randomString } from './utils';
 
 export const Footer = () => {
