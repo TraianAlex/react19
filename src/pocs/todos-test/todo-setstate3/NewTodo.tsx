@@ -61,7 +61,7 @@ const NewTodoForm = () => {
             placeholder='add something or just click Add To List button'
           />
         </div>
-        <button type="submit" className="button">
+        <button type="submit" className="btn btn-outline-primary ms-2">
           ADD TO LIST
         </button>
       </FormStyled>
@@ -78,15 +78,15 @@ const NewTodoForm = () => {
             placeholder='add something or just click Add Todo button'
           />
         </div>
-        <button type="submit" className="button">
+        <button type="submit" className="btn btn-outline-primary ms-2">
           ADD TODO
         </button>
       </FormStyled>
       <FormStyled>
-        <button onClick={handleClick1} type="button" className="button">
+        <button onClick={handleClick1} type="button" className="btn btn-outline-primary ms-2">
             COUNT1
           </button>
-          <button onClick={handleClick2} type="button" className="button">
+          <button onClick={handleClick2} type="button" className="btn btn-outline-primary ms-2">
             COUNT2
           </button>
         </FormStyled>
@@ -128,25 +128,5 @@ const FormStyled = styled.form`
   input:focus {
     outline: none;
     border-color: #50005a;
-  }
-
-  button {
-    background: #50005a;
-    border: 1px solid #50005a;
-    border-radius: 0.5rem;
-    color: white;
-    padding: 0.3rem 1rem;
-    cursor: pointer;
-    margin-right: 0.1rem;
-  }
-
-  button:focus {
-    outline: none;
-  }
-
-  button:hover,
-  button:active {
-    background: #6a0a77;
-    border-color: #6a0a77;
   }
 `;

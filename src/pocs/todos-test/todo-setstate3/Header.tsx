@@ -1,4 +1,4 @@
-import { dayOfYear, pause, randomColor } from './utils';
+import { dayOfYear, pause, randomColor, randomString } from './utils';
 import { setSubTitle, useSelector } from './TodoStore';
 
 export const Header = () => {
@@ -8,7 +8,7 @@ export const Header = () => {
 
   const modifSubtitle = async () => {
     await pause(1000);
-    setSubTitle('something else');
+    setSubTitle(randomString());
   };
 
   console.log('render Header');
@@ -31,7 +31,7 @@ export const Header = () => {
         <div>Count1: {count1}</div>
       </div>
       <div>
-        SubTitle: {subTitle}
+        <div className='badge bg-secondary text-center mb-2'>SubTitle: {subTitle}</div>
         <button className='btn btn-outline-primary ms-2'
           onClick={modifSubtitle}
         >

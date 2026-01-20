@@ -1,9 +1,8 @@
-import React from 'react';
 import styled from 'styled-components';
-import { todoDeleteHandler, useStore } from './TodoStore';
+import { todoDeleteHandler, TodosState, useSelector } from './TodoStore';
 
-const TodoList: React.FC = () => {
-  const [todos] = useStore('todos');
+const TodoList = () => {
+  const todos = useSelector<TodosState[]>((state) => state.todos);
 
   console.log('render TodoList');
 
@@ -14,7 +13,7 @@ const TodoList: React.FC = () => {
           <span>
             {todo.text} {i + 1}
           </span>
-          <button onClick={todoDeleteHandler.bind(null, todo.id)}>DELETE</button>
+          <button className='btn btn-outline-danger btn-sm' onClick={todoDeleteHandler.bind(null, todo.id)}>DELETE</button>
         </li>
       ))}
     </ListStyled>
