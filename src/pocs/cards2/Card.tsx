@@ -22,13 +22,15 @@ interface CardProps {
 }
 
 export const Card = memo<CardProps>(({ card, onDragStart, onResizeStart }) => {
-  const setClickOffset = (ev: React.MouseEvent<HTMLDivElement>) => {
+  const handleDragStart = (ev: React.MouseEvent<HTMLDivElement>) => {
     ev.stopPropagation();
-    const clickOffset = {
-      x: ev.clientX - card.position.left,
-      y: ev.clientY - card.position.top,
+    const rect = ev.currentTarget.getBoundingClientRect();
+    // Calculate offset from mouse position to card's top-left corner
+    const offset = {
+      x: ev.clientX - rect.left,
+      y: ev.clientY - rect.top,
     };
-    onDragStart(clickOffset);
+    onDragStart(offset);
   };
 
   const handleResizeStart = (handle: ResizeHandle) => (ev: React.MouseEvent<HTMLDivElement>) => {
@@ -37,12 +39,37 @@ export const Card = memo<CardProps>(({ card, onDragStart, onResizeStart }) => {
     onResizeStart(handle, { x: ev.pageX, y: ev.pageY });
   };
 
-  const resizeHandles: ResizeHandle[] = ['nw', 'n', 'ne', 'e', 'se', 's', 'sw', 'w'];
   const [isHovered, setIsHovered] = useState(false);
+
+  // Resize handle configuration
+  const getHandleStyle = (handle: ResizeHandle): React.CSSProperties => {
+    const baseStyle: React.CSSProperties = {
+      position: 'absolute',
+      backgroundColor: '#ccc',
+      zIndex: 10,
+      opacity: isHovered ? 0.8 : 0,
+      transition: 'opacity 0.2s',
+    };
+
+    const handleConfig: Record<ResizeHandle, Partial<React.CSSProperties>> = {
+      nw: { top: '-0.25rem', left: '-0.25rem', width: '0.75rem', height: '0.75rem', cursor: 'nw-resize' },
+      ne: { top: '-0.25rem', right: '-0.25rem', width: '0.75rem', height: '0.75rem', cursor: 'ne-resize' },
+      se: { bottom: '-0.25rem', right: '-0.25rem', width: '0.75rem', height: '0.75rem', cursor: 'se-resize' },
+      sw: { bottom: '-0.25rem', left: '-0.25rem', width: '0.75rem', height: '0.75rem', cursor: 'sw-resize' },
+      n: { top: '-0.25rem', left: '0', right: '0', height: '0.5rem', cursor: 'n-resize' },
+      s: { bottom: '-0.25rem', left: '0', right: '0', height: '0.5rem', cursor: 's-resize' },
+      e: { top: '0', right: '-0.25rem', bottom: '0', width: '0.5rem', cursor: 'e-resize' },
+      w: { top: '0', left: '-0.25rem', bottom: '0', width: '0.5rem', cursor: 'w-resize' },
+    };
+
+    return { ...baseStyle, ...handleConfig[handle] };
+  };
+
+  const resizeHandles: ResizeHandle[] = ['nw', 'n', 'ne', 'e', 'se', 's', 'sw', 'w'];
 
   return (
     <div
-      onMouseDown={setClickOffset}
+      onMouseDown={handleDragStart}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className="p-3 bg-white text-break position-absolute border rounded shadow-sm"
@@ -60,83 +87,19 @@ export const Card = memo<CardProps>(({ card, onDragStart, onResizeStart }) => {
       key={card.id}
     >
       {card.label}
-      {resizeHandles.map((handle) => {
-        const isCorner = handle.length === 2;
-        const handleStyle: React.CSSProperties = {
-          position: 'absolute',
-          backgroundColor: '#ccc',
-          zIndex: 10,
-          opacity: 0,
-          transition: 'opacity 0.2s',
-        };
-
-        if (isCorner) {
-          // Corner handles
-          handleStyle.width = '0.75rem';
-          handleStyle.height = '0.75rem';
-          if (handle === 'nw') {
-            handleStyle.top = '-0.25rem';
-            handleStyle.left = '-0.25rem';
-            handleStyle.cursor = 'nw-resize';
-          } else if (handle === 'ne') {
-            handleStyle.top = '-0.25rem';
-            handleStyle.right = '-0.25rem';
-            handleStyle.cursor = 'ne-resize';
-          } else if (handle === 'se') {
-            handleStyle.bottom = '-0.25rem';
-            handleStyle.right = '-0.25rem';
-            handleStyle.cursor = 'se-resize';
-          } else if (handle === 'sw') {
-            handleStyle.bottom = '-0.25rem';
-            handleStyle.left = '-0.25rem';
-            handleStyle.cursor = 'sw-resize';
-          }
-        } else {
-          // Edge handles
-          if (handle === 'n') {
-            handleStyle.top = '-0.25rem';
-            handleStyle.left = '0';
-            handleStyle.right = '0';
-            handleStyle.height = '0.5rem';
-            handleStyle.cursor = 'n-resize';
-          } else if (handle === 's') {
-            handleStyle.bottom = '-0.25rem';
-            handleStyle.left = '0';
-            handleStyle.right = '0';
-            handleStyle.height = '0.5rem';
-            handleStyle.cursor = 's-resize';
-          } else if (handle === 'e') {
-            handleStyle.top = '0';
-            handleStyle.right = '-0.25rem';
-            handleStyle.bottom = '0';
-            handleStyle.width = '0.5rem';
-            handleStyle.cursor = 'e-resize';
-          } else if (handle === 'w') {
-            handleStyle.top = '0';
-            handleStyle.left = '-0.25rem';
-            handleStyle.bottom = '0';
-            handleStyle.width = '0.5rem';
-            handleStyle.cursor = 'w-resize';
-          }
-        }
-
-        return (
-          <div
-            key={handle}
-            onMouseDown={handleResizeStart(handle)}
-            style={{
-              ...handleStyle,
-              opacity: isHovered ? 0.8 : 0,
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.opacity = '1';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.opacity = isHovered ? '0.8' : '0';
-            }}
-          />
-        );
-      })}
+      {resizeHandles.map((handle) => (
+        <div
+          key={handle}
+          onMouseDown={handleResizeStart(handle)}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.opacity = '1';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.opacity = isHovered ? '0.8' : '0';
+          }}
+          style={getHandleStyle(handle)}
+        />
+      ))}
     </div>
   );
 });

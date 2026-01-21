@@ -1,6 +1,6 @@
 import { useRef, useState, lazy, Suspense } from 'react';
 import { v4 as uuid } from 'uuid';
-import { useLocalStorageState } from '../../hooks/useLocalStorage';
+import { useLocalStorageState } from './useLocalStorage';
 import { Card } from './Card';
 import { AddButton } from './AddButton';
 import { TrashZone } from './TrashZone';
@@ -23,6 +23,21 @@ const DEFAULT_SIZE = { width: 200, height: 150 };
 const MIN_SIZE = { width: 100, height: 50 };
 const HANDLE_OFFSET = 4;
 
+// Helper functions
+const constrainToContainer = (
+  value: number,
+  min: number,
+  max: number
+): number => Math.max(min, Math.min(value, max));
+
+const isPointInRect = (
+  x: number,
+  y: number,
+  rect: DOMRect
+): boolean => {
+  return x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
+};
+
 const AppCards2 = () => {
   const [cards, setCards] = useLocalStorageState<Record<string, CardType>>('cards2', {});
   const [dragState, setDragState] = useState<DragState>(null);
@@ -35,21 +50,21 @@ const AppCards2 = () => {
     setCards({ ...cards, [id]: { ...cards[id], ...updates } });
   };
 
+  const checkTrashZone = (clientX: number, clientY: number): boolean => {
+    if (!trashRef.current) return false;
+    return isPointInRect(clientX, clientY, trashRef.current.getBoundingClientRect());
+  };
+
   const handleMouseMove = (ev: React.MouseEvent<HTMLDivElement>) => {
     if (!dragState || !boardRef.current) return;
 
     const container = boardRef.current;
+    const containerRect = container.getBoundingClientRect();
     const { clientWidth, clientHeight } = container;
 
     // Check if dragging over trash zone
-    if (dragState.type === 'drag' && trashRef.current) {
-      const trashRect = trashRef.current.getBoundingClientRect();
-      const isOver = 
-        ev.clientX >= trashRect.left &&
-        ev.clientX <= trashRect.right &&
-        ev.clientY >= trashRect.top &&
-        ev.clientY <= trashRect.bottom;
-      setIsOverTrash(isOver);
+    if (dragState.type === 'drag') {
+      setIsOverTrash(checkTrashZone(ev.clientX, ev.clientY));
     }
 
     if (dragState.type === 'resize') {
@@ -62,55 +77,53 @@ const AppCards2 = () => {
       let left = card.position.left;
       let top = card.position.top;
 
-      // Resize logic
-      if (handle.includes('e')) width = Math.max(MIN_SIZE.width, startSize.width + deltaX);
+      // Calculate new dimensions based on handle
+      if (handle.includes('e')) {
+        width = Math.max(MIN_SIZE.width, startSize.width + deltaX);
+      }
       if (handle.includes('w')) {
         width = Math.max(MIN_SIZE.width, startSize.width - deltaX);
-        left = Math.max(HANDLE_OFFSET, card.position.left + deltaX);
+        left = card.position.left + deltaX;
       }
-      if (handle.includes('s')) height = Math.max(MIN_SIZE.height, startSize.height + deltaY);
+      if (handle.includes('s')) {
+        height = Math.max(MIN_SIZE.height, startSize.height + deltaY);
+      }
       if (handle.includes('n')) {
         height = Math.max(MIN_SIZE.height, startSize.height - deltaY);
-        top = Math.max(HANDLE_OFFSET, card.position.top + deltaY);
+        top = card.position.top + deltaY;
       }
 
-      // Constrain to container
-      width = Math.min(width, clientWidth - left - HANDLE_OFFSET);
-      height = Math.min(height, clientHeight - top - HANDLE_OFFSET);
-      left = Math.max(HANDLE_OFFSET, Math.min(left, clientWidth - width - HANDLE_OFFSET));
-      top = Math.max(HANDLE_OFFSET, Math.min(top, clientHeight - height - HANDLE_OFFSET));
+      // Constrain dimensions and position to container
+      const maxWidth = clientWidth - left - HANDLE_OFFSET;
+      const maxHeight = clientHeight - top - HANDLE_OFFSET;
+      width = constrainToContainer(width, MIN_SIZE.width, maxWidth);
+      height = constrainToContainer(height, MIN_SIZE.height, maxHeight);
+      
+      left = constrainToContainer(left, HANDLE_OFFSET, clientWidth - width - HANDLE_OFFSET);
+      top = constrainToContainer(top, HANDLE_OFFSET, clientHeight - height - HANDLE_OFFSET);
 
-      updateCard(card.id, {
-        position: { top, left },
-        size: { width, height },
-      });
+      updateCard(card.id, { position: { top, left }, size: { width, height } });
     } else if (dragState.type === 'drag') {
       const { card, offset } = dragState;
-      const containerRect = container.getBoundingClientRect();
-      let top = ev.clientY - containerRect.top - offset.y;
-      let left = ev.clientX - containerRect.left - offset.x;
+      
+      // Calculate new position relative to container
+      const newLeft = ev.clientX - containerRect.left - offset.x;
+      const newTop = ev.clientY - containerRect.top - offset.y;
 
-      // Constrain to container
-      top = Math.max(HANDLE_OFFSET, Math.min(top, clientHeight - card.size.height - HANDLE_OFFSET));
-      left = Math.max(HANDLE_OFFSET, Math.min(left, clientWidth - card.size.width - HANDLE_OFFSET));
+      // Constrain to container bounds
+      const maxLeft = clientWidth - card.size.width - HANDLE_OFFSET;
+      const maxTop = clientHeight - card.size.height - HANDLE_OFFSET;
+      
+      const left = constrainToContainer(newLeft, HANDLE_OFFSET, maxLeft);
+      const top = constrainToContainer(newTop, HANDLE_OFFSET, maxTop);
 
       updateCard(card.id, { position: { top, left } });
     }
   };
 
   const handleMouseUp = (ev: React.MouseEvent<HTMLDivElement>) => {
-    // Delete card if dropped over trash zone
-    if (dragState?.type === 'drag' && trashRef.current) {
-      const trashRect = trashRef.current.getBoundingClientRect();
-      const isOver = 
-        ev.clientX >= trashRect.left &&
-        ev.clientX <= trashRect.right &&
-        ev.clientY >= trashRect.top &&
-        ev.clientY <= trashRect.bottom;
-      
-      if (isOver) {
-        deleteCard(dragState.card.id);
-      }
+    if (dragState?.type === 'drag' && checkTrashZone(ev.clientX, ev.clientY)) {
+      deleteCard(dragState.card.id);
     }
     setDragState(null);
     setIsOverTrash(false);
