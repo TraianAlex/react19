@@ -165,6 +165,7 @@ const React19FeaturesApp = lazy(
   () => import('./pocs/react19-features/React19FeaturesApp')
 );
 const AppCards = lazy(() => import('./apps/cards/AppCards'));
+const Cards2 = lazy(() => import('./pocs/cards2/AppCards'));
 import { action as vanlifeLoginAction } from './apps/vanlife/pages/Login';
 import { loader as vansLoader } from './apps/vanlife/pages/vans/Vans';
 import { loader as vanlifeVanDetailLoader } from './apps/vanlife/pages/vans/VanDetail';
@@ -337,6 +338,7 @@ const router = createBrowserRouter(
         }
       />
       <Route path='weather' element={<Weather />} loader={weatherLoader} />
+      <Route path='cards2' element={<Cards2 />} />
       <Route path='loading-spinner' element={<LoadingSpinner />} />
       <Route path='not-found' element={<NotFound />} />
       <Route path='*' element={<NotFound />} />
