@@ -9,15 +9,12 @@ export const AddButton = memo<AddButtonProps>(({ onClick }) => {
   return (
     <Button
       onClick={onClick}
-      className="rounded-circle bg-dark text-white"
+      className="rounded-circle bg-dark text-white position-absolute fs-5"
       style={{
-        height: 100,
-        width: 100,
-        position: 'absolute',
-        bottom: 140,
-        right: 100,
-        fontSize: 20,
-        cursor: 'pointer',
+        height: '6rem',
+        width: '6rem',
+        bottom: '10rem',
+        right: '6rem',
       }}
     >
       Add
