@@ -164,6 +164,7 @@ const ProgressiveNoteApp = lazy(
 const React19FeaturesApp = lazy(
   () => import('./pocs/react19-features/React19FeaturesApp')
 );
+const AppCards = lazy(() => import('./apps/cards/AppCards'));
 import { action as vanlifeLoginAction } from './apps/vanlife/pages/Login';
 import { loader as vansLoader } from './apps/vanlife/pages/vans/Vans';
 import { loader as vanlifeVanDetailLoader } from './apps/vanlife/pages/vans/VanDetail';
@@ -253,6 +254,7 @@ const router = createBrowserRouter(
           <Route path='*' element={<VanlifeNotFound />} />
         </Route>
       </Route>
+      <Route path='cards' element={<AppCards />} />
       <Route path='watch-list' element={<WatchList />} />
       <Route path='tic-tac-toe' element={<TicTacToeLayout />}>
         <Route index element={<Game1 />} />

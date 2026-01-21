@@ -64,7 +64,7 @@ export const Game6 = () => {
       <div className='game'>
         <div className='game-board'>
           <Board onClick={onSelectSquare} squares={currentSquares} />
-          <button className='game-restart' onClick={restart}>
+          <button className='btn btn-outline-primary mt-2' onClick={restart}>
             Restart
           </button>
         </div>

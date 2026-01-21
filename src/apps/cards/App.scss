@@ -1,0 +1,43 @@
+.App-card {
+  width: 100vw;
+  min-height: 80vh;
+  background-color: #f4f4f4;
+
+  .Modal-Loader {
+    position: absolute;
+  }
+  
+  .arrow {
+    width: 0;
+    height: 0;
+    position: absolute;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 20px solid black;
+    cursor: pointer;
+  }
+  
+  .arrow-top-right {
+    transform: rotate(45deg);
+    top: -6px;
+    right: -16px;
+  }
+  
+  .arrow-top-left {
+    transform: rotate(-45deg);
+    top: -6px;
+    left: -16px;
+  }
+  
+  .arrow-bottom-left {
+    transform: rotate(225deg);
+    bottom: -6px;
+    left: -16px;
+  }
+  
+  .arrow-bottom-right {
+    transform: rotate(135deg);
+    bottom: -6px;
+    right: -16px;
+  }
+}

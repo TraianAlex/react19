@@ -195,6 +195,18 @@ export const NavigationBar = () => {
                     >
                       Vanlife
                     </Link>
+                  </li>
+                  <li>
+                    <Link
+                      className={`dropdown-item ${
+                        isActive('/cards') ? 'active' : ''
+                      }`}
+                      to='cards'
+                    >
+                      Cards
+                    </Link>
+                  </li>
+                  <li>
                     <Link
                       className={`dropdown-item ${
                         isActive('/watch-list') ? 'active' : ''

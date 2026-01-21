@@ -9,26 +9,32 @@ const NewTodoForm = () => {
   const textInputRef = useRef<HTMLInputElement>(null);
   const listInputRef = useRef<HTMLInputElement>(null);
 
-  const todoSubmitHandler = (event: React.FormEvent) => {
+  const todoSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const enteredText = textInputRef.current!.value;
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const enteredText = formData.get('todo-text') as string;
     if (enteredText === '') {
       todoAddHandler('test');
       return;
     }
     todoAddHandler(enteredText);
-    textInputRef.current!.value = '';
+    form.reset();
+    textInputRef.current?.focus();
   };
 
-  const createListHandler = (event: React.FormEvent) => {
+  const createListHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const enteredText = listInputRef.current!.value;
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const enteredText = formData.get('todo-list') as string;
     if (enteredText === '') {
       createList('test');
       return;
     }
     createList(enteredText);
-    listInputRef.current!.value = '';
+    form.reset();
+    listInputRef.current?.focus();
   };
 
   const handleClick1 = () => {
@@ -50,7 +56,7 @@ const NewTodoForm = () => {
           </label>
           <input
             type="text"
-            id="todo-text"
+            name="todo-list"
             ref={listInputRef}
             className="input"
             placeholder='add something or just click Add To List button'
@@ -67,7 +73,7 @@ const NewTodoForm = () => {
           </label>
           <input
             type="text"
-            id="todo-list"
+            name="todo-text"
             ref={textInputRef}
             className="input"
             placeholder='add something or just click Add Todo button'

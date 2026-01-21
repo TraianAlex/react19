@@ -26,12 +26,13 @@ export const useFakeApi = () => {
     dispatch({ type: SET_TODO_TITLE, payload });
   };
 
-  const getTodos = async () => {
+  const getTodos = async (signal?: AbortSignal) => {
     try {
       dispatch({ type: LOADING_TODO, payload: true });
 
       const response = await fetch(
-        'https://jsonplaceholder.typicode.com/todos?_limit=5'
+        'https://jsonplaceholder.typicode.com/todos?_limit=5',
+        { signal }
       );
       if (!response.ok) {
         throw new Error(
@@ -42,12 +43,18 @@ export const useFakeApi = () => {
 
       await mockDelay(1000);
 
+      if (signal?.aborted) return;
+
       if (toJSON && Array.isArray(toJSON)) {
         dispatch({ type: GET_TODOS, payload: toJSON });
       } else {
         dispatch({ type: GET_TODOS, payload: [] as Todo[] });
       }
     } catch (err: unknown) {
+      if (err instanceof Error && err.name === 'AbortError') {
+        console.log('Request was cancelled');
+        return;
+      }
       dispatch({ type: LOADING_TODO, payload: false });
       const errorMessage = err instanceof Error ? err.message : 'Unknown error';
       // You can dispatch an error action here if you add one to your reducer
@@ -56,10 +63,16 @@ export const useFakeApi = () => {
   };
 
   useEffect(() => {
+    const abortController = new AbortController();
+
     const getData = async () => {
-        await getTodos();
+        await getTodos(abortController.signal);
     };
     getData();
+
+    return () => {
+      abortController.abort();
+    };
   }, []);
 
   const createTodo = async (newTodo: Todo) => {
