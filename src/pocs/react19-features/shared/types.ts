@@ -37,6 +37,7 @@ export interface FormState {
 
 // Action result types
 export interface ActionResult<T = any> {
+  message(message: any): unknown;
   success: boolean;
   data?: T;
   error?: string;

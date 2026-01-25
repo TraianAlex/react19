@@ -1,7 +1,7 @@
-import { useRef } from 'react';
-import styled from 'styled-components';
-import { useSelector } from './actions';
-import { todoAddHandler, createList, setCount, setCount2 } from './actions';
+import { useRef, useActionState, useEffect } from "react";
+import toast from "react-hot-toast";
+import { useSelector } from "./actions";
+import { todoAddHandler, createList, setCount, setCount2 } from "./actions";
 
 const NewTodoForm = () => {
   // const [user] = useStore('user');
@@ -9,27 +9,30 @@ const NewTodoForm = () => {
   const textInputRef = useRef<HTMLInputElement>(null);
   const listInputRef = useRef<HTMLInputElement>(null);
 
-  const todoSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const form = event.currentTarget;
-    const formData = new FormData(form);
-    const enteredText = formData.get('todo-text') as string;
-    if (enteredText === '') {
-      todoAddHandler('test');
-      return;
+  const [state, formAction, isPending] = useActionState(todoAddHandler, {
+    success: false,
+    error: null,
+    message: null,
+  });
+
+  useEffect(() => {
+    if (state.error) {
+      toast.error(state.error);
+    } else if (state.success) {
+      textInputRef.current?.focus();
+      toast.success(state.message);
     }
-    todoAddHandler(enteredText);
-    form.reset();
-    textInputRef.current?.focus();
-  };
+    state.error = null;
+    state.message = null;
+  }, [state.success]);
 
   const createListHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = event.currentTarget;
     const formData = new FormData(form);
-    const enteredText = formData.get('todo-list') as string;
-    if (enteredText === '') {
-      createList('test');
+    const enteredText = formData.get("todo-list") as string;
+    if (enteredText === "") {
+      createList("test");
       return;
     }
     createList(enteredText);
@@ -45,89 +48,68 @@ const NewTodoForm = () => {
     setCount2(1);
   };
 
-  console.log('render NewTodoForm');
+  console.log("render NewTodoForm");
 
   return (
     <>
-    <FormStyled onSubmit={createListHandler}>
-        <div className="formControl">
-          <label htmlFor="todo-text" className="label">
+      <form onSubmit={createListHandler}>
+        <div className="form-group d-flex align-items-center flex-1">
+          <label htmlFor="todo-text" className="form-label">
             Todo {user}
           </label>
           <input
             type="text"
             name="todo-list"
             ref={listInputRef}
-            className="input"
-            placeholder='add something or just click Add To List button'
+            className="form-control"
+            placeholder="add something or just click Add To List button"
           />
+          <button type="submit" className="btn btn-outline-primary ms-2">
+            ADD
+          </button>
         </div>
-        <button type="submit" className="btn btn-outline-primary ms-2">
-          ADD TO LIST
-        </button>
-      </FormStyled>
-      <FormStyled onSubmit={todoSubmitHandler}>
-        <div className="formControl">
-          <label htmlFor="todo-text" className="label">
+      </form>
+      <form action={formAction}>
+        <div className="form-group d-flex align-items-center flex-1">
+          <label htmlFor="todo-text" className="form-label">
             Todo {user}
           </label>
           <input
             type="text"
             name="todo-text"
             ref={textInputRef}
-            className="input"
-            placeholder='add something or just click Add Todo button'
+            className="form-control"
+            placeholder="add something or just click Add Todo button"
           />
+          <button type="submit" className="btn btn-outline-primary ms-2">
+            ADD
+          </button>
         </div>
-        <button type="submit" className="btn btn-outline-primary ms-2">
-          ADD TODO
+        {state.error && (
+          <div className="alert alert-danger mt-2" role="alert">
+            {state.error}
+          </div>
+        )}
+      </form>
+      <div>
+        <button
+          onClick={handleClick1}
+          type="button"
+          className="btn btn-outline-primary ms-2"
+        >
+          COUNT1
         </button>
-      </FormStyled>
-      <FormStyled>
-        <button onClick={handleClick1} type="button" className="btn btn-outline-primary ms-2">
-            COUNT1
-          </button>
-          <button onClick={handleClick2} type="button" className="btn btn-outline-primary ms-2">
-            COUNT2
-          </button>
-        </FormStyled>
+        <button
+          onClick={handleClick2}
+          type="button"
+          className="btn btn-outline-primary ms-2"
+        >
+          COUNT2
+        </button>
+      </div>
+      {isPending && <p>Adding todo...</p>}
     </>
   );
 };
 
 export default NewTodoForm;
-
-const FormStyled = styled.form`
-  display: flex;
-  align-items: center;
-  width: 90%;
-  max-width: 40rem;
-  margin: 1rem auto;
-
-  .formControl {
-    display: flex;
-    align-items: center;
-    flex: 1;
-  }
-
-  label,
-  input {
-    margin-right: 0.5rem;
-  }
-
-  label {
-    font-weight: bold;
-  }
-
-  input {
-    width: 100%;
-    font: inherit;
-    border: 1px solid #ccc;
-    padding: 0.25rem;
-  }
-
-  input:focus {
-    outline: none;
-    border-color: #50005a;
-  }
-`;

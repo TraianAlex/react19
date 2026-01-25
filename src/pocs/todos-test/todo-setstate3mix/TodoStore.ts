@@ -27,3 +27,9 @@ export const initialState: TodosType = {
   render: false,
   posts: [],
 };
+
+export interface TodoActionState {
+  success: boolean;
+  error: string | null;
+  message: string | null;
+}
