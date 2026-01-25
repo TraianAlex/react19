@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { CATEGORY_MAP, FoodCategory } from '.';
 
@@ -15,6 +15,7 @@ const useRecipes = (category: FoodCategory) => {
   const [error, setError] = useState<string | null>(null);
   const [currentCategory, setCurrentCategory] =
     useState<FoodCategory>('seafood');
+  const mountedRef = useRef(false);
 
   const fetchRecipes = async () => {
     setLoading(true);
@@ -45,6 +46,8 @@ const useRecipes = (category: FoodCategory) => {
   };
 
   useEffect(() => {
+    if (mountedRef.current) return;
+    mountedRef.current = true;
     fetchRecipes();
   }, [category]);
 

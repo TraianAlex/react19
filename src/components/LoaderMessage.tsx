@@ -16,8 +16,8 @@ export const LoaderMessage = ({
   const [showDoneMessage, setShowDoneMessage] = useState(false);
 
   useEffect(() => {
-    let loadingMessageDelay: number | undefined;
-    let doneMessageDelay: number | undefined;
+    let loadingMessageDelay: ReturnType<typeof setTimeout> | undefined;
+    let doneMessageDelay: ReturnType<typeof setTimeout> | undefined;
 
     if (isLoading) {
       loadingMessageDelay = setTimeout(() => {

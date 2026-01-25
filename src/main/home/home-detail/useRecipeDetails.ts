@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { Recipe } from '.';
 import { apiUrl } from '../useRecipes';
@@ -7,6 +7,7 @@ const useRecipeDetails = (recipeId: string) => {
   const [recipe, setRecipe] = useState<Recipe | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const mountedRef = useRef(false);
 
   const fetchRecipe = async (id: string): Promise<void> => {
     try {
@@ -27,6 +28,8 @@ const useRecipeDetails = (recipeId: string) => {
   };
 
   useEffect(() => {
+    if (mountedRef.current) return;
+    mountedRef.current = true;
     if (recipeId) fetchRecipe(recipeId);
   }, [recipeId]);
 

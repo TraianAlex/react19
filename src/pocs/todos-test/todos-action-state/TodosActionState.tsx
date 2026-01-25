@@ -1,4 +1,4 @@
-import { useActionState, useTransition, useEffect, useState } from 'react';
+import { useActionState, useTransition, useEffect, useState, useRef } from 'react';
 import { toast } from 'react-hot-toast';
 import { todoAction, initialTodoActionState, type Todo } from './serverAction';
 
@@ -9,6 +9,7 @@ export default function TodosActionState() {
     initialTodoActionState
   );
   const [isTransitioning, startTransition] = useTransition();
+  const mountedRef = useRef(false);
 
   // Fetch initial todos on mount
   useEffect(() => {
@@ -24,6 +25,8 @@ export default function TodosActionState() {
         console.error('Failed to load initial todos:', error);
       }
     }
+    if (mountedRef.current) return;
+    mountedRef.current = true;
     loadInitialTodos();
   }, []);
 

@@ -14,7 +14,7 @@
  * - Promises must be stable (memoized) to prevent infinite loops
  */
 
-import { use, useMemo, Suspense, createContext, useContext } from 'react';
+import { use, useMemo, Suspense, createContext } from 'react';
 
 // ============================================================================
 // EXAMPLE 1: Basic Promise Usage

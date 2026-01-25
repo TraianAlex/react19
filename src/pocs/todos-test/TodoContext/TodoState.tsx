@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from 'react';
+import { useEffect, useReducer, useRef } from 'react';
 
 import TodoContext from './Context';
 import TodoReducer from './Reducer';
@@ -30,6 +30,7 @@ const TodoState = ({ children }: { children: React.ReactNode }) => {
   };
 
   const [state, dispatch] = useReducer(TodoReducer, initialState);
+  const mountedRef = useRef(false);
 
   const setTodoTitle = (payload: string) => {
     dispatch({ type: SET_TODO_TITLE, payload });
@@ -84,6 +85,8 @@ const TodoState = ({ children }: { children: React.ReactNode }) => {
   };
 
   useEffect(() => {
+    if (mountedRef.current) return;
+    mountedRef.current = true;
     getTodos();
   }, []);
 

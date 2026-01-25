@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 
 const LOADING_STATES = ['loading', 'errored', 'success'];
@@ -10,6 +10,7 @@ const useGeneralizedCrudMethods = (
   const [data, setData] = useState<any[]>([]);
   const [error, setError] = useState<any>();
   const [loadingStatus, setLoadingStatus] = useState('loading');
+  const mountedRef = useRef(false);
 
   if (!url || url.length === 0) {
     throw new Error('useGeneralizedCrudMethods no url passed in error');
@@ -38,6 +39,8 @@ const useGeneralizedCrudMethods = (
   };
 
   useEffect(() => {
+    if (mountedRef.current) return;
+    mountedRef.current = true;
     getData(() => {});
   }, [url]);
 

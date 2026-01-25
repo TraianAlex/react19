@@ -6,6 +6,7 @@ import {
   useContext,
   useEffect,
   useReducer,
+  useRef,
   useState,
   useTransition,
 } from 'react';
@@ -101,6 +102,7 @@ function List({ state, dispatch }: { state: any; dispatch: any }) {
 
 const SpeakerList = () => {
   const { darkTheme } = useContext(ThemeContext);
+  const mountedRef = useRef(false);
 
   function reducer(state: any, action: any) {
     switch (action.type) {
@@ -146,6 +148,8 @@ const SpeakerList = () => {
         speakers: results.data,
       });
     }
+    if (mountedRef.current) return;
+    mountedRef.current = true;
     getDataAsync();
   }, []);
 

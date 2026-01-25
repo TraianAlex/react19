@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 
 import TodoContext from '../Context';
 import {
@@ -14,7 +14,11 @@ import {
 import { Todo } from '../Context';
 import { generateId, mockDelay } from '../../../../shared/utils/utils';
 
+let lastInitAt = 0;
+
 export const useFakeApi = () => {
+  const skipAbortRef = useRef(false);
+
   const context = useContext(TodoContext);
   if (!context) {
     throw new Error(`useFakeApi must be used within a TodoState`);
@@ -32,11 +36,11 @@ export const useFakeApi = () => {
 
       const response = await fetch(
         'https://jsonplaceholder.typicode.com/todos?_limit=5',
-        { signal }
+        { signal },
       );
       if (!response.ok) {
         throw new Error(
-          `Failed to fetch todos: ${response.status} ${response.statusText}`
+          `Failed to fetch todos: ${response.status} ${response.statusText}`,
         );
       }
       const toJSON = await response.json();
@@ -63,14 +67,28 @@ export const useFakeApi = () => {
   };
 
   useEffect(() => {
+    const now = Date.now();
+    if (import.meta.env.DEV && now - lastInitAt < 500) {
+      return;
+    }
+    lastInitAt = now;
+
     const abortController = new AbortController();
 
     const getData = async () => {
-        await getTodos(abortController.signal);
+      await getTodos(abortController.signal);
     };
+
+    if (import.meta.env.DEV) {
+      skipAbortRef.current = true;
+    }
     getData();
 
     return () => {
+      if (skipAbortRef.current) {
+        skipAbortRef.current = false;
+        return;
+      }
       abortController.abort();
     };
   }, []);
@@ -87,11 +105,11 @@ export const useFakeApi = () => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify(newTodo),
-        }
+        },
       );
       if (!response.ok) {
         throw new Error(
-          `Failed to create todo: ${response.status} ${response.statusText}`
+          `Failed to create todo: ${response.status} ${response.statusText}`,
         );
       }
       const toJSON = await response.json();
@@ -127,11 +145,11 @@ export const useFakeApi = () => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify(newTodo),
-        }
+        },
       );
       if (!response.ok) {
         throw new Error(
-          `Failed to update todo: ${response.status} ${response.statusText}`
+          `Failed to update todo: ${response.status} ${response.statusText}`,
         );
       }
       const toJSON = await response.json();
@@ -155,11 +173,11 @@ export const useFakeApi = () => {
         `https://jsonplaceholder.typicode.com/todos/${id}`,
         {
           method: 'DELETE',
-        }
+        },
       );
       if (!response.ok) {
         throw new Error(
-          `Failed to delete todo: ${response.status} ${response.statusText}`
+          `Failed to delete todo: ${response.status} ${response.statusText}`,
         );
       }
 

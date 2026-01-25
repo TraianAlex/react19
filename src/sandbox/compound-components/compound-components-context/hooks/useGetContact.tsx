@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 export interface Contact {
   id: string;
@@ -14,6 +14,7 @@ export function useGetContact(contactId: string): {
   const [data, setData] = useState<Contact | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const mountedRef = useRef(false);
 
   useEffect(() => {
     const fetchContact = async () => {
@@ -49,6 +50,8 @@ export function useGetContact(contactId: string): {
     };
 
     if (contactId) {
+      if (mountedRef.current) return;
+      mountedRef.current = true;
       fetchContact();
     }
   }, [contactId]);
