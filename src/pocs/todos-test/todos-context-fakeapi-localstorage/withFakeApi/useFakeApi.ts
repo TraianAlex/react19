@@ -68,9 +68,7 @@ export const useFakeApi = () => {
 
   useEffect(() => {
     const now = Date.now();
-    if (now - lastInitAt < 500) {
-      return;
-    }
+    if (now - lastInitAt < 500) return;
     lastInitAt = now;
 
     const abortController = new AbortController();
