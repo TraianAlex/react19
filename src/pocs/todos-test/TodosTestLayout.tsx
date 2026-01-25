@@ -74,6 +74,17 @@ const TodosTestLayout = () => {
               </li>
               <li
                 className={`list-group-item ${
+                  isActive('todos-test/todos-state3mix') ? 'active' : ''
+                }`}
+              >
+                <Link
+                  to='todos-state3mix'
+                  className={isActive('todos-test/todos-state3mix') ? 'text-white' : ''}>
+                  Todos state 3 mix
+                </Link>
+              </li>
+              <li
+                className={`list-group-item ${
                   isActive('todos-test/todos-actions') ? 'active' : ''
                 }`}
               >

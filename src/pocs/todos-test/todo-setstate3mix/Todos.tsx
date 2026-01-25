@@ -17,7 +17,7 @@ const initPageInfo = async () => {
   setSubTitle(toCamelCase(body.title));
 };
 
-const Todos3 = () => {
+const Todos3mix = () => {
   const mounted = useRef(false);
 
   useEffect(() => {
@@ -33,13 +33,13 @@ const Todos3 = () => {
     <Container>
       <Header />
       <List />
-      <NewTodoForm />
+      {/* <NewTodoForm />
       <Count1 />
-      <TodoList />
-      <Footer />
+      <TodoList /> */}
+      {/* <Footer /> */}
       <Posts />
     </Container>
   );
 };
 
-export default Todos3;
+export default Todos3mix;
