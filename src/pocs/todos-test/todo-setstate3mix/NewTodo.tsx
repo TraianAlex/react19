@@ -1,7 +1,7 @@
-import { useRef, useActionState, useEffect } from "react";
-import toast from "react-hot-toast";
-import { useSelector } from "./actions";
-import { todoAddHandler, createList, setCount, setCount2 } from "./actions";
+import { useRef, useActionState, useEffect } from 'react';
+import toast from 'react-hot-toast';
+import { useSelector } from './actions';
+import { todoAddHandler, createList, setCount, setCount2 } from './actions';
 
 const NewTodoForm = () => {
   // const [user] = useStore('user');
@@ -30,9 +30,9 @@ const NewTodoForm = () => {
     event.preventDefault();
     const form = event.currentTarget;
     const formData = new FormData(form);
-    const enteredText = formData.get("todo-list") as string;
-    if (enteredText === "") {
-      createList("test");
+    const enteredText = formData.get('todo-list') as string;
+    if (enteredText === '') {
+      createList('test');
       return;
     }
     createList(enteredText);
@@ -48,45 +48,45 @@ const NewTodoForm = () => {
     setCount2(1);
   };
 
-  console.log("render NewTodoForm");
+  console.log('render NewTodoForm');
 
   return (
     <>
       <form onSubmit={createListHandler}>
-        <div className="form-group d-flex align-items-center flex-1">
-          <label htmlFor="todo-text" className="form-label">
+        <div className='form-group d-flex align-items-center flex-1'>
+          <label htmlFor='todo-text' className='form-label'>
             Todo {user}
           </label>
           <input
-            type="text"
-            name="todo-list"
+            type='text'
+            name='todo-list'
             ref={listInputRef}
-            className="form-control"
-            placeholder="add something or just click Add To List button"
+            className='form-control'
+            placeholder='add something or just click Add To List button'
           />
-          <button type="submit" className="btn btn-outline-primary ms-2">
+          <button type='submit' className='btn btn-outline-primary ms-2'>
             ADD
           </button>
         </div>
       </form>
       <form action={formAction}>
-        <div className="form-group d-flex align-items-center flex-1">
-          <label htmlFor="todo-text" className="form-label">
+        <div className='form-group d-flex align-items-center flex-1'>
+          <label htmlFor='todo-text' className='form-label'>
             Todo {user}
           </label>
           <input
-            type="text"
-            name="todo-text"
+            type='text'
+            name='todo-text'
             ref={textInputRef}
-            className="form-control"
-            placeholder="add something or just click Add Todo button"
+            className='form-control'
+            placeholder='add something or just click Add Todo button'
           />
-          <button type="submit" className="btn btn-outline-primary ms-2">
+          <button type='submit' className='btn btn-outline-primary ms-2'>
             ADD
           </button>
         </div>
         {state.error && (
-          <div className="alert alert-danger mt-2" role="alert">
+          <div className='alert alert-danger mt-2' role='alert'>
             {state.error}
           </div>
         )}
@@ -94,15 +94,15 @@ const NewTodoForm = () => {
       <div>
         <button
           onClick={handleClick1}
-          type="button"
-          className="btn btn-outline-primary ms-2"
+          type='button'
+          className='btn btn-outline-primary ms-2'
         >
           COUNT1
         </button>
         <button
           onClick={handleClick2}
-          type="button"
-          className="btn btn-outline-primary ms-2"
+          type='button'
+          className='btn btn-outline-primary ms-2'
         >
           COUNT2
         </button>
