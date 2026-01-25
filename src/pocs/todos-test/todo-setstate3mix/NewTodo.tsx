@@ -24,7 +24,7 @@ const NewTodoForm = () => {
     }
     state.error = null;
     state.message = null;
-  }, [state.success]);
+  }, [state.error, state.success]);
 
   const createListHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -79,7 +79,7 @@ const NewTodoForm = () => {
             name='todo-text'
             ref={textInputRef}
             className='form-control'
-            placeholder='add something or just click Add Todo button'
+            placeholder='add something'
           />
           <button type='submit' className='btn btn-outline-primary ms-2'>
             ADD

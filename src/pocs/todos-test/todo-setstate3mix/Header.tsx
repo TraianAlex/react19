@@ -1,3 +1,4 @@
+import { useTransition } from 'react';
 import { dayOfYear, pause, randomColor, randomString } from './utils';
 import { State } from './store';
 import { useSelector, setSubTitle } from './actions';
@@ -6,10 +7,13 @@ export const Header = () => {
   const title = useSelector<string>((state: State) => state.title);
   const subTitle = useSelector<string>((state: State) => state.subTitle);
   const count1 = useSelector<number>((state: State) => state.count1);
+  const [isPending, startTransition] = useTransition();
 
   const modifSubtitle = async () => {
-    await pause(1000);
-    setSubTitle(randomString());
+    startTransition(async () => {
+      await pause(1000);
+      setSubTitle(randomString());
+    });
   };
 
   console.log('render Header');
@@ -32,9 +36,13 @@ export const Header = () => {
         <div>Count1: {count1}</div>
       </div>
       <div>
-        <div className='badge bg-secondary text-center mb-2'>SubTitle: {subTitle}</div>
-        <button className='btn btn-outline-primary ms-2'
+        <div className='badge bg-secondary text-center mb-2'>
+          SubTitle: {subTitle}
+        </div>
+        <button
+          className='btn btn-outline-primary ms-2'
           onClick={modifSubtitle}
+          disabled={isPending}
         >
           Modify Subtitle
         </button>

@@ -23,7 +23,7 @@ export const Footer = () => {
         Clear Cookies
       </button>
       <hr />
-      <a href='https://github.com/TraianAlex/react19/tree/main/src/pocs/todos-test/todo-setstate3' target='_blank' rel='noopener noreferrer'>Custom external store repository</a>
+      <a href='https://github.com/TraianAlex/react19/tree/main/src/pocs/todos-test/todo-setstate3mix' target='_blank' rel='noopener noreferrer'>Custom external store repository</a>
     </footer>
   );
 };
