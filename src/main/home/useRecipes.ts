@@ -46,8 +46,6 @@ const useRecipes = (category: FoodCategory) => {
   };
 
   useEffect(() => {
-    if (mountedRef.current) return;
-    mountedRef.current = true;
     fetchRecipes();
   }, [category]);
 
