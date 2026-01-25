@@ -68,7 +68,7 @@ export const useFakeApi = () => {
 
   useEffect(() => {
     const now = Date.now();
-    if (import.meta.env.DEV && now - lastInitAt < 500) {
+    if (now - lastInitAt < 500) {
       return;
     }
     lastInitAt = now;
@@ -79,9 +79,9 @@ export const useFakeApi = () => {
       await getTodos(abortController.signal);
     };
 
-    if (import.meta.env.DEV || import.meta.env.PROD) {
+    //if (import.meta.env.DEV || import.meta.env.PROD) {
       skipAbortRef.current = true;
-    }
+    //}
     getData();
 
     return () => {
