@@ -79,9 +79,7 @@ export const useFakeApi = () => {
       await getTodos(abortController.signal);
     };
 
-    //if (import.meta.env.DEV || import.meta.env.PROD) {
-      skipAbortRef.current = true;
-    //}
+    skipAbortRef.current = true;
     getData();
 
     return () => {
