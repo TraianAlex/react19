@@ -1,8 +1,9 @@
-import { Suspense, use, useState } from 'react';
+import { memo, Suspense, use, useState } from 'react';
 import { dayOfYear, randomColor } from './utils';
 import { State } from './store';
 import { useSelector, setSubTitle, setTitle } from './actions';
 import { LoadingSpinner } from '../../../components/LoadingSpinner';
+import { sleep } from '../../../shared/utils/utils';
 
 export const Header = () => {
   const count1 = useSelector<number>((state: State) => state.count1);
@@ -68,28 +69,32 @@ export const Header = () => {
   );
 };
 
-function Title({ titlePromise }: { titlePromise: Promise<string> }) {
+const Title = memo(function Title({
+  titlePromise,
+}: {
+  titlePromise: Promise<string>;
+}) {
   const title = use(titlePromise);
-
-  let startTime = performance.now();
-  while (performance.now() - startTime < 1000) {}
+  sleep(1000);
 
   return (
     <span>
       Title: {title} / Today is the {dayOfYear(new Date())} day
     </span>
   );
-}
+});
 
-function SubTitle({ subTitlePromise }: { subTitlePromise: Promise<string> }) {
+const SubTitle = memo(function SubTitle({
+  subTitlePromise,
+}: {
+  subTitlePromise: Promise<string>;
+}) {
   const subTitle = use(subTitlePromise);
-
-  let startTime = performance.now();
-  while (performance.now() - startTime < 1000) {}
+  sleep(1000);
 
   return (
     <div className='badge bg-secondary text-center mb-2'>
       SubTitle: {subTitle}
     </div>
   );
-}
+});
