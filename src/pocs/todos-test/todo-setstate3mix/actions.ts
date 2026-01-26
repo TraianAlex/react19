@@ -7,40 +7,24 @@ export const { setState, useSelector, useStore } = createStore(initialState);
 
 setState('user', 'Alex');
 
-export const setTitle = async (text: string = ''): Promise<string> => {
+export const setTitle = async (): Promise<string> => {
   const url = `https://jsonplaceholder.typicode.com/posts/${randomOneToTwenty()}`;
   const response = await fetch(url);
   const body = await response.json();
   if (!response.ok) {
     throw new Error('Failed to fetch posts');
-  }
-  if (text !== '') {
-    setState('title', uppercaseWords(text.slice(0, 10)));
-  } else {
-    setState('title', toCamelCase(body.title.slice(0, 10)));
   }
   return toCamelCase(body.title.slice(0, 10));
 };
 
-export const initPageInfo = async () => {
-  const url = 'https://jsonplaceholder.typicode.com/posts/1';
-  const response = await fetch(url);
-  const body = await response.json();
-  setSubTitle(toCamelCase(body.title));
-};
-
-export const setSubTitle = async (text: string = '') => {
+export const setSubTitle = async () => {
   const url = `https://jsonplaceholder.typicode.com/posts/${randomOneToTwenty()}`;
   const response = await fetch(url);
   const body = await response.json();
   if (!response.ok) {
     throw new Error('Failed to fetch posts');
   }
-  if (text !== '') {
-    setState('subTitle', uppercaseWords(text.slice(0, 10)));
-  } else {
-    setState('subTitle', toCamelCase(body.title.slice(0, 10)));
-  }
+  return toCamelCase(body.title.slice(0, 10));
 };
 
 export const todoAddHandler = async (
@@ -97,7 +81,3 @@ export const fetchPosts = async () => {
   setState('posts', posts);
   return posts;
 };
-
-// export const setRender = (value: boolean) => {
-//   setState('render', (p: State['render']) => !value);
-// }
