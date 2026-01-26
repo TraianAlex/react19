@@ -1,13 +1,24 @@
-import { Suspense, useTransition } from 'react';
+import { Suspense, useRef, useEffect, useTransition } from 'react';
 import { dayOfYear, randomColor } from './utils';
 import { State } from './store';
-import { useSelector, setSubTitle } from './actions';
+import { useSelector, setSubTitle, initPageInfo } from './actions';
+import { LoadingSpinner } from '../../../components/LoadingSpinner';
 
 export const Header = () => {
   const title = useSelector<string>((state: State) => state.title);
   const subTitle = useSelector<string>((state: State) => state.subTitle);
   const count1 = useSelector<number>((state: State) => state.count1);
   const [isPending, startTransition] = useTransition();
+
+  const mounted = useRef(false);
+
+  useEffect(() => {
+    if (mounted.current) return;
+    mounted.current = true;
+    startTransition(async () => {
+      await initPageInfo();
+    });
+  });
 
   const modifSubtitle = () => {
     startTransition(async () => {
@@ -39,7 +50,11 @@ export const Header = () => {
         <div>Count1: {count1}</div>
       </div>
       <div>
-        <Suspense fallback={<div>Loading...</div>}>{subTitlePromise}</Suspense>
+        <Suspense
+          fallback={<LoadingSpinner size='sm' text='Loading subtitle...' />}
+        >
+          {subTitlePromise}
+        </Suspense>
         <button
           className='btn btn-outline-primary ms-2'
           onClick={modifSubtitle}
@@ -54,9 +69,7 @@ export const Header = () => {
 
 function SubTitle({ subTitle }: { subTitle: string }) {
   let startTime = performance.now();
-  while (performance.now() - startTime < 1000) {
-    // Do nothing for 1 second to emulate extremely slow code
-  }
+  while (performance.now() - startTime < 1000) {}
 
   return (
     <div className='badge bg-secondary text-center mb-2'>

@@ -7,6 +7,13 @@ export const { setState, useSelector, useStore } = createStore(initialState);
 
 setState('user', 'Alex');
 
+export const initPageInfo = async () => {
+  const url = "https://jsonplaceholder.typicode.com/posts/1";
+  const response = await fetch(url);
+  const body = await response.json();
+  setSubTitle(toCamelCase(body.title));
+};
+
 export const setSubTitle = async (text: string = '') => {
   const url = `https://jsonplaceholder.typicode.com/posts/${randomOneToTwenty()}`;
   const response = await fetch(url);
@@ -15,9 +22,9 @@ export const setSubTitle = async (text: string = '') => {
     throw new Error('Failed to fetch posts');
   }
   if (text !== '') {
-    setState('subTitle', uppercaseWords(text.slice(0, 20)));
+    setState('subTitle', uppercaseWords(text.slice(0, 10)));
   } else {
-    setState('subTitle', toCamelCase(body.title.slice(0, 20)));
+    setState('subTitle', toCamelCase(body.title.slice(0, 10)));
   }
 };
 
