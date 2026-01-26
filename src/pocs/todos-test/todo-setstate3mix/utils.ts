@@ -29,3 +29,5 @@ export const dayOfYear = (date: Date) =>
   Math.floor(
     (+date - +new Date(date.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24),
   );
+
+export const randomOneToTwenty = () => Math.floor(Math.random() * 20) + 1;

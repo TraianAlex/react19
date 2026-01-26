@@ -1,14 +1,24 @@
 import { createStore, State } from './store';
 import { mockDelay } from '../../../shared/utils/utils';
 import { initialState, TodoActionState, TodosState } from './TodoStore';
-import { uppercaseWords } from './utils';
+import { randomOneToTwenty, toCamelCase, uppercaseWords } from './utils';
 
 export const { setState, useSelector, useStore } = createStore(initialState);
 
 setState('user', 'Alex');
 
-export const setSubTitle = (text: string) => {
-  setState('subTitle', uppercaseWords(text.slice(0, 20)));
+export const setSubTitle = async (text: string = '') => {
+  const url = `https://jsonplaceholder.typicode.com/posts/${randomOneToTwenty()}`;
+  const response = await fetch(url);
+  const body = await response.json();
+  if (!response.ok) {
+    throw new Error('Failed to fetch posts');
+  }
+  if (text !== '') {
+    setState('subTitle', uppercaseWords(text.slice(0, 20)));
+  } else {
+    setState('subTitle', toCamelCase(body.title.slice(0, 20)));
+  }
 };
 
 export const todoAddHandler = async (

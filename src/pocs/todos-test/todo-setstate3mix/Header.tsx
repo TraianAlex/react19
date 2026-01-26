@@ -1,5 +1,5 @@
-import { useTransition } from 'react';
-import { dayOfYear, pause, randomColor, randomString } from './utils';
+import { Suspense, useTransition } from 'react';
+import { dayOfYear, randomColor } from './utils';
 import { State } from './store';
 import { useSelector, setSubTitle } from './actions';
 
@@ -9,12 +9,15 @@ export const Header = () => {
   const count1 = useSelector<number>((state: State) => state.count1);
   const [isPending, startTransition] = useTransition();
 
-  const modifSubtitle = async () => {
+  const modifSubtitle = () => {
     startTransition(async () => {
-      await pause(1000);
-      setSubTitle(randomString());
+      await setSubTitle();
     });
   };
+
+  const subTitlePromise = new Promise<React.ReactElement>((resolve) => {
+    resolve(<SubTitle subTitle={subTitle} />);
+  });
 
   console.log('render Header');
 
@@ -36,9 +39,7 @@ export const Header = () => {
         <div>Count1: {count1}</div>
       </div>
       <div>
-        <div className='badge bg-secondary text-center mb-2'>
-          SubTitle: {subTitle}
-        </div>
+        <Suspense fallback={<div>Loading...</div>}>{subTitlePromise}</Suspense>
         <button
           className='btn btn-outline-primary ms-2'
           onClick={modifSubtitle}
@@ -50,3 +51,16 @@ export const Header = () => {
     </div>
   );
 };
+
+function SubTitle({ subTitle }: { subTitle: string }) {
+  let startTime = performance.now();
+  while (performance.now() - startTime < 1000) {
+    // Do nothing for 1 second to emulate extremely slow code
+  }
+
+  return (
+    <div className='badge bg-secondary text-center mb-2'>
+      SubTitle: {subTitle}
+    </div>
+  );
+}
