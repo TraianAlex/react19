@@ -1,6 +1,6 @@
 export const LoadingSpinner = () => {
   return (
-    <div className='d-flex justify-content-center align-items-center vh-100'>
+    <div className='d-flex justify-content-center align-items-start vh-100'>
       <div
         className='spinner-border text-info'
         style={{ width: '5rem', height: '5rem' }}

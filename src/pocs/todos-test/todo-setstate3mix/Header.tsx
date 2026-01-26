@@ -1,14 +1,24 @@
-import { Suspense, useRef, useEffect, useTransition } from 'react';
+import {
+  Suspense,
+  useRef,
+  useEffect,
+  useTransition,
+  useMemo,
+  use,
+} from 'react';
 import { dayOfYear, randomColor } from './utils';
 import { State } from './store';
-import { useSelector, setSubTitle, initPageInfo } from './actions';
+import { useSelector, setSubTitle, initPageInfo, setTitle } from './actions';
 import { LoadingSpinner } from '../../../components/LoadingSpinner';
 
 export const Header = () => {
-  const title = useSelector<string>((state: State) => state.title);
+  // const title = useSelector<string>((state: State) => state.title);
   const subTitle = useSelector<string>((state: State) => state.subTitle);
   const count1 = useSelector<number>((state: State) => state.count1);
   const [isPending, startTransition] = useTransition();
+  // const [isPendingTitle, startTransitionTitle] = useTransition();
+
+  const titlePromise = useMemo(() => setTitle(), []);
 
   const mounted = useRef(false);
 
@@ -26,16 +36,36 @@ export const Header = () => {
     });
   };
 
+  // const modifTitle = () => {
+  //   startTransitionTitle(async () => {
+  //     await setTitle();
+  //   });
+  // };
+
   const subTitlePromise = new Promise<React.ReactElement>((resolve) => {
     resolve(<SubTitle subTitle={subTitle} />);
   });
+
+  // const titlePromise = new Promise<React.ReactElement>((resolve) => {
+  //   resolve(<Title title={title} />);
+  // });
 
   console.log('render Header');
 
   return (
     <div className='d-flex justify-content-between gap-2'>
       <div>
-        Title: {title} / Today is the {dayOfYear(new Date())} day
+        <Suspense
+          fallback={<LoadingSpinner size='sm' text='Loading title...' />}
+        >
+          <Title titlePromise={titlePromise} />
+        </Suspense>
+        {/* <button
+          className='btn btn-sm btn-outline-primary ms-2'
+          onClick={modifTitle}
+        >
+          Set Title
+        </button> */}
       </div>
       <div>
         <span
@@ -56,7 +86,7 @@ export const Header = () => {
           {subTitlePromise}
         </Suspense>
         <button
-          className='btn btn-outline-primary ms-2'
+          className='btn btn-sm btn-outline-primary ms-2'
           onClick={modifSubtitle}
           disabled={isPending}
         >
@@ -66,6 +96,15 @@ export const Header = () => {
     </div>
   );
 };
+
+function Title({ titlePromise }: { titlePromise: Promise<string> }) {
+  const title = use(titlePromise);
+  return (
+    <span>
+      Title: {title} / Today is the {dayOfYear(new Date())} day
+    </span>
+  );
+}
 
 function SubTitle({ subTitle }: { subTitle: string }) {
   let startTime = performance.now();

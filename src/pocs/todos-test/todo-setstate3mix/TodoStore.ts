@@ -18,7 +18,7 @@ type TodosType = {
 
 export const initialState: TodosType = {
   todos: [],
-  title: 'SetState3',
+  title: '',
   subTitle: '',
   count1: 0,
   count2: 0,
