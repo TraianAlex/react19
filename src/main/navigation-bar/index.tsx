@@ -163,6 +163,26 @@ export const NavigationBar = () => {
                       Cards 2
                     </Link>
                   </li>
+                  <li>
+                    <Link
+                      className={`dropdown-item ${
+                        isActive('/react-best-practices') ? 'active' : ''
+                      }`}
+                      to='react-best-practices'
+                    >
+                      React Best Practices
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      className={`dropdown-item ${
+                        isActive('/frontend-best-practices') ? 'active' : ''
+                      }`}
+                      to='frontend-best-practices'
+                    >
+                      Frontend Best Practices
+                    </Link>
+                  </li>
                 </ul>
               </li>
               <li className='nav-item dropdown'>
