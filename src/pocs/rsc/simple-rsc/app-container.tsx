@@ -2,6 +2,7 @@
 
 import { useContext } from 'react';
 import { ThemeContext } from './app-theme-provider';
+import { SimpleActionExample } from './server-form/SimpleActionExample';
 
 export default function AppContainer({
   children,
@@ -30,6 +31,7 @@ export default function AppContainer({
       </div>
       <hr />
       <div>{children}</div>
+      <SimpleActionExample />
     </div>
   );
 }

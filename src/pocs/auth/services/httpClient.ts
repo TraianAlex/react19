@@ -7,8 +7,8 @@ const httpClient = axios.create({
 
 // Add an interceptor to include the auth token if it's available
 httpClient.interceptors.request.use((config) => {
-  const token =
-    localStorage.getItem('authToken') ?? import.meta.env.VITE_REQRES_X_API_KEY;
+  const token = import.meta.env.VITE_REQRES_X_API_KEY;
+    // localStorage.getItem('authToken') ?? import.meta.env.VITE_REQRES_X_API_KEY;
 
   if (token) {
     // config.headers!.Authorization = `Bearer ${token}`;
