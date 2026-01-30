@@ -352,6 +352,7 @@ const HOC = lazy(
 const Composition = lazy(
   () => import('./pocs/best-practices/frontend-best-practices/code-reusability/Composition')
 );
+const Test = lazy(() => import('./sandbox/test/Test'));
 import { action as vanlifeLoginAction } from './apps/vanlife/pages/Login';
 import { loader as vansLoader } from './apps/vanlife/pages/vans/Vans';
 import { loader as vanlifeVanDetailLoader } from './apps/vanlife/pages/vans/VanDetail';
@@ -465,7 +466,7 @@ const router = createBrowserRouter(
           element={<CompoundComponentsSimple />}
         />
         <Route path='increment-redux-hooks' element={<IncrementReduxHooks />} />
-        <Route path='game4' element={<h1>Game 4</h1>} />
+        <Route path='test' element={<Test />} />
         <Route path='game5' element={<h1>Game 5</h1>} />
         <Route path='game6' element={<h1>Game 6</h1>} />
       </Route>
