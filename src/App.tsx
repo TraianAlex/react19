@@ -133,7 +133,9 @@ const TodosSetState2 = lazy(
   () => import('./pocs/todos-test/todo-setstate2/Todos')
 );
 const Todos3 = lazy(() => import('./pocs/todos-test/todo-setstate3/Todos'));
-const Todos3mix = lazy(() => import('./pocs/todos-test/todo-setstate3mix/Todos'));
+const Todos3mix = lazy(
+  () => import('./pocs/todos-test/todo-setstate3mix/Todos')
+);
 const RscLayout = lazy(() => import('./pocs/rsc/RscLayout'));
 const AppHeader = lazy(() => import('./pocs/rsc/simple-rsc/app-header'));
 const TransitionLayout = lazy(
@@ -168,31 +170,52 @@ const React19FeaturesApp = lazy(
 const AppCards = lazy(() => import('./apps/cards/AppCards'));
 const Cards2 = lazy(() => import('./pocs/cards2/AppCards'));
 const ReactBestPracticesLayout = lazy(
-  () => import('./pocs/best-practices/react-best-practices/ReactBestPracticesLayout')
+  () =>
+    import(
+      './pocs/best-practices/react-best-practices/ReactBestPracticesLayout'
+    )
 );
 const ReactBestPracticesIndex = lazy(
   () => import('./pocs/best-practices/react-best-practices/index')
 );
 const FrontendBestPracticesLayout = lazy(
-  () => import('./pocs/best-practices/frontend-best-practices/FrontendBestPracticesLayout')
+  () =>
+    import(
+      './pocs/best-practices/frontend-best-practices/FrontendBestPracticesLayout'
+    )
 );
 const FrontendBestPracticesIndex = lazy(
   () => import('./pocs/best-practices/frontend-best-practices/index')
 );
 const StateClassify = lazy(
-  () => import('./pocs/best-practices/react-best-practices/state-architecture/StateClassify')
+  () =>
+    import(
+      './pocs/best-practices/react-best-practices/state-architecture/StateClassify'
+    )
 );
 const ServerState = lazy(
-  () => import('./pocs/best-practices/react-best-practices/state-architecture/ServerState')
+  () =>
+    import(
+      './pocs/best-practices/react-best-practices/state-architecture/ServerState'
+    )
 );
 const GlobalState = lazy(
-  () => import('./pocs/best-practices/react-best-practices/state-architecture/GlobalState')
+  () =>
+    import(
+      './pocs/best-practices/react-best-practices/state-architecture/GlobalState'
+    )
 );
 const LocalState = lazy(
-  () => import('./pocs/best-practices/react-best-practices/state-architecture/LocalState')
+  () =>
+    import(
+      './pocs/best-practices/react-best-practices/state-architecture/LocalState'
+    )
 );
 const UrlState = lazy(
-  () => import('./pocs/best-practices/react-best-practices/state-architecture/UrlState')
+  () =>
+    import(
+      './pocs/best-practices/react-best-practices/state-architecture/UrlState'
+    )
 );
 const ContainerPresentational = lazy(
   () =>
@@ -202,7 +225,9 @@ const ContainerPresentational = lazy(
 );
 const CustomHooks = lazy(
   () =>
-    import('./pocs/best-practices/react-best-practices/component-architecture/CustomHooks')
+    import(
+      './pocs/best-practices/react-best-practices/component-architecture/CustomHooks'
+    )
 );
 const ComponentBoundaries = lazy(
   () =>
@@ -211,16 +236,28 @@ const ComponentBoundaries = lazy(
     )
 );
 const CleanJsx = lazy(
-  () => import('./pocs/best-practices/react-best-practices/component-layer/CleanJsx')
+  () =>
+    import(
+      './pocs/best-practices/react-best-practices/component-layer/CleanJsx'
+    )
 );
 const Fragments = lazy(
-  () => import('./pocs/best-practices/react-best-practices/component-layer/Fragments')
+  () =>
+    import(
+      './pocs/best-practices/react-best-practices/component-layer/Fragments'
+    )
 );
 const PropsApi = lazy(
-  () => import('./pocs/best-practices/react-best-practices/component-layer/PropsApi')
+  () =>
+    import(
+      './pocs/best-practices/react-best-practices/component-layer/PropsApi'
+    )
 );
 const PropValidation = lazy(
-  () => import('./pocs/best-practices/react-best-practices/component-layer/PropValidation')
+  () =>
+    import(
+      './pocs/best-practices/react-best-practices/component-layer/PropValidation'
+    )
 );
 const CompoundComponentsExample = lazy(
   () =>
@@ -229,20 +266,32 @@ const CompoundComponentsExample = lazy(
     )
 );
 const MeasureFirst = lazy(
-  () => import('./pocs/best-practices/react-best-practices/performance/MeasureFirst')
+  () =>
+    import(
+      './pocs/best-practices/react-best-practices/performance/MeasureFirst'
+    )
 );
 const ReactMemo = lazy(
-  () => import('./pocs/best-practices/react-best-practices/performance/ReactMemo')
+  () =>
+    import('./pocs/best-practices/react-best-practices/performance/ReactMemo')
 );
 const CodeSplitting = lazy(
-  () => import('./pocs/best-practices/react-best-practices/performance/CodeSplitting')
+  () =>
+    import(
+      './pocs/best-practices/react-best-practices/performance/CodeSplitting'
+    )
 );
 const DynamicImports = lazy(
-  () => import('./pocs/best-practices/react-best-practices/performance/DynamicImports')
+  () =>
+    import(
+      './pocs/best-practices/react-best-practices/performance/DynamicImports'
+    )
 );
 const ErrorBoundaries = lazy(
   () =>
-    import('./pocs/best-practices/react-best-practices/code-quality/ErrorBoundaries')
+    import(
+      './pocs/best-practices/react-best-practices/code-quality/ErrorBoundaries'
+    )
 );
 const DefensiveProgramming = lazy(
   () =>
@@ -257,21 +306,32 @@ const LoadingErrorStates = lazy(
     )
 );
 const TypeSafety = lazy(
-  () => import('./pocs/best-practices/react-best-practices/code-quality/TypeSafety')
+  () =>
+    import('./pocs/best-practices/react-best-practices/code-quality/TypeSafety')
 );
 const GenericTypes = lazy(
-  () => import('./pocs/best-practices/react-best-practices/code-quality/GenericTypes')
+  () =>
+    import(
+      './pocs/best-practices/react-best-practices/code-quality/GenericTypes'
+    )
 );
 const SemanticHtml = lazy(
   () =>
-    import('./pocs/best-practices/react-best-practices/accessibility/SemanticHtml')
+    import(
+      './pocs/best-practices/react-best-practices/accessibility/SemanticHtml'
+    )
 );
 const FormLabels = lazy(
-  () => import('./pocs/best-practices/react-best-practices/accessibility/FormLabels')
+  () =>
+    import(
+      './pocs/best-practices/react-best-practices/accessibility/FormLabels'
+    )
 );
 const AriaAttributes = lazy(
   () =>
-    import('./pocs/best-practices/react-best-practices/accessibility/AriaAttributes')
+    import(
+      './pocs/best-practices/react-best-practices/accessibility/AriaAttributes'
+    )
 );
 const FocusManagement = lazy(
   () =>
@@ -280,79 +340,148 @@ const FocusManagement = lazy(
     )
 );
 const FocusTrap = lazy(
-  () => import('./pocs/best-practices/react-best-practices/accessibility/FocusTrap')
+  () =>
+    import('./pocs/best-practices/react-best-practices/accessibility/FocusTrap')
 );
 // Frontend Best Practices
 const LocalVsGlobalState = lazy(
-  () => import('./pocs/best-practices/frontend-best-practices/state-architecture/LocalVsGlobalState')
+  () =>
+    import(
+      './pocs/best-practices/frontend-best-practices/state-architecture/LocalVsGlobalState'
+    )
 );
 const NormalizeState = lazy(
-  () => import('./pocs/best-practices/frontend-best-practices/state-architecture/NormalizeState')
+  () =>
+    import(
+      './pocs/best-practices/frontend-best-practices/state-architecture/NormalizeState'
+    )
 );
 const StateMachines = lazy(
-  () => import('./pocs/best-practices/frontend-best-practices/state-architecture/StateMachines')
+  () =>
+    import(
+      './pocs/best-practices/frontend-best-practices/state-architecture/StateMachines'
+    )
 );
 const FrontendContainerPresentational = lazy(
-  () => import('./pocs/best-practices/frontend-best-practices/component-layer/ContainerPresentational')
+  () =>
+    import(
+      './pocs/best-practices/frontend-best-practices/component-layer/ContainerPresentational'
+    )
 );
 const FrontendCompoundComponents = lazy(
-  () => import('./pocs/best-practices/frontend-best-practices/component-layer/CompoundComponents')
+  () =>
+    import(
+      './pocs/best-practices/frontend-best-practices/component-layer/CompoundComponents'
+    )
 );
 const RenderProps = lazy(
-  () => import('./pocs/best-practices/frontend-best-practices/component-layer/RenderProps')
+  () =>
+    import(
+      './pocs/best-practices/frontend-best-practices/component-layer/RenderProps'
+    )
 );
 const Memoization = lazy(
-  () => import('./pocs/best-practices/frontend-best-practices/performance/Memoization')
+  () =>
+    import(
+      './pocs/best-practices/frontend-best-practices/performance/Memoization'
+    )
 );
 const FrontendCodeSplitting = lazy(
-  () => import('./pocs/best-practices/frontend-best-practices/performance/CodeSplitting')
+  () =>
+    import(
+      './pocs/best-practices/frontend-best-practices/performance/CodeSplitting'
+    )
 );
 const Virtualization = lazy(
-  () => import('./pocs/best-practices/frontend-best-practices/performance/Virtualization')
+  () =>
+    import(
+      './pocs/best-practices/frontend-best-practices/performance/Virtualization'
+    )
 );
 const FrontendErrorBoundaries = lazy(
-  () => import('./pocs/best-practices/frontend-best-practices/error-handling/ErrorBoundaries')
+  () =>
+    import(
+      './pocs/best-practices/frontend-best-practices/error-handling/ErrorBoundaries'
+    )
 );
 const AsyncErrorHandling = lazy(
-  () => import('./pocs/best-practices/frontend-best-practices/error-handling/AsyncErrorHandling')
+  () =>
+    import(
+      './pocs/best-practices/frontend-best-practices/error-handling/AsyncErrorHandling'
+    )
 );
 const RequestCancellation = lazy(
-  () => import('./pocs/best-practices/frontend-best-practices/error-handling/RequestCancellation')
+  () =>
+    import(
+      './pocs/best-practices/frontend-best-practices/error-handling/RequestCancellation'
+    )
 );
 const FrontendCustomHooks = lazy(
-  () => import('./pocs/best-practices/frontend-best-practices/code-organization/CustomHooks')
+  () =>
+    import(
+      './pocs/best-practices/frontend-best-practices/code-organization/CustomHooks'
+    )
 );
 const Constants = lazy(
-  () => import('./pocs/best-practices/frontend-best-practices/code-organization/Constants')
+  () =>
+    import(
+      './pocs/best-practices/frontend-best-practices/code-organization/Constants'
+    )
 );
 const StrictTypeScript = lazy(
-  () => import('./pocs/best-practices/frontend-best-practices/type-safety/StrictTypeScript')
+  () =>
+    import(
+      './pocs/best-practices/frontend-best-practices/type-safety/StrictTypeScript'
+    )
 );
 const DiscriminatedUnions = lazy(
-  () => import('./pocs/best-practices/frontend-best-practices/type-safety/DiscriminatedUnions')
+  () =>
+    import(
+      './pocs/best-practices/frontend-best-practices/type-safety/DiscriminatedUnions'
+    )
 );
 const FrontendSemanticHtml = lazy(
-  () => import('./pocs/best-practices/frontend-best-practices/accessibility/SemanticHtml')
+  () =>
+    import(
+      './pocs/best-practices/frontend-best-practices/accessibility/SemanticHtml'
+    )
 );
 const FrontendAriaAttributes = lazy(
-  () => import('./pocs/best-practices/frontend-best-practices/accessibility/AriaAttributes')
+  () =>
+    import(
+      './pocs/best-practices/frontend-best-practices/accessibility/AriaAttributes'
+    )
 );
 const KeyboardNavigation = lazy(
-  () => import('./pocs/best-practices/frontend-best-practices/accessibility/KeyboardNavigation')
+  () =>
+    import(
+      './pocs/best-practices/frontend-best-practices/accessibility/KeyboardNavigation'
+    )
 );
 const ApiClient = lazy(
-  () => import('./pocs/best-practices/frontend-best-practices/api-integration/ApiClient')
+  () =>
+    import(
+      './pocs/best-practices/frontend-best-practices/api-integration/ApiClient'
+    )
 );
 const Interceptors = lazy(
-  () => import('./pocs/best-practices/frontend-best-practices/api-integration/Interceptors')
+  () =>
+    import(
+      './pocs/best-practices/frontend-best-practices/api-integration/Interceptors'
+    )
 );
 const HOC = lazy(
-  () => import('./pocs/best-practices/frontend-best-practices/code-reusability/HOC')
+  () =>
+    import('./pocs/best-practices/frontend-best-practices/code-reusability/HOC')
 );
 const Composition = lazy(
-  () => import('./pocs/best-practices/frontend-best-practices/code-reusability/Composition')
+  () =>
+    import(
+      './pocs/best-practices/frontend-best-practices/code-reusability/Composition'
+    )
 );
 const Test = lazy(() => import('./sandbox/test/Test'));
+const Users = lazy(() => import('./pocs/auth/components/users'));
 import { action as vanlifeLoginAction } from './apps/vanlife/pages/Login';
 import { loader as vansLoader } from './apps/vanlife/pages/vans/Vans';
 import { loader as vanlifeVanDetailLoader } from './apps/vanlife/pages/vans/VanDetail';
@@ -518,7 +647,15 @@ const router = createBrowserRouter(
       <Route path='react19-features' element={<React19FeaturesApp />} />
       <Route path='login' element={<Login />} />
       <Route
-        path='profile'
+        path='users'
+        element={
+          <ProtectedRoute>
+            <Users />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path='profile/:id'
         element={
           <ProtectedRoute>
             <Profile />
@@ -534,20 +671,29 @@ const router = createBrowserRouter(
         <Route path='global-state' element={<GlobalState />} />
         <Route path='local-state' element={<LocalState />} />
         <Route path='url-state' element={<UrlState />} />
-        <Route path='container-presentational' element={<ContainerPresentational />} />
+        <Route
+          path='container-presentational'
+          element={<ContainerPresentational />}
+        />
         <Route path='custom-hooks' element={<CustomHooks />} />
         <Route path='component-boundaries' element={<ComponentBoundaries />} />
         <Route path='clean-jsx' element={<CleanJsx />} />
         <Route path='fragments' element={<Fragments />} />
         <Route path='props-api' element={<PropsApi />} />
         <Route path='prop-validation' element={<PropValidation />} />
-        <Route path='compound-components' element={<CompoundComponentsExample />} />
+        <Route
+          path='compound-components'
+          element={<CompoundComponentsExample />}
+        />
         <Route path='measure-first' element={<MeasureFirst />} />
         <Route path='react-memo' element={<ReactMemo />} />
         <Route path='code-splitting' element={<CodeSplitting />} />
         <Route path='dynamic-imports' element={<DynamicImports />} />
         <Route path='error-boundaries' element={<ErrorBoundaries />} />
-        <Route path='defensive-programming' element={<DefensiveProgramming />} />
+        <Route
+          path='defensive-programming'
+          element={<DefensiveProgramming />}
+        />
         <Route path='loading-error-states' element={<LoadingErrorStates />} />
         <Route path='type-safety' element={<TypeSafety />} />
         <Route path='generic-types' element={<GenericTypes />} />
@@ -557,13 +703,22 @@ const router = createBrowserRouter(
         <Route path='focus-management' element={<FocusManagement />} />
         <Route path='focus-trap' element={<FocusTrap />} />
       </Route>
-      <Route path='frontend-best-practices' element={<FrontendBestPracticesLayout />}>
+      <Route
+        path='frontend-best-practices'
+        element={<FrontendBestPracticesLayout />}
+      >
         <Route index element={<FrontendBestPracticesIndex />} />
         <Route path='local-vs-global-state' element={<LocalVsGlobalState />} />
         <Route path='normalize-state' element={<NormalizeState />} />
         <Route path='state-machines' element={<StateMachines />} />
-        <Route path='container-presentational' element={<FrontendContainerPresentational />} />
-        <Route path='compound-components' element={<FrontendCompoundComponents />} />
+        <Route
+          path='container-presentational'
+          element={<FrontendContainerPresentational />}
+        />
+        <Route
+          path='compound-components'
+          element={<FrontendCompoundComponents />}
+        />
         <Route path='render-props' element={<RenderProps />} />
         <Route path='memoization' element={<Memoization />} />
         <Route path='code-splitting' element={<FrontendCodeSplitting />} />

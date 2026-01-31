@@ -9,7 +9,6 @@ const Login: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
-  // Access authentication state
   const isAuthenticated = useSelector(
     (state: RootState) => state.auth.isAuthenticated
   );
@@ -19,31 +18,18 @@ const Login: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Redirect to profile if the user is already authenticated
     if (isAuthenticated) {
-      navigate('/profile');
+      navigate('/users');
     }
   }, [isAuthenticated, navigate]);
 
-  // const handleSubmit = async (e: React.FormEvent) => {
-  //   e.preventDefault();
-
-  //   try {
-  //     await dispatch(loginUserThunk({ email, password })).unwrap();
-  //     navigate('/profile');
-  //   } catch (err) {
-  //     setError('Login failed. Please try again.');
-  //   }
-  // };
-
-  // FormActions 19.0+
   const handleSubmit = async (formData: FormData) => {
     const email = formData.get('email') as string;
     const password = formData.get('password') as string;
 
     try {
       await dispatch(loginUserThunk({ email, password })).unwrap();
-      navigate('/profile');
+      navigate('/users');
     } catch (err) {
       setError('Login failed. Please try again.');
     }

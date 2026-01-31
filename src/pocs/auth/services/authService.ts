@@ -6,7 +6,14 @@ interface Credentials {
   password: string;
 }
 
-// Function to login user
+type ReqresUserData = {
+  id: number | string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  avatar: string;
+};
+
 export const loginUser = async (
   credentials: Credentials
 ): Promise<User & { token: string }> => {
@@ -18,10 +25,27 @@ export const loginUser = async (
   }
 };
 
-// Function to get user profile (mock implementation)
-export const getUserProfile = async (): Promise<User> => {
+export const fetchUsers = async (): Promise<User[]> => {
   try {
-    const response = await httpClient.get('/users/2');
+    const response = await httpClient.get<{
+      data: ReqresUserData[];
+    }>('/users');
+    const usersData = response.data?.data as ReqresUserData[];
+
+    return (usersData ?? []).map((user) => ({
+      id: String(user.id),
+      name: `${user.first_name} ${user.last_name}`,
+      email: user.email,
+      avatar: user.avatar,
+    }));
+  } catch (error: any) {
+    throw new Error(error.response?.data?.error || 'Failed to fetch users');
+  }
+};
+
+export const getUserProfile = async (id: string): Promise<User> => {
+  try {
+    const response = await httpClient.get(`/users/${id}`);
     const userData = response.data as any;
     const user = {
       id: userData.data.id,
@@ -30,7 +54,7 @@ export const getUserProfile = async (): Promise<User> => {
       avatar: userData.data.avatar,
     };
 
-    return user; // Return the mapped user object
+    return user;
   } catch (error: any) {
     throw new Error('Failed to fetch user profile');
   }

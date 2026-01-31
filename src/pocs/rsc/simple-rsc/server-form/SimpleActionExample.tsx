@@ -54,6 +54,7 @@ type SubmitButtonProps = {
 
 export const SubmitButton = ({ onResult }: SubmitButtonProps) => {
   const onClick = async () => {
+    // await saveSomething('POST Some data from client');
     await onResult?.();
   };
   return <Button onClick={onClick}>Click Me to trigger action</Button>;

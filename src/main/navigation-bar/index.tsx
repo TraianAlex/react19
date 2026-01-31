@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { AppDispatch, RootState } from '../../pocs/auth/state/store';
 import {
-  getUserProfileThunk,
+  fetchUsersThunk,
   logoutUserThunk,
 } from '../../pocs/auth/state/authSlice';
 
@@ -17,10 +17,10 @@ export const NavigationBar = () => {
   );
 
   useEffect(() => {
-    if (isAuthenticated && !user) {
-      dispatch(getUserProfileThunk());
+    if (isAuthenticated) {
+      dispatch(fetchUsersThunk());
     }
-  }, [dispatch, isAuthenticated, user]);
+  }, [dispatch, isAuthenticated]);
 
   const handleLogout = () => {
     dispatch(logoutUserThunk()).then(() => {
@@ -86,9 +86,9 @@ export const NavigationBar = () => {
                   <li>
                     <Link
                       className={`dropdown-item ${
-                        isActive('/profile') ? 'active' : ''
+                        isActive('/users') ? 'active' : ''
                       }`}
-                      to='profile'
+                      to='users'
                     >
                       Auth
                     </Link>
@@ -272,20 +272,16 @@ export const NavigationBar = () => {
               </li>
             </ul>
             <ul className='navbar-nav'>
-              {isAuthenticated && (
-                <li className='nav-item'>
-                  <Link
-                    to='profile'
-                    className={`nav-link ${
-                      isActive('/profile') ? 'active' : ''
-                    }`}
-                    aria-current={isActive('/profile') ? 'page' : undefined}
-                  >
-                    Profile
-                  </Link>
-                </li>
-              )}
-              {isAuthenticated && user ? (
+              <li className='nav-item'>
+                <Link
+                  to='users'
+                  className={`nav-link ${isActive('/users') ? 'active' : ''}`}
+                  aria-current={isActive('/users') ? 'page' : undefined}
+                >
+                  Users
+                </Link>
+              </li>
+              {isAuthenticated ? (
                 <button
                   className='btn btn-outline-light'
                   type='submit'
