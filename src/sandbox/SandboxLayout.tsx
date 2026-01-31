@@ -145,15 +145,15 @@ const SandboxLayout = () => {
               </li>
               <li
                 className={`list-group-item ${
-                  isActive('sandbox/game4') ? 'active' : ''
+                  isActive('sandbox/test') ? 'active' : ''
                 }`}
               >
                 <Link
-                  to='game4'
-                  className={isActive('sandbox/game4') ? 'text-white' : ''}
+                  to='test'
+                  className={isActive('sandbox/test') ? 'text-white' : ''}
                   onClick={() => setIsCompoundComponentsOpen(false)}
                 >
-                  Game 4
+                  Test
                 </Link>
               </li>
               <li
