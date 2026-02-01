@@ -27,7 +27,7 @@ const TicTacToeLayout: React.FC = () => {
                       : ''
                   }
                 >
-                  Game 1
+                  Tic Tac Toe 1
                 </Link>
               </li>
               <li
@@ -39,7 +39,7 @@ const TicTacToeLayout: React.FC = () => {
                   to='game2'
                   className={isActive('tic-tac-toe/game2') ? 'text-white' : ''}
                 >
-                  Game 2
+                  Tic Tac Toe 2
                 </Link>
               </li>
               <li
@@ -51,7 +51,7 @@ const TicTacToeLayout: React.FC = () => {
                   to='game3'
                   className={isActive('tic-tac-toe/game3') ? 'text-white' : ''}
                 >
-                  Game 3
+                  Tic Tac Toe 3
                 </Link>
               </li>
               <li
@@ -63,7 +63,7 @@ const TicTacToeLayout: React.FC = () => {
                   to='game4'
                   className={isActive('tic-tac-toe/game4') ? 'text-white' : ''}
                 >
-                  Game 4
+                  Tic Tac Toe 4
                 </Link>
               </li>
               <li
@@ -75,7 +75,7 @@ const TicTacToeLayout: React.FC = () => {
                   to='game5'
                   className={isActive('tic-tac-toe/game5') ? 'text-white' : ''}
                 >
-                  Game 5
+                  Tic Tac Toe 5
                 </Link>
               </li>
               <li
@@ -87,7 +87,7 @@ const TicTacToeLayout: React.FC = () => {
                   to='game6'
                   className={isActive('tic-tac-toe/game6') ? 'text-white' : ''}
                 >
-                  Game 6
+                  Tic Tac Toe 6
                 </Link>
               </li>
             </ul>

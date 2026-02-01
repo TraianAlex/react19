@@ -26,17 +26,17 @@ const HomeDetails = lazy(() => import('./main/home/home-detail'));
 const TodosLayout = lazy(() => import('./apps/todos/TodosLayout'));
 const WatchList = lazy(() => import('./apps/watch-list'));
 const TicTacToeLayout = lazy(
-  () => import('./apps/tic-tac-toe/TicTacToeLayout')
+  () => import('./apps/games/TicTacToeLayout')
 );
 const Login = lazy(() => import('./pocs/auth/components/login'));
 const Profile = lazy(() => import('./pocs/auth/components/profile'));
 const Todos1 = lazy(() => import('./apps/todos/todo1/Todos1'));
-const Game1 = lazy(() => import('./apps/tic-tac-toe/game1'));
-const Game2 = lazy(() => import('./apps/tic-tac-toe/game2'));
-const Game3 = lazy(() => import('./apps/tic-tac-toe/game3'));
-const Game4 = lazy(() => import('./apps/tic-tac-toe/game4'));
-const Game5 = lazy(() => import('./apps/tic-tac-toe/game5'));
-const Game6 = lazy(() => import('./apps/tic-tac-toe/game6'));
+const Game1 = lazy(() => import('./apps/games/tic-tac-toe1'));
+const Game2 = lazy(() => import('./apps/games/tic-tac-toe2'));
+const Game3 = lazy(() => import('./apps/games/tic-tac-toe3'));
+const Game4 = lazy(() => import('./apps/games/tic-tac-toe4'));
+const Game5 = lazy(() => import('./apps/games/tic-tac-toe5'));
+const Game6 = lazy(() => import('./apps/games/tic-tac-toe6'));
 const SandboxLayout = lazy(() => import('./sandbox/SandboxLayout'));
 const Playground = lazy(() => import('./sandbox/playground/Playground'));
 const CompoundComponents = lazy(

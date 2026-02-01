@@ -4,6 +4,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { fetchUsersThunk, getUserProfileThunk } from '../state/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../state/store';
+import Pagination from './Pagination';
 
 const Users = () => {
   const navigate = useNavigate();
@@ -72,35 +73,11 @@ const Users = () => {
           </div>
         ))}
       </div>
-      <nav className='d-flex justify-content-center mt-4' aria-label='Users'>
-        <ul className='pagination mb-0'>
-          <li className={`page-item ${page <= 1 ? 'disabled' : ''}`}>
-            <button
-              type='button'
-              className='page-link'
-              onClick={() => handlePageChange(page - 1)}
-              disabled={page <= 1}
-            >
-              Previous
-            </button>
-          </li>
-          <li className='page-item active'>
-            <span className='page-link'>
-              {page} / {totalPages}
-            </span>
-          </li>
-          <li className={`page-item ${page >= totalPages ? 'disabled' : ''}`}>
-            <button
-              type='button'
-              className='page-link'
-              onClick={() => handlePageChange(page + 1)}
-              disabled={page >= totalPages}
-            >
-              Next
-            </button>
-          </li>
-        </ul>
-      </nav>
+      <Pagination
+        page={page}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+      />
     </div>
   );
 };
