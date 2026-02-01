@@ -7,7 +7,7 @@ interface Credentials {
 }
 
 type ReqresUserData = {
-  id: number | string;
+  id: number;
   first_name: string;
   last_name: string;
   email: string;
@@ -33,7 +33,7 @@ export const fetchUsers = async (): Promise<User[]> => {
     const usersData = response.data?.data as ReqresUserData[];
 
     return (usersData ?? []).map((user) => ({
-      id: String(user.id),
+      id: user.id,
       name: `${user.first_name} ${user.last_name}`,
       email: user.email,
       avatar: user.avatar,
@@ -43,7 +43,7 @@ export const fetchUsers = async (): Promise<User[]> => {
   }
 };
 
-export const getUserProfile = async (id: string): Promise<User> => {
+export const getUserProfile = async (id: number): Promise<User> => {
   try {
     const response = await httpClient.get(`/users/${id}`);
     const userData = response.data as any;

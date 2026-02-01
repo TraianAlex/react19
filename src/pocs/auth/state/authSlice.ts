@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { loginUser, getUserProfile, fetchUsers } from '../services/authService';
 
 export interface User {
-  id: string;
+  id: number;
   name: string;
   email: string;
   avatar: string;
@@ -59,7 +59,7 @@ export const fetchUsersThunk = createAsyncThunk(
 // Thunk to handle fetching user profile
 export const getUserProfileThunk = createAsyncThunk(
   'auth/getUserProfile',
-  async (id: string, { rejectWithValue }) => {
+  async (id: number, { rejectWithValue }) => {
     try {
       const response = await getUserProfile(id);
       return response;
