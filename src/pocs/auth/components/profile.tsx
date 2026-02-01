@@ -1,31 +1,36 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { AppDispatch, RootState } from '../state/store';
-import { getUserProfileThunk } from '../state/authSlice';
+import { fetchUsersThunk, getUserProfileThunk } from '../state/authSlice';
 import LoadingSpinner from '../../../components/loading-spinner';
 
 const Profile = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
-  const { user, loading, users } = useSelector((state: RootState) => state.auth);
-  // const [localLoading, setLocalLoading] = useState(true);
+  const { user, loading, users } = useSelector(
+    (state: RootState) => state.auth
+  );
 
   const userProfile = users[Number(id) - 1] || user;
 
-  // useEffect(() => {
-  //   if (!id || !userProfile) {
-  //     // dispatch(getUserProfileThunk(Number(id ?? 2)));
-  //     // dispatch(fetchUsersThunk());
-  //   }
-  //   // Add a 1-second delay for local loading
-  //   const timer = setTimeout(() => {
-  //     setLocalLoading(false);
-  //   }, 1000);
+  useEffect(() => {
+    if (!userProfile) {
+      dispatch(fetchUsersThunk());
+    }
+  }, [userProfile]);
 
-  //   return () => clearTimeout(timer);
-  // }, [dispatch, userProfile]);
+  const currentId = Number(id ?? userProfile.id ?? 0);
+  const prevId = currentId - 1;
+  const nextId = currentId + 1;
+
+  const handleNavigate = (targetId: number) => {
+    dispatch(getUserProfileThunk(targetId)).then(() =>
+      navigate(`/profile/${targetId}`)
+    );
+  };
 
   if (loading) {
     return (
@@ -43,16 +48,6 @@ const Profile = () => {
       </div>
     );
   }
-
-  const currentId = Number(id ?? userProfile.id ?? 0);
-  const prevId = currentId - 1;
-  const nextId = currentId + 1;
-
-  const handleNavigate = (targetId: number) => {
-    dispatch(getUserProfileThunk(targetId)).then(() =>
-      navigate(`/profile/${targetId}`)
-    );
-  };
 
   return (
     <div className='d-flex justify-content-center align-items-center vh-100'>
@@ -82,6 +77,7 @@ const Profile = () => {
       <button
         type='button'
         className='btn btn-outline-primary ms-5 d-flex align-items-center gap-2 shadow-sm'
+        disabled={nextId === 13}
         onClick={() => handleNavigate(nextId)}
       >
         Next

@@ -2,12 +2,8 @@ import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { User } from '../state/authSlice';
 import { fetchUsers } from '../services/authService';
-// import { useDispatch } from 'react-redux';
-// import { AppDispatch } from '../state/store';
-// import { getUserProfileThunk } from '../state/authSlice';
 
 const Users = () => {
-  // const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const {
     data: users,
@@ -43,12 +39,7 @@ const Users = () => {
               <div className='card-footer'>
                 <button
                   className='btn btn-primary'
-                  onClick={() =>
-                    // dispatch(getUserProfileThunk(user.id)).then(() =>
-                    //   navigate(`/profile/${user.id}`)
-                    // )
-                    navigate(`/profile/${user.id}`)
-                  }
+                  onClick={() => navigate(`/profile/${user.id}`)}
                 >
                   View
                 </button>

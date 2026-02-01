@@ -27,7 +27,6 @@ const initialState: AuthState = {
   error: null,
 };
 
-// Thunk to handle login
 export const loginUserThunk = createAsyncThunk(
   'auth/loginUser',
   async (
@@ -43,7 +42,6 @@ export const loginUserThunk = createAsyncThunk(
   }
 );
 
-// Thunk to handle fetching users
 export const fetchUsersThunk = createAsyncThunk(
   'auth/fetchUsers',
   async (_, { rejectWithValue }) => {
@@ -56,7 +54,6 @@ export const fetchUsersThunk = createAsyncThunk(
   }
 );
 
-// Thunk to handle fetching user profile
 export const getUserProfileThunk = createAsyncThunk(
   'auth/getUserProfile',
   async (id: number, { rejectWithValue }) => {
@@ -72,7 +69,6 @@ export const getUserProfileThunk = createAsyncThunk(
   }
 );
 
-// Thunk to handle logout
 export const logoutUserThunk = createAsyncThunk('auth/logoutUser', async () => {
   localStorage.removeItem('authToken');
 });

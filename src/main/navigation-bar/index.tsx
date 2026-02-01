@@ -1,26 +1,14 @@
-import { useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { AppDispatch, RootState } from '../../pocs/auth/state/store';
-import {
-  fetchUsersThunk,
-  logoutUserThunk,
-} from '../../pocs/auth/state/authSlice';
+import { logoutUserThunk } from '../../pocs/auth/state/authSlice';
 
 export const NavigationBar = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const location = useLocation();
-  const { isAuthenticated, user } = useSelector(
-    (state: RootState) => state.auth
-  );
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      dispatch(fetchUsersThunk());
-    }
-  }, [dispatch, isAuthenticated]);
+  const { isAuthenticated } = useSelector((state: RootState) => state.auth);
 
   const handleLogout = () => {
     dispatch(logoutUserThunk()).then(() => {
