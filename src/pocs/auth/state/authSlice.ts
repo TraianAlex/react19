@@ -15,6 +15,8 @@ interface AuthState {
   user: User | null;
   loading: boolean;
   error: string | null;
+  totalPages: number;
+  totalUsers: number;
 }
 
 const initialAuthToken = localStorage.getItem('authToken');
@@ -25,6 +27,8 @@ const initialState: AuthState = {
   user: null,
   loading: false,
   error: null,
+  totalPages: 1,
+  totalUsers: 0,
 };
 
 export const loginUserThunk = createAsyncThunk(
@@ -44,9 +48,9 @@ export const loginUserThunk = createAsyncThunk(
 
 export const fetchUsersThunk = createAsyncThunk(
   'auth/fetchUsers',
-  async (_, { rejectWithValue }) => {
+  async ({ page }: { page: number }, { rejectWithValue }) => {
     try {
-      const response = await fetchUsers();
+      const response = await fetchUsers(page);
       return response;
     } catch (err: any) {
       return rejectWithValue(err.response?.data || 'Failed to fetch users');
@@ -101,9 +105,16 @@ const authSlice = createSlice({
       })
       .addCase(
         fetchUsersThunk.fulfilled,
-        (state, action: PayloadAction<User[]>) => {
+        (
+          state,
+          action: PayloadAction<
+            Pick<AuthState, 'users' | 'totalPages' | 'totalUsers'>
+          >
+        ) => {
           state.loading = false;
-          state.users = action.payload;
+          state.users = action.payload.users;
+          state.totalPages = action.payload.totalPages;
+          state.totalUsers = action.payload.totalUsers;
         }
       )
       .addCase(fetchUsersThunk.rejected, (state, action) => {

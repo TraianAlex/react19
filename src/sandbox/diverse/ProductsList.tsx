@@ -1,4 +1,4 @@
-import { sleep } from '../../shared/utils/utils';
+import { block } from '../../shared/utils/utils';
 import { styles } from './AppProducts';
 import { memo } from 'react';
 
@@ -11,7 +11,7 @@ function Product({
   themeStyle: React.CSSProperties;
   chooseProduct: (id: string) => void;
 }) {
-  sleep(1);
+  block(1);
 
   return (
     <div

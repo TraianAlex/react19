@@ -42,11 +42,24 @@ export const maskedNumber = (creditCard: string) => {
   return lastFourDigits.padStart(creditCard.length, '*');
 };
 
-export function mockDelay(ms: number) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
+export const sleep = (duration = 500): Promise<undefined> =>
+  new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(undefined);
+    }, duration);
+  });
 
-export function sleep(ms: number) {
+export function block(ms: number = 500) {
   const wakeUpTime = Date.now() + ms;
   while (Date.now() < wakeUpTime) {}
 }
+
+export const makeExpensive = <T extends (...args: any[]) => any>(
+  fn: T,
+  duration = 500
+): ((...args: Parameters<T>) => ReturnType<T>) => {
+  return (...args: Parameters<T>): ReturnType<T> => {
+    block(duration);
+    return fn(...args);
+  };
+};

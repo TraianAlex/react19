@@ -1,5 +1,5 @@
 import { createStore, State } from './store';
-import { mockDelay } from '../../../shared/utils/utils';
+import { sleep } from '../../../shared/utils/utils';
 import { initialState, TodoActionState, TodosState } from './TodoStore';
 import { randomOneToTwenty, toCamelCase, uppercaseWords } from './utils';
 
@@ -72,7 +72,7 @@ export const setCount2 = (nr: number) => {
 
 export const fetchPosts = async () => {
   const url = 'https://jsonplaceholder.typicode.com/posts';
-  await mockDelay(1000);
+  await sleep(1000);
   const response = await fetch(url);
   if (!response.ok) {
     throw new Error('Failed to fetch posts');

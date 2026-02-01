@@ -1,5 +1,5 @@
 import Parent from './Parent';
-import { sleep } from '../../shared/utils/utils';
+import { block } from '../../shared/utils/utils';
 import { memo } from 'react';
 import { styles } from './AppParentGrandChild';
 
@@ -10,7 +10,7 @@ function GrandParent({
   style: React.CSSProperties | undefined;
   increment?: () => void;
 }) {
-  sleep(30);
+  block(30);
   console.log('[👴🏼]   [ ]   [ ]   [ ] rendered');
   return (
     <div className={styles.grandparent} style={style}>

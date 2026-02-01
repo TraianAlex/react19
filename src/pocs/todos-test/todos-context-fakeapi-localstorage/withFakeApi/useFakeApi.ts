@@ -12,7 +12,7 @@ import {
   CLEAR_TODO_TITLE,
 } from '../Types';
 import { Todo } from '../Context';
-import { generateId, mockDelay } from '../../../../shared/utils/utils';
+import { generateId, sleep } from '../../../../shared/utils/utils';
 
 let lastInitAt = 0;
 
@@ -45,7 +45,7 @@ export const useFakeApi = () => {
       }
       const toJSON = await response.json();
 
-      await mockDelay(1000);
+      await sleep(1000);
 
       if (signal?.aborted) return;
 
@@ -113,7 +113,7 @@ export const useFakeApi = () => {
 
       dispatch({ type: CLEAR_TODO_TITLE });
 
-      await mockDelay(1000);
+      await sleep(1000);
 
       dispatch({ type: CREATE_TODO, payload: data });
     } catch (err: unknown) {
@@ -150,7 +150,7 @@ export const useFakeApi = () => {
       }
       const toJSON = await response.json();
 
-      await mockDelay(1000);
+      await sleep(1000);
 
       dispatch({ type: CLEAR_TODO_TITLE });
       dispatch({ type: UPDATE_TODO, payload: toJSON });
@@ -177,7 +177,7 @@ export const useFakeApi = () => {
         );
       }
 
-      await mockDelay(1000);
+      await sleep(1000);
 
       dispatch({ type: DELETE_TODO, payload: id });
     } catch (err: unknown) {

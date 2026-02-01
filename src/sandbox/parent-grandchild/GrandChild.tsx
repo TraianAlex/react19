@@ -1,8 +1,8 @@
-import { sleep } from '../../shared/utils/utils';
+import { block } from '../../shared/utils/utils';
 import { styles } from './AppParentGrandChild';
 
 export default function GrandChild() {
-  sleep(30);
+  block(30);
   console.log('[ ]   [ ]   [ ]   [👶🏻] rendered');
   return (
     <div className={styles.grandchild}>

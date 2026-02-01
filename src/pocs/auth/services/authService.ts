@@ -14,6 +14,13 @@ type ReqresUserData = {
   avatar: string;
 };
 
+type ReqresUsersResponse = {
+  data: ReqresUserData[];
+  total_pages: number;
+  total: number;
+  per_page: number;
+};
+
 export const loginUser = async (
   credentials: Credentials
 ): Promise<User & { token: string }> => {
@@ -25,19 +32,34 @@ export const loginUser = async (
   }
 };
 
-export const fetchUsers = async (): Promise<User[]> => {
+export const fetchUsers = async (
+  page: number = 1
+): Promise<{
+  users: User[];
+  totalPages: number;
+  totalUsers: number;
+  perPage: number;
+}> => {
   try {
-    const response = await httpClient.get<{
-      data: ReqresUserData[];
-    }>('/users');
-    const usersData = response.data?.data as ReqresUserData[];
+    const response = await httpClient.get<ReqresUsersResponse>('/users', {
+      params: { page },
+    });
+    const usersData = response.data?.data ?? [];
+    const totalPages = response.data?.total_pages ?? 1;
+    const totalUsers = response.data?.total ?? usersData.length;
+    const perPage = response.data?.per_page ?? usersData.length;
 
-    return (usersData ?? []).map((user) => ({
-      id: user.id,
-      name: `${user.first_name} ${user.last_name}`,
-      email: user.email,
-      avatar: user.avatar,
-    }));
+    return {
+      users: usersData.map((user) => ({
+        id: user.id,
+        name: `${user.first_name} ${user.last_name}`,
+        email: user.email,
+        avatar: user.avatar,
+      })),
+      totalPages,
+      totalUsers,
+      perPage,
+    };
   } catch (error: any) {
     throw new Error(error.response?.data?.error || 'Failed to fetch users');
   }
