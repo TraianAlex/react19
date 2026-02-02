@@ -14,6 +14,20 @@ const TicTacToeLayout: React.FC = () => {
             <ul className='list-group list-group-flush'>
               <li
                 className={`list-group-item ${
+                  isActive('tic-tac-toe/star-match') ? 'active' : ''
+                }`}
+              >
+                <Link
+                  to='star-match'
+                  className={
+                    isActive('tic-tac-toe/star-match') ? 'text-white' : ''
+                  }
+                >
+                  Star Match
+                </Link>
+              </li>
+              <li
+                className={`list-group-item ${
                   isActive('tic-tac-toe/game1') || isActive('tic-tac-toe')
                     ? 'active'
                     : ''

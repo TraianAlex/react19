@@ -25,9 +25,7 @@ const Home = lazy(() => import('./main/home'));
 const HomeDetails = lazy(() => import('./main/home/home-detail'));
 const TodosLayout = lazy(() => import('./apps/todos/TodosLayout'));
 const WatchList = lazy(() => import('./apps/watch-list'));
-const TicTacToeLayout = lazy(
-  () => import('./apps/games/TicTacToeLayout')
-);
+const TicTacToeLayout = lazy(() => import('./apps/games/TicTacToeLayout'));
 const Login = lazy(() => import('./pocs/auth/components/login'));
 const Profile = lazy(() => import('./pocs/auth/components/profile'));
 const Todos1 = lazy(() => import('./apps/todos/todo1/Todos1'));
@@ -480,6 +478,7 @@ const Composition = lazy(
       './pocs/best-practices/frontend-best-practices/code-reusability/Composition'
     )
 );
+const StarMatch = lazy(() => import('./apps/games/star-match/StarMatch'));
 const Test = lazy(() => import('./sandbox/test/Test'));
 const Users = lazy(() => import('./pocs/auth/components/users'));
 import { action as vanlifeLoginAction } from './apps/vanlife/pages/Login';
@@ -575,6 +574,7 @@ const router = createBrowserRouter(
       <Route path='watch-list' element={<WatchList />} />
       <Route path='tic-tac-toe' element={<TicTacToeLayout />}>
         <Route index element={<Game1 />} />
+        <Route path='star-match' element={<StarMatch />} />
         <Route path='game1' element={<Game1 />} />
         <Route path='game2' element={<Game2 />} />
         <Route path='game3' element={<Game3 />} />
