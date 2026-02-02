@@ -5,6 +5,7 @@ import { fetchUsersThunk, getUserProfileThunk } from '../state/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../state/store';
 import Pagination from './Pagination';
+import LoadingSpinner from '../../../components/loading-spinner';
 
 const Users = () => {
   const navigate = useNavigate();
@@ -34,7 +35,7 @@ const Users = () => {
   }, [dispatch, page]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className='mt-5'><LoadingSpinner /></div>;
   }
 
   if (error) {
