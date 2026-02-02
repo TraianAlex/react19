@@ -22,7 +22,7 @@ const Profile = () => {
     setIsLoading(true);
     const interval = setInterval(() => {
       setIsLoading(false);
-    }, 200);
+    }, 300);
     return () => clearInterval(interval);
   }, [dispatch, id]);
 
