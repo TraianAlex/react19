@@ -45,8 +45,8 @@ const Login = () => {
       <h1>Sign in to your account</h1>
       {data?.error && <h3 className='login-error'>{data.error}</h3>}
       <Form method='post' className='login-form'>
-        <input name='email' type='email' placeholder='Email address' />
-        <input name='password' type='password' placeholder='Password' />
+        <input name='email' type='email' placeholder='Email address (b@b.com)' />
+        <input name='password' type='password' placeholder='Password (p123)' />
         <button disabled={navigation.state === 'submitting'}>
           {navigation.state === 'submitting' ? 'Logging in...' : 'Log in'}
         </button>
