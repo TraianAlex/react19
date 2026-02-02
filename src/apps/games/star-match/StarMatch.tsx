@@ -4,7 +4,6 @@ import { StarsDisplay } from './StarsDisplay';
 import { PlayAgain } from './PlayAgain';
 import { utils } from './utils';
 import { useGameState } from './use-game-state';
-import './StarMatch.scss';
 
 const Game = ({ startNewGame }: { startNewGame: () => void }) => {
   const { range, sum } = utils;
@@ -64,30 +63,33 @@ const Game = ({ startNewGame }: { startNewGame: () => void }) => {
   };
 
   return (
-    <div className='game'>
+    <div className='container-sm mx-auto my-4 fs-5'>
       <div className='pt-5'>
         Pick 1 or more numbers that sum to the number of stars
       </div>
-      <div className='body'>
-        <div className='left'>
+      <div className='d-flex'>
+        <div className='text-center w-50 border'>
           {gameStatus !== 'active' ? (
             <PlayAgain onClick={startNewGame} gameStatus={gameStatus} />
           ) : (
             <StarsDisplay count={stars} />
           )}
         </div>
-        <div className='right'>
-          {range(1, 9).map((number) => (
-            <PlayNumber
-              key={number}
-              status={numberStatus(number)}
-              number={number}
-              onClick={onNumberClick}
-            />
-          ))}
+        <div className='text-center w-50 border p-2'>
+          <div className='row g-2'>
+            {range(1, 9).map((number) => (
+              <div key={number} className='col-4'>
+                <PlayNumber
+                  status={numberStatus(number)}
+                  number={number}
+                  onClick={onNumberClick}
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-      <div className='timer'>Time Remaining: {secondsLeft}</div>
+      <div className='text-muted mt-1 ms-1'>Time Remaining: {secondsLeft}</div>
     </div>
   );
 };

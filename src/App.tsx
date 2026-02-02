@@ -573,7 +573,7 @@ const router = createBrowserRouter(
       <Route path='cards' element={<AppCards />} />
       <Route path='watch-list' element={<WatchList />} />
       <Route path='tic-tac-toe' element={<TicTacToeLayout />}>
-        <Route index element={<Game1 />} />
+        <Route index element={<StarMatch />} />
         <Route path='star-match' element={<StarMatch />} />
         <Route path='game1' element={<Game1 />} />
         <Route path='game2' element={<Game2 />} />

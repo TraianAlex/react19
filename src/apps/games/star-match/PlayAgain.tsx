@@ -7,10 +7,11 @@ export const PlayAgain = ({
   gameStatus: 'won' | 'lost';
   onClick: () => void;
 }) => (
-  <div className='game-done'>
+  <div className='text-center'>
     <div
-      className='message'
-      style={{ color: gameStatus === 'lost' ? 'red' : 'green' }}
+      className={`fs-3 fw-bold my-3 ${
+        gameStatus === 'lost' ? 'text-danger' : 'text-success'
+      }`}
     >
       {gameStatus === 'lost' ? 'Game Over' : 'Nice'}
     </div>
