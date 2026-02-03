@@ -251,6 +251,15 @@ export const NavigationBar = () => {
               </li>
               <li className='nav-item'>
                 <Link
+                  to='docs/react19-features'
+                  className={`nav-link ${isActive('/docs') ? 'active' : ''}`}
+                  aria-current={isActive('/docs') ? 'page' : undefined}
+                >
+                  Docs
+                </Link>
+              </li>
+              <li className='nav-item'>
+                <Link
                   to='sandbox'
                   className={`nav-link ${isActive('/sandbox') ? 'active' : ''}`}
                   aria-current={isActive('/sandbox') ? 'page' : undefined}

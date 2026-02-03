@@ -163,320 +163,191 @@ const ProgressiveNoteApp = lazy(
   () => import('./pocs/hooks/useHookProgressiveApp/ProgressiveNoteApp')
 );
 const React19FeaturesApp = lazy(
-  () => import('./pocs/react19-features/React19FeaturesApp')
+  () => import('./docs/react19-features/React19FeaturesApp')
 );
 const AppCards = lazy(() => import('./apps/cards/AppCards'));
 const Cards2 = lazy(() => import('./pocs/cards2/AppCards'));
+const DocsLayout = lazy(() => import('./docs/DocsLayout'));
 const ReactBestPracticesLayout = lazy(
-  () =>
-    import(
-      './pocs/best-practices/react-best-practices/ReactBestPracticesLayout'
-    )
+  () => import('./docs/react-best-practices/ReactBestPracticesLayout')
 );
 const ReactBestPracticesIndex = lazy(
-  () => import('./pocs/best-practices/react-best-practices/index')
+  () => import('./docs/react-best-practices/index')
 );
 const FrontendBestPracticesLayout = lazy(
-  () =>
-    import(
-      './pocs/best-practices/frontend-best-practices/FrontendBestPracticesLayout'
-    )
+  () => import('./docs/frontend-best-practices/FrontendBestPracticesLayout')
 );
 const FrontendBestPracticesIndex = lazy(
-  () => import('./pocs/best-practices/frontend-best-practices/index')
+  () => import('./docs/frontend-best-practices/index')
 );
 const StateClassify = lazy(
-  () =>
-    import(
-      './pocs/best-practices/react-best-practices/state-architecture/StateClassify'
-    )
+  () => import('./docs/react-best-practices/state-architecture/StateClassify')
 );
 const ServerState = lazy(
-  () =>
-    import(
-      './pocs/best-practices/react-best-practices/state-architecture/ServerState'
-    )
+  () => import('./docs/react-best-practices/state-architecture/ServerState')
 );
 const GlobalState = lazy(
-  () =>
-    import(
-      './pocs/best-practices/react-best-practices/state-architecture/GlobalState'
-    )
+  () => import('./docs/react-best-practices/state-architecture/GlobalState')
 );
 const LocalState = lazy(
-  () =>
-    import(
-      './pocs/best-practices/react-best-practices/state-architecture/LocalState'
-    )
+  () => import('./docs/react-best-practices/state-architecture/LocalState')
 );
 const UrlState = lazy(
-  () =>
-    import(
-      './pocs/best-practices/react-best-practices/state-architecture/UrlState'
-    )
+  () => import('./docs/react-best-practices/state-architecture/UrlState')
 );
 const ContainerPresentational = lazy(
   () =>
     import(
-      './pocs/best-practices/react-best-practices/component-architecture/ContainerPresentational'
+      './docs/react-best-practices/component-architecture/ContainerPresentational'
     )
 );
 const CustomHooks = lazy(
-  () =>
-    import(
-      './pocs/best-practices/react-best-practices/component-architecture/CustomHooks'
-    )
+  () => import('./docs/react-best-practices/component-architecture/CustomHooks')
 );
 const ComponentBoundaries = lazy(
   () =>
     import(
-      './pocs/best-practices/react-best-practices/component-architecture/ComponentBoundaries'
+      './docs/react-best-practices/component-architecture/ComponentBoundaries'
     )
 );
 const CleanJsx = lazy(
-  () =>
-    import(
-      './pocs/best-practices/react-best-practices/component-layer/CleanJsx'
-    )
+  () => import('./docs/react-best-practices/component-layer/CleanJsx')
 );
 const Fragments = lazy(
-  () =>
-    import(
-      './pocs/best-practices/react-best-practices/component-layer/Fragments'
-    )
+  () => import('./docs/react-best-practices/component-layer/Fragments')
 );
 const PropsApi = lazy(
-  () =>
-    import(
-      './pocs/best-practices/react-best-practices/component-layer/PropsApi'
-    )
+  () => import('./docs/react-best-practices/component-layer/PropsApi')
 );
 const PropValidation = lazy(
-  () =>
-    import(
-      './pocs/best-practices/react-best-practices/component-layer/PropValidation'
-    )
+  () => import('./docs/react-best-practices/component-layer/PropValidation')
 );
 const CompoundComponentsExample = lazy(
-  () =>
-    import(
-      './pocs/best-practices/react-best-practices/component-layer/CompoundComponents'
-    )
+  () => import('./docs/react-best-practices/component-layer/CompoundComponents')
 );
 const MeasureFirst = lazy(
-  () =>
-    import(
-      './pocs/best-practices/react-best-practices/performance/MeasureFirst'
-    )
+  () => import('./docs/react-best-practices/performance/MeasureFirst')
 );
 const ReactMemo = lazy(
-  () =>
-    import('./pocs/best-practices/react-best-practices/performance/ReactMemo')
+  () => import('./docs/react-best-practices/performance/ReactMemo')
 );
 const CodeSplitting = lazy(
-  () =>
-    import(
-      './pocs/best-practices/react-best-practices/performance/CodeSplitting'
-    )
+  () => import('./docs/react-best-practices/performance/CodeSplitting')
 );
 const DynamicImports = lazy(
-  () =>
-    import(
-      './pocs/best-practices/react-best-practices/performance/DynamicImports'
-    )
+  () => import('./docs/react-best-practices/performance/DynamicImports')
 );
 const ErrorBoundaries = lazy(
-  () =>
-    import(
-      './pocs/best-practices/react-best-practices/code-quality/ErrorBoundaries'
-    )
+  () => import('./docs/react-best-practices/code-quality/ErrorBoundaries')
 );
 const DefensiveProgramming = lazy(
-  () =>
-    import(
-      './pocs/best-practices/react-best-practices/code-quality/DefensiveProgramming'
-    )
+  () => import('./docs/react-best-practices/code-quality/DefensiveProgramming')
 );
 const LoadingErrorStates = lazy(
-  () =>
-    import(
-      './pocs/best-practices/react-best-practices/code-quality/LoadingErrorStates'
-    )
+  () => import('./docs/react-best-practices/code-quality/LoadingErrorStates')
 );
 const TypeSafety = lazy(
-  () =>
-    import('./pocs/best-practices/react-best-practices/code-quality/TypeSafety')
+  () => import('./docs/react-best-practices/code-quality/TypeSafety')
 );
 const GenericTypes = lazy(
-  () =>
-    import(
-      './pocs/best-practices/react-best-practices/code-quality/GenericTypes'
-    )
+  () => import('./docs/react-best-practices/code-quality/GenericTypes')
 );
 const SemanticHtml = lazy(
-  () =>
-    import(
-      './pocs/best-practices/react-best-practices/accessibility/SemanticHtml'
-    )
+  () => import('./docs/react-best-practices/accessibility/SemanticHtml')
 );
 const FormLabels = lazy(
-  () =>
-    import(
-      './pocs/best-practices/react-best-practices/accessibility/FormLabels'
-    )
+  () => import('./docs/react-best-practices/accessibility/FormLabels')
 );
 const AriaAttributes = lazy(
-  () =>
-    import(
-      './pocs/best-practices/react-best-practices/accessibility/AriaAttributes'
-    )
+  () => import('./docs/react-best-practices/accessibility/AriaAttributes')
 );
 const FocusManagement = lazy(
-  () =>
-    import(
-      './pocs/best-practices/react-best-practices/accessibility/FocusManagement'
-    )
+  () => import('./docs/react-best-practices/accessibility/FocusManagement')
 );
 const FocusTrap = lazy(
-  () =>
-    import('./pocs/best-practices/react-best-practices/accessibility/FocusTrap')
+  () => import('./docs/react-best-practices/accessibility/FocusTrap')
 );
 // Frontend Best Practices
 const LocalVsGlobalState = lazy(
   () =>
     import(
-      './pocs/best-practices/frontend-best-practices/state-architecture/LocalVsGlobalState'
+      './docs/frontend-best-practices/state-architecture/LocalVsGlobalState'
     )
 );
 const NormalizeState = lazy(
   () =>
-    import(
-      './pocs/best-practices/frontend-best-practices/state-architecture/NormalizeState'
-    )
+    import('./docs/frontend-best-practices/state-architecture/NormalizeState')
 );
 const StateMachines = lazy(
   () =>
-    import(
-      './pocs/best-practices/frontend-best-practices/state-architecture/StateMachines'
-    )
+    import('./docs/frontend-best-practices/state-architecture/StateMachines')
 );
 const FrontendContainerPresentational = lazy(
   () =>
     import(
-      './pocs/best-practices/frontend-best-practices/component-layer/ContainerPresentational'
+      './docs/frontend-best-practices/component-layer/ContainerPresentational'
     )
 );
 const FrontendCompoundComponents = lazy(
   () =>
-    import(
-      './pocs/best-practices/frontend-best-practices/component-layer/CompoundComponents'
-    )
+    import('./docs/frontend-best-practices/component-layer/CompoundComponents')
 );
 const RenderProps = lazy(
-  () =>
-    import(
-      './pocs/best-practices/frontend-best-practices/component-layer/RenderProps'
-    )
+  () => import('./docs/frontend-best-practices/component-layer/RenderProps')
 );
 const Memoization = lazy(
-  () =>
-    import(
-      './pocs/best-practices/frontend-best-practices/performance/Memoization'
-    )
+  () => import('./docs/frontend-best-practices/performance/Memoization')
 );
 const FrontendCodeSplitting = lazy(
-  () =>
-    import(
-      './pocs/best-practices/frontend-best-practices/performance/CodeSplitting'
-    )
+  () => import('./docs/frontend-best-practices/performance/CodeSplitting')
 );
 const Virtualization = lazy(
-  () =>
-    import(
-      './pocs/best-practices/frontend-best-practices/performance/Virtualization'
-    )
+  () => import('./docs/frontend-best-practices/performance/Virtualization')
 );
 const FrontendErrorBoundaries = lazy(
-  () =>
-    import(
-      './pocs/best-practices/frontend-best-practices/error-handling/ErrorBoundaries'
-    )
+  () => import('./docs/frontend-best-practices/error-handling/ErrorBoundaries')
 );
 const AsyncErrorHandling = lazy(
   () =>
-    import(
-      './pocs/best-practices/frontend-best-practices/error-handling/AsyncErrorHandling'
-    )
+    import('./docs/frontend-best-practices/error-handling/AsyncErrorHandling')
 );
 const RequestCancellation = lazy(
   () =>
-    import(
-      './pocs/best-practices/frontend-best-practices/error-handling/RequestCancellation'
-    )
+    import('./docs/frontend-best-practices/error-handling/RequestCancellation')
 );
 const FrontendCustomHooks = lazy(
-  () =>
-    import(
-      './pocs/best-practices/frontend-best-practices/code-organization/CustomHooks'
-    )
+  () => import('./docs/frontend-best-practices/code-organization/CustomHooks')
 );
 const Constants = lazy(
-  () =>
-    import(
-      './pocs/best-practices/frontend-best-practices/code-organization/Constants'
-    )
+  () => import('./docs/frontend-best-practices/code-organization/Constants')
 );
 const StrictTypeScript = lazy(
-  () =>
-    import(
-      './pocs/best-practices/frontend-best-practices/type-safety/StrictTypeScript'
-    )
+  () => import('./docs/frontend-best-practices/type-safety/StrictTypeScript')
 );
 const DiscriminatedUnions = lazy(
-  () =>
-    import(
-      './pocs/best-practices/frontend-best-practices/type-safety/DiscriminatedUnions'
-    )
+  () => import('./docs/frontend-best-practices/type-safety/DiscriminatedUnions')
 );
 const FrontendSemanticHtml = lazy(
-  () =>
-    import(
-      './pocs/best-practices/frontend-best-practices/accessibility/SemanticHtml'
-    )
+  () => import('./docs/frontend-best-practices/accessibility/SemanticHtml')
 );
 const FrontendAriaAttributes = lazy(
-  () =>
-    import(
-      './pocs/best-practices/frontend-best-practices/accessibility/AriaAttributes'
-    )
+  () => import('./docs/frontend-best-practices/accessibility/AriaAttributes')
 );
 const KeyboardNavigation = lazy(
   () =>
-    import(
-      './pocs/best-practices/frontend-best-practices/accessibility/KeyboardNavigation'
-    )
+    import('./docs/frontend-best-practices/accessibility/KeyboardNavigation')
 );
 const ApiClient = lazy(
-  () =>
-    import(
-      './pocs/best-practices/frontend-best-practices/api-integration/ApiClient'
-    )
+  () => import('./docs/frontend-best-practices/api-integration/ApiClient')
 );
 const Interceptors = lazy(
-  () =>
-    import(
-      './pocs/best-practices/frontend-best-practices/api-integration/Interceptors'
-    )
+  () => import('./docs/frontend-best-practices/api-integration/Interceptors')
 );
 const HOC = lazy(
-  () =>
-    import('./pocs/best-practices/frontend-best-practices/code-reusability/HOC')
+  () => import('./docs/frontend-best-practices/code-reusability/HOC')
 );
 const Composition = lazy(
-  () =>
-    import(
-      './pocs/best-practices/frontend-best-practices/code-reusability/Composition'
-    )
+  () => import('./docs/frontend-best-practices/code-reusability/Composition')
 );
 const StarMatch = lazy(() => import('./apps/games/star-match/StarMatch'));
 const Test = lazy(() => import('./sandbox/test/Test'));
@@ -644,99 +515,121 @@ const router = createBrowserRouter(
           element={<ProgressiveNoteApp />}
         />
       </Route>
-      <Route path='react19-features' element={<React19FeaturesApp />} />
-      <Route path='login' element={<Login />} />
-      <Route
-        path='users'
-        element={
-          <ProtectedRoute>
-            <Users />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path='profile/:id'
-        element={
-          <ProtectedRoute>
-            <Profile />
-          </ProtectedRoute>
-        }
-      />
-      <Route path='weather' element={<Weather />} loader={weatherLoader} />
-      <Route path='cards2' element={<Cards2 />} />
-      <Route path='react-best-practices' element={<ReactBestPracticesLayout />}>
-        <Route index element={<ReactBestPracticesIndex />} />
-        <Route path='state-classify' element={<StateClassify />} />
-        <Route path='server-state' element={<ServerState />} />
-        <Route path='global-state' element={<GlobalState />} />
-        <Route path='local-state' element={<LocalState />} />
-        <Route path='url-state' element={<UrlState />} />
+      <Route path='docs' element={<DocsLayout />}>
+        <Route path='react19-features' element={<React19FeaturesApp />} />
+        <Route path='login' element={<Login />} />
         <Route
-          path='container-presentational'
-          element={<ContainerPresentational />}
-        />
-        <Route path='custom-hooks' element={<CustomHooks />} />
-        <Route path='component-boundaries' element={<ComponentBoundaries />} />
-        <Route path='clean-jsx' element={<CleanJsx />} />
-        <Route path='fragments' element={<Fragments />} />
-        <Route path='props-api' element={<PropsApi />} />
-        <Route path='prop-validation' element={<PropValidation />} />
-        <Route
-          path='compound-components'
-          element={<CompoundComponentsExample />}
-        />
-        <Route path='measure-first' element={<MeasureFirst />} />
-        <Route path='react-memo' element={<ReactMemo />} />
-        <Route path='code-splitting' element={<CodeSplitting />} />
-        <Route path='dynamic-imports' element={<DynamicImports />} />
-        <Route path='error-boundaries' element={<ErrorBoundaries />} />
-        <Route
-          path='defensive-programming'
-          element={<DefensiveProgramming />}
-        />
-        <Route path='loading-error-states' element={<LoadingErrorStates />} />
-        <Route path='type-safety' element={<TypeSafety />} />
-        <Route path='generic-types' element={<GenericTypes />} />
-        <Route path='semantic-html' element={<SemanticHtml />} />
-        <Route path='form-labels' element={<FormLabels />} />
-        <Route path='aria-attributes' element={<AriaAttributes />} />
-        <Route path='focus-management' element={<FocusManagement />} />
-        <Route path='focus-trap' element={<FocusTrap />} />
-      </Route>
-      <Route
-        path='frontend-best-practices'
-        element={<FrontendBestPracticesLayout />}
-      >
-        <Route index element={<FrontendBestPracticesIndex />} />
-        <Route path='local-vs-global-state' element={<LocalVsGlobalState />} />
-        <Route path='normalize-state' element={<NormalizeState />} />
-        <Route path='state-machines' element={<StateMachines />} />
-        <Route
-          path='container-presentational'
-          element={<FrontendContainerPresentational />}
+          path='users'
+          element={
+            <ProtectedRoute>
+              <Users />
+            </ProtectedRoute>
+          }
         />
         <Route
-          path='compound-components'
-          element={<FrontendCompoundComponents />}
+          path='profile/:id'
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
         />
-        <Route path='render-props' element={<RenderProps />} />
-        <Route path='memoization' element={<Memoization />} />
-        <Route path='code-splitting' element={<FrontendCodeSplitting />} />
-        <Route path='virtualization' element={<Virtualization />} />
-        <Route path='error-boundaries' element={<FrontendErrorBoundaries />} />
-        <Route path='async-error-handling' element={<AsyncErrorHandling />} />
-        <Route path='request-cancellation' element={<RequestCancellation />} />
-        <Route path='custom-hooks' element={<FrontendCustomHooks />} />
-        <Route path='constants' element={<Constants />} />
-        <Route path='strict-typescript' element={<StrictTypeScript />} />
-        <Route path='discriminated-unions' element={<DiscriminatedUnions />} />
-        <Route path='semantic-html' element={<FrontendSemanticHtml />} />
-        <Route path='aria-attributes' element={<FrontendAriaAttributes />} />
-        <Route path='keyboard-navigation' element={<KeyboardNavigation />} />
-        <Route path='api-client' element={<ApiClient />} />
-        <Route path='interceptors' element={<Interceptors />} />
-        <Route path='hoc' element={<HOC />} />
-        <Route path='composition' element={<Composition />} />
+        <Route path='weather' element={<Weather />} loader={weatherLoader} />
+        <Route path='cards2' element={<Cards2 />} />
+        <Route
+          path='react-best-practices'
+          element={<ReactBestPracticesLayout />}
+        >
+          <Route index element={<ReactBestPracticesIndex />} />
+          <Route path='overview' element={<ReactBestPracticesIndex />} />
+          <Route path='state-classify' element={<StateClassify />} />
+          <Route path='server-state' element={<ServerState />} />
+          <Route path='global-state' element={<GlobalState />} />
+          <Route path='local-state' element={<LocalState />} />
+          <Route path='url-state' element={<UrlState />} />
+          <Route
+            path='container-presentational'
+            element={<ContainerPresentational />}
+          />
+          <Route path='custom-hooks' element={<CustomHooks />} />
+          <Route
+            path='component-boundaries'
+            element={<ComponentBoundaries />}
+          />
+          <Route path='clean-jsx' element={<CleanJsx />} />
+          <Route path='fragments' element={<Fragments />} />
+          <Route path='props-api' element={<PropsApi />} />
+          <Route path='prop-validation' element={<PropValidation />} />
+          <Route
+            path='compound-components'
+            element={<CompoundComponentsExample />}
+          />
+          <Route path='measure-first' element={<MeasureFirst />} />
+          <Route path='react-memo' element={<ReactMemo />} />
+          <Route path='code-splitting' element={<CodeSplitting />} />
+          <Route path='dynamic-imports' element={<DynamicImports />} />
+          <Route path='error-boundaries' element={<ErrorBoundaries />} />
+          <Route
+            path='defensive-programming'
+            element={<DefensiveProgramming />}
+          />
+          <Route path='loading-error-states' element={<LoadingErrorStates />} />
+          <Route path='type-safety' element={<TypeSafety />} />
+          <Route path='generic-types' element={<GenericTypes />} />
+          <Route path='semantic-html' element={<SemanticHtml />} />
+          <Route path='form-labels' element={<FormLabels />} />
+          <Route path='aria-attributes' element={<AriaAttributes />} />
+          <Route path='focus-management' element={<FocusManagement />} />
+          <Route path='focus-trap' element={<FocusTrap />} />
+        </Route>
+        <Route
+          path='frontend-best-practices'
+          element={<FrontendBestPracticesLayout />}
+        >
+          <Route index element={<FrontendBestPracticesIndex />} />
+          <Route path='overview' element={<FrontendBestPracticesIndex />} />
+          <Route
+            path='local-vs-global-state'
+            element={<LocalVsGlobalState />}
+          />
+          <Route path='normalize-state' element={<NormalizeState />} />
+          <Route path='state-machines' element={<StateMachines />} />
+          <Route
+            path='container-presentational'
+            element={<FrontendContainerPresentational />}
+          />
+          <Route
+            path='compound-components'
+            element={<FrontendCompoundComponents />}
+          />
+          <Route path='render-props' element={<RenderProps />} />
+          <Route path='memoization' element={<Memoization />} />
+          <Route path='code-splitting' element={<FrontendCodeSplitting />} />
+          <Route path='virtualization' element={<Virtualization />} />
+          <Route
+            path='error-boundaries'
+            element={<FrontendErrorBoundaries />}
+          />
+          <Route path='async-error-handling' element={<AsyncErrorHandling />} />
+          <Route
+            path='request-cancellation'
+            element={<RequestCancellation />}
+          />
+          <Route path='custom-hooks' element={<FrontendCustomHooks />} />
+          <Route path='constants' element={<Constants />} />
+          <Route path='strict-typescript' element={<StrictTypeScript />} />
+          <Route
+            path='discriminated-unions'
+            element={<DiscriminatedUnions />}
+          />
+          <Route path='semantic-html' element={<FrontendSemanticHtml />} />
+          <Route path='aria-attributes' element={<FrontendAriaAttributes />} />
+          <Route path='keyboard-navigation' element={<KeyboardNavigation />} />
+          <Route path='api-client' element={<ApiClient />} />
+          <Route path='interceptors' element={<Interceptors />} />
+          <Route path='hoc' element={<HOC />} />
+          <Route path='composition' element={<Composition />} />
+        </Route>
       </Route>
       <Route path='loading-spinner' element={<LoadingSpinner />} />
       <Route path='not-found' element={<NotFound />} />

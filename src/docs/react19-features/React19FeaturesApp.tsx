@@ -12,7 +12,7 @@ export default function React19FeaturesApp() {
   if (showOverview) {
     return (
       <div className='container-fluid'>
-        <div className='row mb-3 mt-4'>
+        <div className='row mb-3 mt-2'>
           <div className='col'>
             <nav aria-label='breadcrumb'>
               <ol className='breadcrumb'>
@@ -166,7 +166,7 @@ export default function React19FeaturesApp() {
 
   return (
     <div className='container-fluid'>
-      <div className='row mb-2 mt-4'>
+      <div className='row mb-2 mt-1'>
         <div className='col'>
           <nav aria-label='breadcrumb'>
             <ol className='breadcrumb mb-2'>
