@@ -515,27 +515,27 @@ const router = createBrowserRouter(
           element={<ProgressiveNoteApp />}
         />
       </Route>
+      <Route path='login' element={<Login />} />
+      <Route
+        path='users'
+        element={
+          <ProtectedRoute>
+            <Users />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path='profile/:id'
+        element={
+          <ProtectedRoute>
+            <Profile />
+          </ProtectedRoute>
+        }
+      />
+      <Route path='weather' element={<Weather />} loader={weatherLoader} />
+      <Route path='cards2' element={<Cards2 />} />
       <Route path='docs' element={<DocsLayout />}>
         <Route path='react19-features' element={<React19FeaturesApp />} />
-        <Route path='login' element={<Login />} />
-        <Route
-          path='users'
-          element={
-            <ProtectedRoute>
-              <Users />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path='profile/:id'
-          element={
-            <ProtectedRoute>
-              <Profile />
-            </ProtectedRoute>
-          }
-        />
-        <Route path='weather' element={<Weather />} loader={weatherLoader} />
-        <Route path='cards2' element={<Cards2 />} />
         <Route
           path='react-best-practices'
           element={<ReactBestPracticesLayout />}
