@@ -7,7 +7,8 @@ export const { setState, useSelector, useStore } = createStore(initialState);
 
 setState('user', 'Alex');
 
-export const setSubTitle = (text: string) => {
+export const setSubTitle = async (text: string) => {
+  await sleep(2000);
   setState('subTitle', uppercaseWords(text.slice(0, 20)));
 };
 

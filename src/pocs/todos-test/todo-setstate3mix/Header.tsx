@@ -3,7 +3,6 @@ import { dayOfYear, randomColor } from './utils';
 import { State } from './store';
 import { useSelector, setSubTitle, setTitle } from './actions';
 import { LoadingSpinner } from '../../../components/LoadingSpinner';
-import { block } from '../../../shared/utils/utils';
 
 export const Header = () => {
   const count1 = useSelector<number>((state: State) => state.count1);
@@ -24,8 +23,11 @@ export const Header = () => {
   };
 
   const modifTitle = () => {
-    startTransitionTitle(() => {
-      setTitlePromise(setTitle());
+    startTransitionTitle(async () => {
+      const title = await setTitle();
+      startTransitionTitle(() => {
+        setTitlePromise(() => Promise.resolve(title));
+      });
     });
   };
 
@@ -86,10 +88,9 @@ const Title = memo(function Title({
   isPending: boolean;
 }) {
   const title = use(titlePromise);
-  block(1000);
 
   if (isPending) {
-    return <LoadingSpinner size='sm' text='Refresing title...' />;
+    return <LoadingSpinner size='sm' text='Refreshing title...' />;
   }
 
   return (
@@ -107,7 +108,6 @@ const SubTitle = memo(function SubTitle({
   isPending: boolean;
 }) {
   const subTitle = use(subTitlePromise);
-  block(1000);
 
   if (isPending) {
     return <LoadingSpinner size='sm' text='Refreshing subtitle...' />;

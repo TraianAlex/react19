@@ -8,6 +8,7 @@ export const { setState, useSelector, useStore } = createStore(initialState);
 setState('user', 'Alex');
 
 export const setTitle = async (): Promise<string> => {
+  await sleep(3000);
   const url = `https://jsonplaceholder.typicode.com/posts/${randomOneToTwenty()}`;
   const response = await fetch(url);
   const body = await response.json();
@@ -18,6 +19,7 @@ export const setTitle = async (): Promise<string> => {
 };
 
 export const setSubTitle = async () => {
+  await sleep(2000);
   const url = `https://jsonplaceholder.typicode.com/posts/${randomOneToTwenty()}`;
   const response = await fetch(url);
   const body = await response.json();
