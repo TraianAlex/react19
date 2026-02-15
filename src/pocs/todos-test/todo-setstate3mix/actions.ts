@@ -53,10 +53,6 @@ export const todoAddHandler = async (
   };
 };
 
-export const createList = (text: string) => {
-  setState('list', (p: State['list']) => [...p, text]);
-};
-
 export const todoDeleteHandler = (todoId: string) => {
   setState('todos', (p: State['todos']) => [
     ...p.filter((todo: TodosState) => todo.id !== todoId),

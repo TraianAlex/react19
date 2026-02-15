@@ -1,7 +1,20 @@
-import { useRef, useActionState, useEffect } from 'react';
+import {
+  useRef,
+  useActionState,
+  useEffect,
+  useOptimistic,
+  useTransition,
+} from 'react';
 import toast from 'react-hot-toast';
-import { useSelector } from './actions';
-import { todoAddHandler, createList, setCount, setCount2 } from './actions';
+import {
+  useSelector,
+  useStore,
+  todoAddHandler,
+  setCount,
+  setCount2,
+} from './actions';
+import { sleep } from '../../../shared/utils/utils';
+import { List } from './List';
 
 const NewTodoForm = () => {
   // const [user] = useStore('user');
@@ -14,6 +27,16 @@ const NewTodoForm = () => {
     error: null,
     message: null,
   });
+  const [list, setList] = useStore('list');
+  const [isPendingList, startTransition] = useTransition();
+  const [optimisticList, addOptimisticList] = useOptimistic(
+    list,
+    (state: string[], newList: string) => [...state, newList],
+  );
+
+  useEffect(() => {
+    setList(() => ['initial list']);
+  }, []);
 
   useEffect(() => {
     if (state.error) {
@@ -28,16 +51,22 @@ const NewTodoForm = () => {
 
   const createListHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const form = event.currentTarget;
-    const formData = new FormData(form);
-    const enteredText = formData.get('todo-list') as string;
-    if (enteredText === '') {
-      createList('test');
-      return;
-    }
-    createList(enteredText);
-    form.reset();
-    listInputRef.current?.focus();
+    startTransition(async () => {
+      const form = event.currentTarget;
+      const formData = new FormData(form);
+      const enteredText = formData.get('todo-list') as string;
+      if (enteredText === '') {
+        addOptimisticList('test ...');
+        await sleep(1000);
+        setList((p: string[]) => [...p, 'test']);
+        return;
+      }
+      addOptimisticList(enteredText);
+      await sleep(1000);
+      setList((p: string[]) => [...p, enteredText]);
+      form.reset();
+      listInputRef.current?.focus();
+    });
   };
 
   const handleClick1 = () => {
@@ -52,6 +81,7 @@ const NewTodoForm = () => {
 
   return (
     <>
+      <List optimisticList={optimisticList} />
       <form onSubmit={createListHandler}>
         <div className='form-group d-flex align-items-center flex-1'>
           <label htmlFor='todo-text' className='form-label'>
@@ -64,7 +94,11 @@ const NewTodoForm = () => {
             className='form-control'
             placeholder='add something or just click Add To List button'
           />
-          <button type='submit' className='btn btn-outline-primary ms-2'>
+          <button
+            type='submit'
+            className='btn btn-outline-primary ms-2'
+            disabled={isPendingList}
+          >
             ADD
           </button>
         </div>
