@@ -1,4 +1,5 @@
 import { useDeferredValue } from 'react';
+import { block } from '../../../shared/utils/utils';
 
 // Heavy computation component to demonstrate concurrent features
 export default function HeavyList({ filter }: { filter: string }) {
@@ -14,20 +15,20 @@ export default function HeavyList({ filter }: { filter: string }) {
   const filteredItems = items.filter(
     (item) =>
       item.name.toLowerCase().includes(deferredFilter.toLowerCase()) ||
-      item.description.toLowerCase().includes(deferredFilter.toLowerCase())
+      item.description.toLowerCase().includes(deferredFilter.toLowerCase()),
   );
 
   const isStale = filter !== deferredFilter;
 
   return (
     <div className={`${isStale ? 'opacity-50' : ''}`}>
+      {block(100)}
       <div className='d-flex justify-content-between align-items-center mb-2'>
         <h6>Heavy List ({filteredItems.length} items)</h6>
         {isStale && (
           <span className='badge bg-warning text-dark'>Updating...</span>
         )}
       </div>
-
       <div style={{ maxHeight: '300px', overflowY: 'auto' }}>
         {filteredItems.slice(0, 50).map((item) => (
           <div key={item.id} className='card card-body py-1 mb-1 small'>

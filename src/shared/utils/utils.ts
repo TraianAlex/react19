@@ -52,6 +52,7 @@ export const sleep = (duration = 500): Promise<undefined> =>
 export function block(ms: number = 500) {
   const wakeUpTime = Date.now() + ms;
   while (Date.now() < wakeUpTime) {}
+  return null;
 }
 
 export const makeExpensive = <T extends (...args: any[]) => any>(
