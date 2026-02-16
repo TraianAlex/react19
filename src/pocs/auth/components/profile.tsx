@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useTransition } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -13,25 +13,16 @@ const Profile = () => {
   const { user, loading, totalUsers } = useSelector(
     (state: RootState) => state.auth,
   );
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    if (!id) {
-      return;
-    }
-    setIsLoading(true);
-    const interval = setInterval(() => {
-      setIsLoading(false);
-    }, 300);
-    return () => clearInterval(interval);
-  }, [dispatch, id]);
+  const [isPending, startTransition] = useTransition();
 
   const handleNavigate = (targetId: number) => {
-    dispatch(getUserProfileThunk(targetId));
+    startTransition(async () => {
+      await dispatch(getUserProfileThunk(targetId));
+    });
     navigate(`/profile/${targetId}`);
   };
 
-  if ((loading && !user?.id) || isLoading) {
+  if ((loading && !user?.id) || isPending) {
     return (
       <div className='mt-5'>
         <LoadingSpinner />
@@ -55,6 +46,9 @@ const Profile = () => {
 
   return (
     <>
+      <div className='container-fluid mt-5 pt-3 text-center'>
+        Fetched by the <code>getUserProfileThunk</code> action.
+      </div>
       <div className='d-flex justify-content-center align-items-center vh-100'>
         <button
           type='button'

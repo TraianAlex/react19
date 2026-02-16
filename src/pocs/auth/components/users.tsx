@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useTransition } from 'react';
 
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { fetchUsersThunk, getUserProfileThunk } from '../state/authSlice';
@@ -10,6 +10,7 @@ import LoadingSpinner from '../../../components/loading-spinner';
 const Users = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
+  const [isPending, startTransition] = useTransition();
 
   const [searchParams, setSearchParams] = useSearchParams();
   const pageParam = Number(searchParams.get('page') ?? '1');
@@ -34,7 +35,7 @@ const Users = () => {
     dispatch(fetchUsersThunk({ page }));
   }, [dispatch, page]);
 
-  if (loading) {
+  if (loading || isPending) {
     return (
       <div className='mt-5'>
         <LoadingSpinner />
@@ -72,7 +73,9 @@ const Users = () => {
                 <button
                   className='btn btn-primary'
                   onClick={() => {
-                    dispatch(getUserProfileThunk(user.id));
+                    startTransition(async () => {
+                      await dispatch(getUserProfileThunk(user.id));
+                    });
                     navigate(`/profile/${user.id}`);
                   }}
                 >
