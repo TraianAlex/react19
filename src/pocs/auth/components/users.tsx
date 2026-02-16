@@ -27,7 +27,7 @@ const Users = () => {
   //   },
   // });
   const { users, loading, error, totalPages } = useSelector(
-    (state: RootState) => state.auth
+    (state: RootState) => state.auth,
   );
 
   useEffect(() => {
@@ -35,7 +35,11 @@ const Users = () => {
   }, [dispatch, page]);
 
   if (loading) {
-    return <div className='mt-5'><LoadingSpinner /></div>;
+    return (
+      <div className='mt-5'>
+        <LoadingSpinner />
+      </div>
+    );
   }
 
   if (error) {
@@ -49,8 +53,13 @@ const Users = () => {
   };
 
   return (
-    <div>
-      <h1>Users</h1>
+    <div className='container-fluid mt-5 pt-3'>
+      <h2>
+        Users{' '}
+        <span style={{ fontSize: '0.5em' }}>
+          fetched by the <code>fetchUsersThunk</code> action.
+        </span>
+      </h2>
       <div className='row'>
         {users.map((user) => (
           <div className='col-md-4' key={user.id}>
