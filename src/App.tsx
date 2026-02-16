@@ -353,6 +353,7 @@ const Composition = lazy(
 const StarMatch = lazy(() => import('./apps/games/star-match/StarMatch'));
 const Test = lazy(() => import('./sandbox/test/Test'));
 const Users = lazy(() => import('./pocs/auth/components/users'));
+const AppHeaderWithServerAction = lazy(() => import('./pocs/rsc/server-test/app-header-with-server-action'));
 import { action as vanlifeLoginAction } from './apps/vanlife/pages/Login';
 import { loader as vansLoader } from './apps/vanlife/pages/vans/Vans';
 import { loader as vanlifeVanDetailLoader } from './apps/vanlife/pages/vans/VanDetail';
@@ -493,6 +494,7 @@ const router = createBrowserRouter(
       <Route path='rsc' element={<RscLayout />}>
         <Route index element={<AppHeader />} />
         <Route path='rsc-simple' element={<AppHeader />} />
+        <Route path='server-test' element={<AppHeaderWithServerAction />} />
       </Route>
       <Route path='transition' element={<TransitionLayout />}>
         <Route index element={<TransitionTabs />} />

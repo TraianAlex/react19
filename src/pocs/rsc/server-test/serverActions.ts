@@ -21,7 +21,7 @@ export async function readFileAction(filePath: string): Promise<string> {
 
 /**
  * Server Action to query SQLite database
- * Note: This requires a database library like 'better-sqlite3' or 'sql.js'
+ * Note: This requires a database library like 'better-sqlite3', sqlite3 or 'sql.js'
  * In a standard React app, you'd need an API endpoint instead
  */
 export async function queryDatabaseAction(query: string): Promise<any[]> {

@@ -28,6 +28,17 @@ const RscLayout = () => {
                   Simple RSC
                 </Link>
               </li>
+              <li
+                className={`list-group-item ${
+                  isActive('rsc/server-test') ? 'active ' : ''
+                }`}
+              >
+                <Link to='server-test' className={
+                  isActive('rsc/server-test') ? 'text-white' : ''
+                }>
+                  Server Test
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

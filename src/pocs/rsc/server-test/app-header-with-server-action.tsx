@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { readFileAction, queryDatabaseAction } from './serverActions';
-import AppHeaderClock from './app-header-clock';
+import AppHeaderClock from '../simple-rsc/app-header-clock';
 
 /**
  * IMPORTANT NOTES:
