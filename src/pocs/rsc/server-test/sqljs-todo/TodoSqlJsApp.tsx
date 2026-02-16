@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useReducer, useState } from 'react';
 import {
   Todo,
   createTodo,
@@ -8,35 +8,64 @@ import {
   updateTodoText,
 } from './server/actions';
 
+interface TodosState {
+  todos: Todo[];
+  text: string;
+  loading: boolean;
+  error: string | null;
+  editor: EditorState;
+}
+
 type EditorState = {
   id: number | null;
   value: string;
 };
 
 const initialEditor: EditorState = { id: null, value: '' };
+const initialTodosState: TodosState = {
+  todos: [],
+  text: '',
+  loading: false,
+  error: null,
+  editor: initialEditor,
+};
+
+const TodosReducer = (state: typeof initialTodosState, action: any) => {
+  switch (action.type) {
+    case 'SET_TODOS':
+      return { ...state, todos: action.todos, loading: false };
+    case 'SET_TEXT':
+      return { ...state, text: action.text };
+    case 'SET_LOADING':
+      return { ...state, loading: action.loading, error: null };
+    case 'SET_ERROR':
+      return { ...state, error: action.error, loading: false };
+    case 'SET_EDITOR':
+      return { ...state, editor: action.editor };
+    default:
+      return state;
+  }
+};
 
 const TodoSqlJsApp = () => {
-  const [todos, setTodos] = useState<Todo[]>([]);
-  const [text, setText] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [editor, setEditor] = useState<EditorState>(initialEditor);
+  const [state, dispatch] = useReducer(TodosReducer, initialTodosState);
+  const { todos, text, loading, error, editor } = state;
 
   const completedCount = useMemo(
-    () => todos.filter((todo) => todo.completed).length,
-    [todos]
+    () => todos.filter((todo: Todo) => todo.completed).length,
+    [todos],
   );
 
   const refreshTodos = useCallback(async () => {
-    setLoading(true);
-    setError(null);
+    dispatch({ type: 'SET_LOADING', loading: true });
     try {
       const list = await getTodos();
-      setTodos(list);
+      dispatch({ type: 'SET_TODOS', todos: list });
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to load todos');
-    } finally {
-      setLoading(false);
+      dispatch({
+        type: 'SET_ERROR',
+        error: err instanceof Error ? err.message : 'Failed to load todos',
+      });
     }
   }, []);
 
@@ -48,54 +77,60 @@ const TodoSqlJsApp = () => {
     event.preventDefault();
     const trimmed = text.trim();
     if (!trimmed) {
-      setError('Todo text is required.');
+      dispatch({ type: 'SET_ERROR', error: 'Todo text is required.' });
       return;
     }
-    setLoading(true);
-    setError(null);
+    dispatch({ type: 'SET_LOADING', loading: true });
     try {
       const created = await createTodo(trimmed);
-      setTodos((prev) => [created, ...prev]);
-      setText('');
+      dispatch({ type: 'SET_TODOS', todos: [created, ...todos] });
+      dispatch({ type: 'SET_TEXT', text: '' });
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to create todo');
-    } finally {
-      setLoading(false);
+      dispatch({
+        type: 'SET_ERROR',
+        error: err instanceof Error ? err.message : 'Failed to create todo',
+      });
     }
   };
 
   const handleToggle = async (id: number) => {
-    setLoading(true);
-    setError(null);
+    dispatch({ type: 'SET_LOADING', loading: true });
     try {
       const updated = await toggleTodo(id);
-      setTodos((prev) => prev.map((todo) => (todo.id === id ? updated : todo)));
+      dispatch({
+        type: 'SET_TODOS',
+        todos: todos.map((todo: Todo) => (todo.id === id ? updated : todo)),
+      });
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to update todo');
-    } finally {
-      setLoading(false);
+      dispatch({
+        type: 'SET_ERROR',
+        error: err instanceof Error ? err.message : 'Failed to update todo',
+      });
     }
   };
 
   const handleDelete = async (id: number) => {
-    setLoading(true);
-    setError(null);
+    dispatch({ type: 'SET_LOADING', loading: true });
     try {
       await deleteTodo(id);
-      setTodos((prev) => prev.filter((todo) => todo.id !== id));
+      dispatch({
+        type: 'SET_TODOS',
+        todos: todos.filter((todo: Todo) => todo.id !== id),
+      });
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to delete todo');
-    } finally {
-      setLoading(false);
+      dispatch({
+        type: 'SET_ERROR',
+        error: err instanceof Error ? err.message : 'Failed to delete todo',
+      });
     }
   };
 
   const handleEditStart = (todo: Todo) => {
-    setEditor({ id: todo.id, value: todo.text });
+    dispatch({ type: 'SET_EDITOR', editor: { id: todo.id, value: todo.text } });
   };
 
   const handleEditCancel = () => {
-    setEditor(initialEditor);
+    dispatch({ type: 'SET_EDITOR', editor: initialEditor });
   };
 
   const handleEditSave = async () => {
@@ -104,39 +139,46 @@ const TodoSqlJsApp = () => {
     }
     const trimmed = editor.value.trim();
     if (!trimmed) {
-      setError('Todo text is required.');
+      dispatch({ type: 'SET_ERROR', error: 'Todo text is required.' });
       return;
     }
-    setLoading(true);
-    setError(null);
+    dispatch({ type: 'SET_LOADING', loading: true });
     try {
       const updated = await updateTodoText(editor.id, trimmed);
-      setTodos((prev) =>
-        prev.map((todo) => (todo.id === editor.id ? updated : todo))
-      );
-      setEditor(initialEditor);
+      dispatch({
+        type: 'SET_TODOS',
+        todos: todos.map((todo: Todo) =>
+          todo.id === editor.id ? updated : todo,
+        ),
+      });
+      dispatch({ type: 'SET_EDITOR', editor: initialEditor });
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to update todo');
-    } finally {
-      setLoading(false);
+      dispatch({
+        type: 'SET_ERROR',
+        error: err instanceof Error ? err.message : 'Failed to update todo',
+      });
     }
   };
 
   return (
     <div className='bg-light text-dark w-auto p-4'>
       <h2>sql.js Todo Demo</h2>
-      <p className='text-muted'>SQLite runs in WASM and persists to localStorage.</p>
+      <p className='text-muted'>
+        SQLite runs in WASM and persists to localStorage.
+      </p>
 
       <form className='d-flex gap-2' onSubmit={handleCreate}>
         <input
           type='text'
           className='form-control'
           value={text}
-          onChange={(event) => setText(event.target.value)}
+          onChange={(event) =>
+            dispatch({ type: 'SET_TEXT', text: event.target.value })
+          }
           placeholder='Add a todo'
         />
         <button className='btn btn-primary' type='submit' disabled={loading}>
-          Add
+          {loading ? 'Waiting...' : 'Add'}
         </button>
       </form>
 
@@ -150,7 +192,7 @@ const TodoSqlJsApp = () => {
       {loading && <p className='mt-2'>Working...</p>}
 
       <ul className='list-group mt-3'>
-        {todos.map((todo) => {
+        {todos.map((todo: Todo) => {
           const isEditing = editor.id === todo.id;
           return (
             <li
@@ -169,11 +211,18 @@ const TodoSqlJsApp = () => {
                     className='form-control'
                     value={editor.value}
                     onChange={(event) =>
-                      setEditor((prev) => ({ ...prev, value: event.target.value }))
+                      dispatch({
+                        type: 'SET_EDITOR',
+                        editor: { ...editor, value: event.target.value },
+                      })
                     }
                   />
                 ) : (
-                  <span className={todo.completed ? 'text-decoration-line-through' : ''}>
+                  <span
+                    className={
+                      todo.completed ? 'text-decoration-line-through' : ''
+                    }
+                  >
                     {todo.text}
                   </span>
                 )}
