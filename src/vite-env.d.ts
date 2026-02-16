@@ -17,3 +17,8 @@ declare module '*.module.scss' {
   const classes: { [key: string]: string };
   export default classes;
 }
+
+declare module '*.wasm?url' {
+  const src: string;
+  export default src;
+}

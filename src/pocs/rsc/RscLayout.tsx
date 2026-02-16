@@ -39,6 +39,20 @@ const RscLayout = () => {
                   Server Test
                 </Link>
               </li>
+              <li
+                className={`list-group-item ${
+                  isActive('rsc/server-test-todo-sqljs') ? 'active ' : ''
+                }`}
+              >
+                <Link
+                  to='server-test-todo-sqljs'
+                  className={
+                    isActive('rsc/server-test-todo-sqljs') ? 'text-white' : ''
+                  }
+                >
+                  Todo with sql.js
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
