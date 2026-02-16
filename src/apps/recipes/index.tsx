@@ -1,6 +1,6 @@
 import { Outlet, Link, useSearchParams } from 'react-router-dom';
 
-import { HomeList } from './home-list';
+import { HomeList } from './recipes-list';
 import LoadingSpinner from '../../components/loading-spinner';
 import useRecipes from './useRecipes';
 
@@ -42,7 +42,7 @@ export default function Home() {
             {Object.keys(CATEGORY_MAP).map((cat) => (
               <Link
                 key={cat}
-                to={`/?category=${cat}`}
+                to={`/recipes/?category=${cat}`}
                 className={`btn ${
                   category === cat ? 'btn-primary' : 'btn-outline-primary'
                 }`}

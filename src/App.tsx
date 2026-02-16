@@ -5,6 +5,7 @@ import {
   Route,
   RouterProvider,
   Outlet,
+  Navigate,
 } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -21,8 +22,8 @@ import {
 } from './components/CustomErrorBoundary.tsx';
 
 const NotFound = lazy(() => import('./components/not-found'));
-const Home = lazy(() => import('./main/home'));
-const HomeDetails = lazy(() => import('./main/home/home-detail'));
+const Recipes = lazy(() => import('./apps/recipes'));
+const RecipeDetails = lazy(() => import('./apps/recipes/recipe-details'));
 const TodosLayout = lazy(() => import('./apps/todos/TodosLayout'));
 const WatchList = lazy(() => import('./apps/watch-list'));
 const TicTacToeLayout = lazy(() => import('./apps/games/TicTacToeLayout'));
@@ -373,8 +374,9 @@ const router = createBrowserRouter(
         </ErrorBoundaryWithHook>
       }
     >
-      <Route path='/' element={<Home />}>
-        <Route path='recipe/:recipeId' element={<HomeDetails />} />
+      <Route index element={<Navigate to='docs/react19-features' replace />} />
+      <Route path='/recipes' element={<Recipes />}>
+        <Route path='recipe/:recipeId' element={<RecipeDetails />} />
       </Route>
       <Route path='todos' element={<TodosLayout />}>
         <Route index element={<Todos1 />} />
