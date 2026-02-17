@@ -58,9 +58,7 @@ const Todo = ({ dispatch, todo, todos, editor, loading }: TodoProps) => {
       const updated = await updateTodoText(editor.id, trimmed);
       dispatch({
         type: 'SET_TODOS',
-        todos: todos.map((item) =>
-          item.id === editor.id ? updated : item,
-        ),
+        todos: todos.map((item) => (item.id === editor.id ? updated : item)),
       });
       dispatch({ type: 'SET_EDITOR', editor: initialEditor });
     } catch (err) {

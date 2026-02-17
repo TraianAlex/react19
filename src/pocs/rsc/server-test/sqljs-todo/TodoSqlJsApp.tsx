@@ -1,11 +1,28 @@
 import { useCallback, useEffect, useMemo, useReducer } from 'react';
-import { Todo, createTodo, getTodos } from './server/actions';
+import { createTodo, getTodos, Todo } from './server/actions';
 import { initialTodosState, TodosReducer } from './state';
 import TodoList from './TodoList';
+
+// type TodosOptimisticPayload =
+//   | { type: 'toggle'; todo: Todo }
+//   | { type: 'sync'; todos: Todo[] };
 
 const TodoSqlJsApp = () => {
   const [state, dispatch] = useReducer(TodosReducer, initialTodosState);
   const { todos, text, loading, error, editor } = state;
+
+  // const [todosOptimistic, toggleTodoAction] =
+  //   useActionState(async (state: Todo[], payload: TodosOptimisticPayload) => {
+  //     if (payload.type === 'sync') {
+  //       return payload.todos;
+  //     }
+  //     try {
+  //       const updated = await toggleTodo(payload.todo.id);
+  //       return state.map((todo) => (todo.id === updated.id ? updated : todo));
+  //     } catch (_) {
+  //       return state;
+  //     }
+  //   }, todos);
 
   const completedCount = useMemo(
     () => todos.filter((todo: Todo) => todo.completed).length,
