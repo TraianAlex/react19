@@ -9,7 +9,7 @@ export type Todo = {
 };
 
 const mapRows = (
-  result: Database['exec'] extends (...args: any) => infer R ? R : any
+  result: Database['exec'] extends (...args: any) => infer R ? R : any,
 ): Todo[] => {
   const [table] = result ?? [];
   if (!table) {
@@ -23,13 +23,19 @@ const mapRows = (
 };
 
 const getTodoById = (db: Database, id: number): Todo | null => {
-  const stmt = db.prepare('SELECT id, text, completed FROM todos WHERE id = ?;');
+  const stmt = db.prepare(
+    'SELECT id, text, completed FROM todos WHERE id = ?;',
+  );
   stmt.bind([id]);
   if (!stmt.step()) {
     stmt.free();
     return null;
   }
-  const row = stmt.getAsObject() as { id: number; text: string; completed: number };
+  const row = stmt.getAsObject() as {
+    id: number;
+    text: string;
+    completed: number;
+  };
   stmt.free();
   return {
     id: Number(row.id),
@@ -44,21 +50,29 @@ const getLastInsertedId = (db: Database): number | null => {
   return value === undefined || value === null ? null : Number(value);
 };
 
-const runStatement = (stmt: Statement, params: Array<string | number | null>) => {
+const runStatement = (
+  stmt: Statement,
+  params: Array<string | number | null>,
+) => {
   stmt.bind(params);
   stmt.step();
   stmt.free();
 };
 
 export const getTodos = async (): Promise<Todo[]> => {
-  await sleep(1000);
+  await sleep(500);
   const db = await getDb();
-  const result = db.exec('SELECT id, text, completed FROM todos ORDER BY id DESC;');
+  const result = db.exec(
+    'SELECT id, text, completed FROM todos ORDER BY id DESC;',
+  );
   return mapRows(result);
 };
 
 export const createTodo = async (text: string): Promise<Todo> => {
-  await sleep(1000);
+  await sleep(500);
+  if (Math.random() < 0.2) {
+    throw new Error('Failed to create todo.');
+  }
   const db = await getDb();
   const stmt = db.prepare('INSERT INTO todos (text, completed) VALUES (?, 0);');
   runStatement(stmt, [text]);
@@ -72,9 +86,14 @@ export const createTodo = async (text: string): Promise<Todo> => {
 };
 
 export const toggleTodo = async (id: number): Promise<Todo> => {
-  await sleep(1000);
+  await sleep(500);
+  if (Math.random() < 0.2) {
+    throw new Error('Failed to toggle todo.');
+  }
   const db = await getDb();
-  const stmt = db.prepare('UPDATE todos SET completed = CASE completed WHEN 1 THEN 0 ELSE 1 END WHERE id = ?;');
+  const stmt = db.prepare(
+    'UPDATE todos SET completed = CASE completed WHEN 1 THEN 0 ELSE 1 END WHERE id = ?;',
+  );
   runStatement(stmt, [id]);
   const todo = getTodoById(db, id);
   persistDb(db);
@@ -84,8 +103,14 @@ export const toggleTodo = async (id: number): Promise<Todo> => {
   return todo;
 };
 
-export const updateTodoText = async (id: number, text: string): Promise<Todo> => {
-  await sleep(1000);
+export const updateTodoText = async (
+  id: number,
+  text: string,
+): Promise<Todo> => {
+  await sleep(500);
+  if (Math.random() < 0.2) {
+    throw new Error('Failed to update todo text.');
+  }
   const db = await getDb();
   const stmt = db.prepare('UPDATE todos SET text = ? WHERE id = ?;');
   runStatement(stmt, [text, id]);
@@ -98,7 +123,10 @@ export const updateTodoText = async (id: number, text: string): Promise<Todo> =>
 };
 
 export const deleteTodo = async (id: number): Promise<void> => {
-  await sleep(1000);
+  await sleep(500);
+  if (Math.random() < 0.2) {
+    throw new Error('Failed to delete todo.');
+  }
   const db = await getDb();
   const stmt = db.prepare('DELETE FROM todos WHERE id = ?;');
   runStatement(stmt, [id]);

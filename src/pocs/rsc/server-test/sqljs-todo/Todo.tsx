@@ -1,5 +1,10 @@
-import { Dispatch } from 'react';
-import { deleteTodo, Todo as TodoType, toggleTodo, updateTodoText } from './server/actions';
+import { Dispatch, useOptimistic, useTransition } from 'react';
+import {
+  deleteTodo,
+  Todo as TodoType,
+  toggleTodo,
+  updateTodoText,
+} from './server/actions';
 import { EditorState, initialEditor, TodosAction } from './state';
 
 type TodoProps = {
@@ -13,20 +18,29 @@ type TodoProps = {
 const Todo = ({ dispatch, todo, todos, editor, loading }: TodoProps) => {
   const isEditing = editor.id === todo.id;
 
+  const [isPending, startTransition] = useTransition();
+  const [optimisticChecked, setOptimisticChecked] = useOptimistic(
+    todo.completed,
+    (state: boolean) => !state,
+  );
+
   const handleToggle = async () => {
-    dispatch({ type: 'SET_LOADING', loading: true });
-    try {
-      const updated = await toggleTodo(todo.id);
-      dispatch({
-        type: 'SET_TODOS',
-        todos: todos.map((item) => (item.id === todo.id ? updated : item)),
-      });
-    } catch (err) {
-      dispatch({
-        type: 'SET_ERROR',
-        error: err instanceof Error ? err.message : 'Failed to update todo',
-      });
-    }
+    startTransition(async () => {
+      setOptimisticChecked(!optimisticChecked);
+      dispatch({ type: 'SET_LOADING', loading: true });
+      try {
+        const updated = await toggleTodo(todo.id);
+        dispatch({
+          type: 'SET_TODOS',
+          todos: todos.map((item) => (item.id === todo.id ? updated : item)),
+        });
+      } catch (err) {
+        dispatch({
+          type: 'SET_ERROR',
+          error: err instanceof Error ? err.message : 'Failed to update todo',
+        });
+      }
+    });
   };
 
   const handleEditStart = () => {
@@ -86,11 +100,14 @@ const Todo = ({ dispatch, todo, todos, editor, loading }: TodoProps) => {
   };
 
   return (
-    <li
-      className='list-group-item d-flex align-items-center justify-content-between'
-    >
+    <li className='list-group-item d-flex align-items-center justify-content-between'>
       <div className='d-flex align-items-center gap-2 flex-grow-1'>
-        <input type='checkbox' checked={todo.completed} onChange={handleToggle} />
+        <input
+          type='checkbox'
+          checked={optimisticChecked}
+          onChange={handleToggle}
+          disabled={isPending}
+        />
         {isEditing ? (
           <input
             type='text'

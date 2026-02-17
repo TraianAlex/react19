@@ -3,26 +3,9 @@ import { createTodo, getTodos, Todo } from './server/actions';
 import { initialTodosState, TodosReducer } from './state';
 import TodoList from './TodoList';
 
-// type TodosOptimisticPayload =
-//   | { type: 'toggle'; todo: Todo }
-//   | { type: 'sync'; todos: Todo[] };
-
 const TodoSqlJsApp = () => {
   const [state, dispatch] = useReducer(TodosReducer, initialTodosState);
   const { todos, text, loading, error, editor } = state;
-
-  // const [todosOptimistic, toggleTodoAction] =
-  //   useActionState(async (state: Todo[], payload: TodosOptimisticPayload) => {
-  //     if (payload.type === 'sync') {
-  //       return payload.todos;
-  //     }
-  //     try {
-  //       const updated = await toggleTodo(payload.todo.id);
-  //       return state.map((todo) => (todo.id === updated.id ? updated : todo));
-  //     } catch (_) {
-  //       return state;
-  //     }
-  //   }, todos);
 
   const completedCount = useMemo(
     () => todos.filter((todo: Todo) => todo.completed).length,
@@ -72,7 +55,6 @@ const TodoSqlJsApp = () => {
       <p className='text-muted'>
         SQLite runs in WASM and persists to localStorage.
       </p>
-
       <form className='d-flex gap-2' onSubmit={handleCreate}>
         <input
           type='text'
@@ -87,16 +69,12 @@ const TodoSqlJsApp = () => {
           {loading ? 'Waiting...' : 'Add'}
         </button>
       </form>
-
       <div className='mt-3'>
         <span className='badge bg-secondary'>
           {completedCount}/{todos.length} completed
-        </span>
+        </span>{loading && <span className='ms-2'>Working...</span>}
       </div>
-
       {error && <p className='text-danger mt-2'>{error}</p>}
-      {loading && <p className='mt-2'>Working...</p>}
-
       <TodoList
         dispatch={dispatch}
         todos={todos}
