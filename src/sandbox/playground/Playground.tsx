@@ -8,6 +8,7 @@ import CompoundComponentsDemo from '../compound-components/CompoundComponentsDem
 import { AppProducts } from '../diverse/AppProducts';
 import AppParentGrandChild from '../parent-grandchild/AppParentGrandChild';
 import TypeWritting from '../diverse/TypeWritting';
+import Test from '../test/Test';
 
 const Playground = () => {
   const [value, setValue] = useState(1);
@@ -21,7 +22,10 @@ const Playground = () => {
 
   return (
     <div className='container'>
-      <h2 onClick={handleClick}>Playground</h2>
+      <div className='row'>
+        <Test />
+      </div>
+      <h3 onClick={handleClick}>Playground</h3>
       {/* <div className='d-flex gap-2'>
         <button onClick={handleClick} className='btn btn-primary'>
           Parent button
