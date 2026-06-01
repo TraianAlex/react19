@@ -1,5 +1,6 @@
 import { User } from '../state/authSlice';
 import httpClient from './httpClient';
+import { toReqresDevUrl } from './reqresUrl';
 
 interface Credentials {
   email: string;
@@ -54,7 +55,7 @@ export const fetchUsers = async (
         id: user.id,
         name: `${user.first_name} ${user.last_name}`,
         email: user.email,
-        avatar: user.avatar,
+        avatar: toReqresDevUrl(user.avatar),
       })),
       totalPages,
       totalUsers,
@@ -73,7 +74,7 @@ export const getUserProfile = async (id: number): Promise<User> => {
       id: userData.data.id,
       name: `${userData.data.first_name} ${userData.data.last_name}`,
       email: userData.data.email,
-      avatar: userData.data.avatar,
+      avatar: toReqresDevUrl(userData.data.avatar),
     };
 
     return user;

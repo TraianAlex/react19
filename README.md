@@ -1,21 +1,18 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-
 node 22.12.0
 
-json-server --watch db.json --port 4000 --routes Routes.json
+## Mock API (json-server)
+
+```bash
+npm run server
+```
+
+Uses json-server **0.17.4** with `routes.json` so `/api/*` paths rewrite to `db.json` resources. json-server **1.x** removed the `--routes` CLI flag; use the pinned devDependency, not a global `json-server@1`.
+
+```bash
+json-server --watch db.json --port 4000 --routes routes.json
+```
+
 netlify connects with your local json-server
 https://traianalex.netlify.app
-
 
 pkill -f "npm run dev" || pkill -f "vite" || echo "No development server processes found"
