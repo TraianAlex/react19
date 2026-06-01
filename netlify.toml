@@ -1,0 +1,6 @@
+# Proxy reqres API and static assets (avoids browser CORS / CORP on traianalex.netlify.app)
+[[redirects]]
+  from = "/reqres/*"
+  to = "https://reqres.in/:splat"
+  status = 200
+  force = true

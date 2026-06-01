@@ -15,4 +15,11 @@ json-server --watch db.json --port 4000 --routes routes.json
 netlify connects with your local json-server
 https://traianalex.netlify.app
 
+## Reqres proxy (auth POC)
+
+API and avatar URLs use `/reqres/*` (same origin). Proxied to `https://reqres.in` via:
+
+- **Dev / `vite preview`**: `vite.config.js` `server` and `preview` proxy
+- **Netlify**: `netlify.toml` redirect (status 200)
+
 pkill -f "npm run dev" || pkill -f "vite" || echo "No development server processes found"
