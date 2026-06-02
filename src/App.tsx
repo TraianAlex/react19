@@ -236,8 +236,12 @@ const Composition = lazy(
   () => import('./docs/frontend-best-practices/code-reusability/Composition'),
 );
 const StarMatch = lazy(() => import('./apps/games/star-match/StarMatch'));
+<<<<<<< Updated upstream
 const Test = lazy(() => import('./sandbox/test/Test'));
 const Test2 = lazy(() => import('./sandbox/test2/index'));
+=======
+const Test = lazy(() => import('./sandbox/test1/Test'));
+>>>>>>> Stashed changes
 const Users = lazy(() => import('./pocs/auth/components/users'));
 const AppHeaderWithSqlJs = lazy(() => import('./pocs/rsc/server-test/app-header-with-sqljs'));
 const TodoSqlJsApp = lazy(() => import('./pocs/rsc/server-test/sqljs-todo/TodoSqlJsApp'));

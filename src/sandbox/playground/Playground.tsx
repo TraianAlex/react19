@@ -8,7 +8,11 @@ import CompoundComponentsDemo from '../compound-components/CompoundComponentsDem
 import { AppProducts } from '../diverse/AppProducts';
 import AppParentGrandChild from '../parent-grandchild/AppParentGrandChild';
 import TypeWritting from '../diverse/TypeWritting';
+<<<<<<< Updated upstream
 import LoadingSpinner from '../../components/loading-spinner';
+=======
+import Test from '../test1/Test';
+>>>>>>> Stashed changes
 
 const Playground = () => {
   const [value, setValue] = useState(1);
