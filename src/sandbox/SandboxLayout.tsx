@@ -121,6 +121,15 @@ const SandboxLayout = () => {
                   Test
                 </Link>
               </li>
+              <li className={`list-group-item ${isActive('sandbox/test1') ? 'active' : ''}`}>
+                <Link
+                  to='test1'
+                  className={isActive('sandbox/test1') ? 'text-white' : ''}
+                  onClick={() => setIsCompoundComponentsOpen(false)}
+                >
+                  Test 1
+                </Link>
+              </li>
               <li className={`list-group-item ${isActive('sandbox/test2') ? 'active' : ''}`}>
                 <Link
                   to='test2'

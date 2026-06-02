@@ -237,6 +237,7 @@ const Composition = lazy(
 );
 const StarMatch = lazy(() => import('./apps/games/star-match/StarMatch'));
 const Test = lazy(() => import('./sandbox/test/Test'));
+const Test1 = lazy(() => import('./sandbox/test1/Test'));
 const Test2 = lazy(() => import('./sandbox/test2/index'));
 const Users = lazy(() => import('./pocs/auth/components/users'));
 const AppHeaderWithSqlJs = lazy(() => import('./pocs/rsc/server-test/app-header-with-sqljs'));
@@ -347,6 +348,7 @@ const router = createBrowserRouter(
         <Route path='compound-components-simple' element={<CompoundComponentsSimple />} />
         <Route path='increment-redux-hooks' element={<IncrementReduxHooks />} />
         <Route path='test' element={<Test />} />
+        <Route path='test1' element={<Test1 />} />
         <Route path='test2' element={<Test2 />} />
         <Route path='game5' element={<h1>Game 5</h1>} />
         <Route path='game6' element={<h1>Game 6</h1>} />
