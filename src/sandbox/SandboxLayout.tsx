@@ -3,8 +3,7 @@ import { useState } from 'react';
 
 const SandboxLayout = () => {
   const location = useLocation();
-  const [isCompoundComponentsOpen, setIsCompoundComponentsOpen] =
-    useState(false);
+  const [isCompoundComponentsOpen, setIsCompoundComponentsOpen] = useState(false);
 
   const isCompoundComponentsActive = () => {
     return (
@@ -26,17 +25,13 @@ const SandboxLayout = () => {
             <ul className='list-group list-group-flush'>
               <li
                 className={`list-group-item ${
-                  isActive('sandbox/playground') || isActive('sandbox')
-                    ? 'active'
-                    : ''
+                  isActive('sandbox/playground') || isActive('sandbox') ? 'active' : ''
                 }`}
               >
                 <Link
                   to='playground'
                   className={
-                    isActive('sandbox/playground') || isActive('sandbox')
-                      ? 'text-white'
-                      : ''
+                    isActive('sandbox/playground') || isActive('sandbox') ? 'text-white' : ''
                   }
                   onClick={() => setIsCompoundComponentsOpen(false)}
                 >
@@ -46,27 +41,17 @@ const SandboxLayout = () => {
               <li className='list-group-item p-0'>
                 <button
                   className={`list-group-item list-group-item-action w-100 border-0 ${
-                    !isCompoundComponentsOpen && isCompoundComponentsActive()
-                      ? 'active'
-                      : ''
+                    !isCompoundComponentsOpen && isCompoundComponentsActive() ? 'active' : ''
                   }`}
-                  onClick={() =>
-                    setIsCompoundComponentsOpen(!isCompoundComponentsOpen)
-                  }
+                  onClick={() => setIsCompoundComponentsOpen(!isCompoundComponentsOpen)}
                   style={{
                     textAlign: 'left',
                   }}
                 >
                   Compound Components
-                  <span className='float-end'>
-                    {isCompoundComponentsOpen ? '−' : '+'}
-                  </span>
+                  <span className='float-end'>{isCompoundComponentsOpen ? '−' : '+'}</span>
                 </button>
-                <div
-                  className={`collapse ${
-                    isCompoundComponentsOpen ? 'show' : ''
-                  }`}
-                >
+                <div className={`collapse ${isCompoundComponentsOpen ? 'show' : ''}`}>
                   <ul className='list-group list-group-flush'>
                     <li
                       className={`list-group-item ps-4 ${
@@ -75,11 +60,7 @@ const SandboxLayout = () => {
                     >
                       <Link
                         to='compound-components'
-                        className={
-                          isActive('sandbox/compound-components')
-                            ? 'text-white'
-                            : ''
-                        }
+                        className={isActive('sandbox/compound-components') ? 'text-white' : ''}
                         onClick={() => setIsCompoundComponentsOpen(true)}
                       >
                         Compound Components
@@ -87,17 +68,13 @@ const SandboxLayout = () => {
                     </li>
                     <li
                       className={`list-group-item ps-4 ${
-                        isActive('sandbox/flexible-compound-components')
-                          ? 'active'
-                          : ''
+                        isActive('sandbox/flexible-compound-components') ? 'active' : ''
                       }`}
                     >
                       <Link
                         to='flexible-compound-components'
                         className={
-                          isActive('sandbox/flexible-compound-components')
-                            ? 'text-white'
-                            : ''
+                          isActive('sandbox/flexible-compound-components') ? 'text-white' : ''
                         }
                         onClick={() => setIsCompoundComponentsOpen(true)}
                       >
@@ -106,17 +83,13 @@ const SandboxLayout = () => {
                     </li>
                     <li
                       className={`list-group-item ps-4 ${
-                        isActive('sandbox/compound-components-simple')
-                          ? 'active'
-                          : ''
+                        isActive('sandbox/compound-components-simple') ? 'active' : ''
                       }`}
                     >
                       <Link
                         to='compound-components-simple'
                         className={
-                          isActive('sandbox/compound-components-simple')
-                            ? 'text-white'
-                            : ''
+                          isActive('sandbox/compound-components-simple') ? 'text-white' : ''
                         }
                         onClick={() => setIsCompoundComponentsOpen(true)}
                       >
@@ -133,21 +106,13 @@ const SandboxLayout = () => {
               >
                 <Link
                   to='increment-redux-hooks'
-                  className={
-                    isActive('sandbox/increment-redux-hooks')
-                      ? 'text-white'
-                      : ''
-                  }
+                  className={isActive('sandbox/increment-redux-hooks') ? 'text-white' : ''}
                   onClick={() => setIsCompoundComponentsOpen(false)}
                 >
                   Increment Redux hooks
                 </Link>
               </li>
-              <li
-                className={`list-group-item ${
-                  isActive('sandbox/test') ? 'active' : ''
-                }`}
-              >
+              <li className={`list-group-item ${isActive('sandbox/test') ? 'active' : ''}`}>
                 <Link
                   to='test'
                   className={isActive('sandbox/test') ? 'text-white' : ''}
@@ -156,11 +121,16 @@ const SandboxLayout = () => {
                   Test
                 </Link>
               </li>
-              <li
-                className={`list-group-item ${
-                  isActive('sandbox/game5') ? 'active' : ''
-                }`}
-              >
+              <li className={`list-group-item ${isActive('sandbox/test2') ? 'active' : ''}`}>
+                <Link
+                  to='test2'
+                  className={isActive('sandbox/test2') ? 'text-white' : ''}
+                  onClick={() => setIsCompoundComponentsOpen(false)}
+                >
+                  Test 2
+                </Link>
+              </li>
+              <li className={`list-group-item ${isActive('sandbox/game5') ? 'active' : ''}`}>
                 <Link
                   to='game5'
                   className={isActive('sandbox/game5') ? 'text-white' : ''}
@@ -169,11 +139,7 @@ const SandboxLayout = () => {
                   Game 5
                 </Link>
               </li>
-              <li
-                className={`list-group-item ${
-                  isActive('sandbox/game6') ? 'active' : ''
-                }`}
-              >
+              <li className={`list-group-item ${isActive('sandbox/game6') ? 'active' : ''}`}>
                 <Link
                   to='game6'
                   className={isActive('sandbox/game6') ? 'text-white' : ''}

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import { Child, TabTest } from './Child';
 import SpreadJS from '../components/SpreadJS';
 import { AppContextProvider, SectionContext } from '../context/TestContext';
@@ -8,7 +8,7 @@ import CompoundComponentsDemo from '../compound-components/CompoundComponentsDem
 import { AppProducts } from '../diverse/AppProducts';
 import AppParentGrandChild from '../parent-grandchild/AppParentGrandChild';
 import TypeWritting from '../diverse/TypeWritting';
-import Test from '../test/Test';
+import LoadingSpinner from '../../components/loading-spinner';
 
 const Playground = () => {
   const [value, setValue] = useState(1);
@@ -21,37 +21,30 @@ const Playground = () => {
   console.log('Playground rendered', value);
 
   return (
-    <div className='container'>
-      <div className='row'>
-        <Test />
+    <Suspense fallback={<LoadingSpinner />}>
+      <div className='container'>
+        <h3 onClick={handleClick}>Playground</h3>
+        <div className='d-flex gap-2'>
+          <button onClick={handleClick} className='btn btn-primary'>
+            Parent button
+          </button>
+          <Child clickParentHandler={handleClick} value={value} />
+        </div>
+        <main className='d-flex flex-column gap-2'>
+          <Marquee>🧛‍♀️ Welcome to Horrorville 🧛‍♀️'</Marquee>
+          <TypeWritting words={['Hello, world!', 'This is a test!', 'We play around with code!']} />
+          <CompoundComponentsDemo />
+          {<TabTest />}
+          <AppContextProvider>
+            <SectionContext />
+          </AppContextProvider>
+          <ResetState />
+        </main>
+        <AppProducts />
+        {/* <AppParentGrandChild /> */}
+        {/* {<SpreadJS />} */}
       </div>
-      <h3 onClick={handleClick}>Playground</h3>
-      {/* <div className='d-flex gap-2'>
-        <button onClick={handleClick} className='btn btn-primary'>
-          Parent button
-        </button>
-        <Child clickParentHandler={handleClick} value={value} />
-      </div> */}
-      <main className='d-flex flex-column gap-2'>
-        <Marquee>🧛‍♀️ Welcome to Horrorville 🧛‍♀️'</Marquee>
-        <TypeWritting
-          words={[
-            'Hello, world!',
-            'This is a test!',
-            'We play around with code!',
-          ]}
-        />
-        <CompoundComponentsDemo />
-        {/* <TabTest /> */}
-        <AppContextProvider>
-          <SectionContext />
-        </AppContextProvider>
-        <ResetState />
-      </main>
-      <AppProducts />
-      {/* <AppParentGrandChild /> */}
-      {/* <SpreadJS /> */}
-    </div>
+    </Suspense>
   );
 };
 

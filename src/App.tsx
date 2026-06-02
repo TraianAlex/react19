@@ -39,54 +39,29 @@ const Game6 = lazy(() => import('./apps/games/tic-tac-toe6'));
 const SandboxLayout = lazy(() => import('./sandbox/SandboxLayout'));
 const Playground = lazy(() => import('./sandbox/playground/Playground'));
 const CompoundComponents = lazy(
-  () =>
-    import(
-      './sandbox/compound-components/compound-components-context/CompoundComponents'
-    )
+  () => import('./sandbox/compound-components/compound-components-context/CompoundComponents'),
 );
 const FlexibleCompoundComponents = lazy(
-  () =>
-    import(
-      './sandbox/compound-components/compound-components2/FlexibleCompoundComponents'
-    )
+  () => import('./sandbox/compound-components/compound-components2/FlexibleCompoundComponents'),
 );
 const CompoundComponentsSimple = lazy(
-  () =>
-    import(
-      './sandbox/compound-components/compound-components1/CompoundComponentsSimple'
-    )
+  () => import('./sandbox/compound-components/compound-components1/CompoundComponentsSimple'),
 );
 const TodosTestLayout = lazy(() => import('./pocs/todos-test/TodosTestLayout'));
 const TodosBasic = lazy(() => import('./pocs/todos-test/todo-standard/Todos'));
-const TodosContext = lazy(
-  () => import('./pocs/todos-test/TodoContext/TodosContext')
-);
+const TodosContext = lazy(() => import('./pocs/todos-test/TodoContext/TodosContext'));
 const SpeakersApp = lazy(() => import('./apps/speakers/Speakers'));
-const SpeakerList = lazy(
-  () => import('./apps/speakers/components/speakers/SpeakerList')
-);
-const Speaker = lazy(
-  () => import('./apps/speakers/components/speakers/Speaker')
-);
+const SpeakerList = lazy(() => import('./apps/speakers/components/speakers/SpeakerList'));
+const Speaker = lazy(() => import('./apps/speakers/components/speakers/Speaker'));
 const About = lazy(() => import('./apps/speakers/components/about/About'));
-const Speakers = lazy(
-  () => import('./apps/speakers/components/speakers/Speakers')
-);
+const Speakers = lazy(() => import('./apps/speakers/components/speakers/Speakers'));
 const SpeakersHome = lazy(() => import('./apps/speakers/components/home/Home'));
 const TodosFlux = lazy(() => import('./pocs/todos-test/ToDoFlux/App'));
-const TodosRedux = lazy(
-  () => import('./pocs/todos-test/ToDoRedux/TodoListRedux')
-);
+const TodosRedux = lazy(() => import('./pocs/todos-test/ToDoRedux/TodoListRedux'));
 const IncrementReduxHooks = lazy(() => import('./sandbox/ReduxWithHooks/App'));
-const TodoApp = lazy(
-  () => import('./pocs/todos-test/todos-context-fakeapi-localstorage/TodoApp')
-);
-const TodosAction = lazy(
-  () => import('./pocs/todos-test/todos-server-actions/TodosAction')
-);
-const TodosActions = lazy(
-  () => import('./pocs/todos-test/todos-actions/TodosActions')
-);
+const TodoApp = lazy(() => import('./pocs/todos-test/todos-context-fakeapi-localstorage/TodoApp'));
+const TodosAction = lazy(() => import('./pocs/todos-test/todos-server-actions/TodosAction'));
+const TodosActions = lazy(() => import('./pocs/todos-test/todos-actions/TodosActions'));
 const Vanlife = lazy(() => import('./apps/vanlife/Vanlife'));
 const VanlifeLayout = lazy(() => import('./apps/vanlife/components/Layout'));
 const VanlifeHome = lazy(() => import('./apps/vanlife/pages/Home'));
@@ -94,271 +69,178 @@ const VanlifeAbout = lazy(() => import('./apps/vanlife/pages/About'));
 const VanlifeNotFound = lazy(() => import('./apps/vanlife/pages/NotFound'));
 const VanlifeLogin = lazy(() => import('./apps/vanlife/pages/Login'));
 const VanlifeVans = lazy(() => import('./apps/vanlife/pages/vans/Vans'));
-const VanlifeVanDetail = lazy(
-  () => import('./apps/vanlife/pages/vans/VanDetail')
-);
-const VanlifeHostLayout = lazy(
-  () => import('./apps/vanlife/components/HostLayout')
-);
-const VanlifeDashboard = lazy(
-  () => import('./apps/vanlife/pages/Host/Dashboard')
-);
+const VanlifeVanDetail = lazy(() => import('./apps/vanlife/pages/vans/VanDetail'));
+const VanlifeHostLayout = lazy(() => import('./apps/vanlife/components/HostLayout'));
+const VanlifeDashboard = lazy(() => import('./apps/vanlife/pages/Host/Dashboard'));
 const VanlifeIncome = lazy(() => import('./apps/vanlife/pages/Host/Income'));
-const VanlifeHostVans = lazy(
-  () => import('./apps/vanlife/pages/Host/HostVans')
-);
-const VanlifeHostVanDetail = lazy(
-  () => import('./apps/vanlife/pages/Host/HostVanDetail')
-);
-const VanlifeHostVanPricing = lazy(
-  () => import('./apps/vanlife/pages/Host/HostVanPricing')
-);
-const VanlifeHostVanPhotos = lazy(
-  () => import('./apps/vanlife/pages/Host/HostVanPhotos')
-);
-const VanlifeHostVanInfo = lazy(
-  () => import('./apps/vanlife/pages/Host/HostVanInfo')
-);
+const VanlifeHostVans = lazy(() => import('./apps/vanlife/pages/Host/HostVans'));
+const VanlifeHostVanDetail = lazy(() => import('./apps/vanlife/pages/Host/HostVanDetail'));
+const VanlifeHostVanPricing = lazy(() => import('./apps/vanlife/pages/Host/HostVanPricing'));
+const VanlifeHostVanPhotos = lazy(() => import('./apps/vanlife/pages/Host/HostVanPhotos'));
+const VanlifeHostVanInfo = lazy(() => import('./apps/vanlife/pages/Host/HostVanInfo'));
 const VanlifeReviews = lazy(() => import('./apps/vanlife/pages/Host/Reviews'));
-const VanlifeAuthRequired = lazy(
-  () => import('./apps/vanlife/components/AuthRequired')
-);
+const VanlifeAuthRequired = lazy(() => import('./apps/vanlife/components/AuthRequired'));
 const VanlifeError = lazy(() => import('./apps/vanlife/components/Error'));
 const Weather = lazy(() => import('./pocs/weather/Weather'));
-const TodosSetState1 = lazy(
-  () => import('./pocs/todos-test/todo-setstate1/Todos')
-);
-const TodosSetState2 = lazy(
-  () => import('./pocs/todos-test/todo-setstate2/Todos')
-);
+const TodosSetState1 = lazy(() => import('./pocs/todos-test/todo-setstate1/Todos'));
+const TodosSetState2 = lazy(() => import('./pocs/todos-test/todo-setstate2/Todos'));
 const Todos3 = lazy(() => import('./pocs/todos-test/todo-setstate3/Todos'));
-const Todos3mix = lazy(
-  () => import('./pocs/todos-test/todo-setstate3mix/Todos')
-);
+const Todos3mix = lazy(() => import('./pocs/todos-test/todo-setstate3mix/Todos'));
 const RscLayout = lazy(() => import('./pocs/rsc/RscLayout'));
 const AppHeader = lazy(() => import('./pocs/rsc/simple-rsc/app-header'));
-const TransitionLayout = lazy(
-  () => import('./pocs/transition/TransitionLayout')
-);
-const TransitionTabs = lazy(
-  () => import('./pocs/transition/transition-delay/TransitionTabs')
-);
+const TransitionLayout = lazy(() => import('./pocs/transition/TransitionLayout'));
+const TransitionTabs = lazy(() => import('./pocs/transition/transition-delay/TransitionTabs'));
 const TransitionOptimistic = lazy(
-  () => import('./pocs/transition/transition-optimistic/TransitionTabs')
+  () => import('./pocs/transition/transition-optimistic/TransitionTabs'),
 );
 const TransitionSuspense = lazy(
-  () => import('./pocs/transition/transition-suspense/TransitionTabs')
+  () => import('./pocs/transition/transition-suspense/TransitionTabs'),
 );
 const TodosActionState = lazy(
-  () => import('./pocs/todos-test/todos-action-state/TodosActionState')
+  () => import('./pocs/todos-test/todos-action-state/TodosActionState'),
 );
 const HooksLayout = lazy(() => import('./pocs/hooks/HooksLayout'));
 const NotesApp = lazy(() => import('./pocs/hooks/useHookNotesApp/NotesApp'));
 const NoteDashboardApp = lazy(
-  () => import('./pocs/hooks/useHookParallelDashboard/NoteDashboardApp')
+  () => import('./pocs/hooks/useHookParallelDashboard/NoteDashboardApp'),
 );
-const ContextApp = lazy(
-  () => import('./pocs/hooks/useHookContextApp/ContextApp')
-);
+const ContextApp = lazy(() => import('./pocs/hooks/useHookContextApp/ContextApp'));
 const ProgressiveNoteApp = lazy(
-  () => import('./pocs/hooks/useHookProgressiveApp/ProgressiveNoteApp')
+  () => import('./pocs/hooks/useHookProgressiveApp/ProgressiveNoteApp'),
 );
-const React19FeaturesApp = lazy(
-  () => import('./docs/react19-features/React19FeaturesApp')
-);
+const React19FeaturesApp = lazy(() => import('./docs/react19-features/React19FeaturesApp'));
 const AppCards = lazy(() => import('./apps/cards/AppCards'));
 const Cards2 = lazy(() => import('./pocs/cards2/AppCards'));
 const DocsLayout = lazy(() => import('./docs/DocsLayout'));
 const ReactBestPracticesLayout = lazy(
-  () => import('./docs/react-best-practices/ReactBestPracticesLayout')
+  () => import('./docs/react-best-practices/ReactBestPracticesLayout'),
 );
-const ReactBestPracticesIndex = lazy(
-  () => import('./docs/react-best-practices/index')
-);
+const ReactBestPracticesIndex = lazy(() => import('./docs/react-best-practices/index'));
 const FrontendBestPracticesLayout = lazy(
-  () => import('./docs/frontend-best-practices/FrontendBestPracticesLayout')
+  () => import('./docs/frontend-best-practices/FrontendBestPracticesLayout'),
 );
-const FrontendBestPracticesIndex = lazy(
-  () => import('./docs/frontend-best-practices/index')
-);
+const FrontendBestPracticesIndex = lazy(() => import('./docs/frontend-best-practices/index'));
 const StateClassify = lazy(
-  () => import('./docs/react-best-practices/state-architecture/StateClassify')
+  () => import('./docs/react-best-practices/state-architecture/StateClassify'),
 );
 const ServerState = lazy(
-  () => import('./docs/react-best-practices/state-architecture/ServerState')
+  () => import('./docs/react-best-practices/state-architecture/ServerState'),
 );
 const GlobalState = lazy(
-  () => import('./docs/react-best-practices/state-architecture/GlobalState')
+  () => import('./docs/react-best-practices/state-architecture/GlobalState'),
 );
-const LocalState = lazy(
-  () => import('./docs/react-best-practices/state-architecture/LocalState')
-);
-const UrlState = lazy(
-  () => import('./docs/react-best-practices/state-architecture/UrlState')
-);
+const LocalState = lazy(() => import('./docs/react-best-practices/state-architecture/LocalState'));
+const UrlState = lazy(() => import('./docs/react-best-practices/state-architecture/UrlState'));
 const ContainerPresentational = lazy(
-  () =>
-    import(
-      './docs/react-best-practices/component-architecture/ContainerPresentational'
-    )
+  () => import('./docs/react-best-practices/component-architecture/ContainerPresentational'),
 );
 const CustomHooks = lazy(
-  () => import('./docs/react-best-practices/component-architecture/CustomHooks')
+  () => import('./docs/react-best-practices/component-architecture/CustomHooks'),
 );
 const ComponentBoundaries = lazy(
-  () =>
-    import(
-      './docs/react-best-practices/component-architecture/ComponentBoundaries'
-    )
+  () => import('./docs/react-best-practices/component-architecture/ComponentBoundaries'),
 );
-const CleanJsx = lazy(
-  () => import('./docs/react-best-practices/component-layer/CleanJsx')
-);
-const Fragments = lazy(
-  () => import('./docs/react-best-practices/component-layer/Fragments')
-);
-const PropsApi = lazy(
-  () => import('./docs/react-best-practices/component-layer/PropsApi')
-);
+const CleanJsx = lazy(() => import('./docs/react-best-practices/component-layer/CleanJsx'));
+const Fragments = lazy(() => import('./docs/react-best-practices/component-layer/Fragments'));
+const PropsApi = lazy(() => import('./docs/react-best-practices/component-layer/PropsApi'));
 const PropValidation = lazy(
-  () => import('./docs/react-best-practices/component-layer/PropValidation')
+  () => import('./docs/react-best-practices/component-layer/PropValidation'),
 );
 const CompoundComponentsExample = lazy(
-  () => import('./docs/react-best-practices/component-layer/CompoundComponents')
+  () => import('./docs/react-best-practices/component-layer/CompoundComponents'),
 );
-const MeasureFirst = lazy(
-  () => import('./docs/react-best-practices/performance/MeasureFirst')
-);
-const ReactMemo = lazy(
-  () => import('./docs/react-best-practices/performance/ReactMemo')
-);
-const CodeSplitting = lazy(
-  () => import('./docs/react-best-practices/performance/CodeSplitting')
-);
-const DynamicImports = lazy(
-  () => import('./docs/react-best-practices/performance/DynamicImports')
-);
+const MeasureFirst = lazy(() => import('./docs/react-best-practices/performance/MeasureFirst'));
+const ReactMemo = lazy(() => import('./docs/react-best-practices/performance/ReactMemo'));
+const CodeSplitting = lazy(() => import('./docs/react-best-practices/performance/CodeSplitting'));
+const DynamicImports = lazy(() => import('./docs/react-best-practices/performance/DynamicImports'));
 const ErrorBoundaries = lazy(
-  () => import('./docs/react-best-practices/code-quality/ErrorBoundaries')
+  () => import('./docs/react-best-practices/code-quality/ErrorBoundaries'),
 );
 const DefensiveProgramming = lazy(
-  () => import('./docs/react-best-practices/code-quality/DefensiveProgramming')
+  () => import('./docs/react-best-practices/code-quality/DefensiveProgramming'),
 );
 const LoadingErrorStates = lazy(
-  () => import('./docs/react-best-practices/code-quality/LoadingErrorStates')
+  () => import('./docs/react-best-practices/code-quality/LoadingErrorStates'),
 );
-const TypeSafety = lazy(
-  () => import('./docs/react-best-practices/code-quality/TypeSafety')
-);
-const GenericTypes = lazy(
-  () => import('./docs/react-best-practices/code-quality/GenericTypes')
-);
-const SemanticHtml = lazy(
-  () => import('./docs/react-best-practices/accessibility/SemanticHtml')
-);
-const FormLabels = lazy(
-  () => import('./docs/react-best-practices/accessibility/FormLabels')
-);
+const TypeSafety = lazy(() => import('./docs/react-best-practices/code-quality/TypeSafety'));
+const GenericTypes = lazy(() => import('./docs/react-best-practices/code-quality/GenericTypes'));
+const SemanticHtml = lazy(() => import('./docs/react-best-practices/accessibility/SemanticHtml'));
+const FormLabels = lazy(() => import('./docs/react-best-practices/accessibility/FormLabels'));
 const AriaAttributes = lazy(
-  () => import('./docs/react-best-practices/accessibility/AriaAttributes')
+  () => import('./docs/react-best-practices/accessibility/AriaAttributes'),
 );
 const FocusManagement = lazy(
-  () => import('./docs/react-best-practices/accessibility/FocusManagement')
+  () => import('./docs/react-best-practices/accessibility/FocusManagement'),
 );
-const FocusTrap = lazy(
-  () => import('./docs/react-best-practices/accessibility/FocusTrap')
-);
+const FocusTrap = lazy(() => import('./docs/react-best-practices/accessibility/FocusTrap'));
 // Frontend Best Practices
 const LocalVsGlobalState = lazy(
-  () =>
-    import(
-      './docs/frontend-best-practices/state-architecture/LocalVsGlobalState'
-    )
+  () => import('./docs/frontend-best-practices/state-architecture/LocalVsGlobalState'),
 );
 const NormalizeState = lazy(
-  () =>
-    import('./docs/frontend-best-practices/state-architecture/NormalizeState')
+  () => import('./docs/frontend-best-practices/state-architecture/NormalizeState'),
 );
 const StateMachines = lazy(
-  () =>
-    import('./docs/frontend-best-practices/state-architecture/StateMachines')
+  () => import('./docs/frontend-best-practices/state-architecture/StateMachines'),
 );
 const FrontendContainerPresentational = lazy(
-  () =>
-    import(
-      './docs/frontend-best-practices/component-layer/ContainerPresentational'
-    )
+  () => import('./docs/frontend-best-practices/component-layer/ContainerPresentational'),
 );
 const FrontendCompoundComponents = lazy(
-  () =>
-    import('./docs/frontend-best-practices/component-layer/CompoundComponents')
+  () => import('./docs/frontend-best-practices/component-layer/CompoundComponents'),
 );
 const RenderProps = lazy(
-  () => import('./docs/frontend-best-practices/component-layer/RenderProps')
+  () => import('./docs/frontend-best-practices/component-layer/RenderProps'),
 );
-const Memoization = lazy(
-  () => import('./docs/frontend-best-practices/performance/Memoization')
-);
+const Memoization = lazy(() => import('./docs/frontend-best-practices/performance/Memoization'));
 const FrontendCodeSplitting = lazy(
-  () => import('./docs/frontend-best-practices/performance/CodeSplitting')
+  () => import('./docs/frontend-best-practices/performance/CodeSplitting'),
 );
 const Virtualization = lazy(
-  () => import('./docs/frontend-best-practices/performance/Virtualization')
+  () => import('./docs/frontend-best-practices/performance/Virtualization'),
 );
 const FrontendErrorBoundaries = lazy(
-  () => import('./docs/frontend-best-practices/error-handling/ErrorBoundaries')
+  () => import('./docs/frontend-best-practices/error-handling/ErrorBoundaries'),
 );
 const AsyncErrorHandling = lazy(
-  () =>
-    import('./docs/frontend-best-practices/error-handling/AsyncErrorHandling')
+  () => import('./docs/frontend-best-practices/error-handling/AsyncErrorHandling'),
 );
 const RequestCancellation = lazy(
-  () =>
-    import('./docs/frontend-best-practices/error-handling/RequestCancellation')
+  () => import('./docs/frontend-best-practices/error-handling/RequestCancellation'),
 );
 const FrontendCustomHooks = lazy(
-  () => import('./docs/frontend-best-practices/code-organization/CustomHooks')
+  () => import('./docs/frontend-best-practices/code-organization/CustomHooks'),
 );
-const Constants = lazy(
-  () => import('./docs/frontend-best-practices/code-organization/Constants')
-);
+const Constants = lazy(() => import('./docs/frontend-best-practices/code-organization/Constants'));
 const StrictTypeScript = lazy(
-  () => import('./docs/frontend-best-practices/type-safety/StrictTypeScript')
+  () => import('./docs/frontend-best-practices/type-safety/StrictTypeScript'),
 );
 const DiscriminatedUnions = lazy(
-  () => import('./docs/frontend-best-practices/type-safety/DiscriminatedUnions')
+  () => import('./docs/frontend-best-practices/type-safety/DiscriminatedUnions'),
 );
 const FrontendSemanticHtml = lazy(
-  () => import('./docs/frontend-best-practices/accessibility/SemanticHtml')
+  () => import('./docs/frontend-best-practices/accessibility/SemanticHtml'),
 );
 const FrontendAriaAttributes = lazy(
-  () => import('./docs/frontend-best-practices/accessibility/AriaAttributes')
+  () => import('./docs/frontend-best-practices/accessibility/AriaAttributes'),
 );
 const KeyboardNavigation = lazy(
-  () =>
-    import('./docs/frontend-best-practices/accessibility/KeyboardNavigation')
+  () => import('./docs/frontend-best-practices/accessibility/KeyboardNavigation'),
 );
-const ApiClient = lazy(
-  () => import('./docs/frontend-best-practices/api-integration/ApiClient')
-);
+const ApiClient = lazy(() => import('./docs/frontend-best-practices/api-integration/ApiClient'));
 const Interceptors = lazy(
-  () => import('./docs/frontend-best-practices/api-integration/Interceptors')
+  () => import('./docs/frontend-best-practices/api-integration/Interceptors'),
 );
-const HOC = lazy(
-  () => import('./docs/frontend-best-practices/code-reusability/HOC')
-);
+const HOC = lazy(() => import('./docs/frontend-best-practices/code-reusability/HOC'));
 const Composition = lazy(
-  () => import('./docs/frontend-best-practices/code-reusability/Composition')
+  () => import('./docs/frontend-best-practices/code-reusability/Composition'),
 );
 const StarMatch = lazy(() => import('./apps/games/star-match/StarMatch'));
 const Test = lazy(() => import('./sandbox/test/Test'));
+const Test2 = lazy(() => import('./sandbox/test2/index'));
 const Users = lazy(() => import('./pocs/auth/components/users'));
-const AppHeaderWithSqlJs = lazy(
-  () => import('./pocs/rsc/server-test/app-header-with-sqljs')
-);
-const TodoSqlJsApp = lazy(
-  () => import('./pocs/rsc/server-test/sqljs-todo/TodoSqlJsApp')
-);
+const AppHeaderWithSqlJs = lazy(() => import('./pocs/rsc/server-test/app-header-with-sqljs'));
+const TodoSqlJsApp = lazy(() => import('./pocs/rsc/server-test/sqljs-todo/TodoSqlJsApp'));
 import { action as vanlifeLoginAction } from './apps/vanlife/pages/Login';
 import { loader as vansLoader } from './apps/vanlife/pages/vans/Vans';
 import { loader as vanlifeVanDetailLoader } from './apps/vanlife/pages/vans/VanDetail';
@@ -401,11 +283,7 @@ const router = createBrowserRouter(
         <Route path='/vanlife' element={<VanlifeLayout />}>
           <Route index element={<VanlifeHome />} />
           <Route path='about' element={<VanlifeAbout />} />
-          <Route
-            path='login'
-            element={<VanlifeLogin />}
-            action={vanlifeLoginAction}
-          />
+          <Route path='login' element={<VanlifeLogin />} action={vanlifeLoginAction} />
           <Route
             path='vans'
             element={<VanlifeVans />}
@@ -464,17 +342,12 @@ const router = createBrowserRouter(
       <Route path='sandbox' element={<SandboxLayout />}>
         <Route index element={<Playground />} />
         <Route path='playground' element={<Playground />} />
-        <Route
-          path='flexible-compound-components'
-          element={<FlexibleCompoundComponents />}
-        />
+        <Route path='flexible-compound-components' element={<FlexibleCompoundComponents />} />
         <Route path='compound-components' element={<CompoundComponents />} />
-        <Route
-          path='compound-components-simple'
-          element={<CompoundComponentsSimple />}
-        />
+        <Route path='compound-components-simple' element={<CompoundComponentsSimple />} />
         <Route path='increment-redux-hooks' element={<IncrementReduxHooks />} />
         <Route path='test' element={<Test />} />
+        <Route path='test2' element={<Test2 />} />
         <Route path='game5' element={<h1>Game 5</h1>} />
         <Route path='game6' element={<h1>Game 6</h1>} />
       </Route>
@@ -491,10 +364,7 @@ const router = createBrowserRouter(
         <Route path='todo-context' element={<TodosContext />} />
         <Route path='todos-flux' element={<TodosFlux />} />
         <Route path='todos-redux' element={<TodosRedux />} />
-        <Route
-          path='todos-context-fakeapi-localstorage'
-          element={<TodoApp />}
-        />
+        <Route path='todos-context-fakeapi-localstorage' element={<TodoApp />} />
       </Route>
       <Route path='rsc' element={<RscLayout />}>
         <Route index element={<AppHeader />} />
@@ -505,25 +375,16 @@ const router = createBrowserRouter(
       <Route path='transition' element={<TransitionLayout />}>
         <Route index element={<TransitionTabs />} />
         <Route path='transition-tabs' element={<TransitionTabs />} />
-        <Route
-          path='transition-optimistic'
-          element={<TransitionOptimistic />}
-        />
+        <Route path='transition-optimistic' element={<TransitionOptimistic />} />
         <Route path='transition-suspense' element={<TransitionSuspense />} />
       </Route>
       <Route path='hooks' element={<HooksLayout />}>
         <Route index element={<NotesApp />} />
         <Route path='use-hook-notes-app' element={<NotesApp />} />
         <Route path='parallel-dashboard' element={<NoteDashboardApp />} />
-        <Route
-          path='parallel-dashboard/:noteId'
-          element={<NoteDashboardApp />}
-        />
+        <Route path='parallel-dashboard/:noteId' element={<NoteDashboardApp />} />
         <Route path='context-app' element={<ContextApp />} />
-        <Route
-          path='progressive-note/:noteId'
-          element={<ProgressiveNoteApp />}
-        />
+        <Route path='progressive-note/:noteId' element={<ProgressiveNoteApp />} />
       </Route>
       <Route path='login' element={<Login />} />
       <Route
@@ -546,10 +407,7 @@ const router = createBrowserRouter(
       <Route path='cards2' element={<Cards2 />} />
       <Route path='docs' element={<DocsLayout />}>
         <Route path='react19-features' element={<React19FeaturesApp />} />
-        <Route
-          path='react-best-practices'
-          element={<ReactBestPracticesLayout />}
-        >
+        <Route path='react-best-practices' element={<ReactBestPracticesLayout />}>
           <Route index element={<ReactBestPracticesIndex />} />
           <Route path='overview' element={<ReactBestPracticesIndex />} />
           <Route path='state-classify' element={<StateClassify />} />
@@ -557,32 +415,20 @@ const router = createBrowserRouter(
           <Route path='global-state' element={<GlobalState />} />
           <Route path='local-state' element={<LocalState />} />
           <Route path='url-state' element={<UrlState />} />
-          <Route
-            path='container-presentational'
-            element={<ContainerPresentational />}
-          />
+          <Route path='container-presentational' element={<ContainerPresentational />} />
           <Route path='custom-hooks' element={<CustomHooks />} />
-          <Route
-            path='component-boundaries'
-            element={<ComponentBoundaries />}
-          />
+          <Route path='component-boundaries' element={<ComponentBoundaries />} />
           <Route path='clean-jsx' element={<CleanJsx />} />
           <Route path='fragments' element={<Fragments />} />
           <Route path='props-api' element={<PropsApi />} />
           <Route path='prop-validation' element={<PropValidation />} />
-          <Route
-            path='compound-components'
-            element={<CompoundComponentsExample />}
-          />
+          <Route path='compound-components' element={<CompoundComponentsExample />} />
           <Route path='measure-first' element={<MeasureFirst />} />
           <Route path='react-memo' element={<ReactMemo />} />
           <Route path='code-splitting' element={<CodeSplitting />} />
           <Route path='dynamic-imports' element={<DynamicImports />} />
           <Route path='error-boundaries' element={<ErrorBoundaries />} />
-          <Route
-            path='defensive-programming'
-            element={<DefensiveProgramming />}
-          />
+          <Route path='defensive-programming' element={<DefensiveProgramming />} />
           <Route path='loading-error-states' element={<LoadingErrorStates />} />
           <Route path='type-safety' element={<TypeSafety />} />
           <Route path='generic-types' element={<GenericTypes />} />
@@ -592,46 +438,25 @@ const router = createBrowserRouter(
           <Route path='focus-management' element={<FocusManagement />} />
           <Route path='focus-trap' element={<FocusTrap />} />
         </Route>
-        <Route
-          path='frontend-best-practices'
-          element={<FrontendBestPracticesLayout />}
-        >
+        <Route path='frontend-best-practices' element={<FrontendBestPracticesLayout />}>
           <Route index element={<FrontendBestPracticesIndex />} />
           <Route path='overview' element={<FrontendBestPracticesIndex />} />
-          <Route
-            path='local-vs-global-state'
-            element={<LocalVsGlobalState />}
-          />
+          <Route path='local-vs-global-state' element={<LocalVsGlobalState />} />
           <Route path='normalize-state' element={<NormalizeState />} />
           <Route path='state-machines' element={<StateMachines />} />
-          <Route
-            path='container-presentational'
-            element={<FrontendContainerPresentational />}
-          />
-          <Route
-            path='compound-components'
-            element={<FrontendCompoundComponents />}
-          />
+          <Route path='container-presentational' element={<FrontendContainerPresentational />} />
+          <Route path='compound-components' element={<FrontendCompoundComponents />} />
           <Route path='render-props' element={<RenderProps />} />
           <Route path='memoization' element={<Memoization />} />
           <Route path='code-splitting' element={<FrontendCodeSplitting />} />
           <Route path='virtualization' element={<Virtualization />} />
-          <Route
-            path='error-boundaries'
-            element={<FrontendErrorBoundaries />}
-          />
+          <Route path='error-boundaries' element={<FrontendErrorBoundaries />} />
           <Route path='async-error-handling' element={<AsyncErrorHandling />} />
-          <Route
-            path='request-cancellation'
-            element={<RequestCancellation />}
-          />
+          <Route path='request-cancellation' element={<RequestCancellation />} />
           <Route path='custom-hooks' element={<FrontendCustomHooks />} />
           <Route path='constants' element={<Constants />} />
           <Route path='strict-typescript' element={<StrictTypeScript />} />
-          <Route
-            path='discriminated-unions'
-            element={<DiscriminatedUnions />}
-          />
+          <Route path='discriminated-unions' element={<DiscriminatedUnions />} />
           <Route path='semantic-html' element={<FrontendSemanticHtml />} />
           <Route path='aria-attributes' element={<FrontendAriaAttributes />} />
           <Route path='keyboard-navigation' element={<KeyboardNavigation />} />
@@ -644,8 +469,8 @@ const router = createBrowserRouter(
       <Route path='loading-spinner' element={<LoadingSpinner />} />
       <Route path='not-found' element={<NotFound />} />
       <Route path='*' element={<NotFound />} />
-    </Route>
-  )
+    </Route>,
+  ),
 );
 
 const queryClient = new QueryClient();
